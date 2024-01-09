@@ -1,4 +1,4 @@
-# compas_xr_unity
+# Course on embodied Computation
 COMPAS XR: Visualizer app for collaborative robotic assembly
 
 Firebase Installations Quickstart
