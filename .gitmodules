@@ -1,0 +1,3 @@
+[submodule "Assets/compas_xr_unity_firebase"]
+	path = Assets/compas_xr_unity_firebase
+	url = https://github.com/gramaziokohler/compas_xr_unity_firebase.git
