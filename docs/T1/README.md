@@ -52,11 +52,11 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 
       - *Note: Compas is a framework for working with robotics*
 	  
-	- Run Anaconda Prompt Application (start menu search)
+	- Run Anaconda Prompt. Go to start menu and search ```anaconda prompt```
 	
 		<img width="650" alt="" src="https://i.imgur.com/4OSBP7y.jpg">
 		
-      - *Note: This is the Python terminal*
+		- *Note: This is the Anaconda-flavored Python terminal. It is different from the Windows Command Prompt in that it runs python code and commands, not windows commands*
 	
 	- Type the following commands into the terminal, this creates a new development environment called ARC596, and installs compas, compas_fab, compas_eve, and links them into Rhino 7:
 
@@ -78,10 +78,12 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 
 5. Unblock the programs using the firewall
 		
-      - *Note: If your host (broker) for messages is not localhost. DISABLE your Firewall or Ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible.*
+	- When windows asks whether to allow network access for Python, be sure to allow for both private and public networks. 
 
 		<img width="400" alt="" src="https://i.imgur.com/2lRvYge.jpg">
-		
+			
+			- *Note: If your host (broker) for messages is not localhost. DISABLE your Firewall or Ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible.*
+
 	
 	
 ### Installing Unity and Starting a Project
