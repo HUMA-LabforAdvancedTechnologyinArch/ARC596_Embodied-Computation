@@ -31,12 +31,17 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 
       - *Note: Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes.*
 
+		
 
 3. Install Git LFS https://git-lfs.com/ using the Anaconda prompt. Be sure to activate the ARC596 environment. 
 
-      - *Note: This is a Git extension to allow you to post larger files.*
+	- Open the Windows Command Prompt. Search CMD in the start menu. 
+	
+		<img width="650" alt="" src="https://i.imgur.com/hJg15Ws.jpg">
+	
+	- Run ```git lfs install```
 
-	```git lfs install```
+      - *Note: This is a Git extension to allow you to post larger files to the cloud folder called a repository*
 
 
 3. Install Anaconda https://www.anaconda.com/download
@@ -99,8 +104,8 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 *** Open Unity Hub. In Projects, click on Open(MacOS) or ADD(Windows). Locate the folder you downloaded from GitHub `name of project here` on the drive and add it.
 -->
 
-3. Download & Install the correct Unity Version ```2022.3.3f1``` https://unity.com/releases/editor/whats-new/2022.3.3
-
+3. Download & Install the correct Unity Version. ```2022.3.3f1``` https://unity.com/releases/editor/whats-new/2022.3.3
+      - *Note: Unity is version-sensitive, and it needs to be exactly this version*
 	- Be sure to select the appropriate dependencies below.
 
 		<img width="400" alt="" src="https://i.imgur.com/ShxDrED.jpg">
