@@ -7,7 +7,7 @@
 
 1. [Rhinoceros 7](https://www.rhino3d.com/en/7/)
 2. [Github Desktop](https://desktop.github.com/) 
-3. [Anaconda]
+3. [Anaconda](https://www.anaconda.com/)
 4. [Unity 2022.3.3f1](https://unity.com/) 
 5. Android SDK and Java JDK (when developing for Android) - have to be ticked in the installation modules when installing Unity.
 
@@ -21,7 +21,7 @@
 
 ## Getting started with this project
 
-### Installing Dependencies
+### Installing Requirements 
 
 Enabling communication between grasshopper and your application with MQTT
 
