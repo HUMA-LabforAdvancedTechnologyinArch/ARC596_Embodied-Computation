@@ -125,15 +125,10 @@
 		- Windows Build Support (IL2CPP)
 		- Documentation
 	
-4. Run Unity Hub. Create a new Unity Project.
-
-	<img width="650" alt="" src="https://i.imgur.com/I77ndmz.jpg">
-	
-
 
 ### Android
 
-1. Enable Developer Mode on your Android 
+1. Enable Developer Mode on your Android phone
 
 	- Go to the settings on your phone. Settings > About Phone > Build Number (or similar)
 	
@@ -163,6 +158,8 @@
 		
 2. Open the test files
 
+	- Open Unity Hube. Go to Start menu and search ```unity hub```
+	
 	- Add the test file from ```ARC596_Embodied-Computation\src\arc596_unity``` to Unity 
 	  	
 		<img width="400" alt="" src="https://i.imgur.com/TpqB3gn.jpeg">
@@ -175,7 +172,9 @@
 	
 		<img width="400" alt="" src="https://i.imgur.com/8wosTfH.jpeg">
 		
-			- *Note: You should see no errors other than the ones in the screenshot.*
+		- *Note: You should see no errors other than the ones in the screenshot.*
+	
+	- Open Rhino
 	
 	- Go to the ```ARC596_Embodied-Computation\docs\T2 folder```, and see if you can run the grasshopper script without any errors. 
 
