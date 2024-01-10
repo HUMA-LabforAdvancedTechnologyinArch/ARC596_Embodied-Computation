@@ -112,12 +112,12 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 		
 		<img width="400" alt="" src="https://i.imgur.com/ShxDrED.jpg">
 		
-		-Microsoft Visual Studio 
-		-Android Build Support (Both Android SDK and OpenJDK)
-		-iOS Build Support
-		-Universal Windows Platform Build Support
-		-Windows Build Support (IL2CPP)
-		-Documentation
+		- Microsoft Visual Studio 
+		- Android Build Support (Both Android SDK and OpenJDK)
+		- iOS Build Support
+		- Universal Windows Platform Build Support
+		- Windows Build Support (IL2CPP)
+		- Documentation
 	
 4. Run Unity Hub. Create a new Unity Project.
 
