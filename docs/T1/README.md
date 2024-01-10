@@ -1,7 +1,8 @@
 # ARC596 - Tutorial 1 - Installation Guide
 
 - ARC596: Embodied Computation
-- Daniela Mitterberger 
+- Professor: Daniela Mitterberger - mitterberger@princeton.edu
+- Assistant Instructor: Kirill Volchinskiy - kvolchinskiy@princeton.edu
 - Tutorial 1 - Installation
 
 ### Requirements
@@ -10,7 +11,7 @@
 2. [Github Desktop](https://desktop.github.com/) 
 3. [Anaconda](https://www.anaconda.com/)
 4. [Unity 2022.3.3f1](https://unity.com/) 
-5. Android SDK and Java JDK (when developing for Android) - have to be ticked in the installation modules when installing Unity.
+>	*Note: Android SDK and Java JDK (when developing for Android) - have to be ticked in the installation modules when installing Unity.*
 
 ### Dependencies
 
@@ -24,17 +25,17 @@
 
 ### Installing Requirements 
 
-Enabling communication between Rhino, the robot, and the Unity App on your phone. 
-
 1. Install Rhino 7 (Grasshopper is installed as part of Rhino)
 
 2. Make a Github Account 
 
+	- Create an account using https://github.com/signup
+	
+	- Email your username to Daniela (mitterberger@princeton.edu) and Kirill (kvolchinskiy@princeton.edu) once you are done 
+
 3. Install Github Desktop https://desktop.github.com/
 
       - *Note: Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. Github is a web-based repository to use Git to post/host your files*
-
-
 
 4. Install Anaconda https://www.anaconda.com/download
 
@@ -77,8 +78,7 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 		- *Note: If your host (broker) for messages is not localhost. DISABLE your Firewall or Ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible.*
 
 	
-	
-### Installing Unity and Starting a Project
+### Installing Unity
 
 1. Install Unity https://unity.com/download 
 
@@ -117,7 +117,9 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 
 	<img width="650" alt="" src="https://i.imgur.com/I77ndmz.jpg">
 	
-		
+
+### Installing Git and Testing your Setup
+
 
 5. Install Git LFS https://git-lfs.com/ using the Anaconda prompt. Be sure to activate the ARC596 environment. 
 
@@ -130,19 +132,28 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
       - *Note: This is a Git extension to allow you to post larger files to the cloud folder called a repository*
 
 
-6. Open Github Desktop
+7. Download the code 
 
-
-
-7. Clone the repository
-
-      - *Note: This is a Git extension to allow you to post larger files to the cloud folder called a repository*
+	- Open Github Desktop, sign into your Github account 
+	
+      - *Note: Instructor/AI will need to give you access to the private repository. Be sure to email them*
+      - *Note: This downloads the files hosted on github to your computer.*
 	  
+	- Clone the repository. Go to File > Clone Repository
+	  
+	- Use the following url, and make a note of where it saves the files ```https://github.com/IntuitiveRobotics-AugmentedTechnologies/ARC596_Embodied-Computation.git```
+      
+	  - *Note: Do not use a Dropbox or Google Drive directory, as the file locking will make working more difficult*
+	
+	  	<img width="400" alt="" src="https://i.imgur.com/pbxRg8X.jpg">
+		
 8. Open the test files*
 
-	- Go to the T4 folder, and see if you can build it with Unity onto your phone without any errors. Check the unity console for errors. 
+	- Add the test file from ```ARC596_Embodied-Computation\src\arc596_unity``` to Unity and see if you can build it with Unity onto your phone without any errors. Check the unity console for errors. 
+	  	
+		<img width="400" alt="" src="https://i.imgur.com/XCXoKch.jpg">
 	
-	- GO to the T2 folder, and see if you can run the grasshopper script without any errors. 
+	- Go to the ```ARC596_Embodied-Computation\docs\T2 folder```, and see if you can run the grasshopper script without any errors. 
 
 	
 ### Android
