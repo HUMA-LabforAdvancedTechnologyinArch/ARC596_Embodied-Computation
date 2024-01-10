@@ -49,7 +49,7 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 	  
 	- Run Anaconda Prompt Application (start menu search)
 	
-	<img width="650" alt="" src="https://i.imgur.com/4OSBP7y.jpg">
+		<img width="650" alt="" src="https://i.imgur.com/4OSBP7y.jpg">
 		
       - *Note: This is the Python terminal*
 	
@@ -68,14 +68,14 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
       - *Note: For documentation or help, please see: https://compas.dev/compas/latest/userguide/installation.html*
 	  
 
-	<img width="650" alt="" src="https://i.imgur.com/Qs8CP1P.jpg">
+		<img width="650" alt="" src="https://i.imgur.com/Qs8CP1P.jpg">
 
 
 5. Unblock the programs using the firewall
 		
       - *Note: If your host (broker) for messages is not localhost. DISABLE your Firewall or Ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible.*
 
-	<img width="400" alt="" src="https://i.imgur.com/2lRvYge.jpg">
+		<img width="400" alt="" src="https://i.imgur.com/2lRvYge.jpg">
 		
 	
 	
@@ -91,7 +91,7 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 
 	- License unity as personal non-commercial license 
 	
-	<img width="400" alt="" src="https://i.imgur.com/GChEZvL.jpg">
+		<img width="400" alt="" src="https://i.imgur.com/GChEZvL.jpg">
 	
 	
 	
@@ -115,20 +115,23 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 
 	- Access the Package Manager
 	
-	<img width="650" alt="" src="https://i.imgur.com/iQD4avo.png">
+		<img width="650" alt="" src="https://i.imgur.com/iQD4avo.png">
 	
-	- Switch to the Unity Registry 
+	- Switch to the Unity Registry 		
 		
-	<img width="650" alt="" src="https://i.imgur.com/73kTqaN.png">
+		<img width="400" alt="" src="https://i.imgur.com/73kTqaN.png">
 	
 	- Search & Install ```AR Foundation```, repeat for ```ARCore XR plugin```
-	<img width="650" alt="" src="https://i.imgur.com/x0k6B1T.png">
+		
+		<img width="650" alt="" src="https://i.imgur.com/x0k6B1T.png">
 	
 	- Add ARCore Unity Extensions. Select ```Add package from git URL```, https://github.com/google-ar/arcore-unity-extensions.git
-	<img width="400" alt="" src="https://i.imgur.com/JDOpw0S.png">
+		
+		<img width="400" alt="" src="https://i.imgur.com/JDOpw0S.png">
 
 	- Verify ```AR Foundation```, ```ARCore XR plugin```, ```ARCore Extensions``` are installed
-	<img width="650" alt="" src="https://i.imgur.com/4LUeQrF.png">
+		
+		<img width="650" alt="" src="https://i.imgur.com/4LUeQrF.png">
 	
 	
 6. Install Vuforia - SDK for AR 
@@ -145,13 +148,13 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 
 7. Import Ros# into the project
 
-      - *Note: Ros# is a communication protocol to pass data back and forth from robots*
 
-	- Go to the Asset Store and add Ros# to your asset list:
 
-	https://assetstore.unity.com/packages/tools/physics/ros-107085
-		  
-	<img width="650" alt="" src="https://i.imgur.com/hduyAYd.jpg">
+	- Go to the Asset Store and add Ros# to your asset list: https://assetstore.unity.com/packages/tools/physics/ros-107085
+		
+		- *Note: Ros# is a communication protocol to pass data back and forth from robots*	
+		
+		<img width="650" alt="" src="https://i.imgur.com/hduyAYd.jpg">
 		
 	- In Unity’s Package Manager Window open the Packages drop-down menu and choose My Assets.  Make sure you are loading all your assets in the list.
 		
@@ -166,23 +169,23 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 	- Go to File - Build Settings
 	
 	- Switch to the Android Platform - Go to player settings
-	<img width="650" alt="" src="https://i.imgur.com/8H0ccdQ.jpg">	
+		<img width="650" alt="" src="https://i.imgur.com/8H0ccdQ.jpg">	
 	- If Unity requires you to download Android support in order to switch platforms, follow the link and install the required dependency. 
 	
 	- Go to Player > Other Settings > Rendering
 	- Make sure “Auto Graphics API” is unchecked. Change Color Space to “Linear”
-	<img width="650" alt="" src="https://i.imgur.com/KI4UmgW.jpeg">	
+		<img width="650" alt="" src="https://i.imgur.com/KI4UmgW.jpeg">	
 	
 	- Go to Player > Other Settings > Package Name. Create a unique app ID using a Java package name format. For example, use com.Princeton.AR
 	- Go to Player > Other Settings > Minimum API Level. Select Android 7.0 'Nougat' (API Level 24) or higher (For AR Optional apps, the Minimum API level is 14.)
 	- Go to Player > Other Settings > Scripting Backend. Select IL2CPP instead of Mono.
 	- Go to Player > Other Settings > Target Architectures. To meet the Google Play 64-bit requirement, enable ARM64 (64-bit ARM). Leave ARMv7 (32-bit ARM) enabled to support 32-bit devices
-	<img width="650" alt="" src="https://i.imgur.com/nzciMsI.jpeg">		
+		<img width="650" alt="" src="https://i.imgur.com/nzciMsI.jpeg">		
 	
 2. Configure Project Settings
 	
 	- Open Edit > Project Settings... and click on the XR Plug-in Management section. In the Android tab, enable ARCore.
-	<img width="650" alt="" src="https://i.imgur.com/ILVPZQS.jpg">	
+		<img width="650" alt="" src="https://i.imgur.com/ILVPZQS.jpg">	
 	
 ### Android
 
