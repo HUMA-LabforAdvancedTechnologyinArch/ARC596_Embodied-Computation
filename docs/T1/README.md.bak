@@ -185,7 +185,7 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 2. Configure Project Settings
 	
 	- Open Edit > Project Settings... and click on the XR Plug-in Management section. In the Android tab, enable ARCore.
-	<img width="650" alt="" src="https://i.imgur.com/ILVPZQS.jpg">	
+		<img width="650" alt="" src="https://i.imgur.com/ILVPZQS.jpg">	
 	
 ### Android
 

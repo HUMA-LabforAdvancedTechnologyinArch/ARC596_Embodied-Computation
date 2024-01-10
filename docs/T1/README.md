@@ -103,7 +103,7 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 
 	- Be sure to select the appropriate dependencies below.
 
-	<img width="400" alt="" src="https://i.imgur.com/ShxDrED.jpg">
+		<img width="400" alt="" src="https://i.imgur.com/ShxDrED.jpg">
 	
 	
 4. Run Unity Hub. Create a new Unity Project.
