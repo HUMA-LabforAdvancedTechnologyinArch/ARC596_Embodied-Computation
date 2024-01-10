@@ -1,17 +1,18 @@
 # Dependencies
-markdown:         redcarpet
-highlighter:      pygments
+markdown:         
+highlighter:      
 
 # Permalinks
 permalink:        pretty
 #relative_permalinks: true
 
 # Setup
-title:            Robot See Robot Do
-tagline:          'Robot See Robot Do'
-description:      'MRAC WORKSHOP'
-baseurl: "/robot_see_robot_do/" # the subpath of your site, e.g. /blog
-url: "https://le-ar-n.github.io/robot_see_robot_do/" # the base hostname & protocol for your site, e.g. http://example.com
+title:            ARC596
+tagline:          
+description:      
+baseurl: "/ARC596_embodied-computation/" # the subpath of your site, e.g. /blog
+url: "https://
+IntuitiveRobotics-AugmentedTechnologies.github.io/ARC596_embodied-computation/" # the base hostname & protocol for your site, e.g. http://example.com
 
 paginate:         5
 
