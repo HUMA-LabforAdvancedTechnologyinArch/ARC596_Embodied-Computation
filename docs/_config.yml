@@ -10,7 +10,7 @@ permalink:        pretty
 title:            ARC596
 tagline:          
 description:      
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/blog" # the subpath of your site, e.g. /blog
 url: "https://
 IntuitiveRobotics-AugmentedTechnologies.github.io/ARC596_Embodied-Computation/" # the base hostname & protocol for your site, e.g. http://example.com
 
