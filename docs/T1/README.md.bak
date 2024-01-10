@@ -37,11 +37,23 @@
 
       - *Note: Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. Github is a web-based repository to use Git to post/host your files*
 
-4. Install Anaconda https://www.anaconda.com/download
+
+4. Install Git LFS https://git-lfs.com/ using the Window Command Prompt (or Anaconda Prompt). Be sure to activate the ARC596 environment. 
+
+	- Open the Windows Command Prompt. Search CMD in the start menu. 
+	
+		<img width="650" alt="" src="https://i.imgur.com/hJg15Ws.jpg">
+	
+	- Run ```git lfs install```
+
+      - *Note: This is a Git extension to allow you to post larger files to the cloud folder called a repository*
+
+
+5. Install Anaconda https://www.anaconda.com/download
 
       - *Note: Anaconda is a package management system for Python; it manages python and related packages on your computer.*
 
-5. Install compas, compas_fab, and compas_eve
+6. Install compas, compas_fab, and compas_eve
 
       - *Note: Compas is an open-source library for digital fabrication and computation within architecture, engineering, and construction*
 	  
@@ -69,7 +81,7 @@
 		<img width="650" alt="" src="https://i.imgur.com/Qs8CP1P.jpg">
 
 
-6. Allow the recently installed programs to access the network using the firewall
+7. Allow the recently installed programs to access the network using the firewall
 		
 	- When Windows asks whether to allow network access for Python, be sure to allow for both private and public networks. 
 
@@ -118,21 +130,24 @@
 	<img width="650" alt="" src="https://i.imgur.com/I77ndmz.jpg">
 	
 
-### Installing Git and Testing your Setup
 
+### Android
 
-5. Install Git LFS https://git-lfs.com/ using the Anaconda prompt. Be sure to activate the ARC596 environment. 
+1. Enable Developer Mode on your Android 
 
-	- Open the Windows Command Prompt. Search CMD in the start menu. 
+	- Go to the settings on your phone. Settings > About Phone > Build Number (or similar)
 	
-		<img width="650" alt="" src="https://i.imgur.com/hJg15Ws.jpg">
+	- To enable developer options, tap the Build Number option 7 times 
 	
-	- Run ```git lfs install```
+	- Enable USB debugging
+	
+	- Use a USBC Data cable to connect to your computer, as opposed to a power cable. 
 
-      - *Note: This is a Git extension to allow you to post larger files to the cloud folder called a repository*
 
 
-7. Download the code 
+### Test your Setup
+
+1. Download the code 
 
 	- Open Github Desktop, sign into your Github account 
 	
@@ -147,28 +162,25 @@
 	
 	  	<img width="400" alt="" src="https://i.imgur.com/pbxRg8X.jpg">
 		
-8. Open the test files*
+2. Open the test files
 
-	- Add the test file from ```ARC596_Embodied-Computation\src\arc596_unity``` to Unity and see if you can build it with Unity onto your phone without any errors. Check the unity console for errors. 
+	- Add the test file from ```ARC596_Embodied-Computation\src\arc596_unity``` to Unity 
 	  	
-		<img width="400" alt="" src="https://i.imgur.com/XCXoKch.jpg">
+		<img width="400" alt="" src="https://i.imgur.com/TpqB3gn.jpeg">
+	
+		- Be sure that it is using the right unity version ```2022.3.3f1```
+	
+		<img width="400" alt="" src="https://i.imgur.com/mKvVORT.jpeg">
+		
+	- See if you can build and run the file on your phone. Open the Unity console. Go to File > Build and Run
+	
+		<img width="400" alt="" src="https://i.imgur.com/8wosTfH.jpeg">
+		
+			- *Note: You should see no errors other than the ones in the screenshot.*
 	
 	- Go to the ```ARC596_Embodied-Computation\docs\T2 folder```, and see if you can run the grasshopper script without any errors. 
 
 	
-### Android
-
-1. Enable Developer Mode on your Android 
-
-	- Go to the settings on your phone. Settings > About Phone > Build Number (or similar)
-	
-	- To enable developer options, tap the Build Number option 7 times 
-	
-	- Enable USB debugging
-	
-	- Use a USBC Data cable to connect to your computer, as opposed to a power cable. 
-
-
 <!--
 (Unless you wish to test the project with the given credentials, please follow all steps below. Otherwise, skip to 7)
 Register your Android app with [Firebase](https://firebase.google.com/docs/unity/setup).
