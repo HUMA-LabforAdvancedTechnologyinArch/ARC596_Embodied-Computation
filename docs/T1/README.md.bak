@@ -82,7 +82,7 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 
 		<img width="400" alt="" src="https://i.imgur.com/2lRvYge.jpg">
 			
-			- *Note: If your host (broker) for messages is not localhost. DISABLE your Firewall or Ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible.*
+		- *Note: If your host (broker) for messages is not localhost. DISABLE your Firewall or Ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible.*
 
 	
 	

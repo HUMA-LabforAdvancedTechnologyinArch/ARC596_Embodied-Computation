@@ -196,11 +196,14 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 	
 ### Android
 
-1.0 Enable Developer Mode on your Android 
+1. Enable Developer Mode on your Android 
 
 	- Go to the settings on your phone. Settings > About Phone > Build Number (or similar)
+	
 	- To enable developer options, tap the Build Number option 7 times 
+	
 	- Enable USB debugging
+	
 	- Use a USBC Data cable to connect to your computer, as opposed to a power cable. 
 
 
