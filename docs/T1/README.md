@@ -6,7 +6,7 @@
 ### Requirements
 
 1. [Rhinoceros 7](https://www.rhino3d.com/en/7/)
-2. [Github Desktop] (https://desktop.github.com/) 
+2. [Github Desktop](https://desktop.github.com/) 
 3. [Anaconda]
 4. [Unity 2022.3.3f1](https://unity.com/) 
 5. Android SDK and Java JDK (when developing for Android) - have to be ticked in the installation modules when installing Unity.
@@ -14,10 +14,10 @@
 ### Dependencies
 
 1. [COMPAS](https://compas.dev)
-2. [COMPAS Fab - Fabrication Library for Robots] (https://gramaziokohler.github.io/compas_fab/latest/)
-3. [COMPAS Eve - Communication] (https://compas.dev/compas_eve/latest/index.html)
-4. [Vuforia] (https://developer.vuforia.com/downloads/sdk)
-5. [ROS#] (https://www.ros.org/)
+2. [COMPAS Fab - Fabrication Library for Robots](https://gramaziokohler.github.io/compas_fab/latest/)
+3. [COMPAS Eve - Communication](https://compas.dev/compas_eve/latest/index.html)
+4. [Vuforia](https://developer.vuforia.com/downloads/sdk)
+5. [ROS#](https://www.ros.org/)
 
 ## Getting started with this project
 
