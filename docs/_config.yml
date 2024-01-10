@@ -20,7 +20,7 @@ paginate:         5
 #version:          2.1.0
 
 github:
-  repo:           https://github.com/augmentedfabricationlab/robot_see_robot_do
+  repo:           https://github.com/IntuitiveRobotics-AugmentedTechnologies/ARC596_Embodied-Computation
 
 plugins:
   - jekyll-feed
