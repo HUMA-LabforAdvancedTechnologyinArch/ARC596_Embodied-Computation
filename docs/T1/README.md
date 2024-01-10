@@ -25,17 +25,17 @@
 
 Enabling communication between grasshopper and your application with MQTT
 
-1.0. Install Rhino 7 and Grasshopper 
+1. Install Rhino 7 and Grasshopper 
 
 
-2.0. Install Git https://desktop.github.com/
+2. Install Git https://desktop.github.com/
 
-	- Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. 
+- Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. 
 
 
-2.1. Install Git LFS https://git-lfs.com/ using the Anaconda prompt. Be sure to activate the ARC596 environment. 
+3. Install Git LFS https://git-lfs.com/ using the Anaconda prompt. Be sure to activate the ARC596 environment. 
 
-	- This is a Git extension to allow you to post larger files. 
+- This is a Git extension to allow you to post larger files. 
 
 ```git lfs install```
 
