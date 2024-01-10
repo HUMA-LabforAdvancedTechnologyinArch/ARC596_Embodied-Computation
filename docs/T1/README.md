@@ -1,7 +1,8 @@
-# ARC596 Installation Guide
+# ARC596 - Tutorial 1 - Installation Guide
 
 - ARC596: Embodied Computation
 - Daniela Mitterberger 
+- Tutorial 1 - Installation
 
 ### Requirements
 
