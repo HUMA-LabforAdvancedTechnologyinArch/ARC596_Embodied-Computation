@@ -58,11 +58,11 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 		
 		- *Note: This is the Anaconda-flavored Python terminal. It is different from the Windows Command Prompt in that it runs python code and commands, not windows commands*
 	
-	- Type the following commands into the terminal, this creates a new development environment called ARC596, and installs compas, compas_fab, compas_eve, and links them into Rhino 7:
+	- Type the following commands into the terminal, this creates a new development environment. We reccomend you to name it ARC596, and the commands subsequently install compas, compas_fab, compas_eve, and link these libraries into Rhino 7:
 
 	```
-	conda create -n ARC596
-	conda activate ARC596
+	conda create -n <environment name>
+	conda activate <environment name>
 	conda install -c conda-forge compas
 	conda update compas
 	conda install conda-forge::compas_fab
@@ -95,7 +95,8 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 2. License Unity & Create Unity ID
 
 	- Create your Unity ID: https://id.unity.com/en/conversations/b1516ea8-e6f1-4061-96b5-a060365abe06019f
-
+		<img width="600" alt="" src="https://i.imgur.com/HUdlboa.jpg">
+		
 	- License unity as personal non-commercial license 
 	
 		<img width="400" alt="" src="https://i.imgur.com/GChEZvL.jpg">
