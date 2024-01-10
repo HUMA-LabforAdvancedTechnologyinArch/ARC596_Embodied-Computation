@@ -21,7 +21,7 @@
 4. [Vuforia](https://developer.vuforia.com/downloads/sdk)
 5. [ROS#](https://www.ros.org/)
 
-## Getting started with this project
+## Getting Started with This Project
 
 ### Installing Requirements 
 
@@ -139,7 +139,7 @@
 	- Use a USBC Data cable to connect to your computer, as opposed to a power cable. 
 
 
-### Test your Setup
+### Test Your Setup
 
 1. Download the code 
 
@@ -162,15 +162,15 @@
 	
 	- Add the test file from ```ARC596_Embodied-Computation\src\arc596_unity``` to Unity 
 	  	
-		<img width="400" alt="" src="https://i.imgur.com/TpqB3gn.jpeg">
+		<img width="600" alt="" src="https://i.imgur.com/TpqB3gn.jpeg">
 	
 		- Be sure that it is using the right unity version ```2022.3.3f1```
 	
-		<img width="400" alt="" src="https://i.imgur.com/mKvVORT.jpeg">
+		<img width="600" alt="" src="https://i.imgur.com/mKvVORT.jpeg">
 		
 	- See if you can build and run the file on your phone. Open the Unity console. Go to File > Build and Run
 	
-		<img width="400" alt="" src="https://i.imgur.com/8wosTfH.jpeg">
+		<img width="600" alt="" src="https://i.imgur.com/8wosTfH.jpeg">
 		
 		- *Note: You should see no errors other than the ones in the screenshot.*
 	
