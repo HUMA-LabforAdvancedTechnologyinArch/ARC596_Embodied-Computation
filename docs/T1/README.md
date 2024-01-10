@@ -29,30 +29,30 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 
 2. Install Git https://desktop.github.com/
 
-> Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. 
+	- Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. 
 
 
 3. Install Git LFS https://git-lfs.com/ using the Anaconda prompt. Be sure to activate the ARC596 environment. 
 
-> This is a Git extension to allow you to post larger files. 
+	- This is a Git extension to allow you to post larger files. 
 
 ```git lfs install```
 
 
 3. Install Anaconda https://www.anaconda.com/download
 
-> Anaconda is a package management system for Python; it manages python and related packages on your computer. 
+	- Anaconda is a package management system for Python; it manages python and related packages on your computer. 
 
 
 4. Install compas, compas_fab, and compas_eve
 
-> Compas is a framework for working with robotics 
+	- Compas is a framework for working with robotics 
 
 - Run Anaconda Prompt Application (start menu search)
 
 <img width="500" alt="" src="https://i.imgur.com/4OSBP7y.jpg">
 	
-> This is the Python terminal 
+	- This is the Python terminal 
 	
 - Type the following commands into the terminal, this creates a new development environment called ARC596, and installs compas, compas_fab, compas_eve, and links them into Rhino 7:
 
@@ -88,13 +88,17 @@ python -m compas_rhino.install -v 7.0
 	
 2. License Unity & Create Unity ID
 
+	- Create your Unity ID: https://id.unity.com/en/conversations/b1516ea8-e6f1-4061-96b5-a060365abe06019f
+
 	- License unity as personal non-commercial license 
+	
 	<img width="500" alt="" src="https://i.imgur.com/GChEZvL.jpg">
-	- Create Unity ID: https://id.unity.com/en/conversations/b1516ea8-e6f1-4061-96b5-a060365abe06019f
 	
 	
-*** Download the project from Github
+	
+<!--- Download the project from Github
 *** Open Unity Hub. In Projects, click on Open(MacOS) or ADD(Windows). Locate the folder you downloaded from GitHub `name of project here` on the drive and add it.
+-->
 
 3. Download & Install the correct Unity Version ```2022.3.3f1``` https://unity.com/releases/editor/whats-new/2022.3.3
 
@@ -144,21 +148,18 @@ python -m compas_rhino.install -v 7.0
     - Download and import Ros# to the project 
 
 
-8. Install MQTT
-
-	- Tutorial coming soon
 
 ### Configure Build and Project Settings in Unity
 
-1.0 Select Android in build settings
+1. Select Android in build settings
 
-	- File - Build Settings
+- Go to File - Build Settings
 	
 	- Switch to the Android Platform - Go to player settings
 	<img width="500" alt="" src="https://i.imgur.com/8H0ccdQ.jpg">	
 	- If Unity requires you to download Android support in order to switch platforms, follow the link and install the required dependency. 
 	
-	- Go to Player > Other Settings > Rendering
+- Go to Player > Other Settings > Rendering
 	- Make sure “Auto Graphics API” is unchecked. Change Color Space to “Linear”
 	<img width="500" alt="" src="https://i.imgur.com/KI4UmgW.jpeg">	
 	
@@ -168,7 +169,7 @@ python -m compas_rhino.install -v 7.0
 	- Go to Player > Other Settings > Target Architectures. To meet the Google Play 64-bit requirement, enable ARM64 (64-bit ARM). Leave ARMv7 (32-bit ARM) enabled to support 32-bit devices
 	<img width="500" alt="" src="https://i.imgur.com/nzciMsI.jpeg">		
 	
-2.0 Configure Project Settings
+2. Configure Project Settings
 	
 	- Open Edit > Project Settings... and click on the XR Plug-in Management section. In the Android tab, enable ARCore.
 	<img width="500" alt="" src="https://i.imgur.com/ILVPZQS.jpg">	
