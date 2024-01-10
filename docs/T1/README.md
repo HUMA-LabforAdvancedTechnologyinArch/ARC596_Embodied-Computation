@@ -66,6 +66,7 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 	```
 
       - *Note: For documentation or help, please see: https://compas.dev/compas/latest/userguide/installation.html*
+	  
 
 	<img width="650" alt="" src="https://i.imgur.com/Qs8CP1P.jpg">
 
@@ -74,7 +75,7 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 		
       - *Note: If your host (broker) for messages is not localhost. DISABLE your Firewall or Ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible.*
 
-	<img width="650" alt="" src="https://i.imgur.com/2lRvYge.jpg">
+	<img width="400" alt="" src="https://i.imgur.com/2lRvYge.jpg">
 		
 	
 	
@@ -90,7 +91,7 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 
 	- License unity as personal non-commercial license 
 	
-	<img width="650" alt="" src="https://i.imgur.com/GChEZvL.jpg">
+	<img width="400" alt="" src="https://i.imgur.com/GChEZvL.jpg">
 	
 	
 	
@@ -100,7 +101,9 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 
 3. Download & Install the correct Unity Version ```2022.3.3f1``` https://unity.com/releases/editor/whats-new/2022.3.3
 
-	<img width="300" alt="" src="https://i.imgur.com/ShxDrED.jpg">
+	- Be sure to select the appropriate dependencies below.
+
+	<img width="400" alt="" src="https://i.imgur.com/ShxDrED.jpg">
 	
 	
 4. Run Unity Hub. Create a new Unity Project.
@@ -111,14 +114,18 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 5. Install Unity Packages for XR (Mixed Reality)
 
 	- Access the Package Manager
+	
 	<img width="650" alt="" src="https://i.imgur.com/iQD4avo.png">
+	
+	- Switch to the Unity Registry 
+		
 	<img width="650" alt="" src="https://i.imgur.com/73kTqaN.png">
 	
 	- Search & Install ```AR Foundation```, repeat for ```ARCore XR plugin```
 	<img width="650" alt="" src="https://i.imgur.com/x0k6B1T.png">
 	
 	- Add ARCore Unity Extensions. Select ```Add package from git URL```, https://github.com/google-ar/arcore-unity-extensions.git
-	<img width="650" alt="" src="https://i.imgur.com/JDOpw0S.png">
+	<img width="400" alt="" src="https://i.imgur.com/JDOpw0S.png">
 
 	- Verify ```AR Foundation```, ```ARCore XR plugin```, ```ARCore Extensions``` are installed
 	<img width="650" alt="" src="https://i.imgur.com/4LUeQrF.png">
@@ -126,9 +133,12 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 	
 6. Install Vuforia - SDK for AR 
 
-	- Download the installer and run it https://developer.vuforia.com/downloads/sdk ```add-vuforia-package-10-19-3.unitypackage```
+	- Download the installer and run it https://developer.vuforia.com/downloads/sdk 
+		- Use the ```add-vuforia-package-10-19-3.unitypackage``` file
+	
 	- Either make an account or use ```a7314621@drdrb.net```/```Aa7314621``` as the user/pass in order to download
-	<img width="300" alt="" src="https://i.imgur.com/GEwKZaN.jpg">
+	
+		<img width="300" alt="" src="https://i.imgur.com/GEwKZaN.jpg">
 
     - In Unity, check that Vuforia is installed by seeing if menus show up: Help - Vuforia Engine - Show Developer Agreement
 
