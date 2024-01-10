@@ -28,30 +28,21 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 
 1. Install Rhino 7 (Grasshopper is installed as part of Rhino)
 
-2. Install Git https://desktop.github.com/
+2. Make a Github Account 
 
-      - *Note: Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes.*
+3. Install Github Desktop https://desktop.github.com/
 
-		
-
-3. Install Git LFS https://git-lfs.com/ using the Anaconda prompt. Be sure to activate the ARC596 environment. 
-
-	- Open the Windows Command Prompt. Search CMD in the start menu. 
-	
-		<img width="650" alt="" src="https://i.imgur.com/hJg15Ws.jpg">
-	
-	- Run ```git lfs install```
-
-      - *Note: This is a Git extension to allow you to post larger files to the cloud folder called a repository*
+      - *Note: Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. Github is a web-based repository to use Git to post/host your files*
 
 
-3. Install Anaconda https://www.anaconda.com/download
+
+4. Install Anaconda https://www.anaconda.com/download
 
       - *Note: Anaconda is a package management system for Python; it manages python and related packages on your computer.*
 
-4. Install compas, compas_fab, and compas_eve
+5. Install compas, compas_fab, and compas_eve
 
-      - *Note: Compas is a framework for working with robotics*
+      - *Note: Compas is an open-source library for digital fabrication and computation within architecture, engineering, and construction*
 	  
 	- Run Anaconda Prompt. Go to start menu and search ```anaconda prompt```
 	
@@ -77,9 +68,9 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 		<img width="650" alt="" src="https://i.imgur.com/Qs8CP1P.jpg">
 
 
-5. Unblock the programs using the firewall
+6. Allow the recently installed programs to access the network using the firewall
 		
-	- When windows asks whether to allow network access for Python, be sure to allow for both private and public networks. 
+	- When Windows asks whether to allow network access for Python, be sure to allow for both private and public networks. 
 
 		<img width="400" alt="" src="https://i.imgur.com/2lRvYge.jpg">
 			
@@ -126,82 +117,33 @@ Enabling communication between Rhino, the robot, and the Unity App on your phone
 
 	<img width="650" alt="" src="https://i.imgur.com/I77ndmz.jpg">
 	
-	
-5. Install Unity Packages for XR (Mixed Reality)
-
-	- Access the Package Manager
-	
-		<img width="650" alt="" src="https://i.imgur.com/iQD4avo.png">
-	
-	- Switch to the Unity Registry 		
 		
-		<img width="400" alt="" src="https://i.imgur.com/73kTqaN.png">
+
+5. Install Git LFS https://git-lfs.com/ using the Anaconda prompt. Be sure to activate the ARC596 environment. 
+
+	- Open the Windows Command Prompt. Search CMD in the start menu. 
 	
-	- Search & Install ```AR Foundation```, repeat for ```ARCore XR plugin```
-		
-		<img width="650" alt="" src="https://i.imgur.com/x0k6B1T.png">
+		<img width="650" alt="" src="https://i.imgur.com/hJg15Ws.jpg">
 	
-	- Add ARCore Unity Extensions. Select ```Add package from git URL```, https://github.com/google-ar/arcore-unity-extensions.git
-		
-		<img width="400" alt="" src="https://i.imgur.com/JDOpw0S.png">
+	- Run ```git lfs install```
 
-	- Verify ```AR Foundation```, ```ARCore XR plugin```, ```ARCore Extensions``` are installed
-		
-		<img width="650" alt="" src="https://i.imgur.com/4LUeQrF.png">
+      - *Note: This is a Git extension to allow you to post larger files to the cloud folder called a repository*
+
+
+6. Open Github Desktop
+
+
+
+7. Clone the repository
+
+      - *Note: This is a Git extension to allow you to post larger files to the cloud folder called a repository*
+	  
+8. Open the test files*
+
+	- Go to the T4 folder, and see if you can build it with Unity onto your phone without any errors. Check the unity console for errors. 
 	
-	
-6. Install Vuforia - SDK for AR 
+	- GO to the T2 folder, and see if you can run the grasshopper script without any errors. 
 
-	- Download the installer and run it https://developer.vuforia.com/downloads/sdk 
-		- Use the ```add-vuforia-package-10-19-3.unitypackage``` file
-	
-	- Either make an account or use ```a7314621@drdrb.net```/```Aa7314621``` as the user/pass in order to download
-	
-		<img width="300" alt="" src="https://i.imgur.com/GEwKZaN.jpg">
-
-    - In Unity, check that Vuforia is installed by seeing if menus show up: Help - Vuforia Engine - Show Developer Agreement
-
-
-7. Import Ros# into the project
-
-
-
-	- Go to the Asset Store and add Ros# to your asset list: https://assetstore.unity.com/packages/tools/physics/ros-107085
-		
-		- *Note: Ros# is a communication protocol to pass data back and forth from robots*	
-		
-		<img width="650" alt="" src="https://i.imgur.com/hduyAYd.jpg">
-		
-	- In Unity’s Package Manager Window open the Packages drop-down menu and choose My Assets.  Make sure you are loading all your assets in the list.
-		
-    - Download and import Ros# to the project 
-
-
-
-### Configure Build and Project Settings in Unity
-
-1. Select Android in build settings
-
-	- Go to File - Build Settings
-	
-	- Switch to the Android Platform - Go to player settings
-		<img width="650" alt="" src="https://i.imgur.com/8H0ccdQ.jpg">	
-	- If Unity requires you to download Android support in order to switch platforms, follow the link and install the required dependency. 
-	
-	- Go to Player > Other Settings > Rendering
-	- Make sure “Auto Graphics API” is unchecked. Change Color Space to “Linear”
-		<img width="650" alt="" src="https://i.imgur.com/KI4UmgW.jpeg">	
-	
-	- Go to Player > Other Settings > Package Name. Create a unique app ID using a Java package name format. For example, use com.Princeton.AR
-	- Go to Player > Other Settings > Minimum API Level. Select Android 7.0 'Nougat' (API Level 24) or higher (For AR Optional apps, the Minimum API level is 14.)
-	- Go to Player > Other Settings > Scripting Backend. Select IL2CPP instead of Mono.
-	- Go to Player > Other Settings > Target Architectures. To meet the Google Play 64-bit requirement, enable ARM64 (64-bit ARM). Leave ARMv7 (32-bit ARM) enabled to support 32-bit devices
-		<img width="650" alt="" src="https://i.imgur.com/nzciMsI.jpeg">		
-	
-2. Configure Project Settings
-	
-	- Open Edit > Project Settings... and click on the XR Plug-in Management section. In the Android tab, enable ARCore.
-		<img width="650" alt="" src="https://i.imgur.com/ILVPZQS.jpg">	
 	
 ### Android
 
