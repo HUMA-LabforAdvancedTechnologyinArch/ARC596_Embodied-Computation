@@ -23,58 +23,59 @@
 
 ### Installing Requirements 
 
-Enabling communication between grasshopper and your application with MQTT
+Enabling communication between Rhino, the robot, and the Unity App on your phone. 
 
-1. Install Rhino 7 and Grasshopper 
-
+1. Install Rhino 7 (Grasshopper is installed as part of Rhino)
 
 2. Install Git https://desktop.github.com/
 
-- Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. 
+> Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. 
 
 
 3. Install Git LFS https://git-lfs.com/ using the Anaconda prompt. Be sure to activate the ARC596 environment. 
 
-- This is a Git extension to allow you to post larger files. 
+> This is a Git extension to allow you to post larger files. 
 
 ```git lfs install```
 
 
-3.0. Install Anaconda https://www.anaconda.com/download
+3. Install Anaconda https://www.anaconda.com/download
 
-	- Anaconda is a package management system for Python; it manages python and related packages on your computer. 
+> Anaconda is a package management system for Python; it manages python and related packages on your computer. 
 
 
-4.0. Install compas, compas_fab, and compas_eve
+4. Install compas, compas_fab, and compas_eve
 
-	- Compas is a framework for working with robotics 
+> Compas is a framework for working with robotics 
 
-	- Run Anaconda Prompt Application (start menu search)
+- Run Anaconda Prompt Application (start menu search)
 
-	<img width="500" alt="" src="https://i.imgur.com/4OSBP7y.jpg">
+<img width="500" alt="" src="https://i.imgur.com/4OSBP7y.jpg">
 	
-	- This is the Python terminal 
+> This is the Python terminal 
 	
-	- Type the following commands into the terminal, this creates a new development environment called ARC596, and installs compas, compas_fab, compas_eve, and links them into Rhino 7:
+- Type the following commands into the terminal, this creates a new development environment called ARC596, and installs compas, compas_fab, compas_eve, and links them into Rhino 7:
 
-	```conda create -n ARC596```
-	```conda activate ARC596```
-	```conda install -c conda-forge compas```
-	```conda update compas```
-	```conda install conda-forge::compas_fab```
-	```conda install conda-forge::compas_eve```
-	```python -m compas_rhino.install -v 7.0```
+```
+conda create -n ARC596
+conda activate ARC596
+conda install -c conda-forge compas
+conda update compas
+conda install conda-forge::compas_fab
+conda install conda-forge::compas_eve
+python -m compas_rhino.install -v 7.0
+```
 
-	- For documentation or help, please see: https://compas.dev/compas/latest/userguide/installation.html
+> For documentation or help, please see: https://compas.dev/compas/latest/userguide/installation.html
 
-	<img width="500" alt="" src="https://i.imgur.com/Qs8CP1P.jpg">
+<img width="500" alt="" src="https://i.imgur.com/Qs8CP1P.jpg">
 
 
-10.0. Unblock the programs using the firewall
+5. Unblock the programs using the firewall
 	
-	- If your host (broker) for messages is not localhost. DISABLE your Firewall or Ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible.
+> If your host (broker) for messages is not localhost. DISABLE your Firewall or Ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible.
 
-	<img width="500" alt="" src="https://i.imgur.com/2lRvYge.jpg">
+<img width="500" alt="" src="https://i.imgur.com/2lRvYge.jpg">
 	
 	
 	
@@ -97,7 +98,7 @@ Enabling communication between grasshopper and your application with MQTT
 
 3. Download & Install the correct Unity Version ```2022.3.3f1``` https://unity.com/releases/editor/whats-new/2022.3.3
 
-	<img width="250" alt="" src="https://i.imgur.com/ShxDrED.jpg">
+	<img width="500" alt="" src="https://i.imgur.com/ShxDrED.jpg">
 	
 	
 4. Run Unity Hub. Create a new Unity Project.
@@ -108,24 +109,24 @@ Enabling communication between grasshopper and your application with MQTT
 5. Install Unity Packages for XR (Mixed Reality)
 
 	- Access the Package Manager
-	<img width="250" alt="" src="https://i.imgur.com/iQD4avo.png">
-	<img width="250" alt="" src="https://i.imgur.com/73kTqaN.png">
+	<img width="500" alt="" src="https://i.imgur.com/iQD4avo.png">
+	<img width="500" alt="" src="https://i.imgur.com/73kTqaN.png">
 	
 	- Search & Install ```AR Foundation```, repeat for ```ARCore XR plugin```
-	<img width="400" alt="" src="https://i.imgur.com/x0k6B1T.png">
+	<img width="500" alt="" src="https://i.imgur.com/x0k6B1T.png">
 	
 	- Add ARCore Unity Extensions. Select ```Add package from git URL```, https://github.com/google-ar/arcore-unity-extensions.git
-	<img width="250" alt="" src="https://i.imgur.com/JDOpw0S.png">
+	<img width="500" alt="" src="https://i.imgur.com/JDOpw0S.png">
 
 	- Verify ```AR Foundation```, ```ARCore XR plugin```, ```ARCore Extensions``` are installed
-	<img width="400" alt="" src="https://i.imgur.com/4LUeQrF.png">
+	<img width="500" alt="" src="https://i.imgur.com/4LUeQrF.png">
 	
 	
 6. Install Vuforia - SDK for AR 
 
 	- Download the installer and run it https://developer.vuforia.com/downloads/sdk ```add-vuforia-package-10-19-3.unitypackage```
 	- Either make an account or use ```a7314621@drdrb.net```/```Aa7314621``` as the user/pass in order to download
-	<img width="250" alt="" src="https://i.imgur.com/GEwKZaN.jpg">
+	<img width="500" alt="" src="https://i.imgur.com/GEwKZaN.jpg">
 
     - In Unity, check that Vuforia is installed by seeing if menus show up: Help - Vuforia Engine - Show Developer Agreement
 
@@ -136,7 +137,7 @@ Enabling communication between grasshopper and your application with MQTT
 
     - Go to the Asset Store and add Ros# to your asset list:
       https://assetstore.unity.com/packages/tools/physics/ros-107085
-      <img width="450" alt="" src="https://i.imgur.com/hduyAYd.jpg">
+      <img width="500" alt="" src="https://i.imgur.com/hduyAYd.jpg">
 
     - In Unity’s Package Manager Window open the Packages drop-down menu and choose My Assets.  Make sure you are loading all your assets in the list.
 	

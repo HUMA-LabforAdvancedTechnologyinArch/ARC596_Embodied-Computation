@@ -21,49 +21,50 @@
 
 ## Getting started with this project
 
-### Installing Dependencies
+### Installing Requirements 
 
-Enabling communication between grasshopper and your application with MQTT
+Enabling communication between Rhino, the robot, and the Unity App on your phone. 
 
-1.0. Install Rhino 7 and Grasshopper 
+1. Install Rhino 7 (Grasshopper is installed as part of Rhino)
+
+2. Install Git https://desktop.github.com/
+
+> Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. 
 
 
-2.0. Install Git https://desktop.github.com/
+3. Install Git LFS https://git-lfs.com/ using the Anaconda prompt. Be sure to activate the ARC596 environment. 
 
-	- Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. 
-
-
-2.1. Install Git LFS https://git-lfs.com/ using the Anaconda prompt. Be sure to activate the ARC596 environment. 
-
-	- This is a Git extension to allow you to post larger files. 
+> This is a Git extension to allow you to post larger files. 
 
 ```git lfs install```
 
 
-3.0. Install Anaconda https://www.anaconda.com/download
+3. Install Anaconda https://www.anaconda.com/download
 
-	- Anaconda is a package management system for Python; it manages python and related packages on your computer. 
+> Anaconda is a package management system for Python; it manages python and related packages on your computer. 
 
 
-4.0. Install compas, compas_fab, and compas_eve
+4. Install compas, compas_fab, and compas_eve
 
-	- Compas is a framework for working with robotics 
+> Compas is a framework for working with robotics 
 
-	- Run Anaconda Prompt Application (start menu search)
+- Run Anaconda Prompt Application (start menu search)
 
-	<img width="500" alt="" src="https://i.imgur.com/4OSBP7y.jpg">
+<img width="500" alt="" src="https://i.imgur.com/4OSBP7y.jpg">
 	
-	- This is the Python terminal 
+> This is the Python terminal 
 	
-	- Type the following commands into the terminal, this creates a new development environment called ARC596, and installs compas, compas_fab, compas_eve, and links them into Rhino 7:
+- Type the following commands into the terminal, this creates a new development environment called ARC596, and installs compas, compas_fab, compas_eve, and links them into Rhino 7:
 
-	```conda create -n ARC596```
-	```conda activate ARC596```
-	```conda install -c conda-forge compas```
-	```conda update compas```
-	```conda install conda-forge::compas_fab```
-	```conda install conda-forge::compas_eve```
-	```python -m compas_rhino.install -v 7.0```
+```
+conda create -n ARC596
+conda activate ARC596
+conda install -c conda-forge compas
+conda update compas
+conda install conda-forge::compas_fab
+conda install conda-forge::compas_eve
+python -m compas_rhino.install -v 7.0
+```
 
 	- For documentation or help, please see: https://compas.dev/compas/latest/userguide/installation.html
 
