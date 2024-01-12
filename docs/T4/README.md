@@ -520,16 +520,17 @@ Your_ Hierarchy_ should now look like this:
 
 Expand the **AR Session Origin** you created in the _Hierarchy_, and select the **AR Camera object**. In the inspector, change its _**Tag**_ to **MainCamera.**
 
-### Detect planes in the real world <a href="_toc86085582" id="_toc86085582"></a>
+### Detect planes in the real world  
 
-### Add an ARPlane Manager Component and place an AR Plane Prefab <a href="_toc86085583" id="_toc86085583"></a>
+### Add an ARPlane Manager Component and place an AR Plane Prefab 
 
 An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARPlaneManager.html) detects [ARPlane](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARPlane.html)s and creates, updates, and removes game objects when the device's understanding of the environment changes.
 
 1. Go to _Hierarchy _and click on the **AR Session Origin **GameObject. On the_ Inspector _Window, click on** “Add Component”, search** for the **“AR Plane Manager” **and **Add it**.
 2. Respectively, click again on the **“Add Component**”, search for **“AR Raycast Manager”** and add it as well.
 
-![](<../.gitbook/assets/image (3).png>)
+<img width="400" alt="" src="https://i.imgur.com/fNk7yzI.png">
+
 
 _We will need this component later. It helps obtain information of the raycasts deriving from the user input on the screen._
 
