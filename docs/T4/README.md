@@ -1,7 +1,8 @@
 # ARC596 - Tutorial 4
 
 - ARC596: Embodied Computation
-- Daniela Mitterberger 
+- Professor: Daniela Mitterberger - mitterberger@princeton.edu
+- Assistant Instructor: Kirill Volchinskiy - kvolchinskiy@princeton.edu
 - Tutorial 4 - Basic Unity AR App
 
 ### Requirements

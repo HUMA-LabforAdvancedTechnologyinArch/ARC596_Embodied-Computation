@@ -64,33 +64,6 @@
 		<img width="650" alt="" src="https://i.imgur.com/4LUeQrF.png">
 	
 	
-6. Install Vuforia - SDK for AR 
-
-	- Download the installer and run it https://developer.vuforia.com/downloads/sdk 
-		- Use the ```add-vuforia-package-10-19-3.unitypackage``` file
-	
-	- Either make an account or use ```a7314621@drdrb.net```/```Aa7314621``` as the user/pass in order to download
-	
-		<img width="300" alt="" src="https://i.imgur.com/GEwKZaN.jpg">
-
-    - In Unity, check that Vuforia is installed by seeing if menus show up: Help - Vuforia Engine - Show Developer Agreement
-
-
-7. Import Ros# into the project
-
-
-
-	- Go to the Asset Store and add Ros# to your asset list: https://assetstore.unity.com/packages/tools/physics/ros-107085
-		
-		- *Note: Ros# is a communication protocol to pass data back and forth from robots*	
-		
-		<img width="650" alt="" src="https://i.imgur.com/hduyAYd.jpg">
-		
-	- In Unity’s Package Manager Window open the Packages drop-down menu and choose My Assets.  Make sure you are loading all your assets in the list.
-		
-    - Download and import Ros# to the project 
-
-
 
 ### Configure Build and Project Settings in Unity
 
