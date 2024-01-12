@@ -94,7 +94,7 @@ You can use the** Arrow Keys** to move around the Scene as though “walking” 
 
 You can use the following Buttons to select, move, rotate, scale. This toolbar is located on the top left corner.
 
-<img alt="" src="https://i.imgur.com/TYhoU7d.png">
+<img width="300" alt="" src="https://i.imgur.com/TYhoU7d.png">
 
 1. **Hand** Tool (Keyboard Shortcut: **Q**)
 2. **Move** Tool (Keyboard Shortcut: **W**)
