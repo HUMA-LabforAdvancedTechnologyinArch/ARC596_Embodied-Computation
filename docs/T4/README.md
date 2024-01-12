@@ -179,10 +179,10 @@ _**Child 1** and **Child 2** are the child GameObjects of **Parent**. **Child 3*
 To create a new GameObject in the Hierarchy window:
 
 1. Right-click on empty space in the selected Scene.
-2. Select the GameObject you want to create. Let’s make a **cube **_GameObject _by selecting**“3D Object > Cube”.**
+2. Select the GameObject you want to create. Let’s make a **cube**_GameObject _ by selecting **3D Object > Cube.**
 3. Now let’s make another _**empty** GameObject._
 
-→ You can also press **Ctrl+Shift+N** (Windows) or **Command+Shift+N **(macOS) to create a new empty GameObject.
+→ You can also press **Ctrl+Shift+N** (Windows) or **Command+Shift+N** (macOS) to create a new empty GameObject.
 
 <img height="400" alt="" src="https://i.imgur.com/zsk1bg1.png"> <img height="400" alt="" src="https://i.imgur.com/pKyxJiL.png">
  
