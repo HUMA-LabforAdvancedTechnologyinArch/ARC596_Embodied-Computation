@@ -194,7 +194,7 @@ To create a _child GameObject_:
 1. Drag the GameObject onto the parent GameObject in the Hierarchy.
 2. Drag _Object 4_ (selected) onto the parent _GameObject_, _Object 1 _(highlighted in a blue) to create a child GameObject.
 
-![Drag Object 4 (selected) onto the parent GameObject, Object 1 (highlighted in a blue) to create a child GameObject.](<img width="250" alt="" src="https://i.imgur.com/JXuUcVX.png">)
+    <img width="250" alt="" src="https://i.imgur.com/JXuUcVX.png">
 
 ### Creating parent GameObjects 
 
@@ -205,29 +205,32 @@ To create a parent GameObject:
 1. Right-click a _GameObject,_ or select multiple _GameObjects _on the same level and right-click.
 2. Select** Create Empty Parent.**
 
-You can also press **Ctrl+Shift+G **(Windows) or **Command+Shift+G **(macOS) to create a parent GameObject.
+You can also press **Ctrl+Shift+G** (Windows) or **Command+Shift+G** (macOS) to create a parent GameObject.
 
 → You can also **click and drag **GameObjects inside, or outside parent GameObjects.
 
-![Drag Object 4 (selected) between Object 2 and Object 3 (indicated by the blue horizontal line), to create a sibling GameObject under the parent GameObject Object 1 (highlighted in a blue).](<../.gitbook/assets/19 (2)>)
+<img width="250" alt="" src="https://i.imgur.com/jFu65Qu.png">
 
-### Duplicating GameObjects <a href="_toc86085559" id="_toc86085559"></a>
+
+### Duplicating GameObjects 
 
 To duplicate _GameObjects,_ right-click the target GameObject and select **Duplicate.**
 
 You can also press **Ctrl+D **(Windows) or **Command+D **(macOS) to duplicate the selected GameObject.
 
-### Task: <a href="_toc86085560" id="_toc86085560"></a>
+### Task: 
 
 Try inserting multiple _GameObjects _like _cubes_, _spheres _and _Planes _in the Scene. Use the basic tools to **Move, Rotate and Scale** the Objects and go to the I**nspector Window**. Try to transform them Manually by Inserting Values on** Position, Rotation and Scale.**
 
-![](<../.gitbook/assets/20 (1)>)
+<img width="250" alt="" src="https://i.imgur.com/cSj8KHj.png">
+
 
 **Note: **To quickly** reset all the Transform values,** you can right click on the “Transform” title, and click **“Reset”**
 
-![](<../.gitbook/assets/image (9).png>)
 
-### Make a new Material <a href="_toc86085561" id="_toc86085561"></a>
+<img width="600" alt="" src="https://i.imgur.com/gI5AMaQ.png">
+
+### Make a new Material 
 
 1. In the** Project Window**, go to **Assets**, right click on the empty space and make a new folder by going to **Create> Folder.** Name it “Materials”.
 2. Double click on the folder, right click on the empty space and make a new material by going to **Create>Material. **A new Material is created.
@@ -237,36 +240,36 @@ Try inserting multiple _GameObjects _like _cubes_, _spheres _and _Planes _in the
 
 **Note: **You can explore different Material Properties, such as** Transparency** (in Rendering Mode)**, Emission **(“glowy” effect, especially when combined with Bloom Rendering effects in Gaming), or add a **Texture **as a Map, similarly to other softwares.
 
-![](<../.gitbook/assets/image (14).png>)
+<img width="600" alt="" src="https://i.imgur.com/TAxdfT0.png">
 
-1. Move the **camera **to look at the cube.
+1. Move the **camera** to look at the cube.
 
 You see a _small icon_ appearing at the bottom, showing how _the Game Mode_ will look like through this _camera._
 
 _**Tip**: If you don’t see the camera and light icons, try to click on the “**Gizmos”button** on top._
 
-### Events in Unity <a href="_toc86085562" id="_toc86085562"></a>
+### Events in Unity 
 
-![](<../.gitbook/assets/image (15).png>)
+<img width="600" alt="" src="https://i.imgur.com/nTbL4Pj.png">
 
 An **event is a message** sent to an object to signal that an event happened such as the pressing of a button has occurred. An event sender pushes notifications that an event happened and a receiver receives that notification and defines to respond to it. The object that raises the event is called the **event sender**. The event sender doesn’t know which object will receive the events it raises.
 
-### Event Functions <a href="_toc86085563" id="_toc86085563"></a>
+### Event Functions 
 
 A script in Unity is not like the traditional idea of a program where the code runs continuously in a loop until it completes its task. Instead, Unity passes control to a script intermittently by calling certain functions that are declared within it. Once a function has finished executing, control is passed back to Unity. These functions are known as event functions since they are activated by Unity in response to events that occur during gameplay. Unity uses a naming scheme to identify which function to call for a particular event. For example, you will already have seen the** Update** function (called before a frame update occurs) and the **Start **function (called just before the object’s first frame update).
 
 _Many more event functions are available in Unity; the full list can be found in the script reference page for the _[_MonoBehaviour_](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html)_ class\[1] along with details of their usage. The following are some of the most common and important events._
 
-### Create a C# script for keyboard interaction <a href="_toc86085564" id="_toc86085564"></a>
+### Create a C# script for keyboard interaction 
 
 Let’s create our first C# script, to interact with the Cube we made previously.
 
 1. Click on the cube GameObject you created, go to the Inspector and click “Add Component”(1). Go to **New Script , **name it **“Zoom” **and click on **“Create and Add” **(2).
 
-![](<../.gitbook/assets/image (6) (1).png>)
+<img width="600" alt="" src="https://i.imgur.com/nTbL4Pj.png">
 
-1. **Double click **on the** Scrip**t name, or** right click>Edit Script**
 
+2. Double click on the **Script name**, or **right click>Edit Script**
 
 
 Open the file with **Visual Studio 2019. **Login with _your Microsoft account_, or create a new one.
@@ -292,17 +295,15 @@ public class Zoom : MonoBehaviour
         
     }
 }
-
-
 ```
 
-### MonoBehaviour: <a href="_toc86085565" id="_toc86085565"></a>
+### MonoBehaviour: 
 
-Unity’s base class \[2]that all scripts should derive from if they are used as components.
+Unity’s base class that all scripts should derive from if they are used as components.
 
-MonoBehaviour is a part of the** UnityEngine **namespace and implements a big list of event functions.
+MonoBehaviour is a part of the **UnityEngine** namespace and implements a big list of event functions.
 
-### Start and Update <a href="_toc86085566" id="_toc86085566"></a>
+### Start and Update 
 
 Unity adds the Start and Update methods by default to all new scripts.
 
@@ -312,34 +313,38 @@ Unity adds the Start and Update methods by default to all new scripts.
 
 _→ We will write a script in **Update**, but will create an Event that triggers the command only when we press a button_.
 
-### Declare a variable <a href="_toc86085567" id="_toc86085567"></a>
+### Declare a variable 
 
-Insert the **cube GameObject **variable as a public gameObject (public = we can access it outside of the script and change it).
+Insert the **cube GameObject** variable as a public gameObject (public = we can access it outside of the script and change it).
 
 _**Note:** Remember to always put a semicolon (;) at the end of every line_
 
-![](../.gitbook/assets/image.png)
+<img width="400" alt="" src="https://i.imgur.com/h08eean.png">
 
 ```
-public class Zoom : MonoBehaviour
-{
-public GameObject cube;
-// Start is called before the first frame update
-void Start()
-{
-}
-// Update is called once per frame
-void Update()
-{
-}
+public class Zoom: MonoBehaviour {
+  
+  public GameObject cube;
+  
+  // Start is called before the first frame update
+  void Start() {
+      
+  }
+  
+  // Update is called once per frame
+  void Update() {
+      
+  }
 }
 ```
 
-### Add an event in an “if” statement <a href="_toc86085568" id="_toc86085568"></a>
+### Add an event in an “if” statement 
+
 
 We put the statement in the update, so that the script is checking constantly for our input.
 
-![](<../.gitbook/assets/image (12).png>)
+<img width="400" alt="" src="https://i.imgur.com/VrdMBJv.png">
+
 
 ```
     void Update()
@@ -351,7 +356,7 @@ We put the statement in the update, so that the script is checking constantly fo
  }
 ```
 
-### Add an action <a href="_toc86085569" id="_toc86085569"></a>
+### Add an action 
 
 ```
      void Update()
@@ -365,11 +370,12 @@ We put the statement in the update, so that the script is checking constantly fo
 
 we added a very small value, since it will move very fast
 
-1. **Save** the script, go back to_ Unity_ and** Play** the Scene.
+1. **Save** the script, go back to_ Unity_ and **Play** the Scene.
 
 Long Press the **SpaceBar** of your keyboard and watch the cube zoom exponentially.
 
-![](<../.gitbook/assets/image (13).png>)
+<img width="400" alt="" src="https://i.imgur.com/S7In6Q9.png">
+
 
 _→ Task: Change the code from **cube.transform.localScale += (Vector3.one\*1.00001f)/100 ;**_
 
