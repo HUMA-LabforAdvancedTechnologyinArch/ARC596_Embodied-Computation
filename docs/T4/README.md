@@ -67,31 +67,28 @@
 # BEGIN ETH #
 <!---------------------- END ETH   ----->
 
-![](../.gitbook/assets/0)
 
-Day 1 27/10/2021
+### Unity Interface 
 
-### Unity Interface <a href="_toc86085540" id="_toc86085540"></a>
+		<img width="650" alt="" src="https://i.imgur.com/fctlEa8.png">
 
-![](<../.gitbook/assets/image (7) (1).png>)
-
-### The Scene View <a href="_toc86085541" id="_toc86085541"></a>
+### The Scene View 
 
 A Scene contains the environments and menus of your game. Think of each unique Scene file as a unique level. In each Scene, you place your environments, obstacles, and decorations, essentially designing and building your game in pieces. Scene view is your interactive view into the world you are creating. You can use the Scene view to select and position scenery, characters, Cameras , lights, and all other types of Objects. Selecting, manipulating, and modifying GameObjects in the Scene view are some of the first skills you must learn to begin working in Unity.
 
 → [More info](https://docs.unity3d.com/Manual/CreatingScenes.html)
 
-### Scene View Navigation <a href="_toc86085542" id="_toc86085542"></a>
+### Scene View Navigation 
 
 ![](<../.gitbook/assets/2 (3)>)
 
 The Gizmo allows you to quickly modify the viewing angle and the projection mode.
 
-#### Arrow movement <a href="_toc86085543" id="_toc86085543"></a>
+#### Arrow movement
 
 You can use the** Arrow Keys** to move around the Scene as though “walking” through it. The up and down arrows move the _Camera_ forward and backward in the direction it is facing. The** left **and **right** arrows pan the view **sideways**.
 
-#### Basic Tools <a href="_toc86085544" id="_toc86085544"></a>
+#### Basic Tools
 
 You can use the following Buttons to select, move, rotate, scale. This toolbar is located on the top left corner.
 
@@ -102,7 +99,7 @@ You can use the following Buttons to select, move, rotate, scale. This toolbar i
 3. **Rotate** Tool (Keyboard Shortcut: **E**)
 4. **Scale** tool (Keyboard Shortcut: **R**)
 
-### The Game View <a href="_toc86085545" id="_toc86085545"></a>
+### The Game View 
 
 The Game view is rendered from the Camera(s) in your application. It represents your final, published application. You need to use one or more Cameras to control what the player sees when they are using your application. In AR, we will see a mixed environment between real and digital objects, as the camera orientation is constantly changing by our movement in space.
 
@@ -114,7 +111,7 @@ Use the buttons in the _Toolbar _to control the Editor Play mode and see how you
 
 [→ More info](https://docs.unity3d.com/Manual/GameView.html)
 
-### The Hierarchy Window <a href="_toc86085546" id="_toc86085546"></a>
+### The Hierarchy Window
 
 The Hierarchy window displays every [GameObject](https://docs.unity3d.com/Manual/GameObjects.html) in a Scene, such as models, Cameras, or [Prefabs](https://docs.unity3d.com/Manual/Prefabs.html). You can use the Hierarchy window to sort and group the GameObjects you use in a Scene.
 
@@ -122,7 +119,7 @@ The Hierarchy window displays every [GameObject](https://docs.unity3d.com/Manual
 
 The default Hierarchy window view when you open a new Unity project
 
-### The Inspector Window <a href="_toc86085547" id="_toc86085547"></a>
+### The Inspector Window 
 
 The** Inspector Window** is being used to [view and edit **properties**](https://docs.unity3d.com/Manual/EditingValueProperties.html) and** settings** for almost everything in the_ Unity Editor_. In the _Inspector Window_, one can add or remove _“Components”_ , which enable different features.. We will see what these are soon. [→ More Info](https://docs.unity3d.com/Manual/UsingTheInspector.html)![](<../.gitbook/assets/10 (1)>)
 
