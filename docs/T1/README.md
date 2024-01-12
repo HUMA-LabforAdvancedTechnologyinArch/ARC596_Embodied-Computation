@@ -174,7 +174,7 @@
 	
 		<img width="600" alt="" src="https://i.imgur.com/z1ek1M8.jpg">
 		
-		- *Note: You should see no red errors. Yellow warnings in the ones in the screenshot are OK. If you see red errors, dependencies are not installed correctly.*
+		- *Note: You should see no red errors. Yellow warnings in the screenshot are OK. If you see red errors, dependencies are not installed correctly.*
 	
 	- Open Rhino
 	
