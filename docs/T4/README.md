@@ -94,7 +94,7 @@ You can use the** Arrow Keys** to move around the Scene as though “walking” 
 
 You can use the following Buttons to select, move, rotate, scale. This toolbar is located on the top left corner.
 
-<img alt="" src="https://i.imgur.com/RaSGErB.png">
+<img alt="" src="https://i.imgur.com/TYhoU7d.png">
 
 1. **Hand** Tool (Keyboard Shortcut: **Q**)
 2. **Move** Tool (Keyboard Shortcut: **W**)
@@ -107,7 +107,7 @@ The Game view is rendered from the Camera(s) in your application. It represents 
 
 **Play mode**
 
-<img alt="" src="https://i.imgur.com/Np9EDMS.png">
+<img width="150" alt="" src="https://i.imgur.com/Np9EDMS.png">
 
 Use the buttons in the _Toolbar _to control the Editor Play mode and see how your published application plays. An important fact is that, in** Play mode**, any changes you make are **temporary,** and are **reset **when you exit Play mode.
 
@@ -129,7 +129,7 @@ The** Inspector Window** is being used to [view and edit **properties**](https:/
 
 ### The Project Window 
 
-<img alt="" src="https://i.imgur.com/YtMU8b9.png">
+<img width="650" alt="" src="https://i.imgur.com/YtMU8b9.png">
 
 The_ Project window_ displays all of the** files **related to your_ Project _and is the main way you can navigate and find_ Assets _and other _Project files_ in your application. When you start a new _Project _by default this window is open. However, if you cannot find it, or it is closed, you can open it via **Window > General > Project** or use the keyboard command **Ctrl + 9** (Command + 9 on macOS).
 
@@ -149,7 +149,7 @@ A _GameObject _always has a [Transform](https://docs.unity3d.com/Manual/class-Tr
 
 _→ _[_More Info about Scripting in Unity_](https://docs.unity3d.com/Manual/CreatingComponents.html)
 
-<img alt="" src="https://i.imgur.com/cqqIjt9.png">
+<img width="650" alt="" src="https://i.imgur.com/cqqIjt9.png">
 
 A simple Cube GameObject with several Components
 
@@ -184,7 +184,7 @@ To create a new GameObject in the Hierarchy window:
 
 → You can also press **Ctrl+Shift+N** (Windows) or **Command+Shift+N **(macOS) to create a new empty GameObject.
 
-<img width="250" alt="" src="https://i.imgur.com/zsk1bg1.png"> <img width="250" alt="" src="https://i.imgur.com/pKyxJiL.png">
+<img height="400" alt="" src="https://i.imgur.com/zsk1bg1.png"> <img height="400" alt="" src="https://i.imgur.com/pKyxJiL.png">
  
 
 ### Creating child GameObjects 
