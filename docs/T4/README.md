@@ -319,7 +319,7 @@ Insert the **cube GameObject** variable as a public gameObject (public = we can 
 
 _**Note:** Remember to always put a semicolon (;) at the end of every line_
 
-<img width="400" alt="" src="https://i.imgur.com/h08eean.png">
+<img width="700" alt="" src="https://i.imgur.com/h08eean.png">
 
 ```
 public class Zoom: MonoBehaviour {
@@ -343,7 +343,7 @@ public class Zoom: MonoBehaviour {
 
 We put the statement in the update, so that the script is checking constantly for our input.
 
-<img width="400" alt="" src="https://i.imgur.com/VrdMBJv.png">
+<img width="700" alt="" src="https://i.imgur.com/VrdMBJv.png">
 
 
 ```
@@ -374,12 +374,12 @@ we added a very small value, since it will move very fast
 
 Long Press the **SpaceBar** of your keyboard and watch the cube zoom exponentially.
 
-<img width="400" alt="" src="https://i.imgur.com/S7In6Q9.png">
+<img width="700" alt="" src="https://i.imgur.com/S7In6Q9.png">
 
 
-_→ Task: Change the code from **cube.transform.localScale += (Vector3.one\*1.00001f)/100 ;**_
+_→ Task: Change the code from **cube.transform.localScale += (Vector3.one\*1.00001f)/100;**
 
-_To **transform.localScale += (Vector3.one\*1.00001f)/100 ; **. Save it and run the code again. It still works because the script is self-referencing the object that the component is added to._
+_To **transform.localScale += (Vector3.one\*1.00001f)/100;**. Save it and run the code again. It still works because the script is self-referencing the object that the component is added to.
 
 ### Download animated characters 
 
@@ -387,9 +387,9 @@ Go to the Unity Asset Store:
 
 [https://assetstore.unity.com/](https://assetstore.unity.com)
 
-→ The** Unity Asset Store **is home to a growing library of **free and commercial assets **created both by _Unity Technologies _and also members of the community. A wide variety of assets are available, covering everything from _textures, models and animations_, _to whole project examples, tutorials and Extension Assets_.
+→ The **Unity Asset Store** is home to a growing library of **free and commercial assets** created both by _Unity Technologies_ and also members of the community. A wide variety of assets are available, covering everything from _textures, models and animations_, _to whole project examples, tutorials and Extension Assets_.
 
-Find and download the free asset _“5 animated Voxel animals_” .
+Find and download the free asset _“5 animated Voxel animals_”.
 
 [https://assetstore.unity.com/packages/3d/characters/animals/5-animated-voxel-animals-145754](https://assetstore.unity.com/packages/3d/characters/animals/5-animated-voxel-animals-145754)
 
@@ -508,6 +508,9 @@ A scene needs an AR session to enable [AR processes](https://developers.google.c
 * **AR Session Origin**: Transforms AR coordinates into Unity world coordinates.
 
 1. Before adding the new game objects, delete the default **Main Camera**. It will be replaced by a new **AR Camera** in the **AR Session Origin**.
+
+<img width="400" alt="" src="https://i.imgur.com/urNfYC2.jpg">
+
 2. Add the new AR game objects to your scene: right-click the **Hierarchy** pane and select **XR**. Add a new **AR Session** and a new **AR Session Origin** game object.
 
 <img width="400" alt="" src="https://i.imgur.com/mTj3aiM.png">
@@ -516,7 +519,10 @@ A scene needs an AR session to enable [AR processes](https://developers.google.c
 
 All [AR processes](https://developers.google.com/ar/discover/concepts), such as motion tracking, environmental understanding, and lighting estimation, happen inside an ARCore session. [ARSession](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARSession.html) is the main entry point to the ARCore API. It manages the AR system state and handles the session **lifecycle**, allowing the app to create, configure, start, or stop a session. Most importantly, it enables the app to receive frames that allow access to the camera image and device pose.
 
-Your_ Hierarchy_ should now look like this:
+Your _Hierarchy_ should now look like this:
+
+<img width="250" alt="" src="https://i.imgur.com/eAbzHgQ.jpg">
+
 
 Expand the **AR Session Origin** you created in the _Hierarchy_, and select the **AR Camera object**. In the inspector, change its _**Tag**_ to **MainCamera.**
 
