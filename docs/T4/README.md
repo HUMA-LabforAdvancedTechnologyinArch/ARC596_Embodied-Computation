@@ -107,7 +107,7 @@ The Game view is rendered from the Camera(s) in your application. It represents 
 
 **Play mode**
 
-<img width="150" alt="" src="https://i.imgur.com/Np9EDMS.png">
+<img width="100" alt="" src="https://i.imgur.com/Np9EDMS.png">
 
 Use the buttons in the _Toolbar _to control the Editor Play mode and see how your published application plays. An important fact is that, in** Play mode**, any changes you make are **temporary,** and are **reset **when you exit Play mode.
 
