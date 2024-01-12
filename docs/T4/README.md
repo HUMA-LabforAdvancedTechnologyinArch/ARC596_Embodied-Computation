@@ -1,4 +1,4 @@
-# ARC596 - Tutorial 4
+# ARC596 - Tutorial 4 - Basic Unity AR App
 
 - ARC596: Embodied Computation
 - Professor: Daniela Mitterberger - mitterberger@princeton.edu
@@ -11,7 +11,7 @@
 2. [Github Desktop](https://desktop.github.com/) 
 3. [Anaconda](https://www.anaconda.com/)
 4. [Unity 2022.3.3f1](https://unity.com/) 
-5. Android SDK and Java JDK (when developing for Android) - have to be ticked in the installation modules when installing Unity.
+>	*Note: Android SDK and Java JDK (when developing for Android) - have to be ticked in the installation modules when installing Unity.*
 
 ### Dependencies
 
@@ -21,8 +21,7 @@
 4. [Vuforia](https://developer.vuforia.com/downloads/sdk)
 5. [ROS#](https://www.ros.org/)
 
-## Getting started with this project
-
+## Getting Started with This Project
 
 1. Download & Install the correct Unity Version. ```2022.3.3f1``` https://unity.com/releases/editor/whats-new/2022.3.3
       - *Note: Unity is version-sensitive, and it needs to be exactly this version*

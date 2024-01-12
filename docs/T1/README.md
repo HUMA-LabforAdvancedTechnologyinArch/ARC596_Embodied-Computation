@@ -112,11 +112,14 @@
 *** Open Unity Hub. In Projects, click on Open(MacOS) or ADD(Windows). Locate the folder you downloaded from GitHub `name of project here` on the drive and add it.
 -->
 
-3. Download & Install the correct Unity Version. ```2022.3.3f1``` https://unity.com/releases/editor/whats-new/2022.3.3
-      - *Note: Unity is version-sensitive, and it needs to be exactly this version*
+3. Install the correct Unity Version using Unity Hub ```2022.3.3f1``` https://unity.com/releases/editor/whats-new/2022.3.3
+      - *Note: Do not click the blue download link. If you download directly from this website it is cubersome to install the dependencies. Unity is version-sensitive, and it needs to be exactly this version*
+	  <img width="400" alt="" src=" https://i.imgur.com/cqnSaTm.jpg">
+	 
 	- Be sure to select the appropriate dependencies below.
 		
-		<img width="400" alt="" src="https://i.imgur.com/ShxDrED.jpg">
+		
+		<img width="400" alt="" src="https://i.imgur.com/D9o3zho.jpg">
 		
 		- Microsoft Visual Studio 
 		- Android Build Support (Both Android SDK and OpenJDK)
