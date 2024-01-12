@@ -70,7 +70,7 @@
 
 ### Unity Interface 
 
-		<img width="650" alt="" src="https://i.imgur.com/fctlEa8.png">
+<img width="650" alt="" src="https://i.imgur.com/fctlEa8.png">
 
 ### The Scene View 
 
@@ -80,7 +80,7 @@ A Scene contains the environments and menus of your game. Think of each unique S
 
 ### Scene View Navigation 
 
-![](<../.gitbook/assets/2 (3)>)
+<img alt="" src="https://i.imgur.com/RaSGErB.png">
 
 The Gizmo allows you to quickly modify the viewing angle and the projection mode.
 
@@ -92,7 +92,7 @@ You can use the** Arrow Keys** to move around the Scene as though “walking” 
 
 You can use the following Buttons to select, move, rotate, scale. This toolbar is located on the top left corner.
 
-![](../.gitbook/assets/3)
+<img alt="" src="https://i.imgur.com/RaSGErB.png">
 
 1. **Hand** Tool (Keyboard Shortcut: **Q**)
 2. **Move** Tool (Keyboard Shortcut: **W**)
@@ -105,7 +105,7 @@ The Game view is rendered from the Camera(s) in your application. It represents 
 
 **Play mode**
 
-![](../.gitbook/assets/8)
+<img alt="" src="https://i.imgur.com/Np9EDMS.png">
 
 Use the buttons in the _Toolbar _to control the Editor Play mode and see how your published application plays. An important fact is that, in** Play mode**, any changes you make are **temporary,** and are **reset **when you exit Play mode.
 
@@ -115,7 +115,9 @@ Use the buttons in the _Toolbar _to control the Editor Play mode and see how you
 
 The Hierarchy window displays every [GameObject](https://docs.unity3d.com/Manual/GameObjects.html) in a Scene, such as models, Cameras, or [Prefabs](https://docs.unity3d.com/Manual/Prefabs.html). You can use the Hierarchy window to sort and group the GameObjects you use in a Scene.
 
-![The default Hierarchy window view when you open a new Unity project](../.gitbook/assets/9)
+![The default Hierarchy window view when you open a new Unity project]
+
+<img alt="" src="https://i.imgur.com/0Xs2azM.png">
 
 The default Hierarchy window view when you open a new Unity project
 
@@ -123,51 +125,54 @@ The default Hierarchy window view when you open a new Unity project
 
 The** Inspector Window** is being used to [view and edit **properties**](https://docs.unity3d.com/Manual/EditingValueProperties.html) and** settings** for almost everything in the_ Unity Editor_. In the _Inspector Window_, one can add or remove _“Components”_ , which enable different features.. We will see what these are soon. [→ More Info](https://docs.unity3d.com/Manual/UsingTheInspector.html)![](<../.gitbook/assets/10 (1)>)
 
-### ![](<../.gitbook/assets/11 (2)>)The Project Window <a href="_toc86085548" id="_toc86085548"></a>
+### The Project Window 
+
+<img alt="" src="https://i.imgur.com/YtMU8b9.png">
 
 The_ Project window_ displays all of the** files **related to your_ Project _and is the main way you can navigate and find_ Assets _and other _Project files_ in your application. When you start a new _Project _by default this window is open. However, if you cannot find it, or it is closed, you can open it via **Window > General > Project** or use the keyboard command **Ctrl + 9** (Command + 9 on macOS).
 
-### GameObjects, Components, Prefabs <a href="_toc86085549" id="_toc86085549"></a>
+### GameObjects, Components, Prefabs 
 
-### Game Objects <a href="_toc86085550" id="_toc86085550"></a>
+### Game Objects 
 
-![](<../.gitbook/assets/12 (3)>)
+<img width="650" alt="" src="https://i.imgur.com/yjd1wvG.png">
 
 **GameObjects **are the fundamental objects in _Unity _that represent _3d objects, props and scenery_. They do not accomplish much in themselves but they act as containers for **Components**, which implement the real **functionality**.
 
 A _GameObject _always has a [Transform](https://docs.unity3d.com/Manual/class-Transform.html) component attached (to represent position and orientation) and it is not possible to remove this. The other _components_ that give the object its functionality can be added from the editor’s Component menu or from a script. There are also many useful _pre-constructed o_bjects (_primitive shapes, Cameras,_ etc) available on the **GameObject > 3D Object menu** (more info: [Primitive Objects](https://docs.unity3d.com/Manual/PrimitiveObjects.html) )
 
-### Components <a href="_toc86085551" id="_toc86085551"></a>
+### Components 
 
 **Components** implement** functionalities** on the _GameObjects_. For example, a_ Ligh_t object is created by attaching a_ Light component _to a_ GameObject. _**Components** are contained by GameObjects. _Unity_ has many** built-in** components, and you can create your own by writing scripts that inherit from _MonoBehaviour_. _(scripting language in C#)_
 
 _→ _[_More Info about Scripting in Unity_](https://docs.unity3d.com/Manual/CreatingComponents.html)
 
-![](../.gitbook/assets/13)
+<img alt="" src="https://i.imgur.com/cqqIjt9.png">
 
 A simple Cube GameObject with several Components
 
-### Prefabs <a href="_toc86085552" id="_toc86085552"></a>
+### Prefabs 
 
 **Prefabs **allow you to create, configure, and store a _GameObject _complete with all its _components, property values, and child GameObjects._The **Prefab Asset **acts as a **template **from which you can create new Prefab instances in the Scene.
 
 [→ More Info](https://docs.unity3d.com/Manual/Prefabs.html)
 
-### Create Game Objects and Basic Transformations: Quick Tutorial <a href="_toc86085553" id="_toc86085553"></a>
+### Create Game Objects and Basic Transformations: Quick Tutorial
 
-→ Make a new Unity File by going to the “Unity Hub”: **New > 3D project**
+### Parenting
 
-![](<../.gitbook/assets/14 (2)>)
+Unity uses the concept of parent-child hierarchies, or parenting, to group GameObjects. An object can contain other GameObjects that inherit its properties. You can link GameObjects together to help move, scale, or transform a collection of GameObjects. When you move the top-level object, or parent GameObject, you also move all child GameObjects. You can also create nested parent-child GameObjects. All nested objects are still descendants of the original parent GameObject, or root GameObject.Child GameObjects inherit the movement and rotation of the parent GameObject. To learn more about this, see documentation on the 
+>   [Transform component](https://docs.unity3d.com/Manual/class-Transform.html)![Child 1 and Child 2 are the child GameObjects of Parent. Child 3 is a child GameObject of Child 2, and a descendant GameObject of Parent.]
 
-### Parenting <a href="_toc86085554" id="_toc86085554"></a>
 
-Unity uses the concept of parent-child hierarchies, or parenting, to group GameObjects. An object can contain other GameObjects that inherit its properties. You can link GameObjects together to help move, scale, or transform a collection of GameObjects. When you move the top-level object, or parent GameObject, you also move all child GameObjects. You can also create nested parent-child GameObjects. All nested objects are still descendants of the original parent GameObject, or root GameObject.Child GameObjects inherit the movement and rotation of the parent GameObject. To learn more about this, see documentation on the [Transform component](https://docs.unity3d.com/Manual/class-Transform.html)![Child 1 and Child 2 are the child GameObjects of Parent. Child 3 is a child GameObject of Child 2, and a descendant GameObject of Parent.](<../.gitbook/assets/15 (2)>)
+<img alt="" src="https://i.imgur.com/9xteFSv.png">
+
 
 _**Child 1** and **Child 2** are the child GameObjects of **Parent**. **Child 3** is a child GameObject of **Child 2**, and a descendant GameObject of **Parent**._
 
-### GameObjects <a href="_toc86085555" id="_toc86085555"></a>
+### GameObjects 
 
-### Creating new GameObjects <a href="_toc86085556" id="_toc86085556"></a>
+### Creating new GameObjects 
 
 To create a new GameObject in the Hierarchy window:
 
@@ -177,9 +182,10 @@ To create a new GameObject in the Hierarchy window:
 
 → You can also press **Ctrl+Shift+N** (Windows) or **Command+Shift+N **(macOS) to create a new empty GameObject.
 
-![](<../.gitbook/assets/16 (3)>) ![](../.gitbook/assets/17)
+<img width="250" alt="" src="https://i.imgur.com/zsk1bg1.png"> <img width="250" alt="" src="https://i.imgur.com/pKyxJiL.png">
+ 
 
-### Creating child GameObjects <a href="_toc86085557" id="_toc86085557"></a>
+### Creating child GameObjects 
 
 To create a _child GameObject_:
 
@@ -188,7 +194,7 @@ To create a _child GameObject_:
 
 ![Drag Object 4 (selected) onto the parent GameObject, Object 1 (highlighted in a blue) to create a child GameObject.](<../.gitbook/assets/18 (1)>)
 
-### Creating parent GameObjects <a href="_toc86085558" id="_toc86085558"></a>
+### Creating parent GameObjects 
 
 You can add a new GameObject into the Hierarchy view as the parent of existing GameObjects.
 
