@@ -42,7 +42,7 @@
 
 	- Open the Windows Command Prompt. Search CMD in the start menu. 
 	
-		<img width="650" alt="" src="https://i.imgur.com/hJg15Ws.jpg">
+		<img width="650" alt="" src="https://i.imgur.com/6O0JqTz.jpg">
 	
 	- Run ```git lfs install```
 
