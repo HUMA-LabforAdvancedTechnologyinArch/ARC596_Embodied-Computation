@@ -225,10 +225,10 @@ Try inserting multiple _GameObjects _like _cubes_, _spheres _and _Planes _in the
 <img width="250" alt="" src="https://i.imgur.com/cSj8KHj.png">
 
 
-**Note: **To quickly** reset all the Transform values,** you can right click on the “Transform” title, and click **“Reset”**
+>   Note: **To quickly** reset all the Transform values,** you can right click on the “Transform” title, and click **“Reset”**
 
 
-<img width="600" alt="" src="https://i.imgur.com/gI5AMaQ.png">
+<img width="750" alt="" src="https://i.imgur.com/gI5AMaQ.png">
 
 ### Make a new Material 
 
@@ -238,9 +238,9 @@ Try inserting multiple _GameObjects _like _cubes_, _spheres _and _Planes _in the
 
 4. Drag and drop the material from **the Assets Folder** on the desired objects
 
-**Note: **You can explore different Material Properties, such as** Transparency** (in Rendering Mode)**, Emission **(“glowy” effect, especially when combined with Bloom Rendering effects in Gaming), or add a **Texture **as a Map, similarly to other softwares.
+>   Note: You can explore different Material Properties, such as **Transparency (in Rendering Mode)**, **Emission** (“glowy” effect, especially when combined with Bloom Rendering effects in Gaming), or add a **Texture** as a Map, similarly to other softwares.
 
-<img width="600" alt="" src="https://i.imgur.com/TAxdfT0.png">
+<img width="750" alt="" src="https://i.imgur.com/TAxdfT0.png">
 
 1. Move the **camera** to look at the cube.
 
@@ -250,7 +250,7 @@ _**Tip**: If you don’t see the camera and light icons, try to click on the “
 
 ### Events in Unity 
 
-<img width="600" alt="" src="https://i.imgur.com/nTbL4Pj.png">
+<img width="400" alt="" src="https://i.imgur.com/nTbL4Pj.png">
 
 An **event is a message** sent to an object to signal that an event happened such as the pressing of a button has occurred. An event sender pushes notifications that an event happened and a receiver receives that notification and defines to respond to it. The object that raises the event is called the **event sender**. The event sender doesn’t know which object will receive the events it raises.
 
@@ -381,7 +381,7 @@ _→ Task: Change the code from **cube.transform.localScale += (Vector3.one\*1.0
 
 _To **transform.localScale += (Vector3.one\*1.00001f)/100 ; **. Save it and run the code again. It still works because the script is self-referencing the object that the component is added to._
 
-### Download animated characters <a href="_toc86085570" id="_toc86085570"></a>
+### Download animated characters 
 
 Go to the Unity Asset Store:
 
@@ -396,40 +396,37 @@ Find and download the free asset _“5 animated Voxel animals_” .
 * **Click “Add to My Assets”**
 * **Click “Open in Unity”**
 
-### Import Package in your Unity File <a href="_toc86085571" id="_toc86085571"></a>
+### Import Package in your Unity File 
 
 After clicking the **“Open in Unity”** button, you will be redirected to the Unity software, on the package manager. Make sure you are in **Packages: ”My Assets”**. Click **Import**
 
 This Window pops up. When importing a package, you can select the parts you want to import. For now, we will import everything. Click **“Import”.**
 
-### Make a Plane <a href="_toc86085572" id="_toc86085572"></a>
+### Make a Plane 
 
 In the Hierarchy ,** **right click and go to **3D Object> Plane.**
 
-
-
 _**→ Make sure the Transform position values are set to 0,0,0**_
 
-### Import a character <a href="_toc86085573" id="_toc86085573"></a>
+### Import a character 
 
-Go to** Assets>VoxelAnimals>Assets>Prefabs **and drag and drop a character on the Scene or the Hierarchy. Make sure it is correctly placed on the plane.
+Go to **Assets>VoxelAnimals>Assets>Prefabs** and drag and drop a character on the Scene or the Hierarchy. Make sure it is correctly placed on the plane.
 
-** **![](<../.gitbook/assets/image (4).png>)****
+<img width="400" alt="" src="https://i.imgur.com/jTt2v4u.png">
 
-**Tip: **To zoom in on an object fast, you can first select it from the Hierarchy or the scene and then click on the “F” button on your keyboard.
+>   Tip: To zoom in on an object fast, you can first select it from the Hierarchy or the scene and then click on the “F” button on your keyboard.
 
 You can move the camera to a position where you see everything nicely.
 
-### Click on Play! <a href="_toc86085574" id="_toc86085574"></a>
+### Click on Play! 
 
-By clicking on the Keyboard arrows your character will move, by clicking on the Space Button the character will jump! If the cube gets bigger, the dog collides with it and might fall. The character is a** “Rigid Body”** with** “Collision”** properties.
+By clicking on the Keyboard arrows your character will move, by clicking on the Space Button the character will jump! If the cube gets bigger, the dog collides with it and might fall. The character is a **Rigid Body** with **Collision** properties.
 
-### Regular Update Events <a href="_toc86085575" id="_toc86085575"></a>
+### Regular Update Events 
 
 A game is rather like an animation where the animation frames are generated on the fly. A key concept in games programming is that of making changes to **position, state and behavior** of objects in the game just before each frame is rendered. The [**Update**](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html)** **function is the main place for this kind of code in Unity. _Update_ is called **before the frame is rendered** and also **before animations are calculated**.
 
 ```
-
 void Update() 
 {
     float distance = speed * Time.deltaTime * Input.GetAxis("Horizontal");
@@ -439,7 +436,7 @@ void Update()
 
 [→ More Information on execution order of events in unity](https://docs.unity3d.com/Manual/ExecutionOrder.html)
 
-### ARCore <a href="_toc86085576" id="_toc86085576"></a>
+### ARCore 
 
 _ARCore_ is _Google’s_ platform for building augmented reality experiences. Using different** APIs\[3], ARCore** enables your phone to sense its environment, understand the world and interact with information. Some of the APIs are available across _Android _and _iOS _to enable shared AR experiences.
 
@@ -449,11 +446,11 @@ ARCore uses_ three key capabilities _to integrate virtual content with the real 
 * [**Environmental understanding**](https://developers.google.com/ar/discover/concepts#environmental\_understanding)** **allows the phone to detect the size and location of all types of surfaces: horizontal, vertical and angled surfaces like the ground, a coffee table or walls.
 * [**Light estimation**](https://developers.google.com/ar/discover/concepts#light\_estimation) allows the phone to estimate the environment's current lighting conditions.
 
-### Supported devices <a href="_toc86085577" id="_toc86085577"></a>
+### Supported devices
 
 _ARCore i_s designed to work on a wide variety of qualified Android phones running_ Android 7.0 (Nougat) _and later. A full list of all supported devices [is available here](https://developers.google.com/ar/discover/supported-devices).
 
-### How does ARCore work? <a href="_3mrgulpdwuf1" id="_3mrgulpdwuf1"></a>
+### How does ARCore work? 
 
 Fundamentally,_ ARCore_ is doing two things:
 
@@ -472,7 +469,7 @@ _ARCore _provides_** SDKs**_\[4] for many of the most popular development enviro
 
 _In our workshop, we will focus on Unity’s AR Foundation Framework, and build the application for Android devices._
 
-### AR Foundation <a href="_toc86085579" id="_toc86085579"></a>
+### AR Foundation 
 
 [AR Foundation](https://unity.com/unity/features/arfoundation) is a **cross-platform framework** that allows you to build augmented reality experiences once, then build for either Android or iOS devices. **ARCore Extensions** for AR
 
@@ -497,13 +494,13 @@ AR Foundation is a set _of MonoBehaviours_ and APIs for dealing with devices tha
 
 [→ More information about AR Foundation](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.2/manual/index.html)
 
-### Start working on the AR App <a href="_toc86085580" id="_toc86085580"></a>
+### Start working on the AR App 
 
 Open the file you created when following the _**Installation Guide** _for the Seminar Week.
 
 (By going to Unity Hub and Select your file)
 
-### Configure an AR session and add AR Foundation components <a href="_toc86085581" id="_toc86085581"></a>
+### Configure an AR session and add AR Foundation components 
 
 A scene needs an AR session to enable [AR processes](https://developers.google.com/ar/discover/concepts), such as motion tracking, environmental understanding, and lighting estimation. You will need the following game objects to support an AR session:
 
@@ -513,7 +510,7 @@ A scene needs an AR session to enable [AR processes](https://developers.google.c
 1. Before adding the new game objects, delete the default **Main Camera**. It will be replaced by a new **AR Camera** in the **AR Session Origin**.
 2. Add the new AR game objects to your scene: right-click the **Hierarchy** pane and select **XR**. Add a new **AR Session** and a new **AR Session Origin** game object.
 
-![](<../.gitbook/assets/image (5).png>)
+<img width="400" alt="" src="https://i.imgur.com/mTj3aiM.png">
 
 **What is a Session?**
 
