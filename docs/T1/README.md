@@ -117,9 +117,8 @@
 	  <img width="400" alt="" src=" https://i.imgur.com/cqnSaTm.jpg">
 	 
 	- Be sure to select the appropriate dependencies below.
-		
-		
-		<img width="500" alt="" src="https://i.imgur.com/D9o3zho.jpg">
+      - *Note: this installs roughly 20gb of data, make sure you have enough free space on your computer.*
+		<img width="600" alt="" src="https://i.imgur.com/D9o3zho.jpg">
 		
 		- Microsoft Visual Studio 
 		- Android Build Support (Both Android SDK and OpenJDK)
