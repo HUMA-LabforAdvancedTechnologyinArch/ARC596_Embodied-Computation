@@ -172,9 +172,9 @@
 		
 	- See if you can build and run the file on your phone. Open the Unity console. Go to File > Build and Run
 	
-		<img width="600" alt="" src="https://i.imgur.com/8wosTfH.jpeg">
+		<img width="600" alt="" src="https://i.imgur.com/z1ek1M8.jpg">
 		
-		- *Note: You should see no errors other than the ones in the screenshot.*
+		- *Note: You should see no red errors. Yellow warnings in the ones in the screenshot are OK. If you see red errors, dependencies are not installed correctly.*
 	
 	- Open Rhino
 	

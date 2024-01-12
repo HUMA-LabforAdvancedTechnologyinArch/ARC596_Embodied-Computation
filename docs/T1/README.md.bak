@@ -117,8 +117,7 @@
 	  <img width="400" alt="" src=" https://i.imgur.com/cqnSaTm.jpg">
 	 
 	- Be sure to select the appropriate dependencies below.
-		
-		
+      - *Note: this installs roughly 20gb of data, make sure you have enough free space on your computer.*
 		<img width="600" alt="" src="https://i.imgur.com/D9o3zho.jpg">
 		
 		- Microsoft Visual Studio 
