@@ -194,7 +194,7 @@ To create a _child GameObject_:
 1. Drag the GameObject onto the parent GameObject in the Hierarchy.
 2. Drag _Object 4_ (selected) onto the parent _GameObject_, _Object 1 _(highlighted in a blue) to create a child GameObject.
 
-![Drag Object 4 (selected) onto the parent GameObject, Object 1 (highlighted in a blue) to create a child GameObject.](<../.gitbook/assets/18 (1)>)
+![Drag Object 4 (selected) onto the parent GameObject, Object 1 (highlighted in a blue) to create a child GameObject.](<img width="250" alt="" src="https://i.imgur.com/JXuUcVX.png">)
 
 ### Creating parent GameObjects 
 
