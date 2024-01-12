@@ -521,7 +521,7 @@ All [AR processes](https://developers.google.com/ar/discover/concepts), such as 
 
 Your _Hierarchy_ should now look like this:
 
-<img width="250" alt="" src="https://i.imgur.com/eAbzHgQ.jpg">
+<img width="400" alt="" src="https://i.imgur.com/eAbzHgQ.jpg">
 
 
 Expand the **AR Session Origin** you created in the _Hierarchy_, and select the **AR Camera object**. In the inspector, change its _**Tag**_ to **MainCamera.**
