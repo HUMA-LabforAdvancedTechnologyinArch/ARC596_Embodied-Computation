@@ -133,7 +133,27 @@ The** Inspector Window** is being used to [view and edit **properties**](https:/
 
 The_ Project window_ displays all of the** files **related to your_ Project _and is the main way you can navigate and find_ Assets _and other _Project files_ in your application. When you start a new _Project _by default this window is open. However, if you cannot find it, or it is closed, you can open it via **Window > General > Project** or use the keyboard command **Ctrl + 9** (Command + 9 on macOS).
 
-### GameObjects, Components, Prefabs 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## GameObjects, Components, Prefabs 
 
 ### Game Objects 
 
@@ -248,9 +268,19 @@ You see a _small icon_ appearing at the bottom, showing how _the Game Mode_ will
 
 _**Tip**: If you don’t see the camera and light icons, try to click on the “**Gizmos”button** on top._
 
-### Events in Unity 
 
-<img width="400" alt="" src="https://i.imgur.com/nTbL4Pj.png">
+
+
+
+
+
+
+
+
+
+## Events in Unity 
+
+<img width="400" alt="" src="https://i.imgur.com/Xwy5mgu.jpg">
 
 An **event is a message** sent to an object to signal that an event happened such as the pressing of a button has occurred. An event sender pushes notifications that an event happened and a receiver receives that notification and defines to respond to it. The object that raises the event is called the **event sender**. The event sender doesn’t know which object will receive the events it raises.
 
