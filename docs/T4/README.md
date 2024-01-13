@@ -764,7 +764,7 @@ Back in the existing Unity App, go to the Prefab folder we created before in the
 -   Inside the folder, you should be able to see an icon of your house in the _Prefabs._ Click on it once and go to the **Inspector Window.** Enable **Read/Write. Click “Apply”.**
 
     <img width="300" alt="" src="https://i.imgur.com/3mCDucc.jpg">
-    <img width="650" alt="" src="https://i.imgur.com/kVlqxpc.jpg">
+    <img height="650" alt="" src="https://i.imgur.com/kVlqxpc.jpg">
 
 ### Create Prefab with imported Model 
 
@@ -778,7 +778,7 @@ Back in the existing Unity App, go to the Prefab folder we created before in the
 
 -   To scale our model, we can click on the Prefab once, go to the Inspector, and type in the amount of desired scale (e.g. for this model was 0.001). Click **Apply** on the bottom right.
 
-    <img width="650" alt="" src="https://i.imgur.com/mx8lBET.jpg"> <img width="300" alt="" src="https://i.imgur.com/iUhHaGu.jpg">
+    <img width="450" alt="" src="https://i.imgur.com/mx8lBET.jpg"> <img width="300" alt="" src="https://i.imgur.com/iUhHaGu.jpg">
 
 >   Note: Don’t forget to Save your Project from time to time! **File > Save**
 
