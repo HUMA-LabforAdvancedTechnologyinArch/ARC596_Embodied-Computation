@@ -502,18 +502,18 @@ _ARCore i_s designed to work on a wide variety of qualified Android phones runni
 
 ### How does ARCore work? 
 
-Fundamentally, _ARCore_ is doing two things:
+-   Fundamentally, _ARCore_ is doing two things:
 
--   tracking the **position **of the mobile device as it moves
--   building its own understanding of the real world.
+    -   tracking the **position **of the mobile device as it moves
+    -   building its own understanding of the real world.
 
-ARCore's motion tracking technology uses the **phone's camera **to identify interesting **points,** called features, and **tracks** how those points move over time. With a combination of the movement of these points and readings from the phone's inertial sensors, _ARCore _determines both the position and orientation of the phone as it moves through space.
+-   ARCore's motion tracking technology uses the **phone's camera** to identify interesting **points,** called features, and **tracks** how those points move over time. With a combination of the movement of these points and readings from the phone's inertial sensors, _ARCore_ determines both the position and orientation of the phone as it moves through space.
 
-In addition to identifying key points, ARCore can detect **flat surfaces**, like a table or the floor, and can also estimate the** average lighting **in the area around it.
+-   In addition to identifying key points, ARCore can detect **flat surfaces**, like a table or the floor, and can also estimate the **average lighting** in the area around it.
 
 _→ For a more detailed breakdown of how ARCore works, check out _[_fundamental concepts_](https://developers.google.com/ar/discover/concepts)_._
 
-_ARCore _provides_** SDKs**_\[4] for many of the most popular development environments. These SDKs provide native APIs for all of the essential AR features like motion tracking, environmental understanding, and light estimation. With these capabilities you can build entirely new AR experiences or enhance existing apps with AR features.
+-   _ARCore_ provides **SDKs**, or software development kits, for many of the most popular development environments. These SDKs provide native APIs for all of the essential AR features like motion tracking, environmental understanding, and light estimation. With these capabilities you can build entirely new AR experiences or enhance existing apps with AR features.
 
 [Android](https://developers.google.com/ar/develop/java/quickstart) // [Android NDK](https://developers.google.com/ar/develop/c/quickstart) // [Unity (AR Foundation)](https://developers.google.com/ar/develop/unity-arf) // [iOS](https://developers.google.com/ar/develop/ios/overview) // [Unreal](https://developers.google.com/ar/develop/unreal/quickstart)
 
@@ -523,24 +523,24 @@ _In our workshop, we will focus on Unity’s AR Foundation Framework, and build 
 
 [AR Foundation](https://unity.com/unity/features/arfoundation) is a **cross-platform framework** that allows you to build augmented reality experiences once, then build for either Android or iOS devices. **ARCore Extensions** for AR
 
-AR Foundation allows you to work with augmented reality platforms in a multi-platform way within Unity. This package presents an interface for Unity developers to use, but doesn't implement any AR features itself. To use AR Foundation on a target device, you also need separate packages for the target platforms officially supported by Unity:
+-   AR Foundation allows you to work with augmented reality platforms in a multi-platform way within Unity. This package presents an interface for Unity developers to use, but doesn't implement any AR features itself. To use AR Foundation on a target device, you also need separate packages for the target platforms officially supported by Unity:
 
 * [ARCore XR Plug-in](https://docs.unity3d.com/Packages/com.unity.xr.arcore@4.2/manual/index.html) on Android
 * [ARKit XR Plug-in](https://docs.unity3d.com/Packages/com.unity.xr.arkit@4.2/manual/index.html) on iOS
 * [Magic Leap XR Plug-in](https://docs.unity3d.com/Packages/com.unity.xr.magicleap@6.0/manual/index.html) on Magic Leap
 * [Windows XR Plug-in](https://docs.unity3d.com/Packages/com.unity.xr.windowsmr@4.0/manual/index.html) on HoloLens
 
-AR Foundation is a set _of MonoBehaviours_ and APIs for dealing with devices that support the following concepts. A few of them are:
+-   AR Foundation is a set of _MonoBehaviours_ and APIs for dealing with devices that support the following concepts. A few of them are:
 
-* **Device tracking:** track the device's position and orientation in physical space.
-* **Plane detection: **detect horizontal and vertical surfaces.
-* **Anchor**: an arbitrary position and orientation that the device tracks.
-* **Light estimation:** estimates for average color temperature and brightness in physical space.
-* **Face tracking**: detect and track human faces.
-* **2D image tracking:** detect and track 2D images.
-* **Meshing: **generate triangle meshes that correspond to the physical space.
-* **Collaborative participants:** track the position and orientation of other devices in a shared AR experience.
-* **Raycast:** queries physical surroundings for detected planes and feature points.
+    -   Device tracking: track the device's position and orientation in physical space.
+    -   Plane detection: detect horizontal and vertical surfaces.
+    -   Anchor**: an arbitrary position and orientation that the device tracks.
+    -   Light estimation: estimates for average color temperature and brightness in physical space.
+    -   Face tracking: detect and track human faces.
+    -   2D image tracking: detect and track 2D images.
+    -   Meshing: generate triangle meshes that correspond to the physical space.
+    -   Collaborative participants: track the position and orientation of other devices in a shared AR experience.
+    -   Raycast: queries physical surroundings for detected planes and feature points.
 
 [→ More information about AR Foundation](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.2/manual/index.html)
 
@@ -554,7 +554,7 @@ AR Foundation is a set _of MonoBehaviours_ and APIs for dealing with devices tha
 
 ## Start working on the AR App 
 
-Open the file you created when following the _**Installation Guide** _for the Seminar Week.
+Open the file you created when following the **Installation Guide** for the Seminar Week.
 
 (By going to Unity Hub and Select your file)
 
@@ -562,8 +562,8 @@ Open the file you created when following the _**Installation Guide** _for the Se
 
 A scene needs an AR session to enable [AR processes](https://developers.google.com/ar/discover/concepts), such as motion tracking, environmental understanding, and lighting estimation. You will need the following game objects to support an AR session:
 
-* **AR Session**: Controls the lifecycle of an AR experience.
-* **AR Session Origin**: Transforms AR coordinates into Unity world coordinates.
+-   **AR Session**: Controls the lifecycle of an AR experience.
+-   **AR Session Origin**: Transforms AR coordinates into Unity world coordinates.
 
 1. Before adding the new game objects, delete the default **Main Camera**. It will be replaced by a new **AR Camera** in the **AR Session Origin**.
 
@@ -600,17 +600,17 @@ Expand the **AR Session Origin** you created in the _Hierarchy_, and select the 
 
 An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARPlaneManager.html) detects [ARPlane](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARPlane.html)s and creates, updates, and removes game objects when the device's understanding of the environment changes.
 
-1. Go to _Hierarchy_ and click on the **AR Session Origin** GameObject. On the _Inspector_ Window, click on **“Add Component”, search** for the **“AR Plane Manager”** and **Add it**.
+-   Go to _Hierarchy_ and click on the **AR Session Origin** GameObject. On the _Inspector_ Window, click on **“Add Component”, search** for the **“AR Plane Manager”** and **Add it**.
     
     <img width="650" alt="" src="https://i.imgur.com/fNk7yzI.png">
 
-2. Respectively, click again on the **“Add Component**”, search for **“AR Raycast Manager”** and add it as well.
+-   Respectively, click again on the **“Add Component**”, search for **“AR Raycast Manager”** and add it as well.
 
     <img width="650" alt="" src="https://i.imgur.com/9FdPqRR.jpg">
 
 >   _We will need this component later. It helps obtain information of the raycasts deriving from the user input on the screen._
 
-3. In the _Hierarchy Window_, right click , go to XR -> AR Default Plane. This will create an AR-configured plane, that we will customize a bit and use as a Prefab for our application, in order to visualize the AR detected planes.
+-   In the _Hierarchy Window_, right click , go to XR -> AR Default Plane. This will create an AR-configured plane, that we will customize a bit and use as a Prefab for our application, in order to visualize the AR detected planes.
 
     <img width="400" alt="" src="https://i.imgur.com/4JfGt2v.jpg">
     <img width="400" alt="" src="https://i.imgur.com/c2x9s3s.jpg">
@@ -622,12 +622,12 @@ An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@
 -   **AR Plane script summary:** Represents a plane (i.e., a flat surface) detected by an AR device. Generated by the **\<ARPlaneManager>** when an AR device detects a plane in the environment.
 -   **AR Plane Mesh Visualizer Summary:** Generates a mesh for an \<ARPlane>. It generates a mesh and updates the boundary points with a \<LineRenderer>.
 
-4. Now we will go to the Project Window, create a new empty **folder** in our **Assets,** and name it “Prefabs”, to organize our material. (**Right click > Create > Folder**). Then, double click it and go inside the folder.
+-   Now we will go to the Project Window, create a new empty **folder** in our **Assets,** and name it “Prefabs”, to organize our material. (**Right click > Create > Folder**). Then, double click it and go inside the folder.
 
     <img width="650" alt="" src="https://i.imgur.com/seVSYGo.jpg">
     <img width="650" alt="" src="https://i.imgur.com/LDdo0N4.jpg">
 
-5. Drag and drop the **AR Default Plane**_GameObject inside the **Prefabs** folder, in order to save it as a _Prefab._ In general, this is an easy way to _create new Prefabs_, after we have edited them as we like in our _Scene._
+-   Drag and drop the **AR Default Plane**_GameObject inside the **Prefabs** folder, in order to save it as a _Prefab._ In general, this is an easy way to _create new Prefabs_, after we have edited them as we like in our _Scene._
 
     <img width="400" alt="" src="https://i.imgur.com/X31UXzS.jpg"> <img width="400" alt="" src="https://i.imgur.com/bFFt0iv.jpg">
 
@@ -636,11 +636,11 @@ An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@
 
 → Notice that the _AR Default Plane_ becomes **blue** in the _Hierarchy._ This is because the process of creating the _Prefab Asset_ also turns the original _GameObject_ into a **Prefab instance**. Every change happening in the _prefab_, will happen in the _instance_ as well.
 
-6. We can now **delete **the _AR Default Plane Object_ in the** Hierarchy,** since we will only use the** Prefab.**
+-   We can now **delete **the _AR Default Plane Object_ in the** Hierarchy,** since we will only use the** Prefab.**
 
     <img width="400" alt="" src="https://i.imgur.com/CAl6zPU.jpg">
 
-7. On the **AR Session Origin** _GameObject_, go to the **AR Plane Manager Script** we added in Step 1. There is an _empty Plane Prefab._ Drag and Drop there the Prefab we created in the Assets.
+-   On the **AR Session Origin** _GameObject_, go to the **AR Plane Manager Script** we added in Step 1. There is an _empty Plane Prefab._ Drag and Drop there the Prefab we created in the Assets.
 
     <img width="650" alt="" src="https://i.imgur.com/kr0ehLg.jpg">
 <img width="650" alt="" src="https://i.imgur.com/U3sGjsh.jpg">
