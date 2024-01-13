@@ -29,7 +29,7 @@
 	 
 	- Be sure to select the appropriate dependencies below.
       - *Note: this installs roughly 20gb of data, make sure you have enough free space on your computer.*
-		<img width="600" alt="" src="https://i.imgur.com/D9o3zho.jpg">
+		<img width="650" alt="" src="https://i.imgur.com/D9o3zho.jpg">
 		
 		- Microsoft Visual Studio 
 		- Android Build Support (Both Android SDK and OpenJDK)
@@ -66,11 +66,25 @@
 		<img width="650" alt="" src="https://i.imgur.com/4LUeQrF.png">
 	
 
-# BEGIN ETH #
-<!---------------------- END ETH   ----->
 
 
-### Unity Interface 
+
+
+
+
+
+
+
+
+
+
+
+
+# BEGIN ETH TUTORIAL #
+<!---------------------- begin copy pasta   ----->
+
+
+## Unity Interface 
 
 <img width="650" alt="" src="https://i.imgur.com/fctlEa8.png">
 
@@ -109,7 +123,7 @@ The Game view is rendered from the Camera(s) in your application. It represents 
 
 <img width="100" alt="" src="https://i.imgur.com/Np9EDMS.png">
 
-Use the buttons in the _Toolbar _to control the Editor Play mode and see how your published application plays. An important fact is that, in** Play mode**, any changes you make are **temporary,** and are **reset **when you exit Play mode.
+Use the buttons in the _Toolbar _to control the Editor Play mode and see how your published application plays. An important fact is that, in **Play mode**, any changes you make are **temporary,** and are **reset** when you exit Play mode.
 
 [→ More info](https://docs.unity3d.com/Manual/GameView.html)
 
@@ -117,21 +131,19 @@ Use the buttons in the _Toolbar _to control the Editor Play mode and see how you
 
 The Hierarchy window displays every [GameObject](https://docs.unity3d.com/Manual/GameObjects.html) in a Scene, such as models, Cameras, or [Prefabs](https://docs.unity3d.com/Manual/Prefabs.html). You can use the Hierarchy window to sort and group the GameObjects you use in a Scene.
 
-![The default Hierarchy window view when you open a new Unity project]
-
 <img alt="" src="https://i.imgur.com/0Xs2azM.png">
 
 The default Hierarchy window view when you open a new Unity project
 
 ### The Inspector Window 
 
-The** Inspector Window** is being used to [view and edit **properties**](https://docs.unity3d.com/Manual/EditingValueProperties.html) and** settings** for almost everything in the_ Unity Editor_. In the _Inspector Window_, one can add or remove _“Components”_ , which enable different features.. We will see what these are soon. [→ More Info](https://docs.unity3d.com/Manual/UsingTheInspector.html)![](<../.gitbook/assets/10 (1)>)
+The **Inspector Window** is being used to [view and edit **properties**](https://docs.unity3d.com/Manual/EditingValueProperties.html) and** settings** for almost everything in the_ Unity Editor_. In the _Inspector Window_, one can add or remove _“Components”_ , which enable different features.. We will see what these are soon. [→ More Info](https://docs.unity3d.com/Manual/UsingTheInspector.html) 
 
 ### The Project Window 
 
 <img width="650" alt="" src="https://i.imgur.com/YtMU8b9.png">
 
-The_ Project window_ displays all of the** files **related to your_ Project _and is the main way you can navigate and find_ Assets _and other _Project files_ in your application. When you start a new _Project _by default this window is open. However, if you cannot find it, or it is closed, you can open it via **Window > General > Project** or use the keyboard command **Ctrl + 9** (Command + 9 on macOS).
+The _Project window_ displays all of the **files** related to your _Project_ and is the main way you can navigate and find _Assets_ and other _Project files_ in your application. When you start a new _Project_ by default this window is open. However, if you cannot find it, or it is closed, you can open it via **Window > General > Project** or use the keyboard command **Ctrl + 9** (Command + 9 on macOS).
 
 
 
@@ -159,13 +171,13 @@ The_ Project window_ displays all of the** files **related to your_ Project _and
 
 <img width="650" alt="" src="https://i.imgur.com/yjd1wvG.png">
 
-**GameObjects **are the fundamental objects in _Unity _that represent _3d objects, props and scenery_. They do not accomplish much in themselves but they act as containers for **Components**, which implement the real **functionality**.
+**GameObjects** are the fundamental objects in _Unity_ that represent _3d objects, props and scenery_. They do not accomplish much in themselves but they act as containers for **Components**, which implement the real **functionality**.
 
-A _GameObject _always has a [Transform](https://docs.unity3d.com/Manual/class-Transform.html) component attached (to represent position and orientation) and it is not possible to remove this. The other _components_ that give the object its functionality can be added from the editor’s Component menu or from a script. There are also many useful _pre-constructed o_bjects (_primitive shapes, Cameras,_ etc) available on the **GameObject > 3D Object menu** (more info: [Primitive Objects](https://docs.unity3d.com/Manual/PrimitiveObjects.html) )
+A _GameObject_ always has a [Transform](https://docs.unity3d.com/Manual/class-Transform.html) component attached (to represent position and orientation) and it is not possible to remove this. The other _components_ that give the object its functionality can be added from the editor’s Component menu or from a script. There are also many useful _pre-constructed o_bjects (_primitive shapes, Cameras,_ etc) available on the **GameObject > 3D Object menu** (more info: [Primitive Objects](https://docs.unity3d.com/Manual/PrimitiveObjects.html) )
 
 ### Components 
 
-**Components** implement** functionalities** on the _GameObjects_. For example, a_ Ligh_t object is created by attaching a_ Light component _to a_ GameObject. _**Components** are contained by GameObjects. _Unity_ has many** built-in** components, and you can create your own by writing scripts that inherit from _MonoBehaviour_. _(scripting language in C#)_
+**Components** implement  **functionalities** on the _GameObjects_. For example, a _Light object_ is created by attaching a _Light component_ to a _GameObject_. **Components** are contained by GameObjects. _Unity_ has many built-in components, and you can create your own by writing scripts that inherit from the _MonoBehaviour_ class. C# is the programming language which we use to write code. 
 
 _→ _[_More Info about Scripting in Unity_](https://docs.unity3d.com/Manual/CreatingComponents.html)
 
@@ -198,9 +210,9 @@ _**Child 1** and **Child 2** are the child GameObjects of **Parent**. **Child 3*
 
 To create a new GameObject in the Hierarchy window:
 
-1. Right-click on empty space in the selected Scene.
-2. Select the GameObject you want to create. Let’s make a **cube**_GameObject _ by selecting **3D Object > Cube.**
-3. Now let’s make another _**empty** GameObject._
+-   Right-click on empty space in the selected Scene.
+-   Select the GameObject you want to create. Let’s make a **cube**_GameObject _ by selecting **3D Object > Cube.**
+-   Now let’s make another _**empty** GameObject._
 
 → You can also press **Ctrl+Shift+N** (Windows) or **Command+Shift+N** (macOS) to create a new empty GameObject.
 
@@ -211,8 +223,7 @@ To create a new GameObject in the Hierarchy window:
 
 To create a _child GameObject_:
 
-1. Drag the GameObject onto the parent GameObject in the Hierarchy.
-2. Drag _Object 4_ (selected) onto the parent _GameObject_, _Object 1 _(highlighted in a blue) to create a child GameObject.
+-   Drag the GameObject onto the parent GameObject in the Hierarchy.-   Drag _Object 4_ (selected) onto the parent _GameObject_, _Object 1 _(highlighted in a blue) to create a child GameObject.
 
     <img width="250" alt="" src="https://i.imgur.com/JXuUcVX.png">
 
@@ -222,8 +233,8 @@ You can add a new GameObject into the Hierarchy view as the parent of existing G
 
 To create a parent GameObject:
 
-1. Right-click a _GameObject,_ or select multiple _GameObjects _on the same level and right-click.
-2. Select** Create Empty Parent.**
+-   Right-click a _GameObject,_ or select multiple _GameObjects _on the same level and right-click.
+-   Select** Create Empty Parent.**
 
 You can also press **Ctrl+Shift+G** (Windows) or **Command+Shift+G** (macOS) to create a parent GameObject.
 
@@ -240,31 +251,33 @@ You can also press **Ctrl+D **(Windows) or **Command+D **(macOS) to duplicate th
 
 ### Task: 
 
-Try inserting multiple _GameObjects _like _cubes_, _spheres _and _Planes _in the Scene. Use the basic tools to **Move, Rotate and Scale** the Objects and go to the I**nspector Window**. Try to transform them Manually by Inserting Values on** Position, Rotation and Scale.**
+Try inserting multiple _GameObjects_ like _cubes_, _spheres_ and _Planes_ in the Scene. Use the basic tools to **Move, Rotate and Scale** the Objects and go to the **Inspector Window**. Try to transform them Manually by Inserting Values on **Position, Rotation and Scale.**
 
 <img width="250" alt="" src="https://i.imgur.com/cSj8KHj.png">
 
 
->   Note: **To quickly** reset all the Transform values,** you can right click on the “Transform” title, and click **“Reset”**
+>   Note: **To quickly** reset all the Transform values,** you can right click on the “Transform” title, and click **Reset**
 
 
 <img width="750" alt="" src="https://i.imgur.com/gI5AMaQ.png">
 
 ### Make a new Material 
 
-1. In the** Project Window**, go to **Assets**, right click on the empty space and make a new folder by going to **Create> Folder.** Name it “Materials”.
-2. Double click on the folder, right click on the empty space and make a new material by going to **Create>Material. **A new Material is created.
-3. Click on the color palette on the_ Inspector _and select a color of your choice.\
+-   In the **Project Window**, go to **Assets**, right click on the empty space and make a new folder by going to **Create> Folder.** Name it _Materials_.
 
-4. Drag and drop the material from **the Assets Folder** on the desired objects
+-   Double click on the folder, right click on the empty space and make a new material by going to **Create>Material. **A new Material is created.
+
+-   Click on the color palette on the_ Inspector _and select a color of your choice.
+
+-   Drag and drop the material from **the Assets Folder** on the desired objects
 
 >   Note: You can explore different Material Properties, such as **Transparency (in Rendering Mode)**, **Emission** (“glowy” effect, especially when combined with Bloom Rendering effects in Gaming), or add a **Texture** as a Map, similarly to other softwares.
 
 <img width="750" alt="" src="https://i.imgur.com/TAxdfT0.png">
 
-1. Move the **camera** to look at the cube.
+-   Move the **camera** to look at the cube.
 
-You see a _small icon_ appearing at the bottom, showing how _the Game Mode_ will look like through this _camera._
+-   You see a _small icon_ appearing at the bottom, showing how _the Game Mode_ will look like through this _camera._
 
 _**Tip**: If you don’t see the camera and light icons, try to click on the “**Gizmos”button** on top._
 
@@ -292,19 +305,18 @@ _Many more event functions are available in Unity; the full list can be found in
 
 ### Create a C# script for keyboard interaction 
 
-Let’s create our first C# script, to interact with the Cube we made previously.
+Let’s create our first C# script to interact with the Cube we made previously.
 
-1. Click on the cube GameObject you created, go to the Inspector and click “Add Component”(1). Go to **New Script , **name it **“Zoom” **and click on **“Create and Add” **(2).
+-   Click on the cube GameObject you created, go to the Inspector and click “Add Component”(1). Go to **New Script , **name it **“Zoom” **and click on **“Create and Add” **(2).
 
-<img width="600" alt="" src="https://i.imgur.com/nTbL4Pj.png">
-
-
-2. Double click on the **Script name**, or **right click>Edit Script**
+    <img width="650" alt="" src="https://i.imgur.com/nTbL4Pj.png">
 
 
-Open the file with **Visual Studio 2019. **Login with _your Microsoft account_, or create a new one.
+-   Double click on the **Script name**, or **right click>Edit Script**
 
-The Visual studio interface should appear. Let’s take a look at the structure of the script.
+
+-   Open the file with **Visual Studio 2019. **Login with _your Microsoft account_, or create a new one.
+
 
 ```
 using System.Collections;
@@ -345,9 +357,9 @@ _→ We will write a script in **Update**, but will create an Event that trigger
 
 ### Declare a variable 
 
-Insert the **cube GameObject** variable as a public gameObject (public = we can access it outside of the script and change it).
+-   Insert the **cube GameObject** variable as a public gameObject (public = we can access it outside of the script and change it).
 
-_**Note:** Remember to always put a semicolon (;) at the end of every line_
+> Note: Remember to always put a semicolon (;) at the end of every line_
 
 <img width="700" alt="" src="https://i.imgur.com/h08eean.png">
 
@@ -371,9 +383,9 @@ public class Zoom: MonoBehaviour {
 ### Add an event in an “if” statement 
 
 
-We put the statement in the update, so that the script is checking constantly for our input.
+-   We put the statement in the update, so that the script is checking constantly for our input.
 
-<img width="700" alt="" src="https://i.imgur.com/VrdMBJv.png">
+    <img width="700" alt="" src="https://i.imgur.com/VrdMBJv.png">
 
 
 ```
@@ -400,47 +412,45 @@ We put the statement in the update, so that the script is checking constantly fo
 
 we added a very small value, since it will move very fast
 
-1. **Save** the script, go back to_ Unity_ and **Play** the Scene.
+-   **Save** the script, go back to_ Unity_ and **Play** the Scene.
 
-Long Press the **SpaceBar** of your keyboard and watch the cube zoom exponentially.
+-   Long Press the **SpaceBar** of your keyboard and watch the cube zoom exponentially.
 
-<img width="700" alt="" src="https://i.imgur.com/S7In6Q9.png">
+    <img width="700" alt="" src="https://i.imgur.com/S7In6Q9.png">
 
 
-_→ Task: Change the code from **cube.transform.localScale += (Vector3.one\*1.00001f)/100;**
-
-_To **transform.localScale += (Vector3.one\*1.00001f)/100;**. Save it and run the code again. It still works because the script is self-referencing the object that the component is added to.
+-   Change the code from **cube.transform.localScale += (Vector3.one\*1.00001f)/100;** to **transform.localScale += (Vector3.one\*1.00001f)/100;**. Save it and run the code again. It still works because the script is self-referencing the object that the component is added to.
 
 ### Download animated characters 
 
-Go to the Unity Asset Store:
+-   Go to the Unity Asset Store:
 
 [https://assetstore.unity.com/](https://assetstore.unity.com)
 
-→ The **Unity Asset Store** is home to a growing library of **free and commercial assets** created both by _Unity Technologies_ and also members of the community. A wide variety of assets are available, covering everything from _textures, models and animations_, _to whole project examples, tutorials and Extension Assets_.
+> Note: The **Unity Asset Store** is home to a growing library of **free and commercial assets** created both by _Unity Technologies_ and also members of the community. A wide variety of assets are available, covering everything from _textures, models and animations_, _to whole project examples, tutorials and Extension Assets_.
 
-Find and download the free asset _“5 animated Voxel animals_”.
+Find and download the free asset _5 animated Voxel animals_.
 
 [https://assetstore.unity.com/packages/3d/characters/animals/5-animated-voxel-animals-145754](https://assetstore.unity.com/packages/3d/characters/animals/5-animated-voxel-animals-145754)
 
-* **Click “Add to My Assets”**
-* **Click “Open in Unity”**
+-   Click _Add to My Assets_
+-   Click _Open in Unity_
 
 ### Import Package in your Unity File 
 
-After clicking the **“Open in Unity”** button, you will be redirected to the Unity software, on the package manager. Make sure you are in **Packages: ”My Assets”**. Click **Import**
+-   After clicking the **Open in Unity** button, you will be redirected to the Unity software, on the package manager. Make sure you are in **Packages: My Assets**. Click **Import**
 
-This Window pops up. When importing a package, you can select the parts you want to import. For now, we will import everything. Click **“Import”.**
+-   A window pops up. When importing a package, you can select the parts you want to import. For now, we will import everything. Click **Import**.
 
 ### Make a Plane 
 
-In the Hierarchy ,** **right click and go to **3D Object> Plane.**
+-   In the **Hierarchy**, right click and go to **3D Object> Plane.**
 
 _**→ Make sure the Transform position values are set to 0,0,0**_
 
 ### Import a character 
 
-Go to **Assets>VoxelAnimals>Assets>Prefabs** and drag and drop a character on the Scene or the Hierarchy. Make sure it is correctly placed on the plane.
+-   Go to **Assets>VoxelAnimals>Assets>Prefabs** and drag and drop a character on the Scene or the Hierarchy. Make sure it is correctly placed on the plane.
 
 <img width="400" alt="" src="https://i.imgur.com/jTt2v4u.png">
 
@@ -592,11 +602,11 @@ An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@
 
 1. Go to _Hierarchy_ and click on the **AR Session Origin** GameObject. On the _Inspector_ Window, click on **“Add Component”, search** for the **“AR Plane Manager”** and **Add it**.
     
-    <img width="600" alt="" src="https://i.imgur.com/fNk7yzI.png">
+    <img width="650" alt="" src="https://i.imgur.com/fNk7yzI.png">
 
 2. Respectively, click again on the **“Add Component**”, search for **“AR Raycast Manager”** and add it as well.
 
-    <img width="600" alt="" src="https://i.imgur.com/9FdPqRR.jpg">
+    <img width="650" alt="" src="https://i.imgur.com/9FdPqRR.jpg">
 
 >   _We will need this component later. It helps obtain information of the raycasts deriving from the user input on the screen._
 
@@ -607,19 +617,19 @@ An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@
 
 >   This _XR GameObject _contains _scripts_ that generate and visualize the planes detected by the _AR device_, using the _AR Plane manager_ script we created in the previous step.
 
-<img width="600" alt="" src="https://i.imgur.com/hsSC8WZ.jpg">
+<img width="650" alt="" src="https://i.imgur.com/hsSC8WZ.jpg">
 
 -   **AR Plane script summary:** Represents a plane (i.e., a flat surface) detected by an AR device. Generated by the **\<ARPlaneManager>** when an AR device detects a plane in the environment.
 -   **AR Plane Mesh Visualizer Summary:** Generates a mesh for an \<ARPlane>. It generates a mesh and updates the boundary points with a \<LineRenderer>.
 
 4. Now we will go to the Project Window, create a new empty **folder** in our **Assets,** and name it “Prefabs”, to organize our material. (**Right click > Create > Folder**). Then, double click it and go inside the folder.
 
-<img width="600" alt="" src="https://i.imgur.com/seVSYGo.jpg">
-<img width="600" alt="" src="https://i.imgur.com/LDdo0N4.jpg">
+    <img width="650" alt="" src="https://i.imgur.com/seVSYGo.jpg">
+    <img width="650" alt="" src="https://i.imgur.com/LDdo0N4.jpg">
 
 5. Drag and drop the **AR Default Plane**_GameObject inside the **Prefabs** folder, in order to save it as a _Prefab._ In general, this is an easy way to _create new Prefabs_, after we have edited them as we like in our _Scene._
 
-<img width="400" alt="" src="https://i.imgur.com/X31UXzS.jpg"> <img width="400" alt="" src="https://i.imgur.com/bFFt0iv.jpg">
+    <img width="400" alt="" src="https://i.imgur.com/X31UXzS.jpg"> <img width="400" alt="" src="https://i.imgur.com/bFFt0iv.jpg">
 
 >   Note: In short, Unity’s **Prefab** system allows you to create, configure, and store a GameObject complete with all its components, property values, and child **GameObjects** as a reusable Asset. The Prefab Asset acts as a template from which you can create new Prefab instances in the **Scene.**\
 [**→ More info about prefabs**](https://docs.unity3d.com/Manual/Prefabs.html)
@@ -628,12 +638,12 @@ An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@
 
 6. We can now **delete **the _AR Default Plane Object_ in the** Hierarchy,** since we will only use the** Prefab.**
 
-<img width="400" alt="" src="https://i.imgur.com/CAl6zPU.jpg">
+    <img width="400" alt="" src="https://i.imgur.com/CAl6zPU.jpg">
 
 7. On the **AR Session Origin** _GameObject_, go to the **AR Plane Manager Script** we added in Step 1. There is an _empty Plane Prefab._ Drag and Drop there the Prefab we created in the Assets.
 
-<img width="600" alt="" src="https://i.imgur.com/kr0ehLg.jpg">
-<img width="600" alt="" src="https://i.imgur.com/U3sGjsh.jpg">
+    <img width="650" alt="" src="https://i.imgur.com/kr0ehLg.jpg">
+<img width="650" alt="" src="https://i.imgur.com/U3sGjsh.jpg">
 
 
 You should now see the _AR Default Plane Prefab_ placed as the _Plane Prefab._
@@ -665,18 +675,18 @@ _**Let’s build the app and see if it works!**_
     
 -   If you don’t see it, try having the device unlocked when you plug it, and if USB options popup, select **Use USB to: Transfer files** on your phone screen.
 
-    <img width="3250" alt="" src="https://i.imgur.com/gPJS315.jpg">
+    <img width="325" alt="" src="https://i.imgur.com/gPJS315.jpg">
 
 -   Go to **File>Build Settings**
 -   Respectively, you should be able to see your device detected in the _Run Device_ drop-down Menu. You can click _Refresh_ if you don’t see it right away.
     
--   <img width="600" alt="" src="https://i.imgur.com/3Ca1jbE.jpg">
+    <img width="650" alt="" src="https://i.imgur.com/3Ca1jbE.jpg">
         
 
 -   Click **Build and Run**. Select a folder and name your application as desired. This might take a bit of time. Keep the device unlocked, so that the application runs right away.
 
--   <img width="600" alt="" src="https://i.imgur.com/TkDSvNw.jpg">
--   <img width="600" alt="" src="https://i.imgur.com/aM0a0cd.jpg">
+    <img width="650" alt="" src="https://i.imgur.com/TkDSvNw.jpg">
+    <img width="650" alt="" src="https://i.imgur.com/aM0a0cd.jpg">
 
 -   Move the phone **slowly** up and down, left and right, to start the detection.
 
@@ -708,7 +718,7 @@ In _Rhino_, open your desired file. In our case it is the house object.
 
 -   Move the **x,y center** of your geometry to **0,0,0**. You can use the _Move_ command, and and align it to the 0,0,0 plane. Have the x and y center at the origin, but the whole house should be above the ground plane.
 
--   <img width="600" alt="" src="https://i.imgur.com/hoKzJwJ.jpg">
+    <img width="650" alt="" src="https://i.imgur.com/hoKzJwJ.jpg">
 
 
 
@@ -718,12 +728,12 @@ In _Rhino_, open your desired file. In our case it is the house object.
 
 -   Go to **File>Export Selected**
 
--   <img width="600" alt="" src="https://i.imgur.com/ksEujZ6.jpg">
+    <img width="650" alt="" src="https://i.imgur.com/ksEujZ6.jpg">
 
 
 -   Save as type **.obj,** in a folder that you can easily find e.g. another folder on your Desktop called _“Seminar\_Week\_Assets”,_ and click **“OK”** in the _OBJ Export Options_ dialog.
 
--   <img width="400" alt="" src="https://i.imgur.com/i44CDCm.jpg"> <img height="400" alt="" src="https://i.imgur.com/4VGt7eH.jpg">
+    <img width="400" alt="" src="https://i.imgur.com/i44CDCm.jpg"> <img height="400" alt="" src="https://i.imgur.com/4VGt7eH.jpg">
 
 >   Note: Check that your file is created correctly in the folder.
 
@@ -735,81 +745,111 @@ First, we will learn how to import our model correctly into _Unity_, adjust its 
 
 Back in the existing Unity App, go to the Prefab folder we created before in the Assets (Project Window).
 
-Go to the Assets folder of the Unity Project on your computer (in the file explorer) , and copy paste both the .obj and the .mtl. You can make a new folder called _ImportedObjects_.
+-   Go to the Assets folder of the Unity Project on your computer (in the file explorer) , and copy paste both the .obj and the .mtl. You can make a new folder called _ImportedObjects_.
 
 >   Note: Unity Projects are actually folders that contain other folders. So you can have full access on Prefabs, scripts, objects. When you put something in this folder, it updates in Unity as well.
 
--   <img width="600" alt="" src="https://i.imgur.com/aWTnmDC.jpg"> <img width="300" alt="" src="https://i.imgur.com/3dBPLp3.jpg">
+<img width="650" alt="" src="https://i.imgur.com/aWTnmDC.jpg"> <img width="300" alt="" src="https://i.imgur.com/3dBPLp3.jpg">
 
 
 
-Inside the **ImportedObjects** folder, copy and paste both your **.obj** and the **.mtl** file that you exported from Rhino.
+-   Inside the **ImportedObjects** folder, copy and paste both your **.obj** and the **.mtl** file that you exported from Rhino.
 
 >   Note: Alternatively, you can make the new folder inside Unity and drag and drop both of the files.
 
-Back to _Unity_, you will see that the folder is also updated in the **Project Window > Assets.**
+-   Back to _Unity_, you will see that the folder is also updated in the **Project Window > Assets.**
 
--   <img width="600" alt="" src="https://i.imgur.com/aWTnmDC.jpg">
+    <img width="300" alt="" src="https://i.imgur.com/LDMloz8.jpg">
 
-Inside the folder, you should be able to see an icon of your house in the_ Prefabs._ Click on it once and go to the_** Inspector Window. **_Enable _**Read/Write. Click “Apply”.**_
+-   Inside the folder, you should be able to see an icon of your house in the _Prefabs._ Click on it once and go to the **Inspector Window.** Enable **Read/Write. Click “Apply”.**
+
+    <img width="300" alt="" src="https://i.imgur.com/3mCDucc.jpg">
+    <img width="650" alt="" src="https://i.imgur.com/kVlqxpc.jpg">
+
+### Create Prefab with imported Model 
+
+-   Drag and drop the house Prefab into the Hierarchy. You will now see the object imported in your Scene.
+
+-   In the_ Inspector_, make sure that the _Transform, Position and Rotation _are on **0,0,0.**
+
+    <img width="650" alt="" src="https://i.imgur.com/uV27U56.jpg">
+
+-   To check that the _Scale of the model_ we imported is correct. This is 1:1 in physical space. We can compare it with a **1,1,1** cube (1 x 1 x 1 meters) (**Create>3D Object>Cube**). If we see that the Cube is too big or too small, we have to scale our model. It is better to have an object that is small enough to fit in the phone camera.
+
+-   To scale our model, we can click on the Prefab once, go to the Inspector, and type in the amount of desired scale (e.g. for this model was 0.001). Click **Apply** on the bottom right.
+
+    <img width="650" alt="" src="https://i.imgur.com/mx8lBET.jpg"> <img width="300" alt="" src="https://i.imgur.com/iUhHaGu.jpg">
+
+>   Note: Don’t forget to Save your Project from time to time! **File > Save**
+
+Now that the scale of the object is correct, we can apply a _Material_ of our choice. Let’s go back to **Assets** and make another **empty Folder** called **Materials**. Here we will be organizing our materials throughout the development.
+
+>   Tip: You can rename an existing folder by clicking on it once, and pressing **F2** on your keyboard.
+
+-   Inside the Materials folder, create a new Material (**Right Click > Create > Material**) Like the steps before, you can assign a color, or create multiple materials and assign them on your object.
+
+-   When you are finished, Drag and Drop the object GameObject back to the **Assets>Prefabs**, and name it as _Building\_Prefab\_01_. Today, we will use this Prefab to instantiate it in the AR Detected Planes.
+
+    <img width="250" alt="" src="https://i.imgur.com/Knla4qv.jpg">
 
 
 
-### Create Prefab with imported Model <a href="_toc86085588" id="_toc86085588"></a>
-
-Drag and drop the house Prefab into the Hierarchy. You will now see the object imported in your Scene.
-
-In the_ Inspector_, make sure that the _Transform, Position and Rotation _are on **0,0,0.**
-
-To check that the _Scale of the model _we imported is correct ( 1:1 in physical space), we can compare it with a **1,1,1 **cube (=1x1x1meters) (**Create>3D Object>Cube**). If we see that the Cube is too big or too small, we have to scale our model. It is better to have an object that is small enough to fit in the phone camera.
-
-To scale our model, we can click on the Prefab once, go to the Inspector, and type in the amount of desired scale (e.g. for this model was 0.001). Click **“Apply”** on the bottom right.
 
 
 
-**Note:** Don’t forget to Save your Project from time to time! (**File > Save**) or** Ctrl+S**.
-
-Now that the scale of the object is correct, we can apply a _Material_ of our choice.Let’s go back to **Assets** and make another** empty Folder **called **“Materials”**. Here we will be organizing our materials throughout the development.
-
-Tip: You can rename an existing folder by clicking on it once, and pressing** F2 **on your keyboard.
-
-Inside the Materials folder, create a new Material (**Right Click > Create > Material**) Like the steps before, you can assign a color, or create multiple materials and assign them on your object.
-
-When you are finished, Drag and Drop the object GameObject back to the **Assets>Prefabs,** and name it as _“Building\_Prefab\_01” . _Today, we will use this Prefab to instantiate it in the AR Detected Planes.
 
 
 
-### Instantiate object 
 
-_Now we can start the scripting base ! The goal for today is to **“Tap and Instantiate”** the 3D object in our App, on the detected AR Planes._
+
+
+
+
+
+
+
+
+
+
+
+## Instantiate object 
+
+_Now we can start the scripting base! The goal for today is to **“Tap and Instantiate”** the 3D object in our App, on the detected AR Planes._
 
 ### Import the Instantiator Script 
 
-In the** Assets**, Create a new empty_ Folder _and name it_ “Scripts”._ Here, we will be collecting all of the **C# scripts** we will be using.
+-   In the **Assets**, Create a new empty _Folder_ and name it _“Scripts”._ Here, we will be collecting all of the **C# scripts** we will be using.
 
-Go to the folder with the material of the Seminar Week you downloaded. Go to **Scripts>Day1>Instantiator.cs **Drag and drop the script into the _Script _folder we created in Unity. This is a custom Script , made for the Seminar Week, that we will use to build our application upon.
+-   Go to the folder with the material that you downloaded. Go to **Instantiator.cs** Drag and drop the script into the _Script_ folder we created in Unity. This is the base script, that we will use to build our application upon.
 
-Make an Empty Game Object and name it_ “Instantiator”. _Here we will assign our Instantiator script, where we manage the instances of the objects we create in the App.
+    <img width="400" alt="" src="https://i.imgur.com/pxuAcQO.jpg">
 
-On the** Instantiator **GameObject, go to the_ Inspector _and click on **“Add Component”**. Find and add the** “Instantiator” **script we imported in the previous steps.
+-   Make an Empty Game Object and name it_ “Instantiator”. _Here we will assign our Instantiator script, where we manage the instances of the objects we create in the App.
 
-![](<../.gitbook/assets/image (2).png>)
+    <img width="400" alt="" src="https://i.imgur.com/BHgvCc3.jpg">
 
-**Note:** Always make sure that the Transform Values are set to Zero when creating a new GameObject.
+-   On the **Instantiator** **GameObject**, go to the _Inspector_ and click on **Add Component**. Find and add the **Instantiator** script we imported in the previous steps.
 
-We see some defined Variables that don’t have any object assigned to them. But first, let’s take a look at the **code.**
+    <img width="400" alt="" src="https://i.imgur.com/loTUPLM.jpg">
 
-### Overview of the code 
+>   Note: Always make sure that the Transform Values are set to Zero when creating a new GameObject.
 
-To open the script, you can either go to **the Assets** and double click, or on the **component** itself, and **double click** on the name .
+-   We see some defined variables that don’t have any object assigned to them. But first, let’s take a look at the **code.**
 
-![](<../.gitbook/assets/image (8).png>)
+    <img width="400" alt="" src="https://i.imgur.com/S6nbhpH.jpg">
 
-![](<../.gitbook/assets/image (10).png>)
+
+## Overview of the code 
+
+-   To open the script, you can either go to **the Assets** and double click, or on the **component** itself, and **double click** on the name.
+
+    <img width="400" alt="" src="https://i.imgur.com/WByAdzW.jpg">
+
+    <img width="800" alt="" src="https://i.imgur.com/Czw4zBy.jpg">
 
 Do these variables seem familiar? They are the ones that appear on the Inspector!
 
-![](<../.gitbook/assets/image (11).png>)
+
 
 We can choose what kind of GameObject we need.
 
@@ -817,19 +857,53 @@ _E.g. For the Camera, we only need the “Transform” component, to get informa
 
 Let’s drag and drop the objects we need.
 
-1. For the** Selected Prefab**, we can put the House Prefab we created , by dragging it from the** Assets>Prefabs** folder we created.
-2. For the **Ar Camera Transform**, we will drag and drop the** AR Camera GameObject**, which we can find under _“AR Session Origin”_ in the Hierarchy.
-3. As we saw in the _C# _script, the **House Paren**t, is an empty GameObject that will be the **parent** of all the instances we will create with our taps on the screen. So let’s create an **Empty GameObject** and name it “**HouseParent**” respectively. Then, drag and drop it on the Instantiator Script. _(Important: Make sure the Transform is set to 0,0,0 in the Inspector!)_
+-   For the** Selected Prefab**, we can put the House Prefab we created , by dragging it from the** Assets>Prefabs** folder we created.
+-   For the **Ar Camera Transform**, we will drag and drop the** AR Camera GameObject**, which we can find under _“AR Session Origin”_ in the Hierarchy.
+
+    <img width="250" alt="" src="https://i.imgur.com/cL26Yma.jpg">
+
+-   As we saw in the _C# _script, the **House Paren**t, is an empty GameObject that will be the **parent** of all the instances we will create with our taps on the screen. So let’s create an **Empty GameObject** and name it “**HouseParent**” respectively. Then, drag and drop it on the Instantiator Script. _(Important: Make sure the Transform is set to 0,0,0 in the Inspector!)_
+
+    <img width="400" alt="" src="https://i.imgur.com/F8kJ0FG.jpg">
+
+-   The Inspector should look like this
+
+    <img width="400" alt="" src="https://i.imgur.com/ocgdox5.jpg">
+
+-   _**We are ready to build the App and test it!**_
+
+    <img width="650" alt="" src="https://i.imgur.com/DQhXQDs.jpg">
 
 
 
-The Inspector should look like this.
 
-_**\*\*\*We are ready to build the App and test it !\*\*\***_
 
-### Build App <a href="_toc86085592" id="_toc86085592"></a>
 
-### Debugging Session <a href="_toc86085593" id="_toc86085593"></a>
+
+
+
+
+
+
+
+
+
+## Build App 
+
+## Android
+
+1. Enable Developer Mode on your Android 
+
+	- Go to the settings on your phone. Settings > About Phone > Build Number (or similar)
+	
+	- To enable developer options, tap the Build Number option 7 times 
+	
+	- Enable USB debugging
+	
+	- Use a USBC Data cable to connect to your computer, as opposed to a power cable. 
+
+
+### Debugging Information
 
 1. MonoBehaviour is the base class from which every Unity script derives. ↑
 2. A class enables you to create your custom types by grouping variables of other types, methods, and events. ↑
@@ -873,17 +947,6 @@ _**\*\*\*We are ready to build the App and test it !\*\*\***_
 	- Open Edit > Project Settings... and click on the XR Plug-in Management section. In the Android tab, enable ARCore.
 		<img width="650" alt="" src="https://i.imgur.com/ILVPZQS.jpg">	
 	
-### Android
-
-1. Enable Developer Mode on your Android 
-
-	- Go to the settings on your phone. Settings > About Phone > Build Number (or similar)
-	
-	- To enable developer options, tap the Build Number option 7 times 
-	
-	- Enable USB debugging
-	
-	- Use a USBC Data cable to connect to your computer, as opposed to a power cable. 
 
 
 <!--
