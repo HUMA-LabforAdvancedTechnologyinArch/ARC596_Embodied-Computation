@@ -659,24 +659,24 @@ _**Let’s build the app and see if it works!**_
 ## Build the AR App to test the AR Plane detection 
 
 -   Plug your _Android AR device_ on your computer, using the_ USB_ cable.
--   Make Sure that your computer recognizes the device (You can check this in **This PC>Devices and drives**)
+-   Make sure that your computer recognizes the device. You can check this in **This PC>Devices and drives**
 
     <img width="400" alt="" src="https://i.imgur.com/D2Uka63.jpg">
     
 -   If you don’t see it, try having the device unlocked when you plug it, and if USB options popup, select **Use USB to: Transfer files** on your phone screen.
 
-    <img width="400" alt="" src="https://i.imgur.com/gPJS315.jpg">
+    <img width="3250" alt="" src="https://i.imgur.com/gPJS315.jpg">
 
 -   Go to **File>Build Settings**
 -   Respectively, you should be able to see your device detected in the _Run Device_ drop-down Menu. You can click _Refresh_ if you don’t see it right away.
     
-    -   <img width="600" alt="" src="https://i.imgur.com/3Ca1jbE.jpg">
+-   <img width="600" alt="" src="https://i.imgur.com/3Ca1jbE.jpg">
         
 
 -   Click **Build and Run**. Select a folder and name your application as desired. This might take a bit of time. Keep the device unlocked, so that the application runs right away.
 
-    -   <img width="600" alt="" src="https://i.imgur.com/TkDSvNw.jpg">
-    -   <img width="600" alt="" src="https://i.imgur.com/aM0a0cd.jpg">
+-   <img width="600" alt="" src="https://i.imgur.com/TkDSvNw.jpg">
+-   <img width="600" alt="" src="https://i.imgur.com/aM0a0cd.jpg">
 
 -   Move the phone **slowly** up and down, left and right, to start the detection.
 
@@ -698,49 +698,58 @@ _**Let’s build the app and see if it works!**_
 
 
 
-## Import a file from Rhino <a href="_toc86085585" id="_toc86085585"></a>
+## Import a file into Unity from Rhino 
 
-### Export file from Rhino <a href="_toc86085586" id="_toc86085586"></a>
+### Export file from Rhino 
 
-In _Rhino_, open your desired file (in our case the _**3D printed objec**t_)
+In _Rhino_, open your desired file. In our case it is the house object. 
 
-**Units:**
+>   Note: Make sure you file is set to meters in Rhino. 
 
-_→ If your units are in millimeters, you will need to scale the model by **0.001** when you import it in Unity_
+-   Move the **x,y center** of your geometry to **0,0,0**. You can use the _Move_ command, and and align it to the 0,0,0 plane. Have the x and y center at the origin, but the whole house should be above the ground plane.
 
-_→ If your units are in meters, you will not need to scale it._
-
-**Move the x,y center** of your geometry to** 0,0,0 **(you can use the_ Move_ command, and snap it) and align it correctly on the 0,0,0 plane. (so that it is above the ground).
-
-_→ This step will help us have our model correctly placed in Unity._
-
-Select the part(s) that you want to export
+-   <img width="600" alt="" src="https://i.imgur.com/hoKzJwJ.jpg">
 
 
 
-Go to **File>Export Selected**
+>   Note: This step will help us have our model correctly oriented in Unity.
 
-1. Save as type **.obj,** in a folder that you can easily find (e.g. another folder on your Desktop called _“Seminar\_Week\_Assets”,_ and click **“OK”** in the _OBJ Export Options_ dialog.
+-   Select the part(s) that you want to export
 
-→Note: Check if your file is created correctly in the folder.
+-   Go to **File>Export Selected**
 
-### Import file in Unity <a href="_toc86085587" id="_toc86085587"></a>
+-   <img width="600" alt="" src="https://i.imgur.com/ksEujZ6.jpg">
 
-First, we will learn how to import our model correctly into _Unity_, adjust its scale and position it correctly. In this example, there is _Rhinoceros as a CAD softwar_e, but you can use any of your preferred modelling software. Be sure to structure your model according to the materials you want to apply on it later. Unity understands a variety of file types, you can use **OBJ **and export each layer as a separate OBJ file.
+
+-   Save as type **.obj,** in a folder that you can easily find e.g. another folder on your Desktop called _“Seminar\_Week\_Assets”,_ and click **“OK”** in the _OBJ Export Options_ dialog.
+
+-   <img width="400" alt="" src="https://i.imgur.com/i44CDCm.jpg"> <img height="400" alt="" src="https://i.imgur.com/4VGt7eH.jpg">
+
+>   Note: Check that your file is created correctly in the folder.
+
+
+
+### Import file in Unity
+
+First, we will learn how to import our model correctly into _Unity_, adjust its scale and position it correctly. In this example, there is _Rhinoceros_ as a CAD software, but you can use any of your preferred modelling software. Be sure to structure your model according to the materials you want to apply on it later. Unity understands a variety of file types, you can use **OBJ** and export each layer as a separate OBJ file.
 
 Back in the existing Unity App, go to the Prefab folder we created before in the Assets (Project Window).
 
-Go to the Assets folder of the Unity Project on your computer (in the file explorer) , and copy paste both the .obj and the .mtl. You can make a new folder called “ImportedObjects”.
+Go to the Assets folder of the Unity Project on your computer (in the file explorer) , and copy paste both the .obj and the .mtl. You can make a new folder called _ImportedObjects_.
 
-**Note:** Unity Projects are actually folders that contain other folders. So you can have full access on Prefabs, scripts, objects. When you put something in this folder, it updates in Unity as well.
+>   Note: Unity Projects are actually folders that contain other folders. So you can have full access on Prefabs, scripts, objects. When you put something in this folder, it updates in Unity as well.
 
-Inside the** ImportedObjects **folder, _copy and past_e both your **.obj **and the** .mtl** file that you exported from_ Rhino_.
-
-**Note: **Alternatively, you can make the new folder inside Unity and drag and drop both of the files.
-
-Back to_ Unity_, you will see that the folder is also updated in the** Project Window > Assets.**
+-   <img width="600" alt="" src="https://i.imgur.com/aWTnmDC.jpg"> <img width="300" alt="" src="https://i.imgur.com/3dBPLp3.jpg">
 
 
+
+Inside the **ImportedObjects** folder, copy and paste both your **.obj** and the **.mtl** file that you exported from Rhino.
+
+>   Note: Alternatively, you can make the new folder inside Unity and drag and drop both of the files.
+
+Back to _Unity_, you will see that the folder is also updated in the **Project Window > Assets.**
+
+-   <img width="600" alt="" src="https://i.imgur.com/aWTnmDC.jpg">
 
 Inside the folder, you should be able to see an icon of your house in the_ Prefabs._ Click on it once and go to the_** Inspector Window. **_Enable _**Read/Write. Click “Apply”.**_
 
