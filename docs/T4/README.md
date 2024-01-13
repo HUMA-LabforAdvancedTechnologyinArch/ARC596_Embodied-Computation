@@ -560,7 +560,8 @@ Expand the **AR Session Origin** you created in the _Hierarchy_, and select the 
 
 An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARPlaneManager.html) detects [ARPlane](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARPlane.html)s and creates, updates, and removes game objects when the device's understanding of the environment changes.
 
-1. Go to _Hierarchy _and click on the **AR Session Origin **GameObject. On the_ Inspector _Window, click on** “Add Component”, search** for the **“AR Plane Manager” **and **Add it**.
+1. Go to _Hierarchy_ and click on the **AR Session Origin** GameObject. On the _Inspector_ Window, click on **“Add Component”, search** for the **“AR Plane Manager”** and **Add it**.
+    
     <img width="600" alt="" src="https://i.imgur.com/fNk7yzI.png">
 
 2. Respectively, click again on the **“Add Component**”, search for **“AR Raycast Manager”** and add it as well.
@@ -569,7 +570,7 @@ An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@
 
 >   _We will need this component later. It helps obtain information of the raycasts deriving from the user input on the screen._
 
-3. In the_ Hierarchy Window_, right click , go to XR -> AR Default Plane. This will create an AR-configured plane, that we will customize a bit and use as a Prefab for our application, in order to visualize the AR detected planes.
+3. In the _Hierarchy Window_, right click , go to XR -> AR Default Plane. This will create an AR-configured plane, that we will customize a bit and use as a Prefab for our application, in order to visualize the AR detected planes.
 
     <img width="400" alt="" src="https://i.imgur.com/4JfGt2v.jpg">
     <img width="400" alt="" src="https://i.imgur.com/c2x9s3s.jpg">
@@ -586,20 +587,20 @@ An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@
 <img width="600" alt="" src="https://i.imgur.com/seVSYGo.jpg">
 <img width="600" alt="" src="https://i.imgur.com/LDdo0N4.jpg">
 
-5. Drag and drop the_ **“AR Default Plane”** _GameObject inside the **Prefabs** folder, in order to save it as a _Prefab._ In general, this is an easy way to _create new Prefabs_, after we have edited them as we like in our _Scene._
+5. Drag and drop the **AR Default Plane**_GameObject inside the **Prefabs** folder, in order to save it as a _Prefab._ In general, this is an easy way to _create new Prefabs_, after we have edited them as we like in our _Scene._
 
 <img width="400" alt="" src="https://i.imgur.com/X31UXzS.jpg"> <img width="400" alt="" src="https://i.imgur.com/bFFt0iv.jpg">
 
 >   Note: In short, Unity’s **Prefab** system allows you to create, configure, and store a GameObject complete with all its components, property values, and child **GameObjects** as a reusable Asset. The Prefab Asset acts as a template from which you can create new Prefab instances in the **Scene.**\
 [**→ More info about prefabs**](https://docs.unity3d.com/Manual/Prefabs.html)
 
-→ Notice that the _AR Default Plane_ becomes** blue **in the _Hierarchy. _This is because the process of creating the _Prefab Asset _also turns the original _GameObject_ into a_** Prefab instance**_. Every change happening in the _prefab_, will happen in the _instance _as well.
+→ Notice that the _AR Default Plane_ becomes **blue** in the _Hierarchy._ This is because the process of creating the _Prefab Asset_ also turns the original _GameObject_ into a **Prefab instance**. Every change happening in the _prefab_, will happen in the _instance_ as well.
 
 6. We can now **delete **the _AR Default Plane Object_ in the** Hierarchy,** since we will only use the** Prefab.**
 
 <img width="400" alt="" src="https://i.imgur.com/CAl6zPU.jpg">
 
-7. On the **AR Session Origin **_GameObject_, go to the **AR Plane Manager Script** we added in Step 1. There is an _empty Plane Prefab._ Drag and Drop there the Prefab we created in the Assets.
+7. On the **AR Session Origin** _GameObject_, go to the **AR Plane Manager Script** we added in Step 1. There is an _empty Plane Prefab._ Drag and Drop there the Prefab we created in the Assets.
 
 <img width="600" alt="" src="https://i.imgur.com/kr0ehLg.jpg">
 <img width="600" alt="" src="https://i.imgur.com/U3sGjsh.jpg">
@@ -627,22 +628,47 @@ _**Let’s build the app and see if it works!**_
 
 ## Build the AR App to test the AR Plane detection 
 
-1. _Plug _your _Android AR device_ on your computer, using the_ USB_ cable.
-2. Make Sure that your computer recognizes the device (You can check this in **This PC>Devices and drives**)
+-   Plug your _Android AR device_ on your computer, using the_ USB_ cable.
+-   Make Sure that your computer recognizes the device (You can check this in **This PC>Devices and drives**)
 
-If you don’t see it, try having the device unlocked when you plug it, and if USB options popup, select _**Use USB to: “Transfer files” **_on your phone screen.
+    <img width="400" alt="" src="https://i.imgur.com/D2Uka63.jpg">
+    
+-   If you don’t see it, try having the device unlocked when you plug it, and if USB options popup, select **Use USB to: Transfer files** on your phone screen.
 
-1. Go to **File>Build Settings**
-2. Respectively, you should be able to see your device detected in the _“Run Device” _drop-down Menu. You can click _Refresh_ if you don’t see it right away.
-3. Click _**“Build and Run”**_. Select a folder and name your application as desired. This might take a bit of time. Keep the device unlocked, so that the application runs right away.
+    <img width="400" alt="" src="https://i.imgur.com/gPJS315.jpg">
 
-Move the phone **slowly **up and down, left and right, to start the detection.
+-   Go to **File>Build Settings**
+-   Respectively, you should be able to see your device detected in the _Run Device_ drop-down Menu. You can click _Refresh_ if you don’t see it right away.
+    
+    -   <img width="600" alt="" src="https://i.imgur.com/3Ca1jbE.jpg">
+        
 
-After some time, you should be able to see this s_emi-transparent yellow material_ with an outline, indicating the **scanned AR Planes.**
+-   Click **Build and Run**. Select a folder and name your application as desired. This might take a bit of time. Keep the device unlocked, so that the application runs right away.
 
-![](<../.gitbook/assets/image (1) (1).png>)
+    -   <img width="600" alt="" src="https://i.imgur.com/TkDSvNw.jpg">
+    -   <img width="600" alt="" src="https://i.imgur.com/aM0a0cd.jpg">
 
-### Import a file from Rhino <a href="_toc86085585" id="_toc86085585"></a>
+-   Move the phone **slowly** up and down, left and right, to start the detection.
+
+-   After some time, you should be able to see this s_emi-transparent yellow material_ with an outline, indicating the **scanned AR Planes.**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Import a file from Rhino <a href="_toc86085585" id="_toc86085585"></a>
 
 ### Export file from Rhino <a href="_toc86085586" id="_toc86085586"></a>
 
