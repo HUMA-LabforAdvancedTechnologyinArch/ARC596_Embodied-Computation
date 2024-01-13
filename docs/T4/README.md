@@ -436,15 +436,15 @@ void Update()
 
 [→ More Information on execution order of events in unity](https://docs.unity3d.com/Manual/ExecutionOrder.html)
 
-### ARCore 
+## ARCore 
 
-_ARCore_ is _Google’s_ platform for building augmented reality experiences. Using different** APIs\[3], ARCore** enables your phone to sense its environment, understand the world and interact with information. Some of the APIs are available across _Android _and _iOS _to enable shared AR experiences.
+_ARCore_ is _Google’s_ platform for building augmented reality experiences. Using different APIs. ARCore enables your phone to sense its environment, understand the world and interact with information. Some of the APIs are available across _Android_ and _iOS_ to enable shared AR experiences.
 
-ARCore uses_ three key capabilities _to integrate virtual content with the real world as seen through your phone's camera:
+ARCore uses _three key capabilities_ to integrate virtual content with the real world as seen through your phone's camera:
 
-* [**Motion tracking**](https://developers.google.com/ar/discover/concepts#motion\_tracking)** **allows the phone to understand and track its position relative to the world.
-* [**Environmental understanding**](https://developers.google.com/ar/discover/concepts#environmental\_understanding)** **allows the phone to detect the size and location of all types of surfaces: horizontal, vertical and angled surfaces like the ground, a coffee table or walls.
-* [**Light estimation**](https://developers.google.com/ar/discover/concepts#light\_estimation) allows the phone to estimate the environment's current lighting conditions.
+-   [**Motion tracking**](https://developers.google.com/ar/discover/concepts#motion\_tracking) allows the phone to understand and track its position relative to the world.
+-   [**Environmental understanding**](https://developers.google.com/ar/discover/concepts#environmental\_understanding) allows the phone to detect the size and location of all types of surfaces: horizontal, vertical and angled surfaces like the ground, a coffee table or walls.
+-   [**Light estimation**](https://developers.google.com/ar/discover/concepts#light\_estimation) allows the phone to estimate the environment's current lighting conditions.
 
 ### Supported devices
 
@@ -452,10 +452,10 @@ _ARCore i_s designed to work on a wide variety of qualified Android phones runni
 
 ### How does ARCore work? 
 
-Fundamentally,_ ARCore_ is doing two things:
+Fundamentally, _ARCore_ is doing two things:
 
-* tracking the **position **of the mobile device as it moves
-* building its own understanding of the real world.
+-   tracking the **position **of the mobile device as it moves
+-   building its own understanding of the real world.
 
 ARCore's motion tracking technology uses the **phone's camera **to identify interesting **points,** called features, and **tracks** how those points move over time. With a combination of the movement of these points and readings from the phone's inertial sensors, _ARCore _determines both the position and orientation of the phone as it moves through space.
 
@@ -533,9 +533,11 @@ Expand the **AR Session Origin** you created in the _Hierarchy_, and select the 
 An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARPlaneManager.html) detects [ARPlane](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARPlane.html)s and creates, updates, and removes game objects when the device's understanding of the environment changes.
 
 1. Go to _Hierarchy _and click on the **AR Session Origin **GameObject. On the_ Inspector _Window, click on** “Add Component”, search** for the **“AR Plane Manager” **and **Add it**.
+    <img width="600" alt="" src="https://i.imgur.com/fNk7yzI.png">
+
 2. Respectively, click again on the **“Add Component**”, search for **“AR Raycast Manager”** and add it as well.
 
-<img width="400" alt="" src="https://i.imgur.com/fNk7yzI.png">
+
 
 
 _We will need this component later. It helps obtain information of the raycasts deriving from the user input on the screen._
@@ -653,11 +655,11 @@ When you are finished, Drag and Drop the object GameObject back to the **Assets>
 
 
 
-### Instantiate object <a href="_toc86085589" id="_toc86085589"></a>
+### Instantiate object 
 
 _Now we can start the scripting base ! The goal for today is to **“Tap and Instantiate”** the 3D object in our App, on the detected AR Planes._
 
-### Import the Instantiator Script <a href="_toc86085590" id="_toc86085590"></a>
+### Import the Instantiator Script 
 
 In the** Assets**, Create a new empty_ Folder _and name it_ “Scripts”._ Here, we will be collecting all of the **C# scripts** we will be using.
 
@@ -673,7 +675,7 @@ On the** Instantiator **GameObject, go to the_ Inspector _and click on **“Add 
 
 We see some defined Variables that don’t have any object assigned to them. But first, let’s take a look at the **code.**
 
-### Overview of the code <a href="_toc86085591" id="_toc86085591"></a>
+### Overview of the code 
 
 To open the script, you can either go to **the Assets** and double click, or on the **component** itself, and **double click** on the name .
 
