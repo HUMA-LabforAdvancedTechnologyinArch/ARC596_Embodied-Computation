@@ -85,7 +85,7 @@
 	
       - Install the python extension in VSCode. The Python extension to provide features like linting, debugging, code navigation, and more. To install it, open VSCode, go to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window, and search for Python. Click Install to add it.
 
-        <img width="650" alt="" src="https://i.imgur.com/k69forF.jpeg">
+
         <img width="650" alt="" src="https://i.imgur.com/DaCjVLp.png">
 
 
@@ -94,9 +94,10 @@
       - First, open the Command Palette (Ctrl+Shift+P) or click on the top of the screen 
       - Type ```>Terminal: Select Default Profile``` and select the standard Command Prompt System32/cmd.exe)
 
+        <img width="650" alt="" src="https://i.imgur.com/k69forF.jpeg">
         <img width="650" alt="" src="https://i.imgur.com/IABwVuO.jpeg">
 
-      - Now we can select the Anaconda Environment as Your Python Interpreter. Open the Command Palette (Ctrl+Shift+P), type ```Python: Select Interpreter```, and hit Enter. A list of available interpreters will appear. Select the one that corresponds to your ARC596 Anaconda environment.
+      - Now we can select the Anaconda Environment as your yython interpreter. Open the Command Palette (Ctrl+Shift+P), type ```Python: Select Interpreter```, and hit enter. A list of available interpreters will appear. Select the one that corresponds to your ARC596 Anaconda environment.
 
         <img width="650" alt="" src="https://i.imgur.com/ts8WtPz.jpeg">    
 
@@ -113,8 +114,8 @@
 
     - Add a rule, make sure that it is a port-based type. MQTT runs on TCP, and for the specific ports put ```1883, 8883``` You can name it ```MQTT Allow```, for instance. Save the rule. 
 
-    <img width="650" alt="" src="https://i.imgur.com/vDoGpn4.jpeg">
-    <img width="650" alt="" src="https://i.imgur.com/4uhkREQ.jpeg">
+    	<img width="650" alt="" src="https://i.imgur.com/vDoGpn4.jpeg">
+   		<img width="650" alt="" src="https://i.imgur.com/4uhkREQ.jpeg">
 
 	
 ### Installing Unity
