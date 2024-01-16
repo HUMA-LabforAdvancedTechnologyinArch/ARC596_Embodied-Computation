@@ -85,16 +85,21 @@
 	
       - Install the python extension in VSCode. The Python extension to provide features like linting, debugging, code navigation, and more. To install it, open VSCode, go to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window, and search for Python. Click Install to add it.
 
+        <img width="650" alt="" src="https://i.imgur.com/k69forF.jpeg">
         <img width="650" alt="" src="https://i.imgur.com/DaCjVLp.png">
+
+        
 
       - We will need to switch the terminal to the anaconda prompt and the correct python environment that you just set up where you installed all of the compas dependencies. 
 
-      - Select the Anaconda Environment as Your Python Interpreter. To activate the Anaconda environment in VSCode, you need to select it as your Python interpreter. Open the Command Palette (Ctrl+Shift+P), type Python: Select Interpreter, and hit Enter. A list of available interpreters will appear. Select the one that corresponds to your Anaconda environment.
-      
-      - Press F1 on your computer (Fn+F1 key on some computers) or click on the top of the screen 
-      - Type ```>Terminal: Select Default Profile```
+      - First, open the Command Palette (Ctrl+Shift+P) or click on the top of the screen 
+      - Type ```>Terminal: Select Default Profile``` and select the standard Command Prompt System32/cmd.exe)
 
-        <img width="650" alt="" src="https://i.stack.imgur.com/KHWog.png">
+        <img width="650" alt="" src="https://i.imgur.com/IABwVuO.jpeg">
+
+      - Now we can select the Anaconda Environment as Your Python Interpreter. Open the Command Palette (Ctrl+Shift+P), type ```Python: Select Interpreter```, and hit Enter. A list of available interpreters will appear. Select the one that corresponds to your ARC596 Anaconda environment.
+
+        <img width="650" alt="" src="https://i.imgur.com/ts8WtPz.jpeg">    
 
 
 8. Allow the recently installed programs to access the network using the firewall
@@ -104,6 +109,13 @@
 		<img width="400" alt="" src="https://i.imgur.com/2lRvYge.jpg">
 			
 		- *Note: If your host (broker) for messages is not localhost. DISABLE your Firewall or Ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible.*
+		
+    - To open the ports for MQTT, which is a communication protocol we will be using to pass data to and from the robots, please open the Windows Firewall. Start Menu > Search ```Firewall```
+
+    - Add a rule, make sure that it is a port-based type. MQTT runs on TCP, and for the specific ports put ```1883, 8883``` You can name it ```MQTT Allow```, for instance. Save the rule. 
+
+    <img width="650" alt="" src="https://i.imgur.com/vDoGpn4.jpeg">
+    <img width="650" alt="" src="https://i.imgur.com/4uhkREQ.jpeg">
 
 	
 ### Installing Unity
@@ -195,188 +207,3 @@
 	- Open Rhino
 	
 	- Go to the ```ARC596_Embodied-Computation\docs\T2 folder```, and see if you can run the grasshopper script without any errors. 
-
-	
-<!--
-(Unless you wish to test the project with the given credentials, please follow all steps below. Otherwise, skip to 7)
-Register your Android app with [Firebase](https://firebase.google.com/docs/unity/setup).
-1. Create a Unity project in the Firebase console.
-
-2. Associate your project to an app by clicking the Add app button, and selecting the Unity icon.
-    - You should use ```com.ETHZ.cdf``` as the package name while you're testing.
-    - If you do not use the prescribed package name you will need to update the bundle identifier as described in the
-      - *Note: *Optional: Update the Project Bundle Identifier below.*
-    - change the rules in ```Realtime Database``` to :
-
-```
-{
-  "rules": {
-    ".read": true,
-    ".write": true
-  }
-}
-```
-
-3. Accessing Firebase config information
-    - In your Firebase console, navigate to Project Overview and click the gear icon.
-    - In the drop-down window select Project Settings
-    - In the project settings window under Your apps select CDF Web App
-    - The Required Config Information is listed under the section SDK setup and configuration and an example is shown below
-
-```
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAO_YVROUIc866BqgWgcBpPxUe6SVG5O9g",
-  authDomain: "cdf-project-f570f.firebaseapp.com",
-  databaseURL: "https://cdf-project-f570f-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "cdf-project-f570f",
-  storageBucket: "cdf-project-f570f.appspot.com",
-  messagingSenderId: "641027065982",
-  appId: "1:641027065982:web:20ca92f0a2326bc3dab02f",
-  measurementId: "G-RZ5BVHNGK8"
-};
-```
-
-4. Android apps must be signed by a SHA1 key, and the key's signature must be registered to your project in the Firebase Console. To generate a SHA1, first you will need to set the keystore in the Unity project.
-    - Go to ```Publishing Settings``` under ```Player Settings``` in the Unity editor.
-    - Select an existing keystore, or create a new keystore using the toggle.
-    - Select an existing key, or create a new key using ```Create a new key```.
-    - Build an apk to be able to generate the SHA1 key
-    - After setting the keystore and key, as well as building the app once, you can generate a SHA1 by running this command in CMD (admin):
-      
-    ```
-    keytool -list -v -keystore <path_to_keystore> -alias <key_name>
-    ```
-
-    - Copy the SHA1 digest string into your clipboard.
-    - Navigate to your Android App in your Firebase console.
-    - From the main console view, click on your Android App at the top, and open the settings page.
-    - Scroll down to your apps at the bottom of the page and click on Add Fingerprint.
-    - Paste the SHA1 digest of your key into the form. The SHA1 box will illuminate if the string is valid. If it's not valid, check that you have copied the entire SHA1 digest string.
-      
-5. Download the ```google-services.json``` file associated with your Firebase project from the console. This file contains the information mentioned above that, you need to connect your Android app to the Firebase backend, and will need to be included either in the FirebaseInitialize script in the Unity project or at the start of the app, before initializing Firebase. You will need to look for the following parameters:
-App id, api key, database url, storage bucket, and project id
-
-
-6. Optional: Update the Project Bundle Identifier.
-    - If you did not use ```com.ETHZ.cdf``` as the project package name you will need to update the sample's Bundle Identifier.
-    - Select the File > Build Settings menu option.
-    - Select Android in the Platform list.
-    - Click Player Settings.
-    - In the Player Settings panel scroll down to Bundle Identifier and update the value to the package name you provided when you registered your app with Firebase.
-      
-7. Build for Android.
-    - Select the File > Build Settings menu option.
-    - Select Android in the Platform list.
-    - Click Switch Platform to select Android as the target platform.
-    - Wait for the spinner (compiling) icon to stop in the bottom right corner of the Unity status bar.
-    - Click Build and Run.
-
-
-
-
-# cdf_unity
-
-Firebase Installations Quickstart
-
-
-
-## Getting started with this project
-
-### Installing Dependencies
-
-
-### Android
-
-Register your Android app with [Firebase](https://firebase.google.com/docs/unity/setup).
-1. Create a Unity project in the Firebase console.
-
-2. Associate your project to an app by clicking the Add app button, and selecting the Unity icon.
-    - You should use ```com.ETHZ.cdf``` as the package name while you're testing.
-    - If you do not use the prescribed package name you will need to update the bundle identifier as described in the
-      - *Note: *Optional: Update the Project Bundle Identifier below.*
-    - change the rules in ```Realtime Database``` to :
-
-```
-{
-  "rules": {
-    ".read": true,
-    ".write": true
-  }
-}
-```
-
-3. Accessing Firebase config information
-    - In your Firebase console, navigate to Project Overview and click the gear icon.
-    - In the drop-down window select Project Settings
-    - In the project settings window under Your apps select CDF Web App
-    - The Required Config Information is listed under the section SDK setup and configuration and an example is shown below
-
-```
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAO_YVROUIc866BqgWgcBpPxUe6SVG5O9g",
-  authDomain: "cdf-project-f570f.firebaseapp.com",
-  databaseURL: "https://cdf-project-f570f-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "cdf-project-f570f",
-  storageBucket: "cdf-project-f570f.appspot.com",
-  messagingSenderId: "641027065982",
-  appId: "1:641027065982:web:20ca92f0a2326bc3dab02f",
-  measurementId: "G-RZ5BVHNGK8"
-};
-```
-
-4. Android apps must be signed by a SHA1 key, and the key's signature must be registered to your project in the Firebase Console. To generate a SHA1, first you will need to set the keystore in the Unity project.
-    - Go to ```Publishing Settings``` under ```Player Settings``` in the Unity editor.
-    - Select an existing keystore, or create a new keystore using the toggle.
-    - Select an existing key, or create a new key using ```Create a new key```.
-    - After setting the keystore and key, you can generate a SHA1 by running this command in CMD (admin):
-      
-    ```
-    keytool -list -v -keystore <path_to_keystore> -alias <key_name>
-    ```
-
-    - Copy the SHA1 digest string into your clipboard.
-    - Navigate to your Android App in your Firebase console.
-    - From the main console view, click on your Android App at the top, and open the settings page.
-    - Scroll down to your apps at the bottom of the page and click on Add Fingerprint.
-    - Paste the SHA1 digest of your key into the form. The SHA1 box will illuminate if the string is valid. If it's not valid, check that you have copied the entire SHA1 digest string.
-      
-5. Download the ```google-services.json``` file associated with your Firebase project from the console. This file identifies your Android app to the Firebase backend, and will need to be included in the Asset folder of your Unity file.
-    - For further details please refer to the general instructions page which describes how to configure a Firebase application for Android.
-
-6. Download the ```Firebase Unity SDK``` and unzip it somewhere convenient.
-
-7. Open the project folder in the Unity editor.
-    - Select the File > Open Project menu item.
-    - Click Open.
-    - Navigate to the sample directory ```cdf_unity``` in the file dialog and click Open.
-    - Open the scene ```AssemblyApp``` by double click in the Asset folder.
-      
-8.	Import the Firebase Installations plugin.
-    - Select the Assets > Import Package > Custom Package menu item.
-    - From the Firebase Unity SDK downloaded previously, import the required Firebase installations (in this case: FirebaseAnalytics, FirebaseAppCheck, FirebaseAuth and FirebaseDatabase)
-    - ```IMPORTANT: Do not install different versions of Firebase Assets and do not change the way you install Firebase packages (either via the package manager or via the custom package menu```
-
-9. Add the google-services.json file to the project.
-    - Navigate to the Assets/Data folder in the Project window.
-    - Drag the google-services.json downloaded from the Firebase console into the folder. Note: google-services.json can be placed anywhere under the Assets folder.
-
-10. Optional: Update the Project Bundle Identifier.
-    - If you did not use ```com.ETHZ.cdf``` as the project package name you will need to update the sample's Bundle Identifier.
-    - Select the File > Build Settings menu option.
-    - Select Android in the Platform list.
-    - Click Player Settings.
-    - In the Player Settings panel scroll down to Bundle Identifier and update the value to the package name you provided when you registered your app with Firebase.
-      
-11. Build for Android.
-    - Select the File > Build Settings menu option.
-    - Select Android in the Platform list.
-    - Click Switch Platform to select Android as the target platform.
-    - Wait for the spinner (compiling) icon to stop in the bottom right corner of the Unity status bar.
-    - Make sure you clicked the scene ```AssemblyApp```
-    - Click Build and Run.
-
--->
