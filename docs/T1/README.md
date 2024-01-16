@@ -108,7 +108,7 @@
 
 		<img width="400" alt="" src="https://i.imgur.com/2lRvYge.jpg">
 			
-		- *Note: If your host (broker) for messages is not localhost. DISABLE your Firewall or ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible.*
+		- *Note: If your host (broker/server) for messages is not localhost. DISABLE your Firewall or ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible. Please note that this does open your computer to possible attacks at these ports, especially since you are running custom code that may not be secure.*
 		
     - To open the ports for MQTT, which is a communication protocol we will be using to pass data to and from the robots, please open the Windows Firewall. Start Menu > Search ```Firewall```
 
