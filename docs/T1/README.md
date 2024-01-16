@@ -79,12 +79,18 @@
 
 		<img width="650" alt="" src="https://i.imgur.com/Qs8CP1P.jpg">
 
-7. Install Visual Studio Code https://code.visualstudio.com/
+7. Install Visual Studio Code (VSCode) https://code.visualstudio.com/
 
       - *Note: Visual Studio Code is a simplified IDE (Integrated Development Environment), which allows you to write and run code within the same application for convenience.*
 	
+      - Install the python extension in VSCode. The Python extension to provide features like linting, debugging, code navigation, and more. To install it, open VSCode, go to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window, and search for Python. Click Install to add it.
+
+        <img width="650" alt="" src="https://i.imgur.com/DaCjVLp.png">
+
       - We will need to switch the terminal to the anaconda prompt and the correct python environment that you just set up where you installed all of the compas dependencies. 
 
+      - Select the Anaconda Environment as Your Python Interpreter. To activate the Anaconda environment in VSCode, you need to select it as your Python interpreter. Open the Command Palette (Ctrl+Shift+P), type Python: Select Interpreter, and hit Enter. A list of available interpreters will appear. Select the one that corresponds to your Anaconda environment.
+      
       - Press F1 on your computer (Fn+F1 key on some computers) or click on the top of the screen 
       - Type ```>Terminal: Select Default Profile```
 
