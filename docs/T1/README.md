@@ -100,7 +100,7 @@
       - Now we can select the Anaconda Environment as your yython interpreter. Open the Command Palette (Ctrl+Shift+P), type ```Python: Select Interpreter```, and hit enter. A list of available interpreters will appear. Select the one that corresponds to your ARC596 Anaconda environment.
 
         <img width="650" alt="" src="https://i.imgur.com/ts8WtPz.jpeg">    
-
+        <img width="650" alt="" src="https://i.imgur.com/CkSIH9J.jpg">   
 
 8. Allow the recently installed programs to access the network using the firewall
 		
@@ -108,7 +108,7 @@
 
 		<img width="400" alt="" src="https://i.imgur.com/2lRvYge.jpg">
 			
-		- *Note: If your host (broker) for messages is not localhost. DISABLE your Firewall or Ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible.*
+		- *Note: If your host (broker) for messages is not localhost. DISABLE your Firewall or ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible.*
 		
     - To open the ports for MQTT, which is a communication protocol we will be using to pass data to and from the robots, please open the Windows Firewall. Start Menu > Search ```Firewall```
 
@@ -116,6 +116,7 @@
 
     	<img width="650" alt="" src="https://i.imgur.com/vDoGpn4.jpeg">
    		<img width="650" alt="" src="https://i.imgur.com/4uhkREQ.jpeg">
+
 
 	
 ### Installing Unity
