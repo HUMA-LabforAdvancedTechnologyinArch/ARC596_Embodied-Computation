@@ -23,7 +23,7 @@
 
 ## Getting Started with This Project
 
-### Installing Requirements 
+### Installing Basic Requirements 
 
 1. Install Rhino 7 (Grasshopper is installed as part of Rhino)
 
@@ -37,7 +37,6 @@
 
       - *Note: Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. Github is a web-based repository to use Git to post/host your files*
 
-
 4. Install Git LFS https://git-lfs.com/ using the Window Command Prompt (or Anaconda Prompt). Be sure to activate the ARC596 environment. 
 
 	- Open the Windows Command Prompt. Search CMD in the start menu. 
@@ -48,10 +47,10 @@
 
       - *Note: This is a Git extension to allow you to post larger files to the cloud folder called a repository*
 
-
 5. Install Anaconda https://www.anaconda.com/download
 
       - *Note: Anaconda is a package management system for Python; it manages python and related packages on your computer.*
+
 
 6. Install compas, compas_fab, and compas_eve
 
@@ -80,8 +79,19 @@
 
 		<img width="650" alt="" src="https://i.imgur.com/Qs8CP1P.jpg">
 
+7. Install Visual Studio Code https://code.visualstudio.com/
 
-7. Allow the recently installed programs to access the network using the firewall
+      - *Note: Visual Studio Code is a simplified IDE (Integrated Development Environment), which allows you to write and run code within the same application for convenience.*
+	
+	- We will need to switch the terminal to the anaconda prompt and the correct python environment that you just set up where you installed all of the compas dependencies. 
+
+  - Press F1 on your computer (Fn+F1 key on some computers) or click on the top of the screen 
+  - Type ```>Terminal: Select Default Profile```
+
+      <img width="650" alt="" src="https://i.stack.imgur.com/KHWog.png">
+
+
+8. Allow the recently installed programs to access the network using the firewall
 		
 	- When Windows asks whether to allow network access for Python, be sure to allow for both private and public networks. 
 
