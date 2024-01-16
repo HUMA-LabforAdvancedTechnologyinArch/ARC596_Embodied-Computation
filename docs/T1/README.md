@@ -97,7 +97,7 @@
         <img width="650" alt="" src="https://i.imgur.com/k69forF.jpeg">
         <img width="650" alt="" src="https://i.imgur.com/IABwVuO.jpeg">
 
-      - Now we can select the Anaconda Environment as your yython interpreter. Open the Command Palette (Ctrl+Shift+P), type ```Python: Select Interpreter```, and hit enter. A list of available interpreters will appear. Select the one that corresponds to your ARC596 Anaconda environment.
+      - Now we can select the Anaconda Environment as your python interpreter. Open the Command Palette (Ctrl+Shift+P), type ```Python: Select Interpreter```, and hit enter. A list of available interpreters will appear. Select the one that corresponds to your ARC596 Anaconda environment.
 
         <img width="650" alt="" src="https://i.imgur.com/ts8WtPz.jpeg">    
         <img width="650" alt="" src="https://i.imgur.com/CkSIH9J.jpg">   
