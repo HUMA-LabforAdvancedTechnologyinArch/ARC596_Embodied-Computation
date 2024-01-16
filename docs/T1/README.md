@@ -83,10 +83,10 @@
 
       - *Note: Visual Studio Code is a simplified IDE (Integrated Development Environment), which allows you to write and run code within the same application for convenience.*
 	
-	- We will need to switch the terminal to the anaconda prompt and the correct python environment that you just set up where you installed all of the compas dependencies. 
+	  - We will need to switch the terminal to the anaconda prompt and the correct python environment that you just set up where you installed all of the compas dependencies. 
 
-  - Press F1 on your computer (Fn+F1 key on some computers) or click on the top of the screen 
-  - Type ```>Terminal: Select Default Profile```
+    - Press F1 on your computer (Fn+F1 key on some computers) or click on the top of the screen 
+    - Type ```>Terminal: Select Default Profile```
 
       <img width="650" alt="" src="https://i.stack.imgur.com/KHWog.png">
 
