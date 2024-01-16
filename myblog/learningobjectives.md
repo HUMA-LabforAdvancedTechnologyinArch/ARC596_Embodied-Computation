@@ -11,4 +11,3 @@ This workshop will introduce students to XR development and Robotics using an ob
 * Students will learn to author and prototype robotic workflows and simulations 
 * Students will be able to think independently about novel robotic workflow concepts and implement them in small groups 
 * Students will be able to experimentally validate their concepts in a full-scale prototype
-

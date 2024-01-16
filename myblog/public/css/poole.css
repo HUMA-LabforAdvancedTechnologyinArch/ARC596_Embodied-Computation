@@ -58,12 +58,15 @@ html {
   }
 }
 
+/*background color */
+
 body {
   /* color: #515151;*/
-  background-color: pink;
+  background-color: rgb(255, 255, 255);
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+
 
 /* No `:visited` state is required by default (browsers will use `a`) */
 a {
@@ -89,6 +92,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 h1 {
   font-size: 2rem;
+
 }
 h2 {
   margin-top: 1rem;
@@ -154,8 +158,8 @@ pre {
 }
 code {
   padding: .25em .5em;
-  font-size: 90%;
-  color: #bf616a;
+  font-size: 100%;
+  color: #c0c0c0;
   background-color: #f9f9f9;
   border-radius: 3px;
 }
@@ -164,13 +168,13 @@ pre {
   margin-top: 0;
   margin-bottom: 1rem;
   padding: 1rem;
-  font-size: .8rem;
+  font-size: 0.95rem;
   line-height: 1.4;
   white-space: pre;
   white-space: pre-wrap;
   word-break: break-all;
   word-wrap: break-word;
-  background-color: #f9f9f9;
+  background-color: #dcdcdc;
 }
 pre code {
   padding: 0;
@@ -214,7 +218,7 @@ pre code {
 blockquote {
   padding: .5rem 1rem;
   margin: .8rem 0;
-  color: #7a7a7a;
+  color: #0b6388;
   border-left: .25rem solid #e5e5e5;
 }
 blockquote p:last-child {
@@ -337,7 +341,7 @@ tbody tr:nth-child(odd) th {
 .page-title,
 .post-title,
 .post-title a {
-  color: #303030;
+  color: rgb(0, 151, 181);
 }
 .page-title,
 .post-title {
