@@ -88,7 +88,6 @@
         <img width="650" alt="" src="https://i.imgur.com/k69forF.jpeg">
         <img width="650" alt="" src="https://i.imgur.com/DaCjVLp.png">
 
-        
 
       - We will need to switch the terminal to the anaconda prompt and the correct python environment that you just set up where you installed all of the compas dependencies. 
 
