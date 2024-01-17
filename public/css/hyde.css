@@ -56,7 +56,10 @@ html {
 .sidebar {
   text-align: center;
   padding: 2rem 1rem;
+  background-color: rgb(0, 151, 181);
+  font-size: 0.9rem;
 }
+
 @media (min-width: 48em) {
   .sidebar {
     position: fixed;
