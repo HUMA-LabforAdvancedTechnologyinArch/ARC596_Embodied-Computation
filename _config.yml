@@ -1,0 +1,46 @@
+#Settings
+
+# Dependencies
+markdown: kramdown        
+highlighter: pygments
+
+# Permalinks
+permalink:        pretty
+
+title: "Embodied Computation"
+tagline: "ARC 596 - Embodied Computation"
+email: mitterberger@princeton.edu
+description: >- # this means to ignore newlines until "baseurl:"
+  This course delves into the intersection of architecture and computation, focusing on embodied design and fabrication processes. 
+baseurl: "/ARC596_Embodied-Computation"  #the subpath of your site, e.g. /blog
+url:  "https://IntuitiveRobotics-AugmentedTechnologies.github.io" #https://localhost 
+github_username:  dmitterberger
+
+# Build settings
+plugins:
+   - jekyll-feed
+
+github:
+  repo:           https://github.com/IntuitiveRobotics-AugmentedTechnologies/ARC596_Embodied-Computation
+
+
+
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+#
+# Excluded items can be processed by explicitly listing the directories or
+# their entries' file path in the `include:` list.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
