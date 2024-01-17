@@ -7,7 +7,7 @@ title: about
 Digital fabrication technology has opened up the possibility to fabricate directly from design information, promising to transform many design and production disciplines in the Architecture, Engineering, and Construction (AEC) sector. However, the unstructured nature of construction poses several technical, social, and economic barriers that hinder the direct adoption and integration of such innovations by the AEC sector and the achievement of the vision of fully automated and robotized building construction. Hence, in this workshop we investigate whether the idea of a hybrid, dually augmented human-robot team could form the basis of a paradigm shift in this field. Human-in-the-loop design and production chains have the potential to exploit machine intelligence and capacities while incorporating the participatory engagement of builders and fabricators.
 
 <figure>
-  <img src="{{'images/cover.jpg' | relative_url }}" alt="Teaming up with robots for collaboratively creating complex building structures." style="width:100%" class="center">
+  <img src="{{ site.baseurl }}images/cover.jpg" alt="Teaming up with robots for collaboratively creating complex building structures." style="width:100%" class="center">
   <figcaption>Image: Teaming up with robots for collaboratively creating architectural structures.</figcaption>
 </figure>
 
