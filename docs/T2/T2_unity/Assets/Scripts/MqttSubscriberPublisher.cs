@@ -6,8 +6,9 @@ using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using TMPro;
 
-public class MqttReceiver : M2MqttUnityClient
+public class MqttSubscriberPublisher : MonoBehaviour
 {
+
     [Header("MQTT Settings")]
     [Tooltip("Set the topic to publish")]
     public string topicPublish = ""; // topic to publish
@@ -51,25 +52,10 @@ public class MqttReceiver : M2MqttUnityClient
 
     private string currentTopic = "";
 
-    protected override void Start()
+    protected override void Start()   // Start is called before the first frame update
     {
         base.Start();
-        
-        GameObject firebaseManager = GameObject.Find("Firebase_Manager");
-        if (firebaseManager != null)
-        {
-            saveAppSettingsScript = firebaseManager.GetComponent<SaveAppSettings>();
-            if (saveAppSettingsScript == null)
-            {
-                Debug.LogError("SaveAppSettings script not found on Firebase_Manager.");
-            }
-        }
-        else
-        {
-            Debug.LogError("Firebase_Manager GameObject not found in the scene.");
-        }
-        
-       Connect();
+        Connect();
     }
 
     public void OnConnectButtonClicked()
@@ -149,14 +135,15 @@ public class MqttReceiver : M2MqttUnityClient
         eventMessages.Add(eventMsg);
     }
 
-    protected override void Update()
+    protected override void Update()     // Update is called once per frame
     {
         base.Update(); // call ProcessMqttEvents()
 
     }
 
+
     public void OnDestroy()
-        {
-            Disconnect();
-        }
+    {
+        Disconnect();
+    }
 }
