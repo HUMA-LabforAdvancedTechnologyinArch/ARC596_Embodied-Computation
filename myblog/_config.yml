@@ -12,8 +12,8 @@ tagline: "ARC 596 - Embodied Computation"
 email: mitterberger@princeton.edu
 description: >- # this means to ignore newlines until "baseurl:"
   This course delves into the intersection of architecture and computation, focusing on embodied design and fabrication processes. 
-baseurl: /myblog  #the subpath of your site, e.g. /blog
-url:  http://IntuitiveRobotics-AugmentedTechnologies.github.io  #https://localhost 
+baseurl: /ARC596_Embodied-Computation/myblog/  #the subpath of your site, e.g. /blog
+url:  https://intuitiverobotics-augmentedtechnologies.github.io #https://localhost 
 github_username:  dmitterberger
 
 # Build settings
