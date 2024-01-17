@@ -4,9 +4,13 @@ title: References
 ---
 
 [1] R. Suzuki, A. Karim, T. Xia, H. Hedayati, and N. Marquardt, “Augmented reality and robotics: A survey and taxonomy for AR-enhanced human-robot interaction and robotic interfaces,” CHI Conference on Human Factors in Computing Systems, 2022. doi:10.1145/3491102.3517719 
+
 [2] L. Atanasova et al., “Prototype as Artefact,” Proceedings of the 40th Annual Conference of the Association of Computer Aided Design in Architecture (ACADIA), 2020. doi:10.52842/conf.acadia.2020.1.350 
+
 [3] Y. Cao et al., “Ghostar: A Time-space editor for embodied authoring of human-robot collaborative task with augmented reality,” Proceedings of the 32nd Annual ACM Symposium on User Interface Software and Technology, 2019. doi:10.1145/3332165.3347902 
+
 [4] S. Haddadin et al., “Towards the Robotic Co-Worker,” Springer Tracts in Advanced Robotics, pp. 261–282, 2011. doi:10.1007/978-3-642-19457-3_16 
+
 [5] D. Mitterberger, L. Atanasova, K. Dörfler, F. Gramazio, and M. Kohler, “Tie a knot: Human–robot cooperative workflow for assembling wooden structures using rope joints,” Construction Robotics, vol. 6, no. 3–4, pp. 277–292, Sep. 2022. doi:10.1007/s41693-022-00083-2 
 
 
