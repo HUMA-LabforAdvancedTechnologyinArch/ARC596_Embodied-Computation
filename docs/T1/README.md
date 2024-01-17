@@ -1,114 +1,210 @@
-# Course on embodied Computation
-COMPAS XR: Visualizer app for collaborative robotic assembly
+# ARC596 - Tutorial 1 - Installation Guide
 
-Firebase Installations Quickstart
+- ARC596: Embodied Computation
+- Professor: Daniela Mitterberger - mitterberger@princeton.edu
+- Assistant Instructor: Kirill Volchinskiy - kvolchinskiy@princeton.edu
+- Tutorial 1 - Installation
 
 ### Requirements
-1. Download and install Unity Hub and [Unity 2022.3.3f1] (unityhub://2022.3.3f1/7cdc2969a641)   
-2. Android SDK and Java JDK (when developing for Android) - have to be ticked in the installation modules when installing Unity.
-   
-   <img width="718" alt="Screenshot 2023-10-30 at 10 55 29" src="https://github.com/gramaziokohler/compas_xr_unity/assets/146987499/e6c67897-379b-4180-9481-79d43805842c">
+
+1. [Rhinoceros 7](https://www.rhino3d.com/en/7/)
+2. [Github Desktop](https://desktop.github.com/) 
+3. [Anaconda](https://www.anaconda.com/)
+4. [Unity 2022.3.3f1](https://unity.com/) 
+>	*Note: Android SDK and Java JDK (when developing for Android) - have to be ticked in the installation modules when installing Unity.*
+
+### Dependencies
+
+1. [COMPAS](https://compas.dev)
+2. [COMPAS Fab - Fabrication Library for Robots](https://gramaziokohler.github.io/compas_fab/latest/)
+3. [COMPAS Eve - Communication](https://compas.dev/compas_eve/latest/index.html)
+4. [Vuforia](https://developer.vuforia.com/downloads/sdk)
+5. [ROS#](https://www.ros.org/)
+
+## Getting Started with This Project
+
+### Installing Basic Requirements 
+
+1. Install Rhino 7 (Grasshopper is installed as part of Rhino)
+
+2. Make a Github Account 
+
+	- Create an account using https://github.com/signup
+	
+	- Email your username to Daniela (mitterberger@princeton.edu) and Kirill (kvolchinskiy@princeton.edu) once you are done 
+
+3. Install Github Desktop https://desktop.github.com/
+
+      - *Note: Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. Github is a web-based repository to use Git to post/host your files*
+
+4. Install Git LFS https://git-lfs.com/ using the Window Command Prompt (or Anaconda Prompt). Be sure to activate the ARC596 environment. 
+
+	- Open the Windows Command Prompt. Search CMD in the start menu. 
+	
+		<img width="650" alt="" src="https://i.imgur.com/6O0JqTz.jpg">
+	
+	- Run ```git lfs install```
+
+      - *Note: This is a Git extension to allow you to post larger files to the cloud folder called a repository*
+
+5. Install Anaconda https://www.anaconda.com/download
+
+      - *Note: Anaconda is a package management system for Python; it manages python and related packages on your computer.*
 
 
-### Unity
+6. Install compas, compas_fab, and compas_eve
 
-1. Open Unity Hub. In Projects, click on Open(MacOS) or ADD(Windows). Locate the folder you downloaded from GitHub `compas_xr_unity` on the drive and add it.
+      - *Note: Compas is an open-source library for digital fabrication and computation within architecture, engineering, and construction*
+	  
+	- Run Anaconda Prompt. Go to start menu and search ```anaconda prompt```
+	
+		<img width="650" alt="" src="https://i.imgur.com/4OSBP7y.jpg">
+		
+		- *Note: This is the Anaconda-flavored Python terminal. It is different from the Windows Command Prompt in that it runs python code and commands, not windows commands*
+	
+	- Type the following commands into the terminal, this creates a new development environment. We reccomend you to name it ARC596, and the commands subsequently install compas, compas_fab, compas_eve, and link these libraries into Rhino 7:
 
-   <img width="781" alt="Screenshot 2023-10-30 at 11 34 07" src="https://github.com/gramaziokohler/compas_xr_unity/assets/146987499/cac60d2a-8f64-466f-a8da-d92565934d21">
+	```
+	conda create -n <environment name>
+	conda activate <environment name>
+	conda install -c conda-forge compas
+	conda update compas
+	conda install conda-forge::compas_fab
+	conda install conda-forge::compas_eve
+	python -m compas_rhino.install -v 7.0
+	```
 
-   
-2. Open the Unity Project.
-3. Accept the Developer Agreement
+      - *Note: For documentation or help, please see: https://compas.dev/compas/latest/userguide/installation.html*
+	  
 
-    - In Unity, go through the following steps in order to accept Vuforia’s Developer Agreement:
-      Help - Vuforia Engine - Show Developer Agreement -> Accept
-      
-       <img width="499" alt="Screenshot 2023-10-30 at 11 27 16" src="https://github.com/gramaziokohler/compas_xr_unity/assets/146987499/8f08fced-6fd9-4662-a77e-a390f20be665">
+		<img width="650" alt="" src="https://i.imgur.com/Qs8CP1P.jpg">
 
-4. Import Ros# into the project
+7. Install Visual Studio Code (VSCode) https://code.visualstudio.com/
 
-    - In case you don’t have a Unity ID yet, go to the Unity website and register an account.
-      https://id.unity.com/en/conversations/5c9a9838-2b4d-4c7e-bc53-d31475d0ba8001af 
-    - Following that, go to the Asset Store and add Ros# to your asset list:
-      https://assetstore.unity.com/packages/tools/physics/ros-107085
-    
-      <img width="488" alt="Screenshot 2023-10-30 at 11 28 14" src="https://github.com/gramaziokohler/compas_xr_unity/assets/146987499/3d207ce7-09eb-4e0b-b37f-09afa575621a">
+      - *Note: Visual Studio Code is a simplified IDE (Integrated Development Environment), which allows you to write and run code within the same application for convenience.*
+	
+      - Install the python extension in VSCode. The Python extension to provide features like linting, debugging, code navigation, and more. To install it, open VSCode, go to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window, and search for Python. Click Install to add it.
 
-    - In Unity’s Package Manager Window open the Packages drop-down menu and choose My Assets.  Make sure you are loading all your assets in the list.
-    - Download and import Ros# to the project 
+
+        <img width="650" alt="" src="https://i.imgur.com/DaCjVLp.png">
+
+
+      - We will need to switch the terminal to the anaconda prompt and the correct python environment that you just set up where you installed all of the compas dependencies. 
+
+      - First, open the Command Palette (Ctrl+Shift+P) or click on the top of the screen 
+      - Type ```>Terminal: Select Default Profile``` and select the standard Command Prompt System32/cmd.exe)
+
+        <img width="650" alt="" src="https://i.imgur.com/k69forF.jpeg">
+        <img width="650" alt="" src="https://i.imgur.com/IABwVuO.jpeg">
+
+      - Now we can select the Anaconda Environment as your python interpreter. Open the Command Palette (Ctrl+Shift+P), type ```Python: Select Interpreter```, and hit enter. A list of available interpreters will appear. Select the one that corresponds to your ARC596 Anaconda environment.
+
+        <img width="650" alt="" src="https://i.imgur.com/ts8WtPz.jpeg">    
+        <img width="650" alt="" src="https://i.imgur.com/CkSIH9J.jpg">   
+
+8. Allow the recently installed programs to access the network using the firewall
+		
+	- When Windows asks whether to allow network access for Python, be sure to allow for both private and public networks. 
+
+		<img width="400" alt="" src="https://i.imgur.com/2lRvYge.jpg">
+			
+		- *Note: If your host (broker/server) for messages is not localhost. DISABLE your Firewall or ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible. Please note that this does open your computer to possible attacks at these ports, especially since you are running custom code that may not be secure.*
+		
+    - To open the ports for MQTT, which is a communication protocol we will be using to pass data to and from the robots, please open the Windows Firewall. Start Menu > Search ```Firewall```
+
+    - Add a rule, make sure that it is a port-based type. MQTT runs on TCP, and for the specific ports put ```1883, 8883``` You can name it ```MQTT Allow```, for instance. Save the rule. 
+
+    	<img width="650" alt="" src="https://i.imgur.com/vDoGpn4.jpeg">
+   		<img width="650" alt="" src="https://i.imgur.com/4uhkREQ.jpeg">
+
+
+	
+### Installing Unity
+
+1. Install Unity https://unity.com/download 
+
+      - *Note: We will use Unity 3D to develop the Android – based augmented reality apps.*
+	
+2. License Unity & Create Unity ID
+
+	- Create your Unity ID: https://id.unity.com/en/conversations/b1516ea8-e6f1-4061-96b5-a060365abe06019f
+	
+		<img width="600" alt="" src="https://i.imgur.com/HUdlboa.jpg">
+		
+	- License unity as personal non-commercial license 
+	
+		<img width="400" alt="" src="https://i.imgur.com/GChEZvL.jpg">
+	
+	
+	
+<!--- Download the project from Github
+*** Open Unity Hub. In Projects, click on Open(MacOS) or ADD(Windows). Locate the folder you downloaded from GitHub `name of project here` on the drive and add it.
+-->
+
+3. Install the correct Unity Version using Unity Hub ```2022.3.3f1``` https://unity.com/releases/editor/whats-new/2022.3.3
+      - *Note: Do not click the blue download link. If you download directly from this website it is cubersome to install the dependencies. Unity is version-sensitive, and it needs to be exactly this version*
+	  <img width="400" alt="" src=" https://i.imgur.com/cqnSaTm.jpg">
+	 
+	- Be sure to select the appropriate dependencies below.
+      - *Note: this installs roughly 20gb of data, make sure you have enough free space on your computer.*
+		<img width="600" alt="" src="https://i.imgur.com/D9o3zho.jpg">
+		
+		- Microsoft Visual Studio 
+		- Android Build Support (Both Android SDK and OpenJDK)
+		- iOS Build Support
+		- Universal Windows Platform Build Support
+		- Windows Build Support (IL2CPP)
+		- Documentation
+	
 
 ### Android
-(Unless you wish to test the project with the given credentials, please follow all steps below. Otherwise, skip to 7)
-Register your Android app with [Firebase](https://firebase.google.com/docs/unity/setup).
-1. Create a Unity project in the Firebase console.
 
-2. Associate your project to an app by clicking the Add app button, and selecting the Unity icon.
-    - You should use ```com.ETHZ.cdf``` as the package name while you're testing.
-    - If you do not use the prescribed package name you will need to update the bundle identifier as described in the
-      - *Optional: Update the Project Bundle Identifier below.*
-    - change the rules in ```Realtime Database``` to :
+1. Enable Developer Mode on your Android phone
 
-```
-{
-  "rules": {
-    ".read": true,
-    ".write": true
-  }
-}
-```
+	- Go to the settings on your phone. Settings > About Phone > Build Number (or similar)
+	
+	- To enable developer options, tap the Build Number option 7 times 
+	
+	- Enable USB debugging
+	
+	- Use a USBC Data cable to connect to your computer, as opposed to a power cable. 
 
-3. Accessing Firebase config information
-    - In your Firebase console, navigate to Project Overview and click the gear icon.
-    - In the drop-down window select Project Settings
-    - In the project settings window under Your apps select CDF Web App
-    - The Required Config Information is listed under the section SDK setup and configuration and an example is shown below
 
-```
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAO_YVROUIc866BqgWgcBpPxUe6SVG5O9g",
-  authDomain: "cdf-project-f570f.firebaseapp.com",
-  databaseURL: "https://cdf-project-f570f-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "cdf-project-f570f",
-  storageBucket: "cdf-project-f570f.appspot.com",
-  messagingSenderId: "641027065982",
-  appId: "1:641027065982:web:20ca92f0a2326bc3dab02f",
-  measurementId: "G-RZ5BVHNGK8"
-};
-```
+### Test Your Setup
 
-4. Android apps must be signed by a SHA1 key, and the key's signature must be registered to your project in the Firebase Console. To generate a SHA1, first you will need to set the keystore in the Unity project.
-    - Go to ```Publishing Settings``` under ```Player Settings``` in the Unity editor.
-    - Select an existing keystore, or create a new keystore using the toggle.
-    - Select an existing key, or create a new key using ```Create a new key```.
-    - Build an apk to be able to generate the SHA1 key
-    - After setting the keystore and key, as well as building the app once, you can generate a SHA1 by running this command in CMD (admin):
+1. Download the code 
+
+	- Open Github Desktop, sign into your Github account 
+	
+      - *Note: Instructor/AI will need to give you access to the private repository. Be sure to email them*
+      - *Note: This downloads the files hosted on github to your computer.*
+	  
+	- Clone the repository. Go to File > Clone Repository
+	  
+	- Use the following url, and make a note of where it saves the files ```https://github.com/IntuitiveRobotics-AugmentedTechnologies/ARC596_Embodied-Computation.git```
       
-    ```
-    keytool -list -v -keystore <path_to_keystore> -alias <key_name>
-    ```
+	  - *Note: Do not use a Dropbox or Google Drive directory, as the file locking will make working more difficult*
+	
+	  	<img width="400" alt="" src="https://i.imgur.com/pbxRg8X.jpg">
+		
+2. Open the test files
 
-    - Copy the SHA1 digest string into your clipboard.
-    - Navigate to your Android App in your Firebase console.
-    - From the main console view, click on your Android App at the top, and open the settings page.
-    - Scroll down to your apps at the bottom of the page and click on Add Fingerprint.
-    - Paste the SHA1 digest of your key into the form. The SHA1 box will illuminate if the string is valid. If it's not valid, check that you have copied the entire SHA1 digest string.
-      
-5. Download the ```google-services.json``` file associated with your Firebase project from the console. This file contains the information mentioned above that, you need to connect your Android app to the Firebase backend, and will need to be included either in the FirebaseInitialize script in the Unity project or at the start of the app, before initializing Firebase. You will need to look for the following parameters:
-App id, api key, database url, storage bucket, and project id
-
-
-6. Optional: Update the Project Bundle Identifier.
-    - If you did not use ```com.ETHZ.cdf``` as the project package name you will need to update the sample's Bundle Identifier.
-    - Select the File > Build Settings menu option.
-    - Select Android in the Platform list.
-    - Click Player Settings.
-    - In the Player Settings panel scroll down to Bundle Identifier and update the value to the package name you provided when you registered your app with Firebase.
-      
-7. Build for Android.
-    - Select the File > Build Settings menu option.
-    - Select Android in the Platform list.
-    - Click Switch Platform to select Android as the target platform.
-    - Wait for the spinner (compiling) icon to stop in the bottom right corner of the Unity status bar.
-    - Click Build and Run.
+	- Open Unity Hube. Go to Start menu and search ```unity hub```
+	
+	- Add the test file from ```ARC596_Embodied-Computation\src\arc596_unity``` to Unity 
+	  	
+		<img width="600" alt="" src="https://i.imgur.com/TpqB3gn.jpeg">
+	
+		- Be sure that it is using the right unity version ```2022.3.3f1```
+	
+		<img width="600" alt="" src="https://i.imgur.com/mKvVORT.jpeg">
+		
+	- See if you can build and run the file on your phone. Open the Unity console. Go to File > Build and Run
+	
+		<img width="600" alt="" src="https://i.imgur.com/z1ek1M8.jpg">
+		
+		- *Note: You should see no red errors. Yellow warnings in the screenshot are OK. If you see red errors, dependencies are not installed correctly.*
+	
+	- Open Rhino
+	
+	- Go to the ```ARC596_Embodied-Computation\docs\T2 folder```, and see if you can run the grasshopper script without any errors. 
