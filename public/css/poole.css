@@ -290,7 +290,7 @@ tbody tr:nth-child(odd) th {
  */
 
 .container {
-  max-width: 38rem;
+  max-width: 100%; 
   padding-left:  1rem;
   padding-right: 1rem;
   margin-left:  auto;
@@ -300,7 +300,7 @@ tbody tr:nth-child(odd) th {
 
 /*
  * Masthead
- *
+ * max-width: 38rem;
  * Super small header above the content for site name and short description.
  */
 
