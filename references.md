@@ -12,7 +12,7 @@ Mitterberger, Daniela, Kathrin Dörfler, Timothy Sandy, Foteini Salveridou, Marc
 
 Atanasova, Lidia, Daniela Mitterberger, Timothy Sandy, Fabio Gramazio, Matthias Kohler, and Kathrin Dörfler. 2020. “Prototype As Artefact - Design Tool for Open-Ended Collaborative Assembly Processes.” ACADIA 2020.
 
-### Making Grammars
+### Interactive Design
 Knight, Terry, and George Stiny. 2015. “Making Grammars: From Computing with Shapes to Computing with Things.” Design Studies 41: 8–28. https://doi.org/10.1016/j.destud.2015.08.006.
 
 Knight, Terry. 2017. “Craft, Performance, and Grammars.” 2nd International Workshop on Cultural DNA, KAIST, Daejoen, South Korea.
@@ -25,8 +25,6 @@ Han, Isla Xi, Forrest Meggers, and Stefana Parascho. 2021. “Bridging the Colle
 ### Object Tracking
 Sandy, Timothy, and Jonas Buchli. 2018. “Object-Based Visual-Inertial Tracking for Additive Fabrication.” IEEE Robotics and Automation Letters 3. https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8270591.
 
-### Reciprocal Frames
-Song, Peng, Chi-Wing Fu, Prashant Goswami, Jianmin Zheng, Niloy J. Mitra, and Daniel Cohen-Or. 2013. “Reciprocal Frame Structures Made Easy.” ACM Transactions on Graphics 32 (4): 1–13. https://doi.org/10.1145/2461912.2461915.
 
 
 
