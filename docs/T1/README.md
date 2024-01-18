@@ -187,6 +187,10 @@
 	
 	  	<img width="400" alt="" src="https://i.imgur.com/pbxRg8X.jpg">
 		
+	  - Initialize Git LFS. This allows you to move large files back and forth from the github server. 
+		
+		<img width="250" alt="" src="https://i.imgur.com/hcEPE1d.jpg">
+		
 2. Open the test files
 
 	- Open Unity Hube. Go to Start menu and search ```unity hub```
