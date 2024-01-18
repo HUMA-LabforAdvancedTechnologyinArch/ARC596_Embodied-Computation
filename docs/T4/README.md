@@ -411,7 +411,7 @@ public class Zoom: MonoBehaviour {
     {
         if(Input.GetKey(KeyCode.Space))
         {
-            cube.transform.localScale += (Vector3.one*1.00001f)/100 ;
+            cube.transform.localScale += (Vector3.one*1.00001f)/100;
         }
     }
 ```
@@ -431,7 +431,7 @@ public class Zoom: MonoBehaviour {
 
 >   Note: Any changes to code or scene must be made after **Existing Play  Mode** or they will be temporary. 
 
--   Change the code to ```transform.localScale += (Vector3.one*1.00001f)/100;```. Save it and run the code again. It still works because the script is self-referencing the object that the component is added to.
+-   Change the code to ```transform.localScale += (Vector3.one*1.00001f)/100;``` Save it and run the code again. It still works because the script is self-referencing the object that the component is added to.
 
 ### Download animated characters 
 
