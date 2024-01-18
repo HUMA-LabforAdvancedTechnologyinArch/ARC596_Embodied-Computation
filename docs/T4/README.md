@@ -479,7 +479,9 @@ By clicking on the Keyboard arrows your character will move, by clicking on the 
 
 ### Regular Update Events 
 
-A game is rather like an animation where the animation frames are generated on the fly. A key concept in games programming is that of making changes to **position, state and behavior** of objects in the game just before each frame is rendered. The [**Update**](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html)** **function is the main place for this kind of code in Unity. _Update_ is called **before the frame is rendered** and also **before animations are calculated**.
+A game is rather like an animation where the animation frames are generated on the fly. A key concept in games programming is that of making changes to **position, state and behavior** of objects in the game just before each frame is rendered. The [**Update**](https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html) function is the main place for this kind of code in Unity. _Update_ is called **before the frame is rendered** and also **before animations are calculated**.
+
+Below is an example of the code that would make the animated figure move:
 
 ```
 void Update() 
