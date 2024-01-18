@@ -283,7 +283,7 @@ Try inserting multiple _GameObjects_ like _cubes_, _spheres_ and _Planes_ in the
 
 -   You see a _small icon_ appearing at the bottom, showing how _the Game Mode_ will look like through this _camera._
 
->   **Tip**: If you don’t see the camera and light icons, try to click on the “**Gizmos”button** on top._
+>   **Tip**: If you don’t see the camera and light icons, try to click on the **Gizmos button** on top.
 
 
 
