@@ -313,7 +313,7 @@ Let’s create our first C# script to interact with the Cube we made previously.
 
 -   Click on the cube GameObject you created, go to the Inspector and click **Add Component**. Go to **New Script** , name it **Zoom** and click on **Create and Add**.
 
-    <img width="400" alt="" src="https://i.imgur.com/nTbL4Pj.png">
+    <img width="450" alt="" src="https://i.imgur.com/nTbL4Pj.png">
 
 -   Set Visual Studio Code to the default interface in Unity settings. Go to _File>Preferences>External Tools>External Script Editor_ and select **Visual Studio Code**
 
@@ -423,14 +423,15 @@ public class Zoom: MonoBehaviour {
     <img width="700" alt="" src="https://i.imgur.com/LPyVGEE.jpg">
 
 
--   **Save** the script, go back to_ Unity_ and **Play** the Scene.
+-   **Save** the script, go back to _Unity_ and **Play** the Scene.
 
 -   Long Press the **SpaceBar** of your keyboard and watch the cube zoom exponentially.
 
     <img width="700" alt="" src="https://i.imgur.com/S7In6Q9.png">
 
+>   Note: Any changes to code or scene must be made after **Existing Play  Mode** or they will be temporary. 
 
--   Change the code to ```transform.localScale += (Vector3.one\*1.00001f)/100;```. Save it and run the code again. It still works because the script is self-referencing the object that the component is added to.
+-   Change the code to ```transform.localScale += (Vector3.one*1.00001f)/100;```. Save it and run the code again. It still works because the script is self-referencing the object that the component is added to.
 
 ### Download animated characters 
 
@@ -451,13 +452,16 @@ Find and download the free asset _5 animated Voxel animals_.
 
 -   After clicking the **Open in Unity** button, you will be redirected to the Unity software, on the package manager. Make sure you are in **Packages: My Assets**. Click **Import**
 
+    <img width="700" alt="" src="https://i.imgur.com/iflzJnm.jpg">
+
+
 -   A window pops up. When importing a package, you can select the parts you want to import. For now, we will import everything. Click **Import**.
 
 ### Make a Plane 
 
 -   In the **Hierarchy**, right click and go to **3D Object> Plane.**
 
-_**→ Make sure the Transform position values are set to 0,0,0**_
+→ _Make sure the Transform position values are set to **0,0,0**_
 
 ### Import a character 
 

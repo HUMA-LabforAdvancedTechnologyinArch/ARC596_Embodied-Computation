@@ -19,7 +19,7 @@ public class Zoom : MonoBehaviour
 
         if(Input.GetKey(KeyCode.Space))
         {
-            cube.transform.localScale += (Vector3.one*1.00001f)/100;
+            transform.localScale += (Vector3.one*1.00001f)/100;
         }
         
     }
