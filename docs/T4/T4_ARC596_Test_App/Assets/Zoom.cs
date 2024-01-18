@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Zoom : MonoBehaviour
 {
+
+    public GameObject cube;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +16,11 @@ public class Zoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(Input.GetKey(KeyCode.Space))
+        {
+            cube.transform.localScale += (Vector3.one*1.00001f)/100;
+        }
         
     }
 }

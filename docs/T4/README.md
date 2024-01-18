@@ -416,7 +416,12 @@ public class Zoom: MonoBehaviour {
     }
 ```
 
-we added a very small value, since it will move very fast
+>   Note: We used a small value, since it will move fast.
+
+-   Link the ```Public GameObject cube;``` variable that you just created in code to the actual cube instance in Unity. Click the buttom under Zoom, and select the cube. 
+
+    <img width="700" alt="" src="https://i.imgur.com/LPyVGEE.jpg">
+
 
 -   **Save** the script, go back to_ Unity_ and **Play** the Scene.
 
@@ -425,7 +430,7 @@ we added a very small value, since it will move very fast
     <img width="700" alt="" src="https://i.imgur.com/S7In6Q9.png">
 
 
--   Change the code from **cube.transform.localScale += (Vector3.one\*1.00001f)/100;** to **transform.localScale += (Vector3.one\*1.00001f)/100;**. Save it and run the code again. It still works because the script is self-referencing the object that the component is added to.
+-   Change the code to ```transform.localScale += (Vector3.one\*1.00001f)/100;```. Save it and run the code again. It still works because the script is self-referencing the object that the component is added to.
 
 ### Download animated characters 
 
