@@ -21,7 +21,7 @@
 4. [Vuforia](https://developer.vuforia.com/downloads/sdk)
 5. [ROS#](https://www.ros.org/)
 
-## Getting Started with This Project
+## Installing the Dependencies
 
 1. Install the correct Unity Version using Unity Hub ```2022.3.3f1``` https://unity.com/releases/editor/whats-new/2022.3.3
       - *Note: Do not click the blue download link. If you download directly from this website it is cubersome to install the dependencies. Unity is version-sensitive, and it needs to be exactly this version*
@@ -56,6 +56,9 @@
 	- Search & Install ```AR Foundation```, repeat for ```ARCore XR plugin```
 		
 		<img width="650" alt="" src="https://i.imgur.com/x0k6B1T.png">
+
+    - Select ```No``` on whether to use the new input system package.
+        <img width="400" alt="" src="https://i.imgur.com/RaFmyjP.jpg">
 	
 	- Add ARCore Unity Extensions. Select ```Add package from git URL```, https://github.com/google-ar/arcore-unity-extensions.git
 		
@@ -80,11 +83,10 @@
 
 
 
-# BEGIN ETH TUTORIAL #
-<!---------------------- begin copy pasta   ----->
 
 
-## Unity Interface 
+
+## Unity Overview 
 
 <img width="650" alt="" src="https://i.imgur.com/fctlEa8.png">
 
@@ -102,7 +104,7 @@ The Gizmo allows you to quickly modify the viewing angle and the projection mode
 
 #### Arrow movement
 
-You can use the** Arrow Keys** to move around the Scene as though “walking” through it. The up and down arrows move the _Camera_ forward and backward in the direction it is facing. The** left **and **right** arrows pan the view **sideways**.
+You can use the **Arrow Keys** to move around the Scene as though walking through it. The up and down arrows move the _Camera_ forward and backward in the direction it is facing. The **left** and **right** arrows pan the view **sideways**.
 
 #### Basic Tools
 
@@ -123,7 +125,7 @@ The Game view is rendered from the Camera(s) in your application. It represents 
 
 <img width="100" alt="" src="https://i.imgur.com/Np9EDMS.png">
 
-Use the buttons in the _Toolbar _to control the Editor Play mode and see how your published application plays. An important fact is that, in **Play mode**, any changes you make are **temporary,** and are **reset** when you exit Play mode.
+Use the buttons in the _Toolbar_ to control the Editor Play mode and see how your published application plays. An important fact is that, in **Play mode**, any changes you make are **temporary,** and are **reset** when you exit Play mode.
 
 [→ More info](https://docs.unity3d.com/Manual/GameView.html)
 
@@ -137,7 +139,7 @@ The default Hierarchy window view when you open a new Unity project
 
 ### The Inspector Window 
 
-The **Inspector Window** is being used to [view and edit **properties**](https://docs.unity3d.com/Manual/EditingValueProperties.html) and** settings** for almost everything in the_ Unity Editor_. In the _Inspector Window_, one can add or remove _“Components”_ , which enable different features.. We will see what these are soon. [→ More Info](https://docs.unity3d.com/Manual/UsingTheInspector.html) 
+The **Inspector Window** is being used to [view and edit **properties**](https://docs.unity3d.com/Manual/EditingValueProperties.html) and **settings** for almost everything in the _Unity Editor_. In the _Inspector Window_, one can add or remove _Components_ , which enable different features.. We will see what these are soon. [→ More Info](https://docs.unity3d.com/Manual/UsingTheInspector.html) 
 
 ### The Project Window 
 
@@ -165,21 +167,20 @@ The _Project window_ displays all of the **files** related to your _Project_ and
 
 
 
-## GameObjects, Components, Prefabs 
+### GameObjects, Components, Prefabs 
 
-### Game Objects 
 
 <img width="650" alt="" src="https://i.imgur.com/yjd1wvG.png">
 
 **GameObjects** are the fundamental objects in _Unity_ that represent _3d objects, props and scenery_. They do not accomplish much in themselves but they act as containers for **Components**, which implement the real **functionality**.
 
-A _GameObject_ always has a [Transform](https://docs.unity3d.com/Manual/class-Transform.html) component attached (to represent position and orientation) and it is not possible to remove this. The other _components_ that give the object its functionality can be added from the editor’s Component menu or from a script. There are also many useful _pre-constructed o_bjects (_primitive shapes, Cameras,_ etc) available on the **GameObject > 3D Object menu** (more info: [Primitive Objects](https://docs.unity3d.com/Manual/PrimitiveObjects.html) )
+A _GameObject_ always has a [Transform](https://docs.unity3d.com/Manual/class-Transform.html) component attached (to represent position and orientation) and it is not possible to remove this. The other _components_ that give the object its functionality can be added from the editor’s Component menu or from a script. There are also many useful pre-constructed objects (_primitive shapes, Cameras,_ etc) available on the **GameObject > 3D Object menu** (more info: [Primitive Objects](https://docs.unity3d.com/Manual/PrimitiveObjects.html) )
 
 ### Components 
 
-**Components** implement  **functionalities** on the _GameObjects_. For example, a _Light object_ is created by attaching a _Light component_ to a _GameObject_. **Components** are contained by GameObjects. _Unity_ has many built-in components, and you can create your own by writing scripts that inherit from the _MonoBehaviour_ class. C# is the programming language which we use to write code. 
+**Components** implement  **functionalities** on the _GameObjects_. For example, a _light object_ is created by attaching a _light component_ to a _GameObject_. **Components** are contained by GameObjects. _Unity_ has many built-in components, and you can create your own by writing scripts that inherit from the _MonoBehaviour_ class. C# is the programming language which we use to write code. 
 
-_→ _[_More Info about Scripting in Unity_](https://docs.unity3d.com/Manual/CreatingComponents.html)
+[→ More Info about Scripting in Unity](https://docs.unity3d.com/Manual/CreatingComponents.html)
 
 <img width="650" alt="" src="https://i.imgur.com/cqqIjt9.png">
 
@@ -187,16 +188,15 @@ A simple Cube GameObject with several Components
 
 ### Prefabs 
 
-**Prefabs **allow you to create, configure, and store a _GameObject _complete with all its _components, property values, and child GameObjects._The **Prefab Asset **acts as a **template **from which you can create new Prefab instances in the Scene.
+**Prefabs** allow you to create, configure, and store a _GameObject_ complete with all its _components, property values, and child GameObjects_ .The **Prefab Asset** acts as a **template** from which you can create new prefab instances in the scene.
 
 [→ More Info](https://docs.unity3d.com/Manual/Prefabs.html)
 
-### Create Game Objects and Basic Transformations: Quick Tutorial
+## Create Game Objects and Basic Transformations: Quick Tutorial
 
 ### Parenting
 
-Unity uses the concept of parent-child hierarchies, or parenting, to group GameObjects. An object can contain other GameObjects that inherit its properties. You can link GameObjects together to help move, scale, or transform a collection of GameObjects. When you move the top-level object, or parent GameObject, you also move all child GameObjects. You can also create nested parent-child GameObjects. All nested objects are still descendants of the original parent GameObject, or root GameObject.Child GameObjects inherit the movement and rotation of the parent GameObject. To learn more about this, see documentation on the 
->   [Transform component](https://docs.unity3d.com/Manual/class-Transform.html)![Child 1 and Child 2 are the child GameObjects of Parent. Child 3 is a child GameObject of Child 2, and a descendant GameObject of Parent.]
+Unity uses the concept of parent-child hierarchies, or parenting, to group GameObjects. An object can contain other GameObjects that inherit its properties. You can link GameObjects together to help move, scale, or transform a collection of GameObjects. When you move the top-level object, or parent GameObject, you also move all child GameObjects. You can also create nested parent-child GameObjects. All nested objects are still descendants of the original parent GameObject, or root GameObject.Child GameObjects inherit the movement and rotation of the parent GameObject. To learn more about this, see documentation on the [Transform component](https://docs.unity3d.com/Manual/class-Transform.html)!
 
 
 <img alt="" src="https://i.imgur.com/9xteFSv.png">
@@ -204,15 +204,18 @@ Unity uses the concept of parent-child hierarchies, or parenting, to group GameO
 
 _**Child 1** and **Child 2** are the child GameObjects of **Parent**. **Child 3** is a child GameObject of **Child 2**, and a descendant GameObject of **Parent**._
 
-### GameObjects 
+
+
+
+## Create the ARC596 Test App
 
 ### Creating new GameObjects 
 
 To create a new GameObject in the Hierarchy window:
 
 -   Right-click on empty space in the selected Scene.
--   Select the GameObject you want to create. Let’s make a **cube**_GameObject _ by selecting **3D Object > Cube.**
--   Now let’s make another _**empty** GameObject._
+-   Select the GameObject you want to create. Let’s make a **cube** _GameObject_ by selecting **3D Object > Cube.**
+-   Now let’s make another _**empty** GameObject_.
 
 → You can also press **Ctrl+Shift+N** (Windows) or **Command+Shift+N** (macOS) to create a new empty GameObject.
 
@@ -256,7 +259,7 @@ Try inserting multiple _GameObjects_ like _cubes_, _spheres_ and _Planes_ in the
 <img width="250" alt="" src="https://i.imgur.com/cSj8KHj.png">
 
 
->   Note: **To quickly** reset all the Transform values,** you can right click on the “Transform” title, and click **Reset**
+>   Note: **To quickly** reset all the transform values, you can right click on the transform title, and click **Reset**
 
 
 <img width="750" alt="" src="https://i.imgur.com/gI5AMaQ.png">
@@ -918,7 +921,7 @@ Let’s drag and drop the objects we need.
     ↑
 6. Plane = two-dimensional surface. A flat surface with no thickness. ↑
 
-# END ETH #
+# END ARC596 APP #
 <!---------------------- END ETH   ----->
 	
 
