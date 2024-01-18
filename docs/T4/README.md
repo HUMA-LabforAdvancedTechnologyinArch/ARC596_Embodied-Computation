@@ -313,7 +313,7 @@ Let’s create our first C# script to interact with the Cube we made previously.
 
 -   Click on the cube GameObject you created, go to the Inspector and click **Add Component**. Go to **New Script** , name it **Zoom** and click on **Create and Add**.
 
-    <img width="650" alt="" src="https://i.imgur.com/nTbL4Pj.png">
+    <img width="400" alt="" src="https://i.imgur.com/nTbL4Pj.png">
 
 -   Set Visual Studio Code to the default interface in Unity settings. Go to _File>Preferences>External Tools>External Script Editor_ and select **Visual Studio Code**
 
