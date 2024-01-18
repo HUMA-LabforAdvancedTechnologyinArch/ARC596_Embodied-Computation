@@ -315,11 +315,9 @@ Let’s create our first C# script to interact with the Cube we made previously.
 
     <img width="650" alt="" src="https://i.imgur.com/nTbL4Pj.png">
 
-
 -   Double click on the **Script name**, or **right click>Edit Script**
 
-
--   Open the file with **Visual Studio 2019. **Login with _your Microsoft account_, or create a new one.
+-   Open the file with **Visual Studio Code**. Login with _your Microsoft account_, or create a new one.
 
 
 ```
