@@ -192,8 +192,6 @@ A simple Cube GameObject with several Components
 
 [→ More Info](https://docs.unity3d.com/Manual/Prefabs.html)
 
-## Create Game Objects and Basic Transformations: Quick Tutorial
-
 ### Parenting
 
 Unity uses the concept of parent-child hierarchies, or parenting, to group GameObjects. An object can contain other GameObjects that inherit its properties. You can link GameObjects together to help move, scale, or transform a collection of GameObjects. When you move the top-level object, or parent GameObject, you also move all child GameObjects. You can also create nested parent-child GameObjects. All nested objects are still descendants of the original parent GameObject, or root GameObject.Child GameObjects inherit the movement and rotation of the parent GameObject. To learn more about this, see documentation on the [Transform component](https://docs.unity3d.com/Manual/class-Transform.html)!
