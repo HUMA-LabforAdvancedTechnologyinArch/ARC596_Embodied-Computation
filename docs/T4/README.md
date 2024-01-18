@@ -311,7 +311,7 @@ A script in Unity is not like the traditional idea of a program where the code r
 
 Let’s create our first C# script to interact with the Cube we made previously.
 
--   Click on the cube GameObject you created, go to the Inspector and click “Add Component”(1). Go to **New Script , **name it **“Zoom” **and click on **“Create and Add” **(2).
+-   Click on the cube GameObject you created, go to the Inspector and click **Add Component**. Go to **New Script** , name it **Zoom** and click on **Create and Add**.
 
     <img width="650" alt="" src="https://i.imgur.com/nTbL4Pj.png">
 
