@@ -206,9 +206,9 @@ _**Child 1** and **Child 2** are the child GameObjects of **Parent**. **Child 3*
 
 
 
-## Create the ARC596 Test App
+# Create the ARC596 Test App
 
-### Creating new GameObjects 
+## Creating new GameObjects 
 
 To create a new GameObject in the Hierarchy window:
 
@@ -223,9 +223,10 @@ To create a new GameObject in the Hierarchy window:
 
 ### Creating child GameObjects 
 
-To create a _child GameObject_:
+To create a child GameObject:
 
--   Drag the GameObject onto the parent GameObject in the Hierarchy.-   Drag _Object 4_ (selected) onto the parent _GameObject_, _Object 1 _(highlighted in a blue) to create a child GameObject.
+-   Drag the GameObject onto the parent GameObject in the Hierarchy.
+-   Drag _Object 4_ (selected) onto the parent _GameObject_, _Object 1_(highlighted in a blue) to create a child GameObject.
 
     <img width="250" alt="" src="https://i.imgur.com/JXuUcVX.png">
 
@@ -235,12 +236,12 @@ You can add a new GameObject into the Hierarchy view as the parent of existing G
 
 To create a parent GameObject:
 
--   Right-click a _GameObject,_ or select multiple _GameObjects _on the same level and right-click.
--   Select** Create Empty Parent.**
+-   Right-click a _GameObject,_ or select multiple _GameObjects_ on the same level and right-click.
+-   Select **Create Empty Parent.**
 
 You can also press **Ctrl+Shift+G** (Windows) or **Command+Shift+G** (macOS) to create a parent GameObject.
 
-→ You can also **click and drag **GameObjects inside, or outside parent GameObjects.
+→ You can also **click and drag** GameObjects inside, or outside parent GameObjects.
 
 <img width="250" alt="" src="https://i.imgur.com/jFu65Qu.png">
 
@@ -249,7 +250,7 @@ You can also press **Ctrl+Shift+G** (Windows) or **Command+Shift+G** (macOS) to 
 
 To duplicate _GameObjects,_ right-click the target GameObject and select **Duplicate.**
 
-You can also press **Ctrl+D **(Windows) or **Command+D **(macOS) to duplicate the selected GameObject.
+→ You can also press **Ctrl+D** (Windows) or **Command+D** (macOS) to duplicate the selected GameObject.
 
 ### Task: 
 
@@ -267,9 +268,9 @@ Try inserting multiple _GameObjects_ like _cubes_, _spheres_ and _Planes_ in the
 
 -   In the **Project Window**, go to **Assets**, right click on the empty space and make a new folder by going to **Create> Folder.** Name it _Materials_.
 
--   Double click on the folder, right click on the empty space and make a new material by going to **Create>Material. **A new Material is created.
+-   Double click on the folder, right click on the empty space and make a new material by going to **Create>Material.** A new Material is created.
 
--   Click on the color palette on the_ Inspector _and select a color of your choice.
+-   Click on the color palette on the _Inspector_ and select a color of your choice.
 
 -   Drag and drop the material from **the Assets Folder** on the desired objects
 
@@ -281,7 +282,7 @@ Try inserting multiple _GameObjects_ like _cubes_, _spheres_ and _Planes_ in the
 
 -   You see a _small icon_ appearing at the bottom, showing how _the Game Mode_ will look like through this _camera._
 
-_**Tip**: If you don’t see the camera and light icons, try to click on the “**Gizmos”button** on top._
+>   **Tip**: If you don’t see the camera and light icons, try to click on the “**Gizmos”button** on top._
 
 
 
@@ -301,9 +302,9 @@ An **event is a message** sent to an object to signal that an event happened suc
 
 ### Event Functions 
 
-A script in Unity is not like the traditional idea of a program where the code runs continuously in a loop until it completes its task. Instead, Unity passes control to a script intermittently by calling certain functions that are declared within it. Once a function has finished executing, control is passed back to Unity. These functions are known as event functions since they are activated by Unity in response to events that occur during gameplay. Unity uses a naming scheme to identify which function to call for a particular event. For example, you will already have seen the** Update** function (called before a frame update occurs) and the **Start **function (called just before the object’s first frame update).
+A script in Unity is not like the traditional idea of a program where the code runs continuously in a loop until it completes its task. Instead, Unity passes control to a script intermittently by calling certain functions that are declared within it. Once a function has finished executing, control is passed back to Unity. These functions are known as event functions since they are activated by Unity in response to events that occur during gameplay. Unity uses a naming scheme to identify which function to call for a particular event. For example, you will already have seen the **Update** function (called before a frame update occurs) and the **Start** function (called just before the object’s first frame update).
 
-_Many more event functions are available in Unity; the full list can be found in the script reference page for the _[_MonoBehaviour_](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html)_ class\[1] along with details of their usage. The following are some of the most common and important events._
+>   Note: Many more event functions are available in Unity; the full list can be found in the script reference page for the [_MonoBehaviour_](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) class along with details of their usage. The following are some of the most common and important events.
 
 ### Create a C# script for keyboard interaction 
 
