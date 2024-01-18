@@ -224,7 +224,10 @@ To create a new GameObject in the Hierarchy window:
 ### Creating child GameObjects 
 
 To create a child GameObject:
+To create a child GameObject:
 
+-   Drag the GameObject onto the parent GameObject in the Hierarchy.
+-   Drag _Object 4_ (selected) onto the parent _GameObject_, _Object 1_(highlighted in a blue) to create a child GameObject.
 -   Drag the GameObject onto the parent GameObject in the Hierarchy.
 -   Drag _Object 4_ (selected) onto the parent _GameObject_, _Object 1_(highlighted in a blue) to create a child GameObject.
 
@@ -242,6 +245,7 @@ To create a parent GameObject:
 You can also press **Ctrl+Shift+G** (Windows) or **Command+Shift+G** (macOS) to create a parent GameObject.
 
 → You can also **click and drag** GameObjects inside, or outside parent GameObjects.
+→ You can also **click and drag** GameObjects inside, or outside parent GameObjects.
 
 <img width="250" alt="" src="https://i.imgur.com/jFu65Qu.png">
 
@@ -250,6 +254,7 @@ You can also press **Ctrl+Shift+G** (Windows) or **Command+Shift+G** (macOS) to 
 
 To duplicate _GameObjects,_ right-click the target GameObject and select **Duplicate.**
 
+→ You can also press **Ctrl+D** (Windows) or **Command+D** (macOS) to duplicate the selected GameObject.
 → You can also press **Ctrl+D** (Windows) or **Command+D** (macOS) to duplicate the selected GameObject.
 
 ### Task: 
