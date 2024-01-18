@@ -315,6 +315,10 @@ Let’s create our first C# script to interact with the Cube we made previously.
 
     <img width="650" alt="" src="https://i.imgur.com/nTbL4Pj.png">
 
+-   Set Visual Studio Code to the default interface in Unity settings. Go to _File>Preferences>External Tools>External Script Editor_ and select **Visual Studio Code**
+
+    <img width="650" alt="" src="https://i.imgur.com/pjdnwxW.jpg">
+
 -   Double click on the **Script name**, or **right click>Edit Script**
 
 -   Open the file with **Visual Studio Code**. Login with _your Microsoft account_, or create a new one.
