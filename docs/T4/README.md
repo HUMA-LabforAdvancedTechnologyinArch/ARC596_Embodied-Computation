@@ -58,6 +58,7 @@
 		<img width="650" alt="" src="https://i.imgur.com/x0k6B1T.png">
 
     - Select ```No``` on whether to use the new input system package.
+        
         <img width="400" alt="" src="https://i.imgur.com/RaFmyjP.jpg">
 	
 	- Add ARCore Unity Extensions. Select ```Add package from git URL```, https://github.com/google-ar/arcore-unity-extensions.git
