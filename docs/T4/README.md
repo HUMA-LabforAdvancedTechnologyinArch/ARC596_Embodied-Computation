@@ -584,7 +584,7 @@ A scene needs an AR session to enable [AR processes](https://developers.google.c
 
 1. Before adding the new game objects, delete the default **Main Camera**. It will be replaced by a new **AR Camera** in the **XR Origin**.
 
-<img width="400" alt="" src="https://i.imgur.com/urNfYC2.jpg">
+    <img width="400" alt="" src="https://i.imgur.com/urNfYC2.jpg">
 
 2. Add the new AR game objects to your scene: right-click the **Hierarchy** pane and select **XR**. Add a new **AR Session** and a new **XR Origin (Mobile AR)** game object.
 
@@ -592,14 +592,14 @@ A scene needs an AR session to enable [AR processes](https://developers.google.c
 
 **What is a Session?**
 
-All [AR processes](https://developers.google.com/ar/discover/concepts), such as motion tracking, environmental understanding, and lighting estimation, happen inside an ARCore session. [ARSession](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARSession.html) is the main entry point to the ARCore API. It manages the AR system state and handles the session **lifecycle**, allowing the app to create, configure, start, or stop a session. Most importantly, it enables the app to receive frames that allow access to the camera image and device pose.
+→ All [AR processes](https://developers.google.com/ar/discover/concepts), such as motion tracking, environmental understanding, and lighting estimation, happen inside an ARCore session. [ARSession](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARSession.html) is the main entry point to the ARCore API. It manages the AR system state and handles the session **lifecycle**, allowing the app to create, configure, start, or stop a session. Most importantly, it enables the app to receive frames that allow access to the camera image and device pose.
 
-Your _Hierarchy_ should now look like this:
+-   Your _Hierarchy_ should now look like this:
 
     <img width="250" alt="" src="https://i.imgur.com/Dff422E.jpg">
 
 
-Expand the **AR Session Origin** you created in the _Hierarchy_, and select the **AR Camera object**. In the inspector, change its _**Tag**_ to **MainCamera.**
+-   Expand the **XR Origin** you created in the _Hierarchy_, and select the **Camera Offset**. In the inspector, change its _**Tag**_ to **MainCamera.**
 
 
 
