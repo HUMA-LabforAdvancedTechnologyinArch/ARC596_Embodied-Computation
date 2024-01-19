@@ -696,7 +696,8 @@ _**Let’s build the app and see if it works!**_
 	
 	- Go to Player > Other Settings > Rendering
 	- Make sure “Auto Graphics API” is unchecked. Change Color Space to “Linear”
-		<img width="650" alt="" src="https://i.imgur.com/DWNm7TE.jpeg">	
+    - Remove Vulkan from under Graphics APIs
+		<img width="650" alt="" src="https://i.imgur.com/VXKjn0U.jpg">	
 	
 	- Go to Player > Other Settings > Package Name. Create a unique app ID using a Java package name format. For example, use com.Princeton.AR
 	- Go to Player > Other Settings > Minimum API Level. Select Android 7.0 'Nougat' (API Level 24) or higher (For AR Optional apps, the Minimum API level is 14.)
