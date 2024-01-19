@@ -592,11 +592,11 @@ A scene needs an AR session to enable [AR processes](https://developers.google.c
 
 **What is a Session?**
 
-→ All [AR processes](https://developers.google.com/ar/discover/concepts), such as motion tracking, environmental understanding, and lighting estimation, happen inside an ARCore session. [ARSession](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARSession.html) is the main entry point to the ARCore API. It manages the AR system state and handles the session **lifecycle**, allowing the app to create, configure, start, or stop a session. Most importantly, it enables the app to receive frames that allow access to the camera image and device pose.
+All [AR processes](https://developers.google.com/ar/discover/concepts), such as motion tracking, environmental understanding, and lighting estimation, happen inside an ARCore session. [ARSession](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARSession.html) is the main entry point to the ARCore API. It manages the AR system state and handles the session **lifecycle**, allowing the app to create, configure, start, or stop a session. Most importantly, it enables the app to receive frames that allow access to the camera image and device pose.
 
 -   Your _Hierarchy_ should now look like this:
 
-    <img width="250" alt="" src="https://i.imgur.com/Dff422E.jpg">
+    <img width="300" alt="" src="https://i.imgur.com/Dff422E.jpg">
 
 
 -   Expand the **XR Origin** you created in the _Hierarchy_, and select the **Camera Offset**. In the inspector, change its _**Tag**_ to **MainCamera.**
@@ -615,9 +615,9 @@ A scene needs an AR session to enable [AR processes](https://developers.google.c
 
 ### Add an ARPlane Manager Component and place an AR Plane Prefab 
 
-An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARPlaneManager.html) detects [ARPlane](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARPlane.html)s and creates, updates, and removes game objects when the device's understanding of the environment changes.
+An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARPlaneManager.html) detects [ARPlanes](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARPlane.html) and creates, updates, and removes game objects when the device's understanding of the environment changes.
 
--   Go to _Hierarchy_ and click on the **AR Session Origin** GameObject. On the _Inspector_ Window, click on **“Add Component”, search** for the **“AR Plane Manager”** and **Add it**.
+-   Go to _Hierarchy_ and click on the **XR Origin** GameObject. On the _Inspector_ Window, click on **“Add Component”, search** for the **“AR Plane Manager”** and **Add it**.
     
     <img width="650" alt="" src="https://i.imgur.com/fNk7yzI.png">
 
@@ -657,7 +657,7 @@ An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@
 
     <img width="400" alt="" src="https://i.imgur.com/CAl6zPU.jpg">
 
--   On the **AR Session Origin** _GameObject_, go to the **AR Plane Manager Script** we added in Step 1. There is an _empty Plane Prefab._ Drag and Drop there the Prefab we created in the Assets.
+-   On the **XR Origin** _GameObject_, go to the **AR Plane Manager Script** we added in Step 1. There is an _empty Plane Prefab._ Drag and Drop there the Prefab we created in the Assets.
 
     <img width="650" alt="" src="https://i.imgur.com/kr0ehLg.jpg">
 <img width="650" alt="" src="https://i.imgur.com/U3sGjsh.jpg">
@@ -875,7 +875,7 @@ _E.g. For the Camera, we only need the “Transform” component, to get informa
 Let’s drag and drop the objects we need.
 
 -   For the** Selected Prefab**, we can put the House Prefab we created , by dragging it from the** Assets>Prefabs** folder we created.
--   For the **Ar Camera Transform**, we will drag and drop the** AR Camera GameObject**, which we can find under _“AR Session Origin”_ in the Hierarchy.
+-   For the **AR Camera Transform**, we will drag and drop the** AR Camera GameObject**, which we can find under _XR Origin_ in the Hierarchy.
 
     <img width="250" alt="" src="https://i.imgur.com/cL26Yma.jpg">
 
