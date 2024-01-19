@@ -467,7 +467,7 @@ Find and download the free asset _5 animated Voxel animals_.
 
 -   Go to **Assets>VoxelAnimals>Assets>Prefabs** and drag and drop a character on the Scene or the Hierarchy. Make sure it is correctly placed on the plane.
 
-<img width="400" alt="" src="https://i.imgur.com/jTt2v4u.png">
+    <img width="400" alt="" src="https://i.imgur.com/jTt2v4u.png">
 
 >   Tip: To zoom in on an object fast, you can first select it from the Hierarchy or the scene and then click on the “F” button on your keyboard.
 
@@ -571,7 +571,9 @@ _→ For a more detailed breakdown of how ARCore works, check out _[_fundamental
 
 # Create the AR Test App
 
--   Open the file you created when following the **Installation Guide**. Open _Unity Hub_ on your computer and Select your file. 
+-   Open the file you created when following the **Installation Guide** using _Unity Hub_ on your computer or use the animation app you just made and delete the existing GameObjects.
+
+>   Note: Be sure that the AR dependencies are installed per the prior section of this tutorial. 
 
 ## Configure an AR session and add AR Foundation components 
 
