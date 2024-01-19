@@ -642,7 +642,7 @@ An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@
 -   Now we will go to the Project Window, create a new empty **folder** in our **Assets,** and name it “Prefabs”, to organize our material. (**Right click > Create > Folder**). Then, double click it and go inside the folder.
 
     <img width="650" alt="" src="https://i.imgur.com/seVSYGo.jpg">
-    <img width="300" alt="" src="https://i.imgur.com/LDdo0N4.jpg">
+    <img width="400" alt="" src="https://i.imgur.com/LDdo0N4.jpg">
 
 -   Drag and drop the **AR Default Plane**_GameObject inside the **Prefabs** folder, in order to save it as a _Prefab._ In general, this is an easy way to _create new Prefabs_, after we have edited them as we like in our _Scene._
 
