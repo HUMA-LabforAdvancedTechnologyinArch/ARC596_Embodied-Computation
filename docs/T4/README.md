@@ -708,11 +708,13 @@ _**Let’s build the app and see if it works!**_
 	- Go to Player > Other Settings > Minimum API Level. Select Android 7.0 'Nougat' (API Level 24) or higher (For AR Optional apps, the Minimum API level is 14.)
 	- Go to Player > Other Settings > Scripting Backend. Select IL2CPP instead of Mono.
 	- Go to Player > Other Settings > Target Architectures. To meet the Google Play 64-bit requirement, enable ARM64 (64-bit ARM). Leave ARMv7 (32-bit ARM) enabled to support 32-bit devices
+
 		<img width="650" alt="" src="https://i.imgur.com/nzciMsI.jpeg">		
 	
 2. Configure Project Settings
 	
 	- Open Edit > Project Settings... and click on the XR Plug-in Management section. In the Android tab, enable ARCore.
+    
 		<img width="650" alt="" src="https://i.imgur.com/ILVPZQS.jpg">	
 
 3. Configure your phone to run the app
