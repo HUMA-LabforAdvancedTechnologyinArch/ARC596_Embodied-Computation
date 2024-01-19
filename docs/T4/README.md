@@ -617,11 +617,11 @@ All [AR processes](https://developers.google.com/ar/discover/concepts), such as 
 
 An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARPlaneManager.html) detects [ARPlanes](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARPlane.html) and creates, updates, and removes game objects when the device's understanding of the environment changes.
 
--   Go to _Hierarchy_ and click on the **XR Origin** GameObject. On the _Inspector_ Window, click on **“Add Component”, search** for the **“AR Plane Manager”** and **Add it**.
+-   Go to _Hierarchy_ and click on the **XR Origin** GameObject. On the _Inspector_ Window, click on **Add Component**, search** for the **AR Plane Manager** and **Add it**.
     
     <img width="650" alt="" src="https://i.imgur.com/fNk7yzI.png">
 
--   Respectively, click again on the **“Add Component**”, search for **“AR Raycast Manager”** and add it as well.
+-   Respectively, click again on the **Add Component**, search for **AR Raycast Manager** and add it as well.
 
     <img width="650" alt="" src="https://i.imgur.com/9FdPqRR.jpg">
 
