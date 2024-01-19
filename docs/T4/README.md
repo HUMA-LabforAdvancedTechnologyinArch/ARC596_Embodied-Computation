@@ -580,13 +580,13 @@ _→ For a more detailed breakdown of how ARCore works, check out _[_fundamental
 A scene needs an AR session to enable [AR processes](https://developers.google.com/ar/discover/concepts), such as motion tracking, environmental understanding, and lighting estimation. You will need the following game objects to support an AR session:
 
 -   **AR Session**: Controls the lifecycle of an AR experience.
--   **AR Session Origin**: Transforms AR coordinates into Unity world coordinates.
+-   **XR Origin**: Transforms AR coordinates into Unity world coordinates.
 
-1. Before adding the new game objects, delete the default **Main Camera**. It will be replaced by a new **AR Camera** in the **AR Session Origin**.
+1. Before adding the new game objects, delete the default **Main Camera**. It will be replaced by a new **AR Camera** in the **XR Origin**.
 
 <img width="400" alt="" src="https://i.imgur.com/urNfYC2.jpg">
 
-2. Add the new AR game objects to your scene: right-click the **Hierarchy** pane and select **XR**. Add a new **AR Session** and a new **AR Session Origin** game object.
+2. Add the new AR game objects to your scene: right-click the **Hierarchy** pane and select **XR**. Add a new **AR Session** and a new **XR Origin (Mobile AR)** game object.
 
 <img width="400" alt="" src="https://i.imgur.com/mTj3aiM.png">
 
