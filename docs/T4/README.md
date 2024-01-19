@@ -206,7 +206,7 @@ _**Child 1** and **Child 2** are the child GameObjects of **Parent**. **Child 3*
 
 
 
-# Create the ARC596 Test App
+# Create the Animation Test App
 
 ## Creating new GameObjects 
 
@@ -515,14 +515,14 @@ ARCore uses _three key capabilities_ to integrate virtual content with the real 
 
 ### Supported devices
 
-_ARCore i_s designed to work on a wide variety of qualified Android phones running_ Android 7.0 (Nougat) _and later. A full list of all supported devices [is available here](https://developers.google.com/ar/discover/supported-devices).
+_ARCore_ is designed to work on a wide variety of qualified Android phones running _Android 7.0 (Nougat)_ and later. A full list of all supported devices [is available here](https://developers.google.com/ar/discover/supported-devices).
 
 ### How does ARCore work? 
 
--   Fundamentally, _ARCore_ is doing two things:
+-   Fundamentally, ARCore is doing two things:
 
-    -   tracking the **position **of the mobile device as it moves
-    -   building its own understanding of the real world.
+    -   tracking the **position** of the mobile device as it moves
+    -   building its own understanding of the real world
 
 -   ARCore's motion tracking technology uses the **phone's camera** to identify interesting **points,** called features, and **tracks** how those points move over time. With a combination of the movement of these points and readings from the phone's inertial sensors, _ARCore_ determines both the position and orientation of the phone as it moves through space.
 
@@ -534,7 +534,7 @@ _→ For a more detailed breakdown of how ARCore works, check out _[_fundamental
 
 [Android](https://developers.google.com/ar/develop/java/quickstart) // [Android NDK](https://developers.google.com/ar/develop/c/quickstart) // [Unity (AR Foundation)](https://developers.google.com/ar/develop/unity-arf) // [iOS](https://developers.google.com/ar/develop/ios/overview) // [Unreal](https://developers.google.com/ar/develop/unreal/quickstart)
 
-_In our workshop, we will focus on Unity’s AR Foundation Framework, and build the application for Android devices._
+> Note: In our class/tutorial, we will focus on Unity’s AR Foundation Framework, and build the application for Android devices.
 
 ### AR Foundation 
 
@@ -549,15 +549,15 @@ _In our workshop, we will focus on Unity’s AR Foundation Framework, and build 
 
 -   AR Foundation is a set of _MonoBehaviours_ and APIs for dealing with devices that support the following concepts. A few of them are:
 
-    -   Device tracking: track the device's position and orientation in physical space.
-    -   Plane detection: detect horizontal and vertical surfaces.
-    -   Anchor**: an arbitrary position and orientation that the device tracks.
-    -   Light estimation: estimates for average color temperature and brightness in physical space.
-    -   Face tracking: detect and track human faces.
-    -   2D image tracking: detect and track 2D images.
-    -   Meshing: generate triangle meshes that correspond to the physical space.
-    -   Collaborative participants: track the position and orientation of other devices in a shared AR experience.
-    -   Raycast: queries physical surroundings for detected planes and feature points.
+    -   **Device tracking**: track the device's position and orientation in physical space.
+    -   **Plane detection**: detect horizontal and vertical surfaces.
+    -   **Anchor**: an arbitrary position and orientation that the device tracks.
+    -   **Light estimation**: estimates for average color temperature and brightness in physical space.
+    -   **Face tracking**: detect and track human faces.
+    -   **2D image tracking**: detect and track 2D images.
+    -   **Meshing**: generate triangle meshes that correspond to the physical space.
+    -   **Collaborative participants**: track the position and orientation of other devices in a shared AR experience.
+    -   **Raycast**: queries physical surroundings for detected planes and feature points.
 
 [→ More information about AR Foundation](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.2/manual/index.html)
 
@@ -569,11 +569,9 @@ _In our workshop, we will focus on Unity’s AR Foundation Framework, and build 
 
 
 
-## Start working on the AR App 
+# Create the AR Test App
 
-Open the file you created when following the **Installation Guide** for the Seminar Week.
-
-(By going to Unity Hub and Select your file)
+-   Open the file you created when following the **Installation Guide**. Open _Unity Hub_ on your computer and Select your file. 
 
 ## Configure an AR session and add AR Foundation components 
 
