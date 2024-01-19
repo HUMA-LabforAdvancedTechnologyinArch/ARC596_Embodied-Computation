@@ -23,7 +23,15 @@ plugins:
 github:
   repo:           https://github.com/IntuitiveRobotics-AugmentedTechnologies/ARC596_Embodied-Computation
 
-
+defaults:
+  - scope:
+      path: "**/index.md"
+    values:
+      layout: "listing"
+  - scope:
+      path: ""
+    values:
+      layout: "page"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
