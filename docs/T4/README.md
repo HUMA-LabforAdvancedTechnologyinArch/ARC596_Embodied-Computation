@@ -588,7 +588,7 @@ A scene needs an AR session to enable [AR processes](https://developers.google.c
 
 2. Add the new AR game objects to your scene: right-click the **Hierarchy** pane and select **XR**. Add a new **AR Session** and a new **XR Origin (Mobile AR)** game object.
 
-<img width="400" alt="" src="https://i.imgur.com/mTj3aiM.png">
+    <img width="400" alt="" src="https://i.imgur.com/mTj3aiM.png">
 
 **What is a Session?**
 
@@ -596,7 +596,7 @@ All [AR processes](https://developers.google.com/ar/discover/concepts), such as 
 
 Your _Hierarchy_ should now look like this:
 
-<img width="400" alt="" src="https://i.imgur.com/eAbzHgQ.jpg">
+    <img width="250" alt="" src="https://i.imgur.com/Dff422E.jpg">
 
 
 Expand the **AR Session Origin** you created in the _Hierarchy_, and select the **AR Camera object**. In the inspector, change its _**Tag**_ to **MainCamera.**
