@@ -659,8 +659,8 @@ An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@
 
 -   On the **XR Origin** _GameObject_, go to the **AR Plane Manager Script** we added in Step 1. There is an _empty Plane Prefab._ Drag and Drop there the Prefab we created in the Assets.
 
-<img width="650" alt="" src="https://i.imgur.com/kr0ehLg.jpg">
-<img width="650" alt="" src="https://i.imgur.com/U3sGjsh.jpg">
+    <img width="650" alt="" src="https://i.imgur.com/kr0ehLg.jpg">
+    <img width="650" alt="" src="https://i.imgur.com/U3sGjsh.jpg">
 
 
 You should now see the _AR Default Plane Prefab_ placed as the _Plane Prefab._
