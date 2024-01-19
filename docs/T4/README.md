@@ -920,9 +920,9 @@ Let’s drag and drop the objects we need.
 
 -   As we saw in the C# script, the **House Parent**, is an empty GameObject that will be the **parent** of all the instances we will create with our taps on the screen. So let’s create an **Empty GameObject** and name it **HouseParent**. Then, drag and drop it on the Instantiator Script.
 
->   Note: Make sure the Transform is set to 0,0,0 in the Inspector for the new object
+    <img width="400" alt="" src="https://i.imgur.com/F8kJ0FG.jpg">
 
-<img width="400" alt="" src="https://i.imgur.com/F8kJ0FG.jpg">
+>   Note: Make sure the Transform is set to 0,0,0 in the Inspector for the new object. Likewise, make sure it is set to zero for the AR Session and XR Origin GameObjects. 
 
 -   The Inspector should look like this
 
