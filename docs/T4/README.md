@@ -942,7 +942,7 @@ Let’s drag and drop the objects we need.
 
 ### Misc Information
 
-1. MonoBehaviour is the base class from which every Unity script derives. 
+1. MonoBehaviour is the base class from which every Unity script object derives its properties and methods (functions). 
 2. A class enables you to create your custom types by grouping variables of other types, methods, and events. 
 3. The API acronym stands for **Application Programming Interface**, which is a software intermediary that allows two applications to talk to each other.
 4. Software Development Kits (SDKs) allow development for a variety of platforms. They contain the compiler and debugger and usually software frameworks. For example, Unity has the Android SDK, which allows you to build for the Android operating system. 
