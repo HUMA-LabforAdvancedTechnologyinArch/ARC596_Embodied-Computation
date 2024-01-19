@@ -341,7 +341,7 @@ tbody tr:nth-child(odd) th {
 .page-title,
 .post-title,
 .post-title a {
-  color: rgb(0, 151, 181);
+  color: rgb(0, 0, 255);
 }
 .page-title,
 .post-title {
