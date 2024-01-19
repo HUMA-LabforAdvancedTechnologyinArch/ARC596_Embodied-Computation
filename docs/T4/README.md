@@ -582,7 +582,7 @@ A scene needs an AR session to enable [AR processes](https://developers.google.c
 -   **AR Session**: Controls the lifecycle of an AR experience.
 -   **XR Origin**: Transforms AR coordinates into Unity world coordinates.
 
-1. Before adding the new game objects, delete the default **Main Camera**. It will be replaced by a new **AR Camera** in the **XR Origin**.
+1. Before adding the new game objects, delete the default **Main Camera**. It will be replaced by a new **Cmera Offset** in the **XR Origin**.
 
     <img width="400" alt="" src="https://i.imgur.com/urNfYC2.jpg">
 
@@ -878,28 +878,28 @@ _Now we can start the scripting base! The goal for today is to **“Tap and Inst
 
 -   Go to the folder for this tutorial which you downloaded. Select the  **Instantiator.cs** file, drag and drop the script into the _Script_ folder we created in Unity. This is the base script, that we will use to build our application upon.
 
-    <img width="400" alt="" src="https://i.imgur.com/pxuAcQO.jpg">
+    <img width="500" alt="" src="https://i.imgur.com/pxuAcQO.jpg">
 
 -   Make an Empty Game Object and name it_ “Instantiator”. _Here we will assign our Instantiator script, where we manage the instances of the objects we create in the App.
 
-    <img width="400" alt="" src="https://i.imgur.com/BHgvCc3.jpg">
+    <img width="500" alt="" src="https://i.imgur.com/BHgvCc3.jpg">
 
 -   On the **Instantiator** **GameObject**, go to the _Inspector_ and click on **Add Component**. Find and add the **Instantiator** script we imported in the previous steps.
 
-    <img width="600" alt="" src="https://i.imgur.com/loTUPLM.jpg">
+    <img width="500" alt="" src="https://i.imgur.com/loTUPLM.jpg">
 
 >   Note: Always make sure that the Transform Values are set to Zero when creating a new GameObject.
 
 -   We see some defined variables that don’t have any object assigned to them. But first, let’s take a look at the **code.**
 
-    <img width="600" alt="" src="https://i.imgur.com/S6nbhpH.jpg">
+    <img width="500" alt="" src="https://i.imgur.com/S6nbhpH.jpg">
 
 
 ## Overview of the code 
 
 -   To open the script, you can either go to **Assets>Scripts** and double click, or on the **component** itself, and **double click** on the name.
 
-    <img width="600" alt="" src="https://i.imgur.com/WByAdzW.jpg">
+    <img width="500" alt="" src="https://i.imgur.com/WByAdzW.jpg">
 
     <img width="800" alt="" src="https://i.imgur.com/Czw4zBy.jpg">
 
@@ -913,12 +913,14 @@ _E.g. For the Camera, we only need the “Transform” component, to get informa
 
 Let’s drag and drop the objects we need.
 
--   For the** Selected Prefab**, we can put the House Prefab we created , by dragging it from the** Assets>Prefabs** folder we created.
--   For the **AR Camera Transform**, we will drag and drop the** AR Camera GameObject**, which we can find under _XR Origin_ in the Hierarchy.
+-   For the **Selected Prefab**, we can put the House Prefab we created, by dragging it from the **Assets>Prefabs** folder we created.
+-   For the **AR Camera Transform**, we will drag and drop the **Camera Offset**, which we can find under **XR Origin** in the Hierarchy.
 
-    <img width="250" alt="" src="https://i.imgur.com/cL26Yma.jpg">
+    <img width="250" alt="" src="https://i.imgur.com/FyMXSpT.jpg">
 
--   As we saw in the _C# _script, the **House Paren**t, is an empty GameObject that will be the **parent** of all the instances we will create with our taps on the screen. So let’s create an **Empty GameObject** and name it “**HouseParent**” respectively. Then, drag and drop it on the Instantiator Script. _(Important: Make sure the Transform is set to 0,0,0 in the Inspector!)_
+-   As we saw in the C# script, the **House Parent**, is an empty GameObject that will be the **parent** of all the instances we will create with our taps on the screen. So let’s create an **Empty GameObject** and name it **HouseParent**. Then, drag and drop it on the Instantiator Script.
+
+>   Note: Make sure the Transform is set to 0,0,0 in the Inspector for the new object
 
     <img width="400" alt="" src="https://i.imgur.com/F8kJ0FG.jpg">
 
@@ -926,7 +928,10 @@ Let’s drag and drop the objects we need.
 
     <img width="400" alt="" src="https://i.imgur.com/ocgdox5.jpg">
 
--   _**We are ready to build the App and test it!**_
+
+## Build App 
+
+-   We are ready to build the App and test it!
 
     <img width="650" alt="" src="https://i.imgur.com/DQhXQDs.jpg">
 
@@ -935,41 +940,10 @@ Let’s drag and drop the objects we need.
 
 
 
+### Misc Information
 
-
-
-
-
-
-
-
-
-## Build App 
-
-## Android
-
-1. Enable Developer Mode on your Android 
-
-	- Go to the settings on your phone. Settings > About Phone > Build Number (or similar)
-	
-	- To enable developer options, tap the Build Number option 7 times 
-	
-	- Enable USB debugging
-	
-	- Use a USBC Data cable to connect to your computer, as opposed to a power cable. 
-
-
-### Debugging Information
-
-1. MonoBehaviour is the base class from which every Unity script derives. ↑
-2. A class enables you to create your custom types by grouping variables of other types, methods, and events. ↑
-3.  API is the acronym for** Application Programming Interface**, which is a software intermediary that allows two applications to talk to each other.
-
-    ↑
-4.  \= Software Development Kits
-
-    ↑
-5.  Tags help you identify GameObjects for scripting purposes.
-
-    ↑
-6. Plane = two-dimensional surface. A flat surface with no thickness. ↑
+1. MonoBehaviour is the base class from which every Unity script derives. 
+2. A class enables you to create your custom types by grouping variables of other types, methods, and events. 
+3. The API acronym stands for **Application Programming Interface**, which is a software intermediary that allows two applications to talk to each other.
+4. Software Development Kits (SDKs).
+5. Tags help you identify GameObjects for scripting purposes.
