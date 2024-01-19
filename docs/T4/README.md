@@ -922,7 +922,7 @@ Let’s drag and drop the objects we need.
 
 >   Note: Make sure the Transform is set to 0,0,0 in the Inspector for the new object
 
-    <img width="400" alt="" src="https://i.imgur.com/F8kJ0FG.jpg">
+<img width="400" alt="" src="https://i.imgur.com/F8kJ0FG.jpg">
 
 -   The Inspector should look like this
 
