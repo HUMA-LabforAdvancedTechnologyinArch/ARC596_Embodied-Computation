@@ -886,20 +886,20 @@ _Now we can start the scripting base! The goal for today is to **“Tap and Inst
 
 -   On the **Instantiator** **GameObject**, go to the _Inspector_ and click on **Add Component**. Find and add the **Instantiator** script we imported in the previous steps.
 
-    <img width="400" alt="" src="https://i.imgur.com/loTUPLM.jpg">
+    <img width="600" alt="" src="https://i.imgur.com/loTUPLM.jpg">
 
 >   Note: Always make sure that the Transform Values are set to Zero when creating a new GameObject.
 
 -   We see some defined variables that don’t have any object assigned to them. But first, let’s take a look at the **code.**
 
-    <img width="400" alt="" src="https://i.imgur.com/S6nbhpH.jpg">
+    <img width="600" alt="" src="https://i.imgur.com/S6nbhpH.jpg">
 
 
 ## Overview of the code 
 
--   To open the script, you can either go to **the Assets** and double click, or on the **component** itself, and **double click** on the name.
+-   To open the script, you can either go to **Assets>Scripts** and double click, or on the **component** itself, and **double click** on the name.
 
-    <img width="400" alt="" src="https://i.imgur.com/WByAdzW.jpg">
+    <img width="600" alt="" src="https://i.imgur.com/WByAdzW.jpg">
 
     <img width="800" alt="" src="https://i.imgur.com/Czw4zBy.jpg">
 
