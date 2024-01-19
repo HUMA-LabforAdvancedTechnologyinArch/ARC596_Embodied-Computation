@@ -1,5 +1,6 @@
 ---
 title: Tutorials
+layout: listing
 ---
 
-sjhdsjlhfjdshfjdshfjsdhfklhdasflkjhakjs
+inside t1 thats wehre we are sjhdsjlhfjdshfjdshfjsdhfklhdasflkjhakjs

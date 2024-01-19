@@ -6,7 +6,7 @@
     {% for item in site.pages %}
         {% if item.dir == page.dir and item.path != page.path %}
         <li>
-            <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+            <a href="{{ item.url | relative_url }}{{item.title}}">{{ item.title }}</a>
         </li>
         {% endif %}
     {% endfor %}
