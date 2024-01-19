@@ -1,5 +1,5 @@
 ---
-title: Inside 1
+title: Tutorial 2
 ---
 
 ### Session Blocks
