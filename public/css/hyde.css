@@ -92,7 +92,6 @@ a.sidebar-nav-item:focus {
   font-weight: bold;
   text-decoration: none;
   color: rgb(0, 0, 0);
-  background-color: rgb(51, 159, 173);
 }
 
 /* Sticky sidebar
