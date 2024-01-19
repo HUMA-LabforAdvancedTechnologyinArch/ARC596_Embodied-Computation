@@ -165,7 +165,9 @@
 	
 	- To enable developer options, tap the Build Number option 7 times 
 	
-	- Enable USB debugging
+	- Enable USB debugging in Developer Settings
+
+	- In Developer Settings, set the default USB confugation to data transfer 
 	
 	- Use a USBC Data cable to connect to your computer, as opposed to a power cable. 
 
