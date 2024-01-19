@@ -1,3 +1,4 @@
 ---
 title: Tutorials
+layout: listing
 ---
