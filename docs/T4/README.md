@@ -642,11 +642,11 @@ An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@
 -   Now we will go to the Project Window, create a new empty **folder** in our **Assets,** and name it “Prefabs”, to organize our material. (**Right click > Create > Folder**). Then, double click it and go inside the folder.
 
     <img width="650" alt="" src="https://i.imgur.com/seVSYGo.jpg">
-    <img width="500" alt="" src="https://i.imgur.com/LDdo0N4.jpg">
+    <img width="450" alt="" src="https://i.imgur.com/LDdo0N4.jpg">
 
 -   Drag and drop the **AR Default Plane**_GameObject inside the **Prefabs** folder, in order to save it as a _Prefab._ In general, this is an easy way to _create new Prefabs_, after we have edited them as we like in our _Scene._
 
-    <img width="400" alt="" src="https://i.imgur.com/X31UXzS.jpg"> <img width="400" alt="" src="https://i.imgur.com/bFFt0iv.jpg">
+    <img width="450" alt="" src="https://i.imgur.com/X31UXzS.jpg"> <img width="400" alt="" src="https://i.imgur.com/bFFt0iv.jpg">
 
 >   Note: In short, Unity’s **Prefab** system allows you to create, configure, and store a GameObject complete with all its components, property values, and child **GameObjects** as a reusable Asset. The Prefab Asset acts as a template from which you can create new Prefab instances in the **Scene.**\
 [**→ More info about prefabs**](https://docs.unity3d.com/Manual/Prefabs.html)
