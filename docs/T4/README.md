@@ -714,7 +714,7 @@ _**Let’s build the app and see if it works!**_
 2. Configure Project Settings
 	
 	- Open Edit > Project Settings... and click on the XR Plug-in Management section. In the Android tab, enable ARCore.
-    
+
 		<img width="650" alt="" src="https://i.imgur.com/ILVPZQS.jpg">	
 
 3. Configure your phone to run the app
@@ -768,7 +768,7 @@ _**Let’s build the app and see if it works!**_
 
 ### Export file from Rhino 
 
-In _Rhino_, open your desired file. In our case it is the house object. 
+In _Rhino_, open your desired file. In our case it is a house form. 
 
 >   Note: Make sure you file is set to meters in Rhino. 
 
@@ -797,7 +797,7 @@ In _Rhino_, open your desired file. In our case it is the house object.
 
 ### Import file in Unity
 
-First, we will learn how to import our model correctly into _Unity_, adjust its scale and position it correctly. In this example, there is _Rhinoceros_ as a CAD software, but you can use any of your preferred modelling software. Be sure to structure your model according to the materials you want to apply on it later. Unity understands a variety of file types, you can use **OBJ** and export each layer as a separate OBJ file.
+First, we will learn how to import our model correctly into _Unity_, adjust its scale and position it correctly. In this example, _Rhinoceros_ is a common CAD software, but you can use any preferred modeling software. Be sure to structure your model according to the materials you want to apply on it later. Unity understands a variety of file types, you can use **OBJ** and export each layer as a separate OBJ file.
 
 Back in the existing Unity App, go to the Prefab folder we created before in the Assets (Project Window).
 
@@ -826,13 +826,13 @@ Back in the existing Unity App, go to the Prefab folder we created before in the
 
 -   Drag and drop the house Prefab into the Hierarchy. You will now see the object imported in your Scene.
 
--   In the_ Inspector_, make sure that the _Transform, Position and Rotation _are on **0,0,0.**
+-   In the _Inspector_, make sure that the _Transform, Position and Rotation_ are set to **0,0,0.**
 
     <img width="650" alt="" src="https://i.imgur.com/uV27U56.jpg">
 
 -   To check that the _Scale of the model_ we imported is correct. This is 1:1 in physical space. We can compare it with a **1,1,1** cube (1 x 1 x 1 meters) (**Create>3D Object>Cube**). If we see that the Cube is too big or too small, we have to scale our model. It is better to have an object that is small enough to fit in the phone camera.
 
--   To scale our model, we can click on the Prefab once, go to the Inspector, and type in the amount of desired scale (e.g. for this model was 0.001). Click **Apply** on the bottom right.
+-   To scale our model, we can click on the house prefab once, go to the Inspector, and type in the amount of desired scale (e.g. if your model was in milimeters, use 0.001). Click **Apply** on the bottom right.
 
     <img width="450" alt="" src="https://i.imgur.com/mx8lBET.jpg"> <img width="300" alt="" src="https://i.imgur.com/iUhHaGu.jpg">
 
@@ -876,7 +876,7 @@ _Now we can start the scripting base! The goal for today is to **“Tap and Inst
 
 -   In the **Assets**, Create a new empty _Folder_ and name it _“Scripts”._ Here, we will be collecting all of the **C# scripts** we will be using.
 
--   Go to the folder with the material that you downloaded. Go to **Instantiator.cs** Drag and drop the script into the _Script_ folder we created in Unity. This is the base script, that we will use to build our application upon.
+-   Go to the folder for this tutorial which you downloaded. Select the  **Instantiator.cs** file, drag and drop the script into the _Script_ folder we created in Unity. This is the base script, that we will use to build our application upon.
 
     <img width="400" alt="" src="https://i.imgur.com/pxuAcQO.jpg">
 
