@@ -945,5 +945,5 @@ Let’s drag and drop the objects we need.
 1. MonoBehaviour is the base class from which every Unity script derives. 
 2. A class enables you to create your custom types by grouping variables of other types, methods, and events. 
 3. The API acronym stands for **Application Programming Interface**, which is a software intermediary that allows two applications to talk to each other.
-4. Software Development Kits (SDKs).
-5. Tags help you identify GameObjects for scripting purposes.
+4. Software Development Kits (SDKs) allow development for a variety of platforms. They contain the compiler and debugger and usually software frameworks. For example, Unity has the Android SDK, which allows you to build for the Android operating system. 
+5. Tags help you link GameObjects to variables in your scripts.
