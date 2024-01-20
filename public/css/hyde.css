@@ -278,7 +278,7 @@ img.drop-corners-left {
 
 /* Text with linked content */
 .theme-base-0e .content a{
-  color: rgb(0, 151, 181);
+  color: rgb(0, 0, 255);
   text-decoration: none;
 }
 .theme-base-0e .related-posts li a:hover{
