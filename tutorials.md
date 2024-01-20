@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Getting Started
+title: Tutorials
 ---
 
 Here you can find the tutorials for this course. 
