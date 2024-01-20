@@ -2,25 +2,25 @@ menu:
   - title: Home
     url: /
   - title: Course Description
-    url: /coursedescription/
+    url: coursedescription/
   - title: Tutorials
-    url: /tutorials/
+    url: tutorials/
     subfolderitems:
       - page: Tutorial 1
-        url: /_tutorials/Tutorial 1/
+        url: _tutorials/Tutorial 1/
       - page: Tutorial 2
-        url: /_tutorials/Tutorial 2/
+        url: _tutorials/Tutorial 2/
       - page: Tutorial 3
-        url: /_tutorials/Tutorial 3/
+        url: _tutorials/Tutorial 3/
   - title: Getting Started
-    url: /getting_started/
+    url: getting_started/
   - title: Inspiration
-    url: /inspiration/
+    url: inspiration/
   - title: Learning Objectives
-    url: /learningobjectives/
+    url: learningobjectives/
   - title: References
-    url: /references/
+    url: references/
   - title: Schedule
-    url: /schedule/
+    url: schedule/
   - title: Team
-    url: /team/
+    url: team/
