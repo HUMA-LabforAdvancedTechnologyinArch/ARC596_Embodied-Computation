@@ -9,11 +9,10 @@
       <p class="lead" style="color:white;">{{ site.description }}</p>
     </div>
 
-    <p> new side bar 2- </p>
+    <p> new side bar 3 </p>
 
 {% if site.data.site_menu.menu[0] %}
   {% for item in site.data.site_menu.menu %}
-    <h3>{{ item.title }}</h3>
     <a href="{{site.baseurl}}{{item.url}}">{{ item.title }}</a>
       {% if item.subfolderitems[0] %}
         <ul>
@@ -28,7 +27,7 @@
 {% endif %}
 
 
-    <p> old side bar </p>
+    <p> old side bar below </p>
 
 
     <nav class="sidebar-nav">
