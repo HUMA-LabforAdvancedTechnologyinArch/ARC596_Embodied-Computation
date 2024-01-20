@@ -13,7 +13,7 @@ public class MqttReceiver : M2MqttUnityClient
     public string topicPublish = ""; // topic to publish
     public string messagePublish = ""; // message to publish
 
-    private SaveAppSettings saveAppSettingsScript;
+    MqttController mqttcontroller;
 
     public GameObject greenScreenPanel; // Assign this in the Unity Editor
     private float flashDuration = 1.0f; // Duration of the flash
@@ -53,30 +53,20 @@ public class MqttReceiver : M2MqttUnityClient
 
     protected override void Start()
     {
-        base.Start();
-        
-        GameObject firebaseManager = GameObject.Find("Firebase_Manager");
-        if (firebaseManager != null)
-        {
-            saveAppSettingsScript = firebaseManager.GetComponent<SaveAppSettings>();
-            if (saveAppSettingsScript == null)
-            {
-                Debug.LogError("SaveAppSettings script not found on Firebase_Manager.");
-            }
-        }
-        else
-        {
-            Debug.LogError("Firebase_Manager GameObject not found in the scene.");
-        }
-        
-       Connect();
+        base.Start();       
+        Connect();
     }
 
+    void Awake()
+    {
+        mqttcontroller = GetComponent<MqttController>();
+    }
     public void OnConnectButtonClicked()
     {
         if (client != null && client.IsConnected)
     {
-        string topicToSubscribe = saveAppSettingsScript.topicSubscribeInput.text;
+        string topicToSubscribe = mqttcontroller.topicSubscribeInput.text;
+        Debug.Log("topicToSubscribe: " + topicToSubscribe);
 
         // Check if the topic to subscribe is different from the current topic
         if (!string.IsNullOrEmpty(topicToSubscribe) && topicToSubscribe != currentTopic)
@@ -99,9 +89,47 @@ public class MqttReceiver : M2MqttUnityClient
     }
     }
     
+    public void OnSendButtonClicked()
+    {
+
+        if (client != null && client.IsConnected)
+    {
+        
+        string msg = mqttcontroller.yourMessagePublished.text;        
+        Debug.Log("text: " + msg);
+        // Check if the topic to subscribe is different from the current topic
+        if (!string.IsNullOrEmpty(msg))
+        {
+            PublishToTopic(msg);
+        }
+        
+        FlashGreenScreen();
+    }
+    else
+    {
+        Debug.LogError("MQTT client is not connected.");
+    }
+    }
+
+        public void OnPublisherTopicButtonClicked()
+    {
+
+        if (client != null && client.IsConnected)
+    {
+
+        topicPublish = mqttcontroller.topicPublishInput.text;
+
+        FlashGreenScreen();
+    }
+    else
+    {
+        Debug.LogError("MQTT client is not connected.");
+    }
+    }
+
     private void SubscribeToTopic()
 {
-    string topicToSubscribe = saveAppSettingsScript.topicSubscribeInput.text;
+    string topicToSubscribe = mqttcontroller.topicSubscribeInput.text;
     if (!string.IsNullOrEmpty(topicToSubscribe))
     {
         client.Subscribe(new string[] { topicToSubscribe }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
@@ -115,13 +143,28 @@ public class MqttReceiver : M2MqttUnityClient
 
     private void UnsubscribeCurrentTopic()
     {
-         string topicToUnsubscribe = saveAppSettingsScript.topicSubscribeInput.text;
+         string topicToUnsubscribe = mqttcontroller.topicSubscribeInput.text;
         if (!string.IsNullOrEmpty(topicToUnsubscribe))
          {
          client.Unsubscribe(new string[] { topicToUnsubscribe });
          Debug.Log("Unsubscribed from topic: " + topicToUnsubscribe);
           }
         
+    }
+
+    private void PublishToTopic(string msg)
+    {
+        byte [] msgbArray = System.Text.Encoding.UTF8.GetBytes(msg);
+        
+        if (!string.IsNullOrEmpty(msg))
+        {
+            client.Publish(topicPublish, msgbArray);
+            Debug.Log("Published" + msg + " to topic: " + topicPublish);
+        }
+        else
+        {
+            Debug.LogError("Topic to publish is empty.");
+        }
     }
 
     private void FlashGreenScreen()
@@ -140,9 +183,14 @@ public class MqttReceiver : M2MqttUnityClient
     {
         msg = System.Text.Encoding.UTF8.GetString(message);
         Debug.Log("Received: " + msg + " from topic: " + topic);
+        UpdateInputFields(msg);
         StoreMessage(msg);
     }
 
+    public void UpdateInputFields(string msg)
+    {
+        mqttcontroller.yourMessageSubscriced.text = msg;
+    }
     private void StoreMessage(string eventMsg)
     {
         if (eventMessages.Count > 50) eventMessages.Clear();
@@ -152,7 +200,6 @@ public class MqttReceiver : M2MqttUnityClient
     protected override void Update()
     {
         base.Update(); // call ProcessMqttEvents()
-
     }
 
     public void OnDestroy()

@@ -9,32 +9,42 @@ using UnityEngine.Events;
 public class MqttController : MonoBehaviour
 {
     public string nameController = "Controller 1";
-    //public string tagOfTheMQTTReceiver="";
+    public string topic;
     private MqttReceiver _eventSender;
 
-    public SaveAppSettings saveAppSettings;
+    public TMP_InputField topicSubscribeInput;
+    public TMP_InputField topicPublishInput;
+    public TMP_InputField yourMessageSubscriced;
+    public TMP_InputField yourMessagePublished;
+    
+
+
+
+
+    void Awake()
+    {
+        yourMessageSubscriced = GameObject.Find("receivedMessage").GetComponent<TMP_InputField>();
+        yourMessagePublished = GameObject.Find("topicPublish").GetComponent<TMP_InputField>();
+        topicSubscribeInput = GameObject.Find("topicSubscribe").GetComponent<TMP_InputField>();
+        topicPublishInput = GameObject.Find("messagePublish").GetComponent<TMP_InputField>();
+    }
+
 
   void Start()
   {
     _eventSender = GetComponent<MqttReceiver>();
     _eventSender.OnMessageArrived += OnMessageArrivedHandler;
+    
   }
 
   public void OnMessageArrivedHandler(string newMsg)
   {
     Debug.Log("Event Fired. The message, from Object " + nameController +" is = " + newMsg);
-
-    Dictionary<string, string> resultDataDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(newMsg);
-
-    FirebaseManager.Instance.appId = resultDataDict["appId"];
-    FirebaseManager.Instance.apiKey = resultDataDict["apiKey"];
-    FirebaseManager.Instance.databaseUrl = resultDataDict["databaseUrl"];
-    FirebaseManager.Instance.storageBucket = resultDataDict["storageBucket"];
-    FirebaseManager.Instance.projectId = resultDataDict["projectId"];
-
-    saveAppSettings.UpdateInputFields();
-
+    Debug.Log(newMsg);
+    string topic = newMsg;
   }
+
+
   
 }
 
