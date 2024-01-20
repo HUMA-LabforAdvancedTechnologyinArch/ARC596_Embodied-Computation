@@ -3,8 +3,6 @@ layout: page
 title: Inspiration
 ---
 
-### Title
-
 <figure>
   <img src="https://media.revistaad.es/photos/60c7443471da6779ff45a12a/master/w_1600,c_limit/189039.jpg" alt="Macrame sculpture." style="width:560px" class="center">
   <figcaption>Macrame sculpture by artist Aurèlia Muñozs.</figcaption>

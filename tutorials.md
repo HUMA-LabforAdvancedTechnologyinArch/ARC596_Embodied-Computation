@@ -1,8 +1,7 @@
 ---
-layout: default
-title: Tutorials
+layout: page
+title: Getting Started
 ---
-# Tutorials 
 
 Here you can find the tutorials for this course. 
 
