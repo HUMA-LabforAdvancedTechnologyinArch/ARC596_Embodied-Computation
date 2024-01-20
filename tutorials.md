@@ -10,7 +10,7 @@ Here you can find the tutorials for this course.
       {% if item.subfolderitems[0] %}
         {% for entry in item.subfolderitems %}
               
-[{{ entry.page }}]({{site.baseurl}}{{entry.url}}) - {{entry.description}}
+### [{{ entry.page }}]({{site.baseurl}}{{entry.url}}) - {{entry.description}}
              
         {% endfor %}
       {% endif %}
