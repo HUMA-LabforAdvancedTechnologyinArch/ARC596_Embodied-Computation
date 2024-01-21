@@ -6,7 +6,7 @@ from compas_eve import Subscriber
 from compas_eve import Topic
 from compas_eve.mqtt import MqttTransport
 
-topic = Topic("/ARC596_test_topic_here/", Message)
+topic = Topic("/test12/", Message)
 server = MqttTransport("broker.hivemq.com")
 
 for i in range(20):

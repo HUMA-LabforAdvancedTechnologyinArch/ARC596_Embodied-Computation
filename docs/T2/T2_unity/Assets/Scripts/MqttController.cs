@@ -4,7 +4,7 @@ using UnityEngine;
 using Newtonsoft.Json;
 using TMPro;
 using UnityEngine.Events;
-
+using UnityEngine;
 
 public class MqttController : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class MqttController : MonoBehaviour
 
     public TMP_InputField topicSubscribeInput;
     public TMP_InputField topicPublishInput;
-    public TMP_InputField yourMessageSubscriced;
+    public TMP_InputField yourMessageSubscribed;
     public TMP_InputField yourMessagePublished;
     
 
@@ -23,10 +23,10 @@ public class MqttController : MonoBehaviour
 
     void Awake()
     {
-        yourMessageSubscriced = GameObject.Find("receivedMessage").GetComponent<TMP_InputField>();
-        yourMessagePublished = GameObject.Find("topicPublish").GetComponent<TMP_InputField>();
+        yourMessageSubscribed = GameObject.Find("receivedMessage").GetComponent<TMP_InputField>();
+        yourMessagePublished = GameObject.Find("messagePublish").GetComponent<TMP_InputField>();
         topicSubscribeInput = GameObject.Find("topicSubscribe").GetComponent<TMP_InputField>();
-        topicPublishInput = GameObject.Find("messagePublish").GetComponent<TMP_InputField>();
+        topicPublishInput = GameObject.Find("topicPublish").GetComponent<TMP_InputField>();
     }
 
 
@@ -37,13 +37,13 @@ public class MqttController : MonoBehaviour
     
   }
 
-  public void OnMessageArrivedHandler(string newMsg)
+  public void OnMessageArrivedHandler(string msg)
   {
-    Debug.Log("Event Fired. The message, from Object " + nameController +" is = " + newMsg);
-    Debug.Log(newMsg);
-    string topic = newMsg;
+    Dictionary<string, string> resultDataDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(msg);
+    Debug.Log("Event Fired. The message, from Object " + nameController +" is = " + msg);
+    yourMessageSubscribed.text = resultDataDict["result"];    
+    
   }
-
 
   
 }

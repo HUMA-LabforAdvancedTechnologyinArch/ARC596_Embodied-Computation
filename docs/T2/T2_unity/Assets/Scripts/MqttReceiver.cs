@@ -5,22 +5,24 @@ using M2MqttUnity;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using TMPro;
+using Newtonsoft.Json;
+ 
 
 public class MqttReceiver : M2MqttUnityClient
 {
     [Header("MQTT Settings")]
     [Tooltip("Set the topic to publish")]
     public string topicPublish = ""; // topic to publish
-    public string messagePublish = ""; // message to publish
-
+    public string subscribedMessage = "";
     MqttController mqttcontroller;
 
     public GameObject greenScreenPanel; // Assign this in the Unity Editor
-    private float flashDuration = 1.0f; // Duration of the flash
+    private float flashDuration = 0.5f; // Duration of the flash
 
     // Properties and events
     private string m_msg;
     public string msg
+
     {
         get { return m_msg; }
         set
@@ -61,6 +63,10 @@ public class MqttReceiver : M2MqttUnityClient
     {
         mqttcontroller = GetComponent<MqttController>();
     }
+
+/////////////////////// SUBSCRIBER /////////////////////////
+
+//Define the Topic to Listen to
     public void OnConnectButtonClicked()
     {
         if (client != null && client.IsConnected)
@@ -88,59 +94,23 @@ public class MqttReceiver : M2MqttUnityClient
         Debug.LogError("MQTT client is not connected.");
     }
     }
-    
-    public void OnSendButtonClicked()
-    {
 
-        if (client != null && client.IsConnected)
-    {
-        
-        string msg = mqttcontroller.yourMessagePublished.text;        
-        Debug.Log("text: " + msg);
-        // Check if the topic to subscribe is different from the current topic
-        if (!string.IsNullOrEmpty(msg))
-        {
-            PublishToTopic(msg);
-        }
-        
-        FlashGreenScreen();
-    }
-    else
-    {
-        Debug.LogError("MQTT client is not connected.");
-    }
-    }
-
-        public void OnPublisherTopicButtonClicked()
-    {
-
-        if (client != null && client.IsConnected)
-    {
-
-        topicPublish = mqttcontroller.topicPublishInput.text;
-
-        FlashGreenScreen();
-    }
-    else
-    {
-        Debug.LogError("MQTT client is not connected.");
-    }
-    }
-
+//Subscribe to the Topic
     private void SubscribeToTopic()
-{
-    string topicToSubscribe = mqttcontroller.topicSubscribeInput.text;
-    if (!string.IsNullOrEmpty(topicToSubscribe))
-    {
-        client.Subscribe(new string[] { topicToSubscribe }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
-        Debug.Log("Subscribed to topic: " + topicToSubscribe);
-    }
-    else
-    {
-        Debug.LogError("Topic to subscribe is empty.");
-    }
-}
+        {
+            string topicToSubscribe = mqttcontroller.topicSubscribeInput.text;
+            if (!string.IsNullOrEmpty(topicToSubscribe))
+            {
+                client.Subscribe(new string[] { topicToSubscribe }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+                Debug.Log("Subscribed to topic: " + topicToSubscribe);
+            }
+            else
+            {
+                Debug.LogError("Topic to subscribe is empty.");
+            }
+        }
 
+    
     private void UnsubscribeCurrentTopic()
     {
          string topicToUnsubscribe = mqttcontroller.topicSubscribeInput.text;
@@ -152,13 +122,65 @@ public class MqttReceiver : M2MqttUnityClient
         
     }
 
+
+
+/////////////////////// PUBLISHER /////////////////////////
+
+//Define Topic to Publish 
+
+    public void OnPublisherTopicButtonClicked()
+    {
+            if (client != null && client.IsConnected)
+        {
+
+            topicPublish = mqttcontroller.topicPublishInput.text;
+            FlashGreenScreen();
+        }
+        else
+        {
+            Debug.LogError("MQTT client is not connected.");
+        }
+    }
+
+//Publish a Message 
+    public void OnSendButtonClicked()
+    {
+            if (client != null && client.IsConnected)
+        {
+            string msg = mqttcontroller.yourMessagePublished.text;        
+            Debug.Log("text: " + msg);
+            // Check if the topic to subscribe is different from the current topic
+            if (!string.IsNullOrEmpty(msg))
+            {
+                PublishToTopic(msg);
+            }
+            
+            FlashGreenScreen();
+        }
+        else
+        {
+            Debug.LogError("MQTT client is not connected.");
+        }
+    }
+
+    //Publish to the Topic  
     private void PublishToTopic(string msg)
     {
-        byte [] msgbArray = System.Text.Encoding.UTF8.GetBytes(msg);
-        
         if (!string.IsNullOrEmpty(msg))
         {
-            client.Publish(topicPublish, msgbArray);
+            // Create a dictionary with the "result" key and the message text as the value
+            var messageDictionary = new Dictionary<string, string>
+            {
+                { "result", msg }
+            };
+
+            // Convert the dictionary to a JSON string
+            string jsonMessage = JsonConvert.SerializeObject(messageDictionary);
+
+            // Convert the JSON string to bytes
+            byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(jsonMessage);
+
+            client.Publish(topicPublish, jsonBytes, MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
             Debug.Log("Published" + msg + " to topic: " + topicPublish);
         }
         else
@@ -166,6 +188,10 @@ public class MqttReceiver : M2MqttUnityClient
             Debug.LogError("Topic to publish is empty.");
         }
     }
+   
+
+    
+/////// Functionalities //////
 
     private void FlashGreenScreen()
     {
@@ -178,23 +204,17 @@ public class MqttReceiver : M2MqttUnityClient
         greenScreenPanel.SetActive(false); // Hide the green screen
     }
     
-
     protected override void DecodeMessage(string topic, byte[] message)
     {
+        // var jsonResult = JsonConvert.DeserializeObject<JsonResult>(System.Text.Encoding.UTF8.GetString(message));
+        // //var jsonResult = JsonConvert.DeserializeObject<JsonResult>(System.Text.Encoding.UTF8.GetString(message));
+        // // Access the "result" value directly
+        // msg = jsonResult.result;
+        // Debug.Log("Received: " + msg + " from topic: " + topic);
         msg = System.Text.Encoding.UTF8.GetString(message);
-        Debug.Log("Received: " + msg + " from topic: " + topic);
-        UpdateInputFields(msg);
-        StoreMessage(msg);
-    }
-
-    public void UpdateInputFields(string msg)
-    {
-        mqttcontroller.yourMessageSubscriced.text = msg;
-    }
-    private void StoreMessage(string eventMsg)
-    {
-        if (eventMessages.Count > 50) eventMessages.Clear();
-        eventMessages.Add(eventMsg);
+        // var jsonResult = JsonConvert.DeserializeObject<JsonResult>(System.Text.Encoding.UTF8.GetString(message));
+        // string newmsg = jsonResult.result;
+        //UpdateInputFields(newmsg);
     }
 
     protected override void Update()
@@ -206,4 +226,9 @@ public class MqttReceiver : M2MqttUnityClient
         {
             Disconnect();
         }
+
+public class JsonResult
+{
+    public string result { get; set; }
+}
 }
