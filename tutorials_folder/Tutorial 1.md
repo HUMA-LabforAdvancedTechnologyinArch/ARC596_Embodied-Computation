@@ -1,4 +1,4 @@
-### Tutorial 1
+# Tutorial 1
 
 - ARC596: Embodied Computation
 - Professor: Daniela Mitterberger - mitterberger@princeton.edu
