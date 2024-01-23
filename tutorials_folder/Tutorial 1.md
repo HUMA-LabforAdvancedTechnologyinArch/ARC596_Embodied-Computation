@@ -1,5 +1,3 @@
-# ARC596 - Tutorial 1 - Installation Guide
-
 - ARC596: Embodied Computation
 - Professor: Daniela Mitterberger - mitterberger@princeton.edu
 - Assistant Instructor: Kirill Volchinskiy - kvolchinskiy@princeton.edu
