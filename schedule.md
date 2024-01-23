@@ -146,7 +146,7 @@ title: Schedule
     * Novel visualization tools for embodied computational design.
 * Writing a final report/paper at publication level
   
-* ### Week 10 - 04.03.2024
+* ##### Week 10 - 04.03.2024
     * ### Submission exercise 4: Paper progress - Introduction and state of the art
 
 ### Week 11 -  04.10.2024
