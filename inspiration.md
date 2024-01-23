@@ -14,7 +14,7 @@ title: Inspiration
 </figure>
 
 <figure>
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=v01aec0AQdg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 5px;"></iframe>
+<iframe width="560" height="315" src="[https://www.youtube.com/watch?v=v01aec0AQdg](https://youtu.be/v01aec0AQdg?si=K_hvE6ox3Wi_DaWM)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 5px;"></iframe>
 <figcaption>Playing Models Day 2 Presentation 06 - Daniela Mitterberger: Workmanship of Synthesis</figcaption>
 </figure>
 
