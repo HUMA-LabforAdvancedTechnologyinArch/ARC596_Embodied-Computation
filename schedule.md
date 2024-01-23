@@ -161,27 +161,27 @@ Submission exercise 5 - Week 10 - 04.03.2024
 * Paper progress - Introduction and state of the art
 ```
 ```
-#### Submission exercise 6 - Week 11 -  04.10.2024
+Submission exercise 6 - Week 11 -  04.10.2024
 * Paper progress - Methods 
 ```
 ```
-#### Submission exercise 7 - Week 12 -  04.17.2024
+Submission exercise 7 - Week 12 -  04.17.2024
 * Paper progress: Results + conclusion
 ```
 ```
-#### Week 13 -  04.24.2024
+Week 13 -  04.24.2024
 * Finals
 ```
 ```
-#### 04.29 - 05.06.2024
+04.29 - 05.06.2024
 * supplementary correction meetings for paper during this period
 ```
 ```
-#### 05.07.2024
+05.07.2024
 * Final submission of paper and project
 ```
 ```
-#### 05.07.2024
+05.07.2024
 * Graduate Course Grades Due
 ```
 
