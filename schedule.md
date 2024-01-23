@@ -56,9 +56,9 @@ title: Schedule
 * Introduction to Eventprogramming
 15:15 - 16:20
 * Hands-on coding exercise 2: Make your first Unity scene
-
-> -** Submission exercise 1**
-    present papers in 5 min
+```
+Submission exercise 1: present papers in 5 min
+```
 
 
 ### Week 3 - 02.14.2024
@@ -69,9 +69,10 @@ title: Schedule
 * using of ARCore and ARFoundation
 15:15 - 16:20
 * Hands-on coding exercise 3: Compile your first phone-based AR app visualizing your own geometry.
-#### Submission exercise 2: 
-* Phone app that instantiates personalized geometry
-
+```
+Submission exercise 2: 
+Phone app that instantiates personalized geometry
+```
 
 ### Week 4 - 02.21.2024
 #### Coding for Embodied Computation: Create your own interface
@@ -81,9 +82,10 @@ title: Schedule
 * Hands-on coding exercise 4: Compile your first app using multiple geometries
 15:15 - 16:20
 * Desk crits on project ideas
-#### Submission exercise 3: 
+```
+Submission exercise 3: 
 * Phone app that instantiates personalized geometry and has a personalized interface
-
+```
 
 ### Week 5 - 02.28.2024
 #### Coding for Embodied Computation: Immersive environment space
@@ -95,9 +97,10 @@ title: Schedule
 * Hands-on coding exercise 6: Build your own digital landscape
 15:15 - 16:20
 * Desk crits on project ideas
-#### Submission exercise 4: 
+```
+Submission exercise 4: 
 * Phone app that communicates with GH and vice versa
-
+```
 
 ### Week 6 - 03.06.2024
 #### Coding for Embodied Computation: Communication protocols (MQTT)
@@ -125,9 +128,10 @@ title: Schedule
 * Hands-on coding exercise 3: ROS in Unity, sending and receiving.
 15:15 - 16:20
 * Desk crits on project ideas
-#### Midterm: 
+```
+Midterm: 
 * presentation progress final project concept + app development
-
+```
 
 ### Week 9 - 03.27.2024
 #### Coding for Embodied Computation: Communication protocols (ROS)
@@ -137,9 +141,10 @@ title: Schedule
 * Hands-on coding exercise 3: ROS in Unity, sending and receiving.
 15:15 - 16:20
 * Desk crits on project
-#### Paper progress: 
+```
+Paper progress: 
 * Introduction and state of the art
-
+```
 
 ### Week 10-13 - 04.03.2024, 04.10.2024, 04.17.2024, 04.24.2024
 #### Coding for Embodied Computation: CompasXR: Unity App with Menu and Visualization menu
@@ -151,27 +156,34 @@ title: Schedule
     * New design strategies with AR
     * Novel visualization tools for embodied computational design.
 * Writing a final report/paper at publication level
-  
-#### Submission exercise 5 - Week 10 - 04.03.2024
+```
+Submission exercise 5 - Week 10 - 04.03.2024
 * Paper progress - Introduction and state of the art
-
+```
+```
 #### Submission exercise 6 - Week 11 -  04.10.2024
 * Paper progress - Methods 
-
+```
+```
 #### Submission exercise 7 - Week 12 -  04.17.2024
 * Paper progress: Results + conclusion
-
+```
+```
 #### Week 13 -  04.24.2024
 * Finals
-
+```
+```
 #### 04.29 - 05.06.2024
 * supplementary correction meetings for paper during this period
-
+```
+```
 #### 05.07.2024
 * Final submission of paper and project
-
+```
+```
 #### 05.07.2024
 * Graduate Course Grades Due
+```
 
 #### Assessment:
 * Paper In Lieu Of Final Exam 30%
