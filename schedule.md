@@ -48,7 +48,6 @@ title: Schedule
 * Hands-on exercise 1: Drawing up computational workflows, installing of required software
 
 
-
 ### Week 2 - 02.07.2024
 #### Coding for Embodied Computation: Unity introduction
 13:30 - 15:00
@@ -58,7 +57,8 @@ title: Schedule
 15:15 - 16:20
 * Hands-on coding exercise 2: Make your first Unity scene
 #### Submission exercise 1
-* present papers in 5 min
+    present papers in 5 min
+
 
 ### Week 3 - 02.14.2024
 #### Coding for Embodied Computation: First AR app
