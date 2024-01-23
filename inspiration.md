@@ -4,7 +4,7 @@ title: Inspiration
 ---
 
 <figure>
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=DsYxWn8pMG0&t=3s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 5px;"></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DsYxWn8pMG0?si=r7NYUjuKjWNhOvio" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 <figcaption>Mueller, Seufert, Peng, Kovacs, Reuss, Guimbretière, and Baudisch. 2019. FormFab: Continuous Interactive Fabrication. In Proceedings of the Thirteenth International Conference on Tangible, Embedded, and Embodied Interaction (TEI '19). Association for Computing Machinery, New York, NY, USA, 315–323. https://doi.org/10.1145/3294109.3295620</figcaption>
   
 </figure>
