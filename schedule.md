@@ -58,7 +58,7 @@ title: Schedule
 15:15 - 16:20
 * Hands-on coding exercise 2: Make your first Unity scene
 
-####Submission exercise 1
+#### Submission exercise 1
 * present papers in 5 min
 
 ### Week 3 - 02.14.2024
