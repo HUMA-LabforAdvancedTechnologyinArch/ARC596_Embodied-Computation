@@ -7,33 +7,31 @@ title: Schedule
 
 | Date  | Time        | Week    | Topic                                                                                         |
 |-------|-------------|---------|-----------------------------------------------------------------------------------------------|
-| 01.30 | 13:30-15:00 | 1       |  Theoretical introduction to Augmented Reality and Human Machine Collaboration                                            |
-|       | 15:15-16:20 |         |  Hands-on exercise T1: Installation Party                                                                         |
-| 02.07 | 13:30-15:00 | 2       |  Coding for Embodied Computation: Unity Introduction                              |
-|       | 15:15-16:20 |         |  Hands-on coding exercise T2: First Unity File                                                                |
-| 02.14 | 13:30-15:00 | 3       |  Coding for Embodied Computation: Communication protocols (ROS)                               |
-|       | 15:15-16:20 |         |  Hands-on coding exercise 3                                                                   |
-| 02.21 | 13:30-15:00 | 4       |  Coding for Embodied Computation: First Unity App                                             |
+| 01.30 | 13:30-15:00 | 1       |  Theoretical introduction to Augmented Reality and Human Machine Collaboration                |
+|       | 15:15-16:20 |         |  Hands-on exercise T1: Installation Party                                                     |
+| 02.07 | 13:30-15:00 | 2       |  Coding for Embodied Computation: Unity Introduction                                          |
+|       | 15:15-16:20 |         |  Hands-on coding exercise T2: First Unity File                                                |
+| 02.14 | 13:30-15:00 | 3       |  Coding for Embodied Computation: Unity AR App                                                |
+|       | 15:15-16:20 |         |  Hands-on coding exercise T3: Build your own Ar app                                           |
+| 02.21 | 13:30-15:00 | 4       |  Coding for Embodied Computation: Create your own interface                                   |
 |       | 15:15-16:20 |         |  Desk crits on project ideas                                                                  |
-| 02.28 | 13:30-15:00 | 5       |  Coding for Embodied Computation: First Unity App                                             |
+| 02.28 | 13:30-15:00 | 5       |  Coding for Embodied Computation: Build your own digital landscape                            |
 |       | 15:15-16:20 |         |  Desk crits on project ideas                                                                  |
-| 03.06 | 13:30-15:00 | 6       |  Coding for Embodied Computation: First Unity App – Canvas                                    |
+| 03.06 | 13:30-15:00 | 6       |  Coding for Embodied Computation: Communication protocols (MQTT)                              |
 |       | 15:15-16:20 |         |  Desk crits on project ideas                                                                  |
 | 03.13 | 13:30-15:00 | 7       |  Recess                                                                                       |
 |       | 15:15-16:20 |         |  Recess                                                                                       |
-| 03.20 | 13:30-15:00 | 8       |  Coding for Embodied Computation: First Unity App – Linking Grasshopper to Unity              |
+| 03.20 | 13:30-15:00 | 8       |  Coding for Embodied Computation: Communication protocols (MQTT)                              |
 |       | 15:15-16:20 |         |  Desk crits on project ideas                                                                  |
-| 03.27 | 13:30-15:00 | 9       |  Coding for Embodied Computation: Building your first App                                     |
+| 03.27 | 13:30-15:00 | 9       |  Coding for Embodied Computation: CompasXR: Unity App with Menu and Visualization menu        |
 |       | 15:15-16:20 |         |  Desk crits on project ideas                                                                  |
 | 04.03 | 13:30-15:00 | 10      |  Project-based development                                                                    |
 |       | 15:15-16:20 |         |  Project specific work assist                                                                 |
-| 04.03 | 13:30-15:00 | 11      |  Project-based development                                                                    |
+| 04.10 | 13:30-15:00 | 11      |  Project-based development                                                                    |
 |       | 15:15-16:20 |         |  Project specific work assist                                                                 |
-| 04.10 | 13:30-15:00 | 12      |  Project-based development                                                                    |
+| 04.17 | 13:30-15:00 | 12      |  Project-based development                                                                    |
 |       | 15:15-16:20 |         |  Project specific work assist                                                                 |
-| 04.17 | 13:30-15:00 | 13      |  Project-based development                                                                    |
-|       | 15:15-16:20 |         |  Project specific work assist                                                                 |
-| 04.24 | 13:30-15:00 | 14      |  Project-based development                                                                    |
+| 04.24 | 13:30-15:00 | 13      |  Project-based development                                                                    |
 |       | 15:15-16:20 |         |  Project specific work assist                                                                 |
 
 
@@ -86,7 +84,7 @@ Submission exercise 3: Phone app that instantiates personalized geometry and has
 ```
 
 ### Week 5 - 02.28.2024
-#### Coding for Embodied Computation: Immersive environment space
+#### Coding for Embodied Computation: Digital landscape
 13:30 - 15:00
 * Introduction to C# for architectural applications
 * Introduction to Menu and Visualization script
