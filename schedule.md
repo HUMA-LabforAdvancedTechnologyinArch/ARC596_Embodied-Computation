@@ -126,7 +126,7 @@ Submission exercise 4: Phone app that communicates with GH and vice versa
 13:30 - 15:00
 * Python for architectural applications
 * Introduction to different communication protocols: ROS
-* Hands-on coding exercise 3: ROS in Unity, sending and receiving.
+* Hands-on coding exercise 7: ROS in Unity, sending and receiving.
   
 15:15 - 16:20
 * Desk crits on project ideas
