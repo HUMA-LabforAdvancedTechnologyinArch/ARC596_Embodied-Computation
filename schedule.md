@@ -21,11 +21,11 @@ title: Schedule
 |       | 15:15-16:20 |         |  Desk crits on project ideas                                                                  |
 | 03.13 | 13:30-15:00 | 7       |  Recess                                                                                       |
 |       | 15:15-16:20 |         |  Recess                                                                                       |
-| 03.20 | 13:30-15:00 | 8       |  Coding for Embodied Computation: Communication protocols (ROS)                              |
+| 03.20 | 13:30-15:00 | 8       |  Coding for Embodied Computation: Communication protocols (ROS)                               |
 |       | 15:15-16:20 |         |  Desk crits on project ideas                                                                  |
 | 03.27 | 13:30-15:00 | 9       |  Coding for Embodied Computation: CompasXR: Unity App with Menu and Visualization menu        |
 |       | 15:15-16:20 |         |  Desk crits on project ideas                                                                  |
-| 04.03 | 13:30-15:00 | 10      |  Coding for Embodied Computation: CompasXR: Unity App with Menu and Visualization menu                                                                     |
+| 04.03 | 13:30-15:00 | 10      |  Coding for Embodied Computation: CompasXR: Unity App with Menu and Visualization menu        |
 |       | 15:15-16:20 |         |  Project specific work assist                                                                 |
 | 04.10 | 13:30-15:00 | 11      |  Project-based development                                                                    |
 |       | 15:15-16:20 |         |  Project specific work assist                                                                 |
@@ -90,7 +90,7 @@ Submission exercise 3: Phone app that instantiates personalized geometry and has
 * Introduction to Menu and Visualization script
 * Introduction of raycast
 * Introduction to colliders
-* Hands-on coding exercise 6: Build your own digital landscape
+* Hands-on coding exercise 5: Build your own digital landscape
 15:15 - 16:20
 * Desk crits on project ideas
 ```
@@ -116,7 +116,7 @@ Submission exercise 4: Phone app that communicates with GH and vice versa
 
 
 ### Week 8 - 03.20.2024
-#### Coding for Embodied Computation: Communication protocols (MQTT)
+#### Coding for Embodied Computation: Communication protocols (ROS)
 13:30 - 15:00
 * Python for architectural applications
 * Introduction to different communication protocols: ROS
@@ -127,19 +127,7 @@ Submission exercise 4: Phone app that communicates with GH and vice versa
 Midterm: presentation progress final project concept + app development
 ```
 
-### Week 9 - 03.27.2024
-#### Coding for Embodied Computation: Communication protocols (ROS)
-13:30 - 15:00
-* Python for architectural applications
-* Introduction to different communication protocols: ROS
-* Hands-on coding exercise 3: ROS in Unity, sending and receiving.
-15:15 - 16:20
-* Desk crits on project
-```
-Paper progress: Introduction and state of the art
-```
-
-### Week 10-13 - 04.03.2024, 04.10.2024, 04.17.2024, 04.24.2024
+### Week 9, 10 - 03.27.2024, 04.03.2024
 #### Coding for Embodied Computation: CompasXR: Unity App with Menu and Visualization menu
 13:30 - 16:20
 * Project specific work assistance
@@ -153,6 +141,13 @@ Paper progress: Introduction and state of the art
 Submission exercise 5 - Week 10 - 04.03.2024
 Paper progress - Introduction and state of the art
 ```
+
+### Week 11-13 - 04.03.2024, 04.10.2024, 04.17.2024, 04.24.2024
+#### Coding for Embodied Computation: CompasXR: Unity App with Menu and Visualization menu
+13:30 - 16:20
+* Project specific work assistance
+* Writing a final report/paper at publication level
+
 ```
 Submission exercise 6 - Week 11 -  04.10.2024
 Paper progress - Methods 
