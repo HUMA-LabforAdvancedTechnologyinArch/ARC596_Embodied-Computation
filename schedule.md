@@ -42,6 +42,7 @@ title: Schedule
 * Introduction to an adaptive workflow
 * Introduction to communication protocols
 * Group formation
+  
 15:15 - 16:20
 * Hands-on exercise 1: Drawing up computational workflows, installing of required software
 
@@ -52,6 +53,7 @@ title: Schedule
 * Introduction to Unity for architectural applications:
 * Overview on Unity Interface, Gameobjects, components and Prefabs
 * Introduction to Eventprogramming
+
 15:15 - 16:20
 * Hands-on coding exercise 2: Make your first Unity scene
 ```
@@ -65,6 +67,7 @@ Submission exercise 1: present papers in 5 min
 * C# for architectural applications
 * Making of a first AR file in Unity
 * using of ARCore and ARFoundation
+  
 15:15 - 16:20
 * Hands-on coding exercise 3: Compile your first phone-based AR app visualizing your own geometry.
 ```
@@ -77,6 +80,7 @@ Submission exercise 2: Phone app that instantiates personalized geometry
 * Introduction to C# for architectural applications
 * Introduction to Unity Canvas and Buttons
 * Hands-on coding exercise 4: Compile your first app using multiple geometries
+
 15:15 - 16:20
 * Desk crits on project ideas
 ```
@@ -91,6 +95,7 @@ Submission exercise 3: Phone app that instantiates personalized geometry and has
 * Introduction of raycast
 * Introduction to colliders
 * Hands-on coding exercise 5: Build your own digital landscape
+
 15:15 - 16:20
 * Desk crits on project ideas
 ```
@@ -103,6 +108,7 @@ Submission exercise 4: Phone app that communicates with GH and vice versa
 * Python for architectural applications
 * Introduction to different communication protocols: MQTT and ROS
 * Hands-on coding exercise 6: MQTT and sending and receiving from Rhinoceros to Unity
+
 15:15 - 16:20
 * Desk crits on project ideas
 
@@ -121,6 +127,7 @@ Submission exercise 4: Phone app that communicates with GH and vice versa
 * Python for architectural applications
 * Introduction to different communication protocols: ROS
 * Hands-on coding exercise 3: ROS in Unity, sending and receiving.
+  
 15:15 - 16:20
 * Desk crits on project ideas
 ```
