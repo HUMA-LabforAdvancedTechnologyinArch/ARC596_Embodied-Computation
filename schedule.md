@@ -21,11 +21,11 @@ title: Schedule
 |       | 15:15-16:20 |         |  Desk crits on project ideas                                                                  |
 | 03.13 | 13:30-15:00 | 7       |  Recess                                                                                       |
 |       | 15:15-16:20 |         |  Recess                                                                                       |
-| 03.20 | 13:30-15:00 | 8       |  Coding for Embodied Computation: Communication protocols (MQTT)                              |
+| 03.20 | 13:30-15:00 | 8       |  Coding for Embodied Computation: Communication protocols (ROS)                              |
 |       | 15:15-16:20 |         |  Desk crits on project ideas                                                                  |
 | 03.27 | 13:30-15:00 | 9       |  Coding for Embodied Computation: CompasXR: Unity App with Menu and Visualization menu        |
 |       | 15:15-16:20 |         |  Desk crits on project ideas                                                                  |
-| 04.03 | 13:30-15:00 | 10      |  Project-based development                                                                    |
+| 04.03 | 13:30-15:00 | 10      |  Coding for Embodied Computation: CompasXR: Unity App with Menu and Visualization menu                                                                     |
 |       | 15:15-16:20 |         |  Project specific work assist                                                                 |
 | 04.10 | 13:30-15:00 | 11      |  Project-based development                                                                    |
 |       | 15:15-16:20 |         |  Project specific work assist                                                                 |
