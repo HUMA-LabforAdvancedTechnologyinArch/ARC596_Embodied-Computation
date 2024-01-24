@@ -13,6 +13,7 @@ public class MqttReceiver : M2MqttUnityClient
     [Header("MQTT Settings")]
     [Tooltip("Set the topic to publish")]
     public string topicPublish = ""; // topic to publish
+    public string subscribedMessage = "";
     MqttController mqttcontroller;
 
     public GameObject greenScreenPanel; // Assign this in the Unity Editor
@@ -205,8 +206,15 @@ public class MqttReceiver : M2MqttUnityClient
     
     protected override void DecodeMessage(string topic, byte[] message)
     {
+        // var jsonResult = JsonConvert.DeserializeObject<JsonResult>(System.Text.Encoding.UTF8.GetString(message));
+        // //var jsonResult = JsonConvert.DeserializeObject<JsonResult>(System.Text.Encoding.UTF8.GetString(message));
+        // // Access the "result" value directly
+        // msg = jsonResult.result;
+        // Debug.Log("Received: " + msg + " from topic: " + topic);
         msg = System.Text.Encoding.UTF8.GetString(message);
-        StoreMessage(msg);
+        // var jsonResult = JsonConvert.DeserializeObject<JsonResult>(System.Text.Encoding.UTF8.GetString(message));
+        // string newmsg = jsonResult.result;
+        //UpdateInputFields(newmsg);
     }
 
     protected override void Update()
@@ -219,5 +227,8 @@ public class MqttReceiver : M2MqttUnityClient
             Disconnect();
         }
 
-
+public class JsonResult
+{
+    public string result { get; set; }
+}
 }

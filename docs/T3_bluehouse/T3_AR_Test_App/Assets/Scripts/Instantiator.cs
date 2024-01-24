@@ -12,8 +12,6 @@ public class Instantiator : MonoBehaviour
     public Transform arCameraTransform;
     
     private ARRaycastManager rayManager;
-
-    public 
     List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     void Start()
