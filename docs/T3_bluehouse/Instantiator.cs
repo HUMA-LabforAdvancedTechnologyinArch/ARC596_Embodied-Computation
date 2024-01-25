@@ -4,113 +4,98 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.XR.ARCore;
-using UnityEngine.EventSystems;
 
 public class Instantiator : MonoBehaviour
 {
+    public GameObject selectedPrefab;
+    private GameObject instantiatedObject;
+    public Transform arCameraTransform;
 
-    /// <summary>
-    /// -----------------------------------------------
-    /// The Instantiator Script generates all the objects according to the user input.
-    ///
-    /// -----------------------------------------------
-    /// Mode 0 = default = Add one object with each tap -- single tap 
-    /// 
-    /// Mode 1 =**To be Added in Day 2 and 3
-    /// Mode 2 =**To be Added in Day 2 and 3
-    /// Mode 3 =**To be Added in Day 2 and 3
-    /// </summary>
-
-    //1. Variables
-    public GameObject selected_prefab; //we declare it as public to have a default prefab
-
-    public Transform arCameraTransform; //we use the position to make the objects look at the camera
-    public GameObject houseParent; //house prefab parent 
-
-    private int mode = 0; //placing a default value as 0 , we will later add more "modes"
-    private GameObject ARObject_new;  // this will be the Instantiated Object name
-
-    //raycast related variables here
     private ARRaycastManager rayManager;
+    List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        //find the Raycast manager in the script in order to use it to acquire data
         rayManager = FindObjectOfType<ARRaycastManager>();
     }
 
-
-    // Update is called once per frame
     void Update()
     {
-        _InstantiateOnTouch();
+        InstantiateOnTouch();
+        PinchToZoom(instantiatedObject);
     }
 
-
-    private void _InstantiateOnTouch()
+    private void HandleMode()
     {
 
-        if (Input.touchCount != 0)
+        Debug.Log("***MODE 0***");
+        Touch touch = Input.GetTouch(0);
+
+        // Handle finger movements based on TouchPhase
+        switch (touch.phase)
         {
-            _PlaceInstant(houseParent); //houseParent = the GameObject where the House will be Instantiated
+            case TouchPhase.Began:
+                InstantiateOnTouch();
+                break; //break: If this case is true, it will not check the other ones. More computational efficiency, 
 
+            case TouchPhase.Moved:
+
+                if (Input.touchCount == 2)
+                {
+                    PinchToZoom(instantiatedObject);
+                }
+                break;
+
+            case TouchPhase.Ended:
+                Debug.Log("Touch Phase Ended.");
+                break;
         }
+
     }
-    private void _PlaceInstant(GameObject parentGameObject)
+
+    void InstantiateOnTouch()
     {
-        Touch touch;
-        touch = Input.GetTouch(0);
+        // Check if there is existing touch.
+        if (Input.touchCount == 0)
+            return;
+
+        Touch touch = Input.GetTouch(0);
         if (Input.touchCount == 1 && touch.phase != TouchPhase.Began)
 
         {
             Debug.Log("Single Touch");
 
-
-            List<ARRaycastHit> hits = new List<ARRaycastHit>();
-            rayManager.Raycast(touch.position, hits);
-            if (hits.Count > 0)
+            // Check if the raycast hit any trackables.
+            if (rayManager.Raycast(Input.GetTouch(0).position, hits, TrackableType.PlaneWithinPolygon))
             {
+                // Raycast hits are sorted by distance, so the first hit means the closest.
+                var hitPose = hits[0].pose;
 
-                if ((hits[0].hitType & TrackableType.Planes) != 0) //if our touch hits a scanned plane, it instantiates an object
+                // Check if there is already spawned object. If there is none, instantiated the prefab.
+                if (instantiatedObject == null)
                 {
-                    Debug.Log("HIT TYPE = " + hits[0].hitType);
-
-                    if (mode == 0) //default mode
-                    {
-                        Debug.Log("mode 0");
-                        Destroy(ARObject_new); //destroys the previous object in every frame
-                    }
-
-                    // You can instantiate a 3D object here if you haven't set Raycast Prefab in the scene.
-                    ARObject_new = Instantiate(selected_prefab, hits[0].pose.position, hits[0].pose.rotation);
-                    ARObject_new.transform.SetParent(parentGameObject.transform);  //Place the GameObject in the correct GameObject folder
-
-                    //transform object to Look at our phone camera
-                    Vector3 cameraPosition = arCameraTransform.position;
-                    cameraPosition.y = hits[0].pose.position.y;
-                    ARObject_new.transform.LookAt(cameraPosition, ARObject_new.transform.up);
-
-                    //create AR Anchor for each instantiated object
-                    if (ARObject_new.GetComponent<ARAnchor>() == null)
-                    {
-                        Debug.Log("Anchor created");
-                        ARObject_new.AddComponent<ARAnchor>();
-                    }
+                    instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation);
                 }
+                else
+                {
+                    // Change the spawned object position and rotation to the touch position.
+                    instantiatedObject.transform.position = hitPose.position;
+                    instantiatedObject.transform.rotation = hitPose.rotation;
+                }
+
+                // To make the spawned object always look at the camera. Delete if not needed.
+                Vector3 lookPos = Camera.main.transform.position - instantiatedObject.transform.position;
+                lookPos.y = 0;
+                instantiatedObject.transform.rotation = Quaternion.LookRotation(lookPos);
             }
         }
     }
-    private void _PinchtoZoom(GameObject objectToZoom)
 
-    //scale using pinch involves 2 touches
-    // we count both the touches, store them and measure the distance between pinch
-    // and scale depending on the pinch distance
+
+    void PinchToZoom(GameObject objectToZoom)
     {
         if (Input.touchCount == 2)
         {
-            Debug.Log("Double Touch");
             var touchZero = Input.GetTouch(0);
             var touchOne = Input.GetTouch(1);
 
@@ -126,15 +111,11 @@ public class Instantiator : MonoBehaviour
             float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
             float pinchAmount = deltaMagnitudeDiff * -0.02f * Time.deltaTime;
 
-            Debug.Log("Scaling Initialized");
-            Debug.Log(objectToZoom);
-            //scale according to pinch amount
+            // Scale according to pinch amount
             objectToZoom.transform.localScale += new Vector3(pinchAmount, pinchAmount, pinchAmount);
 
-            // add rotation according to pinch position
-            objectToZoom.transform.Rotate(Vector3.up * 40f * Time.deltaTime * touchZero.deltaPosition.x, Space.Self);
+            // Add rotation according to pinch position
+            //objectToZoom.transform.Rotate(Vector3.up * 40f * Time.deltaTime * touchZero.deltaPosition.x, Space.Self);
         }
     }
-
-
 }
