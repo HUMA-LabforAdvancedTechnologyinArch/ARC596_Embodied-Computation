@@ -1,382 +1,434 @@
+# Guide 02
 
-# ARC596 - Tutorial 3 - Unity AR App
+![](<../.gitbook/assets/0 (2)>)
 
+Day 2
 
-# Create an AR Test App
+27/10/2021
 
--   Open the file you created when following the **Installation Guide** using _Unity Hub_ on your computer or use the animation app you just made and delete the existing GameObjects.
+### Useful Links <a href="_toc86159639" id="_toc86159639"></a>
 
->   Note: Be sure that the AR dependencies are installed per the prior section of this tutorial. 
+[→ Unity Manual](https://docs.unity3d.com/Manual/index.html)
 
-## Configure an AR session and add AR Foundation components 
+[→ More Information on execution order of events in unity](https://docs.unity3d.com/Manual/ExecutionOrder.html)
 
-A scene needs an AR session to enable [AR processes](https://developers.google.com/ar/discover/concepts), such as motion tracking, environmental understanding, and lighting estimation. You will need the following game objects to support an AR session:
+[→ More information about AR Foundation](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.2/manual/index.html)
 
--   **AR Session**: Controls the lifecycle of an AR experience.
--   **XR Origin**: Transforms AR coordinates into Unity world coordinates.
+[→ Unity Scripting API](https://docs.unity3d.com/ScriptReference/)
 
-1. Before adding the new game objects, delete the default **Main Camera**. It will be replaced by a new **Camera Offset** in the **XR Origin**.
+_Scenes: _[_https://docs.unity3d.com/Manual/CreatingScenes.html_](https://docs.unity3d.com/Manual/CreatingScenes.html)
 
-    <img width="400" alt="" src="https://i.imgur.com/urNfYC2.jpg">
+_Game Objects: _[_https://docs.unity3d.com/ScriptReference/GameObject.html_](https://docs.unity3d.com/ScriptReference/GameObject.html)
 
-2. Add the new AR game objects to your scene: right-click the **Hierarchy** pane and select **XR**. Add a new **AR Session** and a new **XR Origin (Mobile AR)** game object.
+_Prefabs: _[_https://docs.unity3d.com/Manual/Prefabs.html_](https://docs.unity3d.com/Manual/Prefabs.html)
 
-    <img width="400" alt="" src="https://i.imgur.com/mTj3aiM.png">
+_Packages: _[_https://docs.unity3d.com/Manual/PackagesList.html_](https://docs.unity3d.com/Manual/PackagesList.html)
 
-**What is a Session?**
+### Unity Interface <a href="_toc86157731" id="_toc86157731"></a>
 
-All [AR processes](https://developers.google.com/ar/discover/concepts), such as motion tracking, environmental understanding, and lighting estimation, happen inside an ARCore session. [ARSession](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARSession.html) is the main entry point to the ARCore API. It manages the AR system state and handles the session **lifecycle**, allowing the app to create, configure, start, or stop a session. Most importantly, it enables the app to receive frames that allow access to the camera image and device pose.
+![](../.gitbook/assets/1)
 
--   Your _Hierarchy_ should now look like this:
+**Hierarchy Window**
 
-    <img width="300" alt="" src="https://i.imgur.com/Dff422E.jpg">
+**Project Window**
 
+**Scene View**
 
--   Expand the **XR Origin** you created in the _Hierarchy_, and select the **Camera Offset**. In the inspector, change its _**Tag**_ to **MainCamera.**
+**Game View**
 
+**Inspector Window**
 
+**Console**
 
+### C# in Unity: <a href="_toc86159691" id="_toc86159691"></a>
 
+**Variables** hold values and references to objects (you can see objects as “bigger” variables). They’re like a box that holds something for us to use. Variables start with a lowercase letter. When Unity compiles the script, it makes **public** variables **visible in the editor**.
 
+**Functions** are collections of code that compare and manipulate these variables. Functions start with an uppercase letter. We organize code in functions so that they can be easily reused multiple times in different parts of the program.
 
+**Classes **are a way to structure code to wrap collections of variables and functions together to create a template that defines the properties of an object.
 
+_Scripting is primarily comparing these objects and their current states and values. It’s based on logic determining an outcome or resolution._
 
+### Functions <a href="_toc86159642" id="_toc86159642"></a>
 
+Scripts manipulate the variables by using functions. There are a number of functions that run automatically inside Unity.
 
+**Start **– like Awake, Start will be called if a GameObject is active, but only if the component is enabled. For more information on the differences with Awake, see this [video](https://learn.unity.com/tutorial/awake-and-start).
 
-## Detect planes in the real world  
+**Update** is called once per frame. This is where you put code to define the logic that runs continuously, like animations, AI, and other parts of the game that must be constantly updated.
 
-### Add an ARPlane Manager Component and place an AR Plane Prefab 
+### Overview of the code <a href="_toc86159643" id="_toc86159643"></a>
 
-An [ARPlaneManager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARPlaneManager.html) detects [ARPlanes](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.1/api/UnityEngine.XR.ARFoundation.ARPlane.html) and creates, updates, and removes game objects when the device's understanding of the environment changes.
+![](<../.gitbook/assets/2 (2)>)
 
--   Go to _Hierarchy_ and click on the **XR Origin** GameObject. On the _Inspector_ Window, click on **Add Component**, search** for the **AR Plane Manager** and **Add it**.
-    
-    <img width="650" alt="" src="https://i.imgur.com/fNk7yzI.png">
+**Libraries that are used**
 
--   Respectively, click again on the **Add Component**, search for **AR Raycast Manager** and add it as well.
+**Short informative description (summary)**
 
-    <img width="650" alt="" src="https://i.imgur.com/9FdPqRR.jpg">
+**Variables we use throughout the code**
 
->   _We will need this component later. It helps obtain information of the raycasts deriving from the user input on the screen._
+**Public: can be changed outside of the script**
 
--   In the _Hierarchy Window_, right click , go to **XR > AR Default Plane**. This will create an AR-configured plane, that we will customize a bit and use as a Prefab for our application, in order to visualize the AR detected planes.
+**Private: can only be changed inside of the script.**
 
-    <img width="400" alt="" src="https://i.imgur.com/4JfGt2v.jpg">
-    <img width="400" alt="" src="https://i.imgur.com/c2x9s3s.jpg">
+**Void Start ()**
 
->   This _XR GameObject_ contains _scripts_ that generate and visualize the planes detected by the _AR device_, using the _AR Plane manager_ script we created in the previous step.
+**(runs once, when the app starts to run)**
 
-<img width="650" alt="" src="https://i.imgur.com/hsSC8WZ.jpg">
+**Void Update()**
 
--   **AR Plane script summary:** Represents a plane (i.e., a flat surface) detected by an AR device. It is generated by the **ARPlaneManager** when an AR device detects a plane in the environment.
--   **AR Plane Mesh Visualizer Summary:** Generates a mesh for an \<ARPlane>. It generates a mesh and updates the boundary points with a \<LineRenderer>.
+**Runs on every frame**
 
--   Now we will go to the Project Window, create a new empty **folder** in our **Assets,** and name it “Prefabs”, to organize our material. (**Right click > Create > Folder**). Then, double click it and go inside the folder.
+### Instantiate Multiple <a href="_toc86157735" id="_toc86157735"></a>
 
-    <img width="650" alt="" src="https://i.imgur.com/seVSYGo.jpg">
-    <img width="400" alt="" src="https://i.imgur.com/LDdo0N4.jpg">
+### Tutorial <a href="_h4u7hfgkwsm1" id="_h4u7hfgkwsm1"></a>
 
--   Drag and drop the **AR Default Plane**_GameObject inside the **Prefabs** folder, in order to save it as a _Prefab._ In general, this is an easy way to _create new Prefabs_, after we have edited them as we like in our _Scene._
+We check the different types of touch on the screen.
 
-    <img width="400" alt="" src="https://i.imgur.com/X31UXzS.jpg"> <img width="400" alt="" src="https://i.imgur.com/bFFt0iv.jpg">
+* **TouchPhase.Began** = When a touch has first been detected, the first moment the finger touches the screen (happens **once** in a touch phase)
+* **TouchPhase.Moved** = When the touch is a moving touch (happens **continuously,** detected_ on every update frame_)
+* **TouchPhase.Ended **= When we lift up the finger from the screen (happens** once**)
 
->   Note: In short, Unity’s **Prefab** system allows you to create, configure, and store a GameObject complete with all its components, property values, and child **GameObjects** as a reusable Asset. The Prefab Asset acts as a template from which you can create new Prefab instances in the **Scene.**\
-[**→ More info about prefabs**](https://docs.unity3d.com/Manual/Prefabs.html)
+private void \_InstantiateOnTouch()\
+{\
+**if (mode == 0)** // ADD ONE : destroy previous object with every tap\
+{\
+Debug.Log("\*\*\*MODE 0\*\*\*");\
+Touch touch = Input.GetTouch(0);
 
-→ Notice that the _AR Default Plane_ becomes **blue** in the _Hierarchy._ This is because the process of creating the _Prefab Asset_ also turns the original _GameObject_ into a **Prefab instance**. Every change happening in the _prefab_, will happen in the _instance_ as well.
+// Handle finger movements based on TouchPhase\
+**switch (touch.phase)**\
+{\
+**case TouchPhase.Began:**\
+\_PlaceInstant(houseParent);\
+break; //break: If this case is true, it will not check the other.
+
+**case TouchPhase.Moved:**\
+// Record initial touch position.\
+if (Input.touchCount == 1)\
+{\
+\_Rotate(ARObject\_new); //we will write this function together\
+}
 
--   We can now **delete **the _AR Default Plane Object_ in the** Hierarchy,** since we will only use the** Prefab.**
+if (Input.touchCount == 2)\
+{\
+\_PinchtoZoom(ARObject\_new); //existing function\
+}\
+break;
 
-    <img width="400" alt="" src="https://i.imgur.com/CAl6zPU.jpg">
+**case TouchPhase.Ended:**\
+Debug.Log("Touch Phase Ended.");\
+break;\
+}\
+}
 
--   On the **XR Origin** _GameObject_, go to the **AR Plane Manager Script** we added in Step 1. There is an _empty Plane Prefab._ Drag and Drop there the Prefab we created in the Assets.
+* _**Note:** For code efficiency, we check different cases and “break” the code when one is detected._
 
-    <img width="650" alt="" src="https://i.imgur.com/kr0ehLg.jpg">
-    <img width="650" alt="" src="https://i.imgur.com/U3sGjsh.jpg">
+Let’s check the _PlaceInstant_ void from yesterday and see what happens if we put mode==1 instead of O
 
+**private void \_PlaceInstant(GameObject parentGameObject)**\
+{\
+Touch touch;\
+touch = Input.GetTouch(0);
 
-You should now see the _AR Default Plane Prefab_ placed as the _Plane Prefab._
+Debug.Log("Single Touch");\
+**List\<ARRaycastHit> hits = new List\<ARRaycastHit>();**\
+**rayManager.Raycast(touch.position, hits);**\
+if (hits.Count > 0)\
+{\
+**if ((hits\[0].hitType & TrackableType.Planes) != 0)** //if our touch hits a scanned plane, it instantiates an object\
+{\
+Debug.Log("HIT TYPE = " + hits\[0].hitType);\
+**if (mode == 0) **//default mode\
+{\
+Debug.Log("mode 0");\
+Destroy(ARObject\_new); //destroys the previous object in every frame\
+}
 
-We can now visualize the AR detected planes in our device.
+// You can instantiate a 3D object here if you haven't set the Raycast Prefab in the scene.\
+**ARObject\_new = Instantiate(selected\_prefab, hits\[0].pose.position, hits\[0].pose.rotation);**\
+**ARObject\_new.transform.SetParent(parentGameObject.transform)**; //Place the GameObject in the correct GameObject folder
 
-_**Let’s build the app and see if it works!**_
+//transform object to Look at our phone camera\
+Vector3 cameraPosition = arCameraTransform.position;\
+cameraPosition.y = hits\[0].pose.position.y;\
+**ARObject\_new.transform.LookAt(cameraPosition, ARObject\_new.transform.up);**\
+//create AR Anchor for each instantiated object\
+if (ARObject\_new.GetComponent\<ARAnchor>() == null)\
+{\
+Debug.Log("Anchor created");\
+**ARObject\_new.AddComponent\<ARAnchor>**();\
+}\
+}\
+}\
+}
 
+### Script for rotation of instantiated Objects <a href="_toc86159696" id="_toc86159696"></a>
 
+// we will write the following script together\
+**private void \_Rotate(GameObject objectToRotate)**\
+{\
+Touch touch;\
+touch = Input.GetTouch(0);
 
+Debug.Log("Rotate touch");\
+**objectToRotate.transform.Rotate(Vector3.up \* 40f \* Time.deltaTime \* touch.deltaPosition.x, Space.Self);**\
+Debug.Log("Delta Touch is " + touch.deltaPosition);\
+}
 
+Change “mode” variable to public and try mode==1
 
+public int mode = 1; //int = integer number (without decimals)
 
+**→ Build the App to instantiate multiple objects!**
 
+### Unity UI <a href="_toc86159647" id="_toc86159647"></a>
 
+**Unity UI i**s a **UI toolki**t for developing user interfaces for games and applications. It is a _GameObject-based UI system _that uses _Components_ and the _Game View_ to arrange, position, and style user interfaces.
 
+→[ Documentation here](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/index.html)
 
+### Canvas <a href="_toc86159648" id="_toc86159648"></a>
 
+The **Canvas** is the area that all _UI elements_ should be inside. The_ Canvas_ is _a Game Object _with a **Canvas component **on it, and** all UI elements must be children of such a Canvas.**
 
+Creating a new UI element, such as an Image using the menu G_ameObject > UI > Image_, automatically creates a Canvas, if there isn't already a Canvas in the scene. The UI element is created as a _child _to this Canvas.
 
-## Build the AR App to test the AR Plane detection 
+The _Canvas _area is shown as a_ rectangle_ in the_ Scene View._ This makes it easy to position _UI_ elements without needing to have the _Game View _visible at all times.
 
+Canvas uses the_ EventSystem _object to help the Messaging System.
 
-### Configure Build and Project Settings in Unity
+### Basic Layout <a href="_toc86159649" id="_toc86159649"></a>
 
-1. Select Android in build settings
+In this section we'll look at how you can position UI elements relative to the Canvas and each other. If you want to test yourself while reading, you can create an Image using the menu **GameObject -> UI -> Image**.
 
-	- Go to File > Build Settings
-	
-	- Switch to the Android Platform - Go to player settings
-	
-    	<img width="650" alt="" src="https://i.imgur.com/8H0ccdQ.jpg">	
-	
-    - If Unity requires you to download Android support in order to switch platforms, follow the link and install the required dependency. 
-	
-	- Go to Player > Other Settings > Rendering
+### Rect Transform <a href="_toc86159650" id="_toc86159650"></a>
 
-	- Make sure “Auto Graphics API” is unchecked. Change Color Space to “Linear”
-    
-    - Remove Vulkan from under Graphics APIs
-	
-    	<img width="650" alt="" src="https://i.imgur.com/VXKjn0U.jpg">	
-	
-	- Go to Player > Other Settings > Package Name. Create a unique app ID using a Java package name format. For example, use com.Princeton.AR
-	- Go to Player > Other Settings > Minimum API Level. Select Android 7.0 'Nougat' (API Level 24) or higher (For AR Optional apps, the Minimum API level is 14.)
-	- Go to Player > Other Settings > Scripting Backend. Select IL2CPP instead of Mono.
-	- Go to Player > Other Settings > Target Architectures. To meet the Google Play 64-bit requirement, enable ARM64 (64-bit ARM). Leave ARMv7 (32-bit ARM) enabled to support 32-bit devices
+The **Rect Transform** is a new transform component that is used for all UI elements instead of the regular **Transform** component.
 
-		<img width="650" alt="" src="https://i.imgur.com/nzciMsI.jpeg">		
-	
-2. Configure Project Settings
-	
-	- Open Edit > Project Settings... and click on the XR Plug-in Management section. In the Android tab, enable ARCore.
+![](<../.gitbook/assets/3 (1)>)
 
-		<img width="650" alt="" src="https://i.imgur.com/ILVPZQS.jpg">	
+Rect Transforms have position, rotation, and scale just like regular Transforms, but it also has a width and height, used to specify the dimensions of the rectangle.
 
-3. Configure your phone to run the app
+### Resizing Versus Scaling <a href="_toc86159651" id="_toc86159651"></a>
 
-    -   Plug your Android AR Phone into your computer, using the USB cable.
-    -   Make sure that your computer recognizes the device. You can check this in **This PC>Devices and drives**
+When the Rect Tool is used to change the size of an object, normally for Sprites in the 2D system and for 3D objects it will change the local _scale_ of the object. However, when it's used on an object with a Rect Transform on it, it will instead change the width and the height, keeping the local scale unchanged. This resizing will not affect font sizes, border on sliced images, and so on.
 
-        <img width="400" alt="" src="https://i.imgur.com/D2Uka63.jpg">
-        
-    -   If you don’t see it, try having the device unlocked when you plug it, and if USB options popup, select **Use USB to: Transfer files** on your phone screen.
+### Anchor presets <a href="_toc86159652" id="_toc86159652"></a>
 
-        <img width="325" alt="" src="https://i.imgur.com/gPJS315.jpg">
+In the Inspector, the **Anchor Preset** button can be found in the upper left corner of the Rect Transform component. Clicking the button brings up the Anchor Presets dropdown. From here you can quickly select from some of the most common anchoring options. You can anchor the UI element to the sides or middle of the parent, or stretch together with the parent size. The horizontal and vertical anchoring is independent.
 
+![](<../.gitbook/assets/4 (3)>)
 
+The _Anchor Preset_s buttons displays the currently selected preset option if there is one. If the anchors on either the horizontal or vertical axis are set to different positions than any of the presets, the custom options are shown.
 
+### Anchor and position fields in the Inspector <a href="_toc86159653" id="_toc86159653"></a>
 
-    -   Go to **File>Build Settings**
-    -   Respectively, you should be able to see your device detected in the _Run Device_ drop-down Menu. You can click _Refresh_ if you don’t see it right away.
-        
-        <img width="650" alt="" src="https://i.imgur.com/3Ca1jbE.jpg">
-            
+You can click the Anchors expansion arrow to reveal the anchor number fields if they are not already visible. **Anchor Min** corresponds to the lower left anchor handle in the Scene View, and **Anchor Max** corresponds to the upper right handle.
 
-4. Build and run the app 
+The position fields of the rectangle are shown differently depending on whether the anchors are together (which produces a fixed width and height) or separated (which causes the rectangle to stretch together with the parent rectangle).
 
-    -   Click **Build and Run**. Select a folder and name your application as desired. This might take a bit of time. Keep the device unlocked, so that the application runs right away.
+![](<../.gitbook/assets/5 (2)>)
 
-        <img width="650" alt="" src="https://i.imgur.com/TkDSvNw.jpg">
-        <img width="650" alt="" src="https://i.imgur.com/aM0a0cd.jpg">
+### Button <a href="_toc86159654" id="_toc86159654"></a>
 
-    -   Move the phone **slowly** up and down, left and right, to start the detection.
+A Button has an **OnClick** UnityEvent to define what it will do when clicked.
 
-    -   After some time, you should be able to see this _semi-transparent yellow material_ with an outline, indicating the **scanned AR Planes.**
+![](<../.gitbook/assets/6 (3)>)
 
+See the [Button](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Button.html) page for details on using the Button component.
 
+### Slider <a href="_toc86159655" id="_toc86159655"></a>
 
+A Slider has a decimal number **Value** that the user can drag between a minimum and maximum value. It can be either horizontal or vertical. It also has a **OnValueChanged** UnityEvent to define what it will do when the value is changed.
 
+![](<../.gitbook/assets/7 (2)>)
 
+### Event System <a href="_toc86159656" id="_toc86159656"></a>
 
+The Event System is a way of sending events to objects in the application based on input, be it keyboard, mouse, touch, or custom input. The Event System consists of a few components that work together to send events.
 
+When you add an Event System component to a GameObject you will notice that it does not have much functionality exposed, this is because the Event System itself is designed as a manager and facilitator of communication between Event System modules.
 
+The primary roles of the Event System are as follows:
 
+* Manage which GameObject is considered selected
+* Manage which Input Module is in use
+* Manage Raycasting (if required)
+* Updating all Input Modules as required
 
+### Raycasters <a href="_toc86159657" id="_toc86159657"></a>
 
+Raycasters are used for figuring out what the pointer is over. It is common for Input Modules to use the Raycasters configured in the Scene to calculate what the pointing device is over. The Raycasters that we will be using for our App are:
 
+### [AR Raycast Manager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.0/manual/raycast-manager.html)
 
+Also known as hit testing, ray casting allows you to determine where a [ray](https://docs.unity3d.com/2020.2/Documentation/ScriptReference/Ray.html) (defined by an origin and direction) intersects with a [trackable](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.0/api/UnityEngine.XR.ARFoundation.ARTrackable-2.html). A "trackable" is a feature in the physical environment that can be detected and tracked by an XR device.
 
+**Example:**
 
+\[SerializeField]\
+ARRaycastManager m\_RaycastManager;
 
+List\<ARRaycastHit> m\_Hits = new List\<ARRaycastHit>();
 
-## Import a file into Unity from Rhino 
+void Update()\
+{\
+if (Input.touchCount == 0)\
+return;
 
-### Export file from Rhino 
+if (m\_RaycastManager.Raycast(Input.GetTouch(0).position, m\_Hits))\
+{\
+// Only returns true if there is at least one hit\
+}\
+}
 
-In _Rhino_, open your desired file. In our case it is a house form. 
+### [Physics Raycaster](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-PhysicsRaycaster.html)
 
->   Note: Make sure you file is set to meters in Rhino. 
+Used for 3D physics elements. Casts a ray against all colliders in the Scene and returns detailed information on what was hit. This example reports the distance between the current object and the reported Collider:
 
--   Move the **x,y center** of your geometry to **0,0,0**. You can use the _Move_ command, and and align it to the 0,0,0 plane. Have the x and y center at the origin, but the whole house should be above the ground plane.
+**Example:**
 
-    <img width="650" alt="" src="https://i.imgur.com/hoKzJwJ.jpg">
+public class RaycastExample : MonoBehaviour\
+{\
+void FixedUpdate()\
+{\
+RaycastHit hit;
 
+if (Physics.Raycast(transform.position, -Vector3.up, out hit))\
+print("Found an object - distance: " + hit.distance);\
+}\
+}
 
+### User interface: <a href="_toc86159710" id="_toc86159710"></a>
 
->   Note: This step will help us have our model correctly oriented in Unity.
+We first will take a look at our canvas options. Currently we have 4 menus and one reset button.
 
--   Select the part(s) that you want to export
+For each we can insert different 3 GamObjects to place multiple instants.
 
--   Go to **File>Export Selected**
+![](<../.gitbook/assets/8 (1)>) ![](<../.gitbook/assets/9 (3)>)
 
-    <img width="650" alt="" src="https://i.imgur.com/ksEujZ6.jpg">
+**Change the GameObjects to initiate:**
 
+Click on the main Menu button such as Menu\_Button\_Trees. You will see it highlighted in the scene
 
--   Save as type **.obj,** in a folder that you can easily find e.g. another folder on your Desktop called _“Seminar\_Week\_Assets”,_ and click **“OK”** in the _OBJ Export Options_ dialog.
+![](../.gitbook/assets/10)
 
-    <img width="400" alt="" src="https://i.imgur.com/i44CDCm.jpg"> <img height="400" alt="" src="https://i.imgur.com/4VGt7eH.jpg">
+In the inspector you find the object manager and the 3 specific prefabs
 
->   Note: Check that your file is created correctly in the folder.
+![](<../.gitbook/assets/11 (1)>)
 
+We can just drag and drop another GameObject onto the prefab tab
 
+**Change the Logo in the Menu:**
 
-### Import file in Unity
+First, we need to upload a new Logo in the asset folder logo. Ideally a .png with no background.
 
-First, we will learn how to import our model correctly into _Unity_, adjust its scale and position it correctly. In this example, _Rhinoceros_ is a common CAD software, but you can use any preferred modeling software. Be sure to structure your model according to the materials you want to apply on it later. Unity understands a variety of file types, you can use **OBJ** and export each layer as a separate OBJ file.
+![](<../.gitbook/assets/12 (1)>)
 
-Back in the existing Unity App, go to the Prefab folder we created before in the Assets (Project Window).
+Then we click on the new logo and in the Inspector switch the Texture type to “Sprite (2D and UI)
 
--   Go to the Assets folder of the Unity Project on your computer (in the file explorer) , and copy paste both the .obj and the .mtl. You can make a new folder called _ImportedObjects_.
+![](<../.gitbook/assets/13 (3)>)
 
->   Note: Unity Projects are actually folders that contain other folders. So you can have full access on Prefabs, scripts, objects. When you put something in this folder, it updates in Unity as well.
+Then we click on image in the desired menu area
 
-<img width="650" alt="" src="https://i.imgur.com/aWTnmDC.jpg"> <img width="300" alt="" src="https://i.imgur.com/3dBPLp3.jpg">
+![](<../.gitbook/assets/14 (3)>)
 
+In the inspector we drag our newly created logo onto the source image. We should tick preserve aspect and might need to adjust position and scale
 
+![](../.gitbook/assets/15)
 
--   Inside the **ImportedObjects** folder, copy and paste both your **.obj** and the **.mtl** file that you exported from Rhino.
+**How to personalize the button:**
 
->   Note: Alternatively, you can make the new folder inside Unity and drag and drop both of the files.
+We can adjust the color of the button, once pressed, selected, or disabled.
 
--   Back to _Unity_, you will see that the folder is also updated in the **Project Window > Assets.**
+![](../.gitbook/assets/16)
 
-    <img width="300" alt="" src="https://i.imgur.com/LDMloz8.jpg">
+**Now we all should personalize the buttons and link our own prefabs with it!**
 
--   Inside the folder, you should be able to see an icon of your house in the _Prefabs._ Click on it once and go to the **Inspector Window.** Enable **Read/Write. Click “Apply”.**
+**After this let’s look at the code and try to understand the logic of it:**
 
-    <img width="300" alt="" src="https://i.imgur.com/3mCDucc.jpg">
-    <img height="650" alt="" src="https://i.imgur.com/kVlqxpc.jpg">
+using System.Collections;\
+using System.Collections.Generic;\
+using UnityEngine;\
+using UnityEngine.UI;
 
-### Create Prefab with imported Model 
+public class ObjectManager\_DM : MonoBehaviour\
+{\
+//public variables\
+public GameObject prefabA;\
+public GameObject prefabB;\
+public GameObject prefabC;
 
--   Drag and drop the house Prefab into the Hierarchy. You will now see the object imported in your Scene.
+//private variables\
+private Instantiator Object\_Spawner;\
+private GameObject buttonA;\
+private GameObject buttonB;\
+private GameObject buttonC;
 
--   In the _Inspector_, make sure that the _Transform, Position and Rotation_ are set to **0,0,0.**
+// Start is called before the first frame update\
+void Start()\
+{\
+//find the ObjectSpawner script\
+Object\_Spawner = FindObjectOfType\<Instantiator>();
 
-    <img width="650" alt="" src="https://i.imgur.com/uV27U56.jpg">
+//For each button, define OnClick Action and prefab\
+Button btn = GetComponent\<Button>();\
+btn.onClick.AddListener(Menu\_Toggle);
 
--   To check that the _Scale of the model_ we imported is correct. This is 1:1 in physical space. We can compare it with a **1,1,1** cube (1 x 1 x 1 meters) (**Create>3D Object>Cube**). If we see that the Cube is too big or too small, we have to scale our model. It is better to have an object that is small enough to fit in the phone camera.
+buttonA = transform.GetChild(1).gameObject;\
+buttonA.GetComponent\<Button>().onClick.AddListener(() => OnClick\_ChangePrefab(prefabA));
 
--   To scale our model, we can click on the house prefab once, go to the Inspector, and type in the amount of desired scale (e.g. if your model was in milimeters, use 0.001). Click **Apply** on the bottom right.
+buttonB = transform.GetChild(2).gameObject;\
+buttonB.GetComponent\<Button>().onClick.AddListener(() => OnClick\_ChangePrefab(prefabB));
 
-    <img width="450" alt="" src="https://i.imgur.com/mx8lBET.jpg"> <img width="300" alt="" src="https://i.imgur.com/iUhHaGu.jpg">
+buttonC = transform.GetChild(3).gameObject;\
+buttonC.GetComponent\<Button>().onClick.AddListener(() => OnClick\_ChangePrefab(prefabC));\
+}
 
->   Note: Don’t forget to Save your Project from time to time! **File > Save**
+//Toggle ON and OFF the dropdown submenu options\
+void Menu\_Toggle()\
+{\
+//deactivate the buttons if they are on\
+if (buttonA.activeSelf == true)\
+{\
+buttonA.SetActive(false);\
+buttonB.SetActive(false);\
+buttonC.SetActive(false);\
+}\
+//activate the buttons only if prefabs are set\
+else\
+{\
+if (prefabA!=null)\
+buttonA.SetActive(true);\
+if (prefabB != null)\
+buttonB.SetActive(true);\
+if (prefabC != null)\
+buttonC.SetActive(true);\
+}\
+}\
+public void OnClick\_ChangePrefab(GameObject prefab)\
+{\
+if(prefab!=null)\
+Object\_Spawner.selected\_prefab = prefab;\
+}\
+}
 
-Now that the scale of the object is correct, we can apply a _Material_ of our choice. Let’s go back to **Assets** and make another **empty Folder** called **Materials**. Here we will be organizing our materials throughout the development.
+After this let’s look at the instantiator code (line 226-234). The buttons are linked to different modes. These modes are linked to different actions.
 
->   Tip: You can rename an existing folder by clicking on it once, and pressing **F2** on your keyboard.
+// UI Functions\
+public void SetMode\_A()\
+{\
+mode = 0; // for single placement of objects, like the 3D printed house hologram\
+}\
+public void SetMode\_B()\
+{\
+mode = 1; // for multiple placement of objects, like multiple trees or characters\
+}
 
--   Inside the Materials folder, create a new Material (**Right Click > Create > Material**) Like the steps before, you can assign a color, or create multiple materials and assign them on your object.
+**These modes are linked with if statements such as- place one instant or multiple (line 91-104):**
 
--   When you are finished, Drag and Drop the object GameObject back to the **Assets>Prefabs**, and name it as _Building\_Prefab\_01_. Today, we will use this Prefab to instantiate it in the AR Detected Planes.
-
-    <img width="250" alt="" src="https://i.imgur.com/Knla4qv.jpg">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Instantiate object 
-
-_Now we can start the scripting base! The goal for today is to **“Tap and Instantiate”** the 3D object in our App, on the detected AR Planes._
-
-### Import the Instantiator Script 
-
--   In the **Assets**, Create a new empty _Folder_ and name it _“Scripts”._ Here, we will be collecting all of the **C# scripts** we will be using.
-
--   Go to the folder for this tutorial which you downloaded. Select the  **Instantiator.cs** file, drag and drop the script into the _Script_ folder we created in Unity. This is the base script, that we will use to build our application upon.
-
-    <img width="500" alt="" src="https://i.imgur.com/pxuAcQO.jpg">
-
--   Make an Empty Game Object and name it_ “Instantiator”. _Here we will assign our Instantiator script, where we manage the instances of the objects we create in the App.
-
-    <img width="500" alt="" src="https://i.imgur.com/BHgvCc3.jpg">
-
--   On the **Instantiator** **GameObject**, go to the _Inspector_ and click on **Add Component**. Find and add the **Instantiator** script we imported in the previous steps.
-
-    <img width="500" alt="" src="https://i.imgur.com/loTUPLM.jpg">
-
->   Note: Always make sure that the Transform Values are set to Zero when creating a new GameObject.
-
--   We see some defined variables that don’t have any object assigned to them. But first, let’s take a look at the **code.**
-
-    <img width="500" alt="" src="https://i.imgur.com/S6nbhpH.jpg">
-
-
-## Overview of the code 
-
--   To open the script, you can either go to **Assets>Scripts** and double click, or on the **component** itself, and **double click** on the name.
-
-    <img width="500" alt="" src="https://i.imgur.com/WByAdzW.jpg">
-
-    <img width="800" alt="" src="https://i.imgur.com/Czw4zBy.jpg">
-
-Do these variables seem familiar? They are the ones that appear on the Inspector!
-
-
-
-We can choose what kind of GameObject we need.
-
-_E.g. For the Camera, we only need the “Transform” component, to get information about its position and rotation in space._
-
-Let’s drag and drop the objects we need.
-
--   For the **Selected Prefab**, we can put the House Prefab we created, by dragging it from the **Assets>Prefabs** folder we created.
--   For the **AR Camera Transform**, we will drag and drop the **Camera Offset**, which we can find under **XR Origin** in the Hierarchy.
-
-    <img width="250" alt="" src="https://i.imgur.com/FyMXSpT.jpg">
-
--   As we saw in the C# script, the **House Parent**, is an empty GameObject that will be the **parent** of all the instances we will create with our taps on the screen. So let’s create an **Empty GameObject** and name it **HouseParent**. Then, drag and drop it on the Instantiator Script.
-
-    <img width="400" alt="" src="https://i.imgur.com/F8kJ0FG.jpg">
-
->   Note: Make sure the Transform is set to 0,0,0 in the Inspector for the new object. Likewise, make sure it is set to zero for the AR Session and XR Origin GameObjects. 
-
--   The Inspector should look like this
-
-    <img width="400" alt="" src="https://i.imgur.com/ocgdox5.jpg">
-
-
-## Build App 
-
--   We are ready to build the App and test it!
-
-    <img width="650" alt="" src="https://i.imgur.com/DQhXQDs.jpg">
-
-
-
-
-
-
-### Misc Information
-
-1. MonoBehaviour is the base class from which every Unity script object derives its properties and methods (functions). 
-2. A class enables you to create your custom types by grouping variables of other types, methods, and events. 
-3. The API acronym stands for **Application Programming Interface**, which is a software intermediary that allows two applications to talk to each other.
-4. Software Development Kits (SDKs) allow development for a variety of platforms. They contain the compiler and debugger and usually software frameworks. For example, Unity has the Android SDK, which allows you to build for the Android operating system. 
-5. Tags help you link GameObjects to variables in your scripts.
+| <p>else if (mode == 1) //ADD MULTIPLE : create multiple instances of object<br>{<br>Debug.Log("***MODE 1***");<br>Touch touch = Input.GetTouch(0);</p><p>// Handle finger movements based on TouchPhase<br>switch (touch.phase)<br>{<br>case TouchPhase.Began:<br>if (Input.touchCount == 1)<br>{<br>_PlaceInstant(objectParent);<br>}<br>break;</p><p><strong>In the unity file you need to link the modes with the buttons:</strong></p><p><img src="../.gitbook/assets/17 (1)" alt=""></p><p>This works because the void is set to public and the on click is linked with the instantiator script. The button has therefore access to the public void SetMode_B() which sets the mode to 1.</p> |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The instantiator script looks every frame for touch input (as it is in input) and looks for the mode. Depending on the mode and the touch input a different action is activated.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
