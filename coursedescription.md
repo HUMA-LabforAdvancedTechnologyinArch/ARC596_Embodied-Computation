@@ -2,7 +2,9 @@
 layout: page
 title: Course Description
 ---
-<img src="images/ARphone.jpg" alt="Intuitive and interactive Fabrication">
+
+<img src="{{ site.baseurl }}/images/ARphone.jpg" alt="Intuitive and interactive Fabrication." style="width:100%; height:auto;">
+<figcaption>Image: Intuitive and interactive Fabrication.</figcaption>
 
 ### Course Description: 
 This course delves into the intersection of architecture and computation, focusing on embodied design and fabrication processes. Students will explore computational tools, parametric design, and the generation of physical prototypes as integral components of architectural design. The course places a strong emphasis on hands-on projects and engagement with novel visualization techniques and augmented reality.
@@ -18,5 +20,5 @@ The course is based on lectures and practical programming exercises in which stu
 | Paper:   | 30% |
 | Class/Precept Participation: | 20% | 
 
-
-<img src="images/ARphone1.jpg" alt="Intuitive and interactive Design">
+<img src="{{ site.baseurl }}/images/ARphone1.jpg" alt="Intuitive and interactive Fabrication." style="width:100%; height:auto;">
+<figcaption>Image: Intuitive and interactive Design.</figcaption>
