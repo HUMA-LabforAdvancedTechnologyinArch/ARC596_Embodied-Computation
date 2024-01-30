@@ -26,6 +26,6 @@
         {% endfor %}
     {% endif %}
 
-    <p style="color:white;">&copy; {{ site.time | date: '%Y' }}. Daniela Mitterberger - All rights reserved.</p>
+    <p style="color:white;">&copy; {{ site.time | date: '%Y' }}. A page by Daniela Mitterberger - All rights reserved.</p>
   </div>
 </div>
