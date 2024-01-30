@@ -1,4 +1,27 @@
-# Guide 02
+# ARC596 - Tutorial 4 - Multiple Houses
+
+- ARC596: Embodied Computation
+- Professor: Daniela Mitterberger - mitterberger@princeton.edu
+- Assistant Instructor: Kirill Volchinskiy - kvolchinskiy@princeton.edu
+- Tutorial 2 - Basic Unity AR App
+
+### Requirements
+
+1. [Rhinoceros 7](https://www.rhino3d.com/en/7/)
+2. [Github Desktop](https://desktop.github.com/) 
+3. [Anaconda](https://www.anaconda.com/)
+4. [Unity 2022.3.3f1](https://unity.com/) 
+>	*Note: Android SDK and Java JDK (when developing for Android) - have to be ticked in the installation modules when installing Unity.*
+
+### Dependencies
+
+1. [COMPAS](https://compas.dev)
+2. [COMPAS Fab - Fabrication Library for Robots](https://gramaziokohler.github.io/compas_fab/latest/)
+3. [COMPAS Eve - Communication](https://compas.dev/compas_eve/latest/index.html)
+4. [Vuforia](https://developer.vuforia.com/downloads/sdk)
+5. [ROS#](https://www.ros.org/)
+
+# Create the Multiple Houses App
 
 ![](<../.gitbook/assets/0 (2)>)
 
