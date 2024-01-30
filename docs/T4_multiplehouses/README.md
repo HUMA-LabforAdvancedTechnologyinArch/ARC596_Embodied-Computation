@@ -22,12 +22,6 @@
 
 # Create the Multiple Houses App
 
-![](<../../.gitbook/assets/0 (2)>)
-
-Day 2
-
-27/10/2021
-
 ### Useful Links <a href="_toc86159639" id="_toc86159639"></a>
 
 [→ Unity Manual](https://docs.unity3d.com/Manual/index.html)
@@ -68,7 +62,7 @@ _Packages: _[_https://docs.unity3d.com/Manual/PackagesList.html_](https://docs.u
 
 **Functions** are collections of code that compare and manipulate these variables. Functions start with an uppercase letter. We organize code in functions so that they can be easily reused multiple times in different parts of the program.
 
-**Classes **are a way to structure code to wrap collections of variables and functions together to create a template that defines the properties of an object.
+**Classes** are a way to structure code to wrap collections of variables and functions together to create a template that defines the properties of an object.
 
 _Scripting is primarily comparing these objects and their current states and values. It’s based on logic determining an outcome or resolution._
 
@@ -76,7 +70,7 @@ _Scripting is primarily comparing these objects and their current states and val
 
 Scripts manipulate the variables by using functions. There are a number of functions that run automatically inside Unity.
 
-**Start **– like Awake, Start will be called if a GameObject is active, but only if the component is enabled. For more information on the differences with Awake, see this [video](https://learn.unity.com/tutorial/awake-and-start).
+**Start** like Awake, Start will be called if a GameObject is active, but only if the component is enabled. For more information on the differences with Awake, see this [video](https://learn.unity.com/tutorial/awake-and-start).
 
 **Update** is called once per frame. This is where you put code to define the logic that runs continuously, like animations, AI, and other parts of the game that must be constantly updated.
 
@@ -109,7 +103,7 @@ Scripts manipulate the variables by using functions. There are a number of funct
 We check the different types of touch on the screen.
 
 * **TouchPhase.Began** = When a touch has first been detected, the first moment the finger touches the screen (happens **once** in a touch phase)
-* **TouchPhase.Moved** = When the touch is a moving touch (happens **continuously,** detected_ on every update frame_)
+* **TouchPhase.Moved** = When the touch is a moving touch (happens **continuously,** detected _on every update frame_)
 * **TouchPhase.Ended **= When we lift up the finger from the screen (happens** once**)
 
 private void \_InstantiateOnTouch()\
