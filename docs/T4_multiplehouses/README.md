@@ -22,7 +22,7 @@
 
 # Create the Multiple Houses App
 
-![](<../.gitbook/assets/0 (2)>)
+![](<../../.gitbook/assets/0 (2)>)
 
 Day 2
 
@@ -48,7 +48,7 @@ _Packages: _[_https://docs.unity3d.com/Manual/PackagesList.html_](https://docs.u
 
 ### Unity Interface <a href="_toc86157731" id="_toc86157731"></a>
 
-![](../.gitbook/assets/1)
+![](../../.gitbook/assets/1)
 
 **Hierarchy Window**
 
@@ -82,7 +82,7 @@ Scripts manipulate the variables by using functions. There are a number of funct
 
 ### Overview of the code <a href="_toc86159643" id="_toc86159643"></a>
 
-![](<../.gitbook/assets/2 (2)>)
+![](<../../.gitbook/assets/2 (2)>)
 
 **Libraries that are used**
 
@@ -229,7 +229,7 @@ In this section we'll look at how you can position UI elements relative to the C
 
 The **Rect Transform** is a new transform component that is used for all UI elements instead of the regular **Transform** component.
 
-![](<../.gitbook/assets/3 (1)>)
+![](<../../.gitbook/assets/3 (1)>)
 
 Rect Transforms have position, rotation, and scale just like regular Transforms, but it also has a width and height, used to specify the dimensions of the rectangle.
 
@@ -241,7 +241,7 @@ When the Rect Tool is used to change the size of an object, normally for Sprites
 
 In the Inspector, the **Anchor Preset** button can be found in the upper left corner of the Rect Transform component. Clicking the button brings up the Anchor Presets dropdown. From here you can quickly select from some of the most common anchoring options. You can anchor the UI element to the sides or middle of the parent, or stretch together with the parent size. The horizontal and vertical anchoring is independent.
 
-![](<../.gitbook/assets/4 (3)>)
+![](<../../.gitbook/assets/4 (3)>)
 
 The _Anchor Preset_s buttons displays the currently selected preset option if there is one. If the anchors on either the horizontal or vertical axis are set to different positions than any of the presets, the custom options are shown.
 
@@ -251,13 +251,13 @@ You can click the Anchors expansion arrow to reveal the anchor number fields if 
 
 The position fields of the rectangle are shown differently depending on whether the anchors are together (which produces a fixed width and height) or separated (which causes the rectangle to stretch together with the parent rectangle).
 
-![](<../.gitbook/assets/5 (2)>)
+![](<../../.gitbook/assets/5 (2)>)
 
 ### Button <a href="_toc86159654" id="_toc86159654"></a>
 
 A Button has an **OnClick** UnityEvent to define what it will do when clicked.
 
-![](<../.gitbook/assets/6 (3)>)
+![](<../../.gitbook/assets/6 (3)>)
 
 See the [Button](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Button.html) page for details on using the Button component.
 
@@ -265,7 +265,7 @@ See the [Button](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/scr
 
 A Slider has a decimal number **Value** that the user can drag between a minimum and maximum value. It can be either horizontal or vertical. It also has a **OnValueChanged** UnityEvent to define what it will do when the value is changed.
 
-![](<../.gitbook/assets/7 (2)>)
+![](<../../.gitbook/assets/7 (2)>)
 
 ### Event System <a href="_toc86159656" id="_toc86159656"></a>
 
@@ -329,17 +329,17 @@ We first will take a look at our canvas options. Currently we have 4 menus and o
 
 For each we can insert different 3 GamObjects to place multiple instants.
 
-![](<../.gitbook/assets/8 (1)>) ![](<../.gitbook/assets/9 (3)>)
+![](<../../.gitbook/assets/8 (1)>) ![](<../../.gitbook/assets/9 (3)>)
 
 **Change the GameObjects to initiate:**
 
 Click on the main Menu button such as Menu\_Button\_Trees. You will see it highlighted in the scene
 
-![](../.gitbook/assets/10)
+![](../../.gitbook/assets/10)
 
 In the inspector you find the object manager and the 3 specific prefabs
 
-![](<../.gitbook/assets/11 (1)>)
+![](<../../.gitbook/assets/11 (1)>)
 
 We can just drag and drop another GameObject onto the prefab tab
 
@@ -347,25 +347,25 @@ We can just drag and drop another GameObject onto the prefab tab
 
 First, we need to upload a new Logo in the asset folder logo. Ideally a .png with no background.
 
-![](<../.gitbook/assets/12 (1)>)
+![](<../../.gitbook/assets/12 (1)>)
 
 Then we click on the new logo and in the Inspector switch the Texture type to “Sprite (2D and UI)
 
-![](<../.gitbook/assets/13 (3)>)
+![](<../../.gitbook/assets/13 (3)>)
 
 Then we click on image in the desired menu area
 
-![](<../.gitbook/assets/14 (3)>)
+![](<../../.gitbook/assets/14 (3)>)
 
 In the inspector we drag our newly created logo onto the source image. We should tick preserve aspect and might need to adjust position and scale
 
-![](../.gitbook/assets/15)
+![](../../.gitbook/assets/15)
 
 **How to personalize the button:**
 
 We can adjust the color of the button, once pressed, selected, or disabled.
 
-![](../.gitbook/assets/16)
+![](../../.gitbook/assets/16)
 
 **Now we all should personalize the buttons and link our own prefabs with it!**
 
@@ -451,6 +451,6 @@ mode = 1; // for multiple placement of objects, like multiple trees or character
 
 **These modes are linked with if statements such as- place one instant or multiple (line 91-104):**
 
-| <p>else if (mode == 1) //ADD MULTIPLE : create multiple instances of object<br>{<br>Debug.Log("***MODE 1***");<br>Touch touch = Input.GetTouch(0);</p><p>// Handle finger movements based on TouchPhase<br>switch (touch.phase)<br>{<br>case TouchPhase.Began:<br>if (Input.touchCount == 1)<br>{<br>_PlaceInstant(objectParent);<br>}<br>break;</p><p><strong>In the unity file you need to link the modes with the buttons:</strong></p><p><img src="../.gitbook/assets/17 (1)" alt=""></p><p>This works because the void is set to public and the on click is linked with the instantiator script. The button has therefore access to the public void SetMode_B() which sets the mode to 1.</p> |
+| <p>else if (mode == 1) //ADD MULTIPLE : create multiple instances of object<br>{<br>Debug.Log("***MODE 1***");<br>Touch touch = Input.GetTouch(0);</p><p>// Handle finger movements based on TouchPhase<br>switch (touch.phase)<br>{<br>case TouchPhase.Began:<br>if (Input.touchCount == 1)<br>{<br>_PlaceInstant(objectParent);<br>}<br>break;</p><p><strong>In the unity file you need to link the modes with the buttons:</strong></p><p><img src="../../.gitbook/assets/17 (1)" alt=""></p><p>This works because the void is set to public and the on click is linked with the instantiator script. The button has therefore access to the public void SetMode_B() which sets the mode to 1.</p> |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | The instantiator script looks every frame for touch input (as it is in input) and looks for the mode. Depending on the mode and the touch input a different action is activated.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
