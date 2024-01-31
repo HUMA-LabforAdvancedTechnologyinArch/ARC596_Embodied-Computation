@@ -343,7 +343,7 @@ _Now we can start the scripting base! The goal for today is to **“Tap and Inst
 
 -   We see some defined variables that don’t have any object assigned to them. But first, let’s take a look at the **code.**
 
-    <img width="500" alt="" src="https://i.imgur.com/S6nbhpH.jpg">
+    <img width="500" alt="" src="../../.gitbook/assets/T3_emptyinstantiator.JPG">
 
 
 ## Overview of the code 
