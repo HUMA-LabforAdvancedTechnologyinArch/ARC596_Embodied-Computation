@@ -159,7 +159,7 @@ pre {
 code {
   padding: .25em .5em;
   font-size: 100%;
-  color: #acacac;
+  color: #898989;
   background-color: #e0e0e0;
   border-radius: 3px;
 }
