@@ -102,92 +102,105 @@ We check the different types of touch on the screen.
 - **TouchPhase.Moved** = When the touch is a moving touch (happens **continuously**, detected _on every update frame_)
 - **TouchPhase.Ended** = When we lift up the finger from the screen (happens **once**)
 
-private void \_InstantiateOnTouch()\
-{\
-**if (mode == 0)** // ADD ONE : destroy previous object with every tap\
-{\
-Debug.Log("\*\*\*MODE 0\*\*\*");\
-Touch touch = Input.GetTouch(0);
 
-// Handle finger movements based on TouchPhase\
-**switch (touch.phase)**\
-{\
-**case TouchPhase.Began:**\
-\_PlaceInstant(houseParent);\
-break; //break: If this case is true, it will not check the other.
 
-**case TouchPhase.Moved:**\
-// Record initial touch position.\
-if (Input.touchCount == 1)\
-{\
-\_Rotate(ARObject\_new); //we will write this function together\
+
+```
+private void _InstantiateOnTouch() {
+    if (mode == 0) // ADD ONE : destroy previous object with every tap
+    {
+      Debug.Log("MODE 0");
+      Touch touch = Input.GetTouch(0);
+
+      // Handle finger movements based on TouchPhase
+      switch (touch.phase) {
+      case TouchPhase.Began:
+        _PlaceInstant(houseParent);
+        break; //break: If this case is true, it will not check the other.
+
+      case TouchPhase.Moved:
+        // Record initial touch position.
+        if (Input.touchCount == 1) {
+          _Rotate(ARObject_new); //we will write this function together
+        }
+
+        if (Input.touchCount == 2) {
+          _PinchtoZoom(ARObject_new); //existing function
+        }
+        break;
+
+      case TouchPhase.Ended:
+        Debug.Log("Touch Phase Ended.");
+        break;
+      }
+    }
 }
+```
 
-if (Input.touchCount == 2)\
-{\
-\_PinchtoZoom(ARObject\_new); //existing function\
-}\
-break;
 
-**case TouchPhase.Ended:**\
-Debug.Log("Touch Phase Ended.");\
-break;\
-}\
+
+>	**Note:** For code efficiency, we check different cases and “break” the code when one is detected.
+
+Let’s check the _PlaceInstant_ void from yesterday and see what happens if we put ```mode==1``` instead of ```O```
+
+
+
+
+
+
+```
+private void _PlaceInstant(GameObject parentGameObject) {
+  Touch touch;
+  touch = Input.GetTouch(0);
+
+  Debug.Log("Single Touch");
+  List < ARRaycastHit > hits = new List < ARRaycastHit > ();
+  rayManager.Raycast(touch.position, hits);
+  if (hits.Count > 0) {
+    if ((hits[0].hitType & TrackableType.Planes) != 0) //if our touch hits a scanned plane, it instantiates an object
+    {
+      Debug.Log("HIT TYPE = " + hits[0].hitType);
+      if (mode == 0) //default mode
+      {
+        Debug.Log("mode 0");
+        Destroy(ARObject_new); //destroys the previous object in every frame
+      }
+
+      // You can instantiate a 3D object here if you haven't set the Raycast Prefab in the scene.
+      ARObject_new = Instantiate(selected_prefab, hits[0].pose.position, hits[0].pose.rotation);
+      ARObject_new.transform.SetParent(parentGameObject.transform); //Place the GameObject in the correct GameObject folder
+
+      //transform object to Look at our phone camera
+      Vector3 cameraPosition = arCameraTransform.position;
+      cameraPosition.y = hits[0].pose.position.y;
+      ARObject_new.transform.LookAt(cameraPosition, ARObject_new.transform.up);
+      //create AR Anchor for each instantiated object
+      if (ARObject_new.GetComponent < ARAnchor > () == null) {
+        Debug.Log("Anchor created");
+        ARObject_new.AddComponent < ARAnchor > ();
+      }
+    }
+  }
 }
+```
 
-* _**Note:** For code efficiency, we check different cases and “break” the code when one is detected._
 
-Let’s check the _PlaceInstant_ void from yesterday and see what happens if we put mode==1 instead of O
+Script for rotation of instantiated Objects
 
-**private void \_PlaceInstant(GameObject parentGameObject)**\
-{\
-Touch touch;\
-touch = Input.GetTouch(0);
 
-Debug.Log("Single Touch");\
-**List\<ARRaycastHit> hits = new List\<ARRaycastHit>();**\
-**rayManager.Raycast(touch.position, hits);**\
-if (hits.Count > 0)\
-{\
-**if ((hits\[0].hitType & TrackableType.Planes) != 0)** //if our touch hits a scanned plane, it instantiates an object\
-{\
-Debug.Log("HIT TYPE = " + hits\[0].hitType);\
-**if (mode == 0) **//default mode\
-{\
-Debug.Log("mode 0");\
-Destroy(ARObject\_new); //destroys the previous object in every frame\
+
+```
+// we will write the following script together
+private void _Rotate(GameObject objectToRotate) {
+  Touch touch;
+  touch = Input.GetTouch(0);
+
+  Debug.Log("Rotate touch");
+  objectToRotate.transform.Rotate(Vector3.up * 40 f * Time.deltaTime * touch.deltaPosition.x, Space.Self);
+  Debug.Log("Delta Touch is " + touch.deltaPosition);
 }
+```
 
-// You can instantiate a 3D object here if you haven't set the Raycast Prefab in the scene.\
-**ARObject\_new = Instantiate(selected\_prefab, hits\[0].pose.position, hits\[0].pose.rotation);**\
-**ARObject\_new.transform.SetParent(parentGameObject.transform)**; //Place the GameObject in the correct GameObject folder
-
-//transform object to Look at our phone camera\
-Vector3 cameraPosition = arCameraTransform.position;\
-cameraPosition.y = hits\[0].pose.position.y;\
-**ARObject\_new.transform.LookAt(cameraPosition, ARObject\_new.transform.up);**\
-//create AR Anchor for each instantiated object\
-if (ARObject\_new.GetComponent\<ARAnchor>() == null)\
-{\
-Debug.Log("Anchor created");\
-**ARObject\_new.AddComponent\<ARAnchor>**();\
-}\
-}\
-}\
-}
-
-### Script for rotation of instantiated Objects 
-
-// we will write the following script together\
-**private void \_Rotate(GameObject objectToRotate)**\
-{\
-Touch touch;\
-touch = Input.GetTouch(0);
-
-Debug.Log("Rotate touch");\
-**objectToRotate.transform.Rotate(Vector3.up \* 40f \* Time.deltaTime \* touch.deltaPosition.x, Space.Self);**\
-Debug.Log("Delta Touch is " + touch.deltaPosition);\
-}
 
 Change “mode” variable to public and try mode==1
 
