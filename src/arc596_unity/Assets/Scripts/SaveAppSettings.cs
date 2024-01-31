@@ -36,8 +36,12 @@ public class SaveAppSettings : MonoBehaviour
         inputFields.Add(storageBucketInput);
         inputFields.Add(projectIdInput);
         inputFields.Add(topicSubscribeInput);
+        Debug.Log(topicSubscribeInput.text);
     }
-
+    void Update()
+    {
+        Debug.Log(topicSubscribeInput.text);
+    }
     void Start()
     { 
         UpdateInputFields();

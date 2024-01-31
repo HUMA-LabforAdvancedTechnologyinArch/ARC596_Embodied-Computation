@@ -5,10 +5,11 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.XR.ARCore;
 
-public class Instantiator : MonoBehaviour
+public class Instantiator_MultipleHouses: MonoBehaviour
 {
     public GameObject selectedPrefab;
     private GameObject instantiatedObject;
+    public GameObject houseParent; //house prefab parent 
     public Transform arCameraTransform;
     public int mode = 0; //place one house is mode 0, place multiple houses is mode 1
     private ARRaycastManager rayManager;
@@ -21,48 +22,52 @@ public class Instantiator : MonoBehaviour
 
     void Update()
     {
-        InstantiateOnTouch();
-        PinchToZoom(instantiatedObject);
+        HandleMode();
     }
 
     private void HandleMode()
     {
 
-        Debug.Log("***MODE 0***");
-        Touch touch = Input.GetTouch(0);
+        Debug.Log($"we are in mode {mode}");
 
-        // Handle finger movements based on TouchPhase
-        switch (touch.phase)
+        if (Input.touchCount > 0)
         {
-            case TouchPhase.Began:
-                InstantiateOnTouch();
-                break; //break: If this case is true, it will not check the other ones. More computational efficiency, 
+            Touch touch = Input.GetTouch(0);
 
-            case TouchPhase.Moved:
+            // Handle finger movements based on TouchPhase
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    if (Input.touchCount == 1)
+                    {
+                        InstantiateOnTouch(houseParent);
+                    }
+                    break; //break: If this case is true, it will not check the other ones. More computational efficiency, 
 
-                if (Input.touchCount == 2)
-                {
-                    PinchToZoom(instantiatedObject);
-                }
-                break;
+                case TouchPhase.Moved:
 
-            case TouchPhase.Ended:
-                Debug.Log("Touch Phase Ended.");
-                break;
+                    if (Input.touchCount == 1)
+                    {
+                        Rotate(instantiatedObject);
+                    }
+                    
+                    if (Input.touchCount == 2)
+                    {
+                        PinchtoZoom(instantiatedObject);
+                    }
+                    break;
+
+                case TouchPhase.Ended:
+                    Debug.Log("Touch Phase Ended.");
+                    break;
+            }
         }
-
     }
 
-    void InstantiateOnTouch()
+    void InstantiateOnTouch(GameObject houseParent)
     {
-        // Check if there is existing touch.
-        if (Input.touchCount == 0)
-            return;
-
         Touch touch = Input.GetTouch(0);
-        if (Input.touchCount == 1 && touch.phase != TouchPhase.Began)
-
-        {
+        
             Debug.Log("Single Touch");
 
             // Check if the raycast hit any trackables.
@@ -86,21 +91,20 @@ public class Instantiator : MonoBehaviour
 
                 else if (mode == 1)
                 {
-                    // Change the spawned object position and rotation to the touch position.
-                    instantiatedObject.transform.position = arCameraTransform.position;
-                    instantiatedObject.transform.rotation = arCameraTransform.rotation;
+                    instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation);
+                    instantiatedObject.transform.SetParent(houseParent.transform);
                 }
 
                 // To make the spawned object always look at the camera. Delete if not needed.
                 Vector3 lookPos = Camera.main.transform.position - instantiatedObject.transform.position;
                 lookPos.y = 0;
                 instantiatedObject.transform.rotation = Quaternion.LookRotation(lookPos);
-            }
+            
         }
     }
 
 
-    private void _PinchtoZoom(GameObject objectToZoom)
+    private void PinchtoZoom(GameObject objectToZoom)
 
     //scale using pinch involves 2 touches
     // we count both the touches, store them and measure the distance between pinch
@@ -132,14 +136,11 @@ public class Instantiator : MonoBehaviour
     }
 
     // we will write the following script together 
-    private void _Rotate(GameObject objectToRotate)
+    private void Rotate(GameObject objectToRotate)
     {
-        Touch touch;
-        touch = Input.GetTouch(0);
-
-
+        Touch touch = Input.GetTouch(0);
         Debug.Log("Rotate touch");
-        objectToRotate.transform.Rotate(Vector3.up * 40f * Time.deltaTime * touch.deltaPosition.x, Space.Self);
+        objectToRotate.transform.Rotate(Vector3.up * 40f * Time.deltaTime * touch.deltaPosition.x, Space.World);
         Debug.Log("Delta Touch is " + touch.deltaPosition);
 
     }

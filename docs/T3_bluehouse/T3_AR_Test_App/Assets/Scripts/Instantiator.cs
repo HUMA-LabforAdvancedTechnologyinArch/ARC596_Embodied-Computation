@@ -10,7 +10,7 @@ public class Instantiator : MonoBehaviour
     public GameObject selectedPrefab;
     private GameObject instantiatedObject;
     public Transform arCameraTransform;
-    
+
     private ARRaycastManager rayManager;
     List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
@@ -23,34 +23,6 @@ public class Instantiator : MonoBehaviour
     {
         InstantiateOnTouch();
         PinchToZoom(instantiatedObject);
-    }
-
-    private void HandleMode()
-    {
-
-        Debug.Log("***MODE 0***");
-        Touch touch = Input.GetTouch(0);
-
-        // Handle finger movements based on TouchPhase
-        switch (touch.phase)
-        {
-            case TouchPhase.Began:
-                InstantiateOnTouch();
-                break; //break: If this case is true, it will not check the other ones. More computational efficiency, 
-
-            case TouchPhase.Moved:
-
-                if (Input.touchCount == 2)
-                {
-                    PinchToZoom(instantiatedObject);
-                }
-                break;
-
-            case TouchPhase.Ended:
-                Debug.Log("Touch Phase Ended.");
-                break;
-        }
-        
     }
 
     void InstantiateOnTouch()
@@ -114,6 +86,8 @@ public class Instantiator : MonoBehaviour
             // Scale according to pinch amount
             objectToZoom.transform.localScale += new Vector3(pinchAmount, pinchAmount, pinchAmount);
 
+            // Add rotation according to pinch position
+            //objectToZoom.transform.Rotate(Vector3.up * 40f * Time.deltaTime * touchZero.deltaPosition.x, Space.Self);
         }
     }
 }
