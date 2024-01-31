@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.XR.ARCore;
+using UnityEngine.EventSystems;
 
 public class Instantiator_MultipleHouses: MonoBehaviour
 {
@@ -12,7 +13,11 @@ public class Instantiator_MultipleHouses: MonoBehaviour
     public GameObject houseParent; //house prefab parent 
     public Transform arCameraTransform;
     public int mode = 0; //place one house is mode 0, place multiple houses is mode 1
+
+        //raycast related variables here
     private ARRaycastManager rayManager;
+    private ARSession arSession;
+    public Camera arCamera;
     List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     void Start()
@@ -64,7 +69,7 @@ public class Instantiator_MultipleHouses: MonoBehaviour
         }
     }
 
-    void InstantiateOnTouch(GameObject houseParent)
+    private void InstantiateOnTouch(GameObject houseParent)
     {
         Touch touch = Input.GetTouch(0);
         
@@ -143,6 +148,57 @@ public class Instantiator_MultipleHouses: MonoBehaviour
         objectToRotate.transform.Rotate(Vector3.up * 40f * Time.deltaTime * touch.deltaPosition.x, Space.World);
         Debug.Log("Delta Touch is " + touch.deltaPosition);
 
+    }
+
+    //   UI Functions
+    public void SetMode_A()
+    {
+        mode = 0; // for single placement of objects, like the 3D printed house hologram
+    }
+    public void SetMode_B()
+    {
+        mode = 1; // for multiple placement of objects, like multiple trees or characters
+    }
+    
+    public class PointerOverUI
+    {
+        public static bool IsPointerOverUIObject(Vector2 touchPosition)
+        {
+            //checking if we are touching a button
+            PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+            pointerEventData.position = touchPosition;
+            List<RaycastResult> raycastResults = new List<RaycastResult>();
+
+            EventSystem.current.RaycastAll(pointerEventData, raycastResults);
+
+            return raycastResults.Count > 0;
+        }
+    }
+    private bool PhysicRayCastBlockedByUi(Vector2 touchPosition)
+    {
+        //creating a Boolean value if we are touching a button
+        if (PointerOverUI.IsPointerOverUIObject(touchPosition))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public void ResetApp()
+    {
+        //destroy all created objects
+        if (houseParent.transform.childCount > 0)
+        {
+            foreach (Transform child in houseParent.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+        }
+       
+        //reset AR session : resets all trackable objects and planes. 
+        arSession = FindObjectOfType<ARSession>();
+        arSession.Reset();
     }
 
 }

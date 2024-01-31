@@ -1,51 +1,46 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController: MonoBehaviour
 {
 
     public float movementSpeed = 3;
-    public float jumpForce = 300;
-    public float timeBeforeNextJump = 1.2f;
-    private float canJump = 0f;
+    public Button Play_Button;
     Animator anim;
     Rigidbody rb;
+    private bool move;
+    
     
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = gameObject.GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        Button btn = Play_Button.GetComponent<Button>();
+        btn.onClick.AddListener(ControllPlayer);
     }
 
     void Update()
     {
-        ControllPlayer();
+        Debug.Log(move);
+        if (move)
+        {
+            Vector3 movement = transform.forward;
+            transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
+        }
     }
-
-    void ControllPlayer()
+    public void ControllPlayer()
     {
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
-        float moveVertical = Input.GetAxisRaw("Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        Debug.Log("walk");
+        anim.SetInteger("Walk", 1);
+        move = true;
+        Debug.Log("move");
 
-        if (movement != Vector3.zero)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
-            anim.SetInteger("Walk", 1);
-        }
-        else {
-            anim.SetInteger("Walk", 0);
-        }
-
-        transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
-
-        if (Input.GetButtonDown("Jump") && Time.time > canJump)
-        {
-                rb.AddForce(0, jumpForce, 0);
-                canJump = Time.time + timeBeforeNextJump;
-                anim.SetTrigger("jump");
-        }
-    }
+        // WaitForSeconds(5);
+        
+        // anim.SetInteger("Walk", 0);
+        
+     }
 }

@@ -22,7 +22,6 @@ public class Instantiator : MonoBehaviour
     void Update()
     {
         InstantiateOnTouch();
-        PinchToZoom(instantiatedObject);
     }
 
     void InstantiateOnTouch()

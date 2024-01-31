@@ -7,12 +7,12 @@ using UnityEngine.XR.ARCore;
 
 public class Instantiator_MultipleHouses: MonoBehaviour
 {
-    public GameObject selectedPrefab;
     private GameObject instantiatedObject;
     public GameObject houseParent; //house prefab parent 
     public Transform arCameraTransform;
     public int mode = 0; //place one house is mode 0, place multiple houses is mode 1
     private ARRaycastManager rayManager;
+    public GameObject selectedPrefab;
     List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     void Start()
@@ -68,37 +68,37 @@ public class Instantiator_MultipleHouses: MonoBehaviour
     {
         Touch touch = Input.GetTouch(0);
         
-            Debug.Log("Single Touch");
+        Debug.Log("Single Touch");
 
-            // Check if the raycast hit any trackables.
-            if (rayManager.Raycast(Input.GetTouch(0).position, hits, TrackableType.PlaneWithinPolygon))
-            {
-                // Raycast hits are sorted by distance, so the first hit means the closest.
-                var hitPose = hits[0].pose;
+        // Check if the raycast hit any trackables.
+        if (rayManager.Raycast(Input.GetTouch(0).position, hits, TrackableType.PlaneWithinPolygon))
+        {
+            // Raycast hits are sorted by distance, so the first hit means the closest.
+            var hitPose = hits[0].pose;
 
-                if (mode == 0)
-                    // Check if there is already spawned object. If there is none, instantiated the prefab.
-                    if (instantiatedObject == null)
-                    {
-                        instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation);
-                    }
-                    else
-                    {
-                        // Change the spawned object position and rotation to the touch position.
-                        instantiatedObject.transform.position = hitPose.position;
-                        instantiatedObject.transform.rotation = hitPose.rotation;
-                    }
-
-                else if (mode == 1)
+            if (mode == 0)
+                // Check if there is already spawned object. If there is none, instantiated the prefab.
+                if (instantiatedObject == null)
                 {
                     instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation);
-                    instantiatedObject.transform.SetParent(houseParent.transform);
+                }
+                else
+                {
+                    // Change the spawned object position and rotation to the touch position.
+                    instantiatedObject.transform.position = hitPose.position;
+                    instantiatedObject.transform.rotation = hitPose.rotation;
                 }
 
-                // To make the spawned object always look at the camera. Delete if not needed.
-                Vector3 lookPos = Camera.main.transform.position - instantiatedObject.transform.position;
-                lookPos.y = 0;
-                instantiatedObject.transform.rotation = Quaternion.LookRotation(lookPos);
+            else if (mode == 1)
+            {
+                instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation);
+                instantiatedObject.transform.SetParent(houseParent.transform);
+            }
+
+            // To make the spawned object always look at the camera. Delete if not needed.
+            Vector3 lookPos = Camera.main.transform.position - instantiatedObject.transform.position;
+            lookPos.y = 0;
+            instantiatedObject.transform.rotation = Quaternion.LookRotation(lookPos);
             
         }
     }
