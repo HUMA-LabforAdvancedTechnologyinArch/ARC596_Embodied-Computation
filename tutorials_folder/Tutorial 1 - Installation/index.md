@@ -77,7 +77,7 @@
 
       - *Note: For documentation or help, please see: https://compas.dev/compas/latest/userguide/installation.html*
 	  
->	Note: if the rhino install fails, you d not have the right folders. Need to make the scripts folder. Open explorer, put ```\%appdata%\McNeel\Rhinoceros\7.0\``` in the search bar. Create a "scripts" folder. Run the command again. 
+>	Note: if the rhino install fails, you d not have the right folders. Need to make the scripts folder. Open explorer, put ``` \%appdata%\McNeel\Rhinoceros\7.0\ ``` in the search bar. Create a "scripts" folder. Run the command again. 
 	  
 
 	<img width="650" alt="" src="https://i.imgur.com/Qs8CP1P.jpg">

@@ -80,7 +80,7 @@
 >	Note: if the rhino install fails, you d not have the right folders. Need to make the scripts folder. Open explorer, put ```\%appdata%\McNeel\Rhinoceros\7.0\``` in the search bar. Create a "scripts" folder. Run the command again. 
 	  
 
-		<img width="650" alt="" src="https://i.imgur.com/Qs8CP1P.jpg">
+	<img width="650" alt="" src="https://i.imgur.com/Qs8CP1P.jpg">
 
 7. Install Visual Studio Code (VSCode) https://code.visualstudio.com/
 
