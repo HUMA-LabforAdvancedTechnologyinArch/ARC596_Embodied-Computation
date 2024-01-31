@@ -22,7 +22,7 @@
 
 # Create the Multiple Houses App
 
-### Useful Links <a href="_toc86159639" id="_toc86159639"></a>
+### Useful Links 
 
 → [Unity Manual](https://docs.unity3d.com/Manual/index.html)
 
@@ -42,19 +42,19 @@ Packages: [_https://docs.unity3d.com/Manual/PackagesList.html_](https://docs.uni
 
 ### Unity Interface 
 
-![](../../.gitbook/assets/1)
+<img src="../../.gitbook/assets/1" alt="">
 
-**Hierarchy Window**
+> **Hierarchy Window**
 
-**Project Window**
+> **Project Window**
 
-**Scene View**
+> **Scene View**
 
-**Game View**
+> **Game View**
 
-**Inspector Window**
+> **Inspector Window**
 
-**Console**
+> **Console**
 
 ### C# in Unity: 
 
@@ -76,7 +76,7 @@ Scripts manipulate the variables by using functions. There are a number of funct
 
 ### Overview of the code
 
-![](<../../.gitbook/assets/2 (2)>)
+<img src="../../.gitbook/assets/T4_screenshot" alt="">
 
 -	The structure of the code is divided into the following sections: 
 
@@ -103,45 +103,60 @@ We check the different types of touch on the screen.
 - **TouchPhase.Ended** = When we lift up the finger from the screen (happens **once**)
 
 
+Let's write the following code: 
+
+
+
+
 
 
 ```
-private void _InstantiateOnTouch() {
-    if (mode == 0) // ADD ONE : destroy previous object with every tap
-    {
-      Debug.Log("MODE 0");
-      Touch touch = Input.GetTouch(0);
-
-      // Handle finger movements based on TouchPhase
-      switch (touch.phase) {
-      case TouchPhase.Began:
-        _PlaceInstant(houseParent);
-        break; //break: If this case is true, it will not check the other.
-
-      case TouchPhase.Moved:
-        // Record initial touch position.
-        if (Input.touchCount == 1) {
-          _Rotate(ARObject_new); //we will write this function together
-        }
-
-        if (Input.touchCount == 2) {
-          _PinchtoZoom(ARObject_new); //existing function
-        }
-        break;
-
-      case TouchPhase.Ended:
-        Debug.Log("Touch Phase Ended.");
-        break;
-      }
-    }
+private void HandleMode()
+{
+	Debug.Log($"we are in mode {mode}");
+	
+	if (Input.touchCount > 0)
+	{
+	    Touch touch = Input.GetTouch(0);
+	
+	    // Handle finger movements based on TouchPhase
+	    switch (touch.phase)
+	    {
+		case TouchPhase.Began:
+		    if (Input.touchCount == 1)
+		    {
+			InstantiateOnTouch(houseParent);
+		    }
+		    break; //break: If this case is true, it will not check the other ones. More computational efficiency, 
+	
+		case TouchPhase.Moved:
+	
+		    if (Input.touchCount == 1)
+		    {
+			Rotate(instantiatedObject);
+		    }
+		    
+		    if (Input.touchCount == 2)
+		    {
+			PinchtoZoom(instantiatedObject);
+		    }
+		    break;
+	
+		case TouchPhase.Ended:
+		    Debug.Log("Touch Phase Ended.");
+		    break;
+	    }
+	}
 }
 ```
+
+
 
 
 
 >	**Note:** For code efficiency, we check different cases and “break” the code when one is detected.
 
-Let’s check the _PlaceInstant_ void from yesterday and see what happens if we put ```mode==1``` instead of ```O```
+Let’s check the _InstantiateOnTouch_ void from yesterday and see what happens if we put ```mode==1``` instead of ```O```
 
 
 
@@ -149,80 +164,98 @@ Let’s check the _PlaceInstant_ void from yesterday and see what happens if we 
 
 
 ```
-private void _PlaceInstant(GameObject parentGameObject) {
-  Touch touch;
-  touch = Input.GetTouch(0);
-
-  Debug.Log("Single Touch");
-  List < ARRaycastHit > hits = new List < ARRaycastHit > ();
-  rayManager.Raycast(touch.position, hits);
-  if (hits.Count > 0) {
-    if ((hits[0].hitType & TrackableType.Planes) != 0) //if our touch hits a scanned plane, it instantiates an object
-    {
-      Debug.Log("HIT TYPE = " + hits[0].hitType);
-      if (mode == 0) //default mode
-      {
-        Debug.Log("mode 0");
-        Destroy(ARObject_new); //destroys the previous object in every frame
-      }
-
-      // You can instantiate a 3D object here if you haven't set the Raycast Prefab in the scene.
-      ARObject_new = Instantiate(selected_prefab, hits[0].pose.position, hits[0].pose.rotation);
-      ARObject_new.transform.SetParent(parentGameObject.transform); //Place the GameObject in the correct GameObject folder
-
-      //transform object to Look at our phone camera
-      Vector3 cameraPosition = arCameraTransform.position;
-      cameraPosition.y = hits[0].pose.position.y;
-      ARObject_new.transform.LookAt(cameraPosition, ARObject_new.transform.up);
-      //create AR Anchor for each instantiated object
-      if (ARObject_new.GetComponent < ARAnchor > () == null) {
-        Debug.Log("Anchor created");
-        ARObject_new.AddComponent < ARAnchor > ();
-      }
-    }
-  }
+void InstantiateOnTouch(GameObject houseParent)
+{
+	Touch touch = Input.GetTouch(0);
+	
+	Debug.Log("Single Touch");
+	
+	// Check if the raycast hit any trackables.
+	if (rayManager.Raycast(Input.GetTouch(0).position, hits, TrackableType.PlaneWithinPolygon))
+	{
+	    // Raycast hits are sorted by distance, so the first hit means the closest.
+	    var hitPose = hits[0].pose;
+	
+	    if (mode == 0)
+		// Check if there is already spawned object. If there is none, instantiated the prefab.
+		if (instantiatedObject == null)
+		{
+		    instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation);
+		}
+		else
+		{
+		    // Change the spawned object position and rotation to the touch position.
+		    instantiatedObject.transform.position = hitPose.position;
+		    instantiatedObject.transform.rotation = hitPose.rotation;
+		}
+	
+	    else if (mode == 1)
+	    {
+		instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation);
+		instantiatedObject.transform.SetParent(houseParent.transform);
+	    }
+	
+	    // To make the spawned object always look at the camera. Delete if not needed.
+	    Vector3 lookPos = Camera.main.transform.position - instantiatedObject.transform.position;
+	    lookPos.y = 0;
+	    instantiatedObject.transform.rotation = Quaternion.LookRotation(lookPos);
+	    
+	}
 }
 ```
+
+
+
+
 
 
 Script for rotation of instantiated Objects
 
 
 
-```
-// we will write the following script together
-private void _Rotate(GameObject objectToRotate) {
-  Touch touch;
-  touch = Input.GetTouch(0);
 
-  Debug.Log("Rotate touch");
-  objectToRotate.transform.Rotate(Vector3.up * 40 f * Time.deltaTime * touch.deltaPosition.x, Space.Self);
-  Debug.Log("Delta Touch is " + touch.deltaPosition);
+
+
+```
+private void Rotate(GameObject objectToRotate)
+{
+	Touch touch = Input.GetTouch(0);
+	Debug.Log("Rotate touch");
+	objectToRotate.transform.Rotate(Vector3.up * 40f * Time.deltaTime * touch.deltaPosition.x, Space.World);
+	Debug.Log("Delta Touch is " + touch.deltaPosition);
 }
 ```
 
 
-Change “mode” variable to public and try mode==1
 
+
+Change _mode_ variable to public and try ```mode==1```
+
+
+
+
+```
 public int mode = 1; //int = integer number (without decimals)
+```
 
-**→ Build the App to instantiate multiple objects!**
+
+→	**Build the App to instantiate multiple objects!**
 
 ### Unity UI
 
-**Unity UI i**s a **UI toolki**t for developing user interfaces for games and applications. It is a _GameObject-based UI system _that uses _Components_ and the _Game View_ to arrange, position, and style user interfaces.
+**Unity UI** is a UI toolkit for developing user interfaces for games and applications. It is a _GameObject-based UI system_ that uses _Components_ and the _Game View_ to arrange, position, and style user interfaces.
 
-→[ Documentation here](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/index.html)
+>	[Documentation here](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/index.html)
 
 ### Canvas
 
-The **Canvas** is the area that all _UI elements_ should be inside. The_ Canvas_ is _a Game Object _with a **Canvas component **on it, and** all UI elements must be children of such a Canvas.**
+The **Canvas** is the area that all _UI elements_ should be inside. The _Canvas_ is _a Game Object_ with a **Canvas component** on it, and all UI elements must be children of such a Canvas.
 
-Creating a new UI element, such as an Image using the menu G_ameObject > UI > Image_, automatically creates a Canvas, if there isn't already a Canvas in the scene. The UI element is created as a _child _to this Canvas.
+Creating a new UI element, such as an Image using the menu _GameObject > UI > Image_, automatically creates a Canvas, if there isn't already a Canvas in the scene. The UI element is created as a _child_ to this Canvas.
 
-The _Canvas _area is shown as a_ rectangle_ in the_ Scene View._ This makes it easy to position _UI_ elements without needing to have the _Game View _visible at all times.
+The _Canvas_ area is shown as a _rectangle_ in the _Scene View._ This makes it easy to position _UI_ elements without needing to have the _Game View_ visible at all times.
 
-Canvas uses the_ EventSystem _object to help the Messaging System.
+Canvas uses the _EventSystem_ object to help the Messaging System.
 
 ### Basic Layout
 
@@ -232,7 +265,7 @@ In this section we'll look at how you can position UI elements relative to the C
 
 The **Rect Transform** is a new transform component that is used for all UI elements instead of the regular **Transform** component.
 
-![](<../../.gitbook/assets/3 (1)>)
+<img src="../../.gitbook/assets/3 (1)" alt="">
 
 Rect Transforms have position, rotation, and scale just like regular Transforms, but it also has a width and height, used to specify the dimensions of the rectangle.
 
@@ -244,9 +277,9 @@ When the Rect Tool is used to change the size of an object, normally for Sprites
 
 In the Inspector, the **Anchor Preset** button can be found in the upper left corner of the Rect Transform component. Clicking the button brings up the Anchor Presets dropdown. From here you can quickly select from some of the most common anchoring options. You can anchor the UI element to the sides or middle of the parent, or stretch together with the parent size. The horizontal and vertical anchoring is independent.
 
-![](<../../.gitbook/assets/4 (3)>)
+<img src="../../.gitbook/assets/4 (3)" alt="">
 
-The _Anchor Preset_s buttons displays the currently selected preset option if there is one. If the anchors on either the horizontal or vertical axis are set to different positions than any of the presets, the custom options are shown.
+The _Anchor Presets_ buttons displays the currently selected preset option if there is one. If the anchors on either the horizontal or vertical axis are set to different positions than any of the presets, the custom options are shown.
 
 ### Anchor and position fields in the Inspector
 
@@ -254,21 +287,21 @@ You can click the Anchors expansion arrow to reveal the anchor number fields if 
 
 The position fields of the rectangle are shown differently depending on whether the anchors are together (which produces a fixed width and height) or separated (which causes the rectangle to stretch together with the parent rectangle).
 
-![](<../../.gitbook/assets/5 (2)>)
+<img src="../../.gitbook/assets/5 (2)" alt="">
 
 ### Button 
 
 A Button has an **OnClick** UnityEvent to define what it will do when clicked.
 
-![](<../../.gitbook/assets/6 (3)>)
+<img width="200" alt="" src="../../.gitbook/assets/6 (3)">
 
-See the [Button](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Button.html) page for details on using the Button component.
+>	See the [Button](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Button.html) page for details on using the Button component.
 
 ### Slider
 
 A Slider has a decimal number **Value** that the user can drag between a minimum and maximum value. It can be either horizontal or vertical. It also has a **OnValueChanged** UnityEvent to define what it will do when the value is changed.
 
-![](<../../.gitbook/assets/7 (2)>)
+<img width="200" alt="" src="../../.gitbook/assets/7 (2)">
 
 ### Event System 
 
@@ -278,10 +311,10 @@ When you add an Event System component to a GameObject you will notice that it d
 
 The primary roles of the Event System are as follows:
 
-* Manage which GameObject is considered selected
-* Manage which Input Module is in use
-* Manage Raycasting (if required)
-* Updating all Input Modules as required
+-	Manage which GameObject is considered selected
+-	Manage which Input Module is in use
+-	Manage Raycasting (if required)
+-	Updating all Input Modules as required
 
 ### Raycasters 
 
@@ -293,21 +326,28 @@ Also known as hit testing, ray casting allows you to determine where a [ray](htt
 
 **Example:**
 
-\[SerializeField]\
-ARRaycastManager m\_RaycastManager;
+```
+[SerializeField]
+ARRaycastManager m_RaycastManager;
 
-List\<ARRaycastHit> m\_Hits = new List\<ARRaycastHit>();
+List < ARRaycastHit > m_Hits = new List < ARRaycastHit > ();
 
-void Update()\
-{\
-if (Input.touchCount == 0)\
-return;
+void Update() {
+	
+  if (Input.touchCount == 0)
+    return;
 
-if (m\_RaycastManager.Raycast(Input.GetTouch(0).position, m\_Hits))\
-{\
-// Only returns true if there is at least one hit\
-}\
+  if (m_RaycastManager.Raycast(Input.GetTouch(0).position, m_Hits)) {
+    // Only returns true if there is at least one hit
+  }
+
 }
+```
+
+
+
+
+
 
 ### [Physics Raycaster](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-PhysicsRaycaster.html)
 
@@ -315,34 +355,47 @@ Used for 3D physics elements. Casts a ray against all colliders in the Scene and
 
 **Example:**
 
-public class RaycastExample : MonoBehaviour\
-{\
-void FixedUpdate()\
-{\
-RaycastHit hit;
 
-if (Physics.Raycast(transform.position, -Vector3.up, out hit))\
-print("Found an object - distance: " + hit.distance);\
-}\
+
+
+
+
+```
+public class RaycastExample: MonoBehaviour {
+  void FixedUpdate() {
+	
+    RaycastHit hit;
+
+    if (Physics.Raycast(transform.position, -Vector3.up, out hit)){
+      print("Found an object - distance: " + hit.distance);
+	}
+
+  }
 }
+```
 
-### User interface: <a href="_toc86159710" id="_toc86159710"></a>
+
+
+
+
+
+### User interface: 
 
 We first will take a look at our canvas options. Currently we have 4 menus and one reset button.
 
-For each we can insert different 3 GamObjects to place multiple instants.
+For each we can insert different GameObjects to place multiple instants.
 
-![](<../../.gitbook/assets/8 (1)>) ![](<../../.gitbook/assets/9 (3)>)
+<img src="../../.gitbook/assets/8 (1)" alt=""> <img src="../../.gitbook/assets/9 (3)" alt="">
 
 **Change the GameObjects to initiate:**
 
-Click on the main Menu button such as Menu\_Button\_Trees. You will see it highlighted in the scene
+Click on the main Menu button such as ```Menu_Button_Trees```. You will see it highlighted in the scene
 
-![](../../.gitbook/assets/10)
+<img src="../../.gitbook/assets/10" alt="">
 
 In the inspector you find the object manager and the 3 specific prefabs
 
-![](<../../.gitbook/assets/11 (1)>)
+<img src="../../.gitbook/assets/11 (1)" alt="">
 
 We can just drag and drop another GameObject onto the prefab tab
 
@@ -350,110 +403,146 @@ We can just drag and drop another GameObject onto the prefab tab
 
 First, we need to upload a new Logo in the asset folder logo. Ideally a .png with no background.
 
-![](<../../.gitbook/assets/12 (1)>)
+<img src="../../.gitbook/assets/12 (1)" alt="">
 
 Then we click on the new logo and in the Inspector switch the Texture type to “Sprite (2D and UI)
 
-![](<../../.gitbook/assets/13 (3)>)
+<img src="../../.gitbook/assets/13 (3)" alt="">
 
 Then we click on image in the desired menu area
 
-![](<../../.gitbook/assets/14 (3)>)
+<img src="../../.gitbook/assets/14 (3)" alt="">
 
 In the inspector we drag our newly created logo onto the source image. We should tick preserve aspect and might need to adjust position and scale
 
-![](../../.gitbook/assets/15)
+<img src="../../.gitbook/assets/15" alt="">
 
 **How to personalize the button:**
 
 We can adjust the color of the button, once pressed, selected, or disabled.
 
-![](../../.gitbook/assets/16)
+<img src="../../.gitbook/assets/16" alt="">
 
 **Now we all should personalize the buttons and link our own prefabs with it!**
 
 **After this let’s look at the code and try to understand the logic of it:**
 
-using System.Collections;\
-using System.Collections.Generic;\
-using UnityEngine;\
+
+
+
+
+```
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class ObjectManager\_DM : MonoBehaviour\
-{\
-//public variables\
-public GameObject prefabA;\
-public GameObject prefabB;\
-public GameObject prefabC;
+public class ObjectManager_DM: MonoBehaviour {
+  //public variables
+  public GameObject prefabA;
+  public GameObject prefabB;
+  public GameObject prefabC;
 
-//private variables\
-private Instantiator Object\_Spawner;\
-private GameObject buttonA;\
-private GameObject buttonB;\
-private GameObject buttonC;
+  //private variables
+  private Instantiator Object_Spawner;
+  private GameObject buttonA;
+  private GameObject buttonB;
+  private GameObject buttonC;
 
-// Start is called before the first frame update\
-void Start()\
-{\
-//find the ObjectSpawner script\
-Object\_Spawner = FindObjectOfType\<Instantiator>();
+  // Start is called before the first frame update
+  void Start() {
+    //find the ObjectSpawner script
+    Object_Spawner = FindObjectOfType < Instantiator > ();
 
-//For each button, define OnClick Action and prefab\
-Button btn = GetComponent\<Button>();\
-btn.onClick.AddListener(Menu\_Toggle);
+    //For each button, define OnClick Action and prefab
+    Button btn = GetComponent < Button > ();
+    btn.onClick.AddListener(Menu_Toggle);
 
-buttonA = transform.GetChild(1).gameObject;\
-buttonA.GetComponent\<Button>().onClick.AddListener(() => OnClick\_ChangePrefab(prefabA));
+    buttonA = transform.GetChild(1).gameObject;
+    buttonA.GetComponent < Button > ().onClick.AddListener(() => OnClick_ChangePrefab(prefabA));
 
-buttonB = transform.GetChild(2).gameObject;\
-buttonB.GetComponent\<Button>().onClick.AddListener(() => OnClick\_ChangePrefab(prefabB));
+    buttonB = transform.GetChild(2).gameObject;
+    buttonB.GetComponent < Button > ().onClick.AddListener(() => OnClick_ChangePrefab(prefabB));
 
-buttonC = transform.GetChild(3).gameObject;\
-buttonC.GetComponent\<Button>().onClick.AddListener(() => OnClick\_ChangePrefab(prefabC));\
+    buttonC = transform.GetChild(3).gameObject;
+    buttonC.GetComponent < Button > ().onClick.AddListener(() => OnClick_ChangePrefab(prefabC));
+  }
+
+  //Toggle ON and OFF the dropdown submenu options
+  void Menu_Toggle() {
+    //deactivate the buttons if they are on
+    if (buttonA.activeSelf == true) {
+      buttonA.SetActive(false);
+      buttonB.SetActive(false);
+      buttonC.SetActive(false);
+    }
+    //activate the buttons only if prefabs are set
+    else {
+      if (prefabA != null)
+        buttonA.SetActive(true);
+      if (prefabB != null)
+        buttonB.SetActive(true);
+      if (prefabC != null)
+        buttonC.SetActive(true);
+    }
+  }
+  public void OnClick_ChangePrefab(GameObject prefab) {
+    if (prefab != null)
+      Object_Spawner.selected_prefab = prefab;
+  }
 }
+```
 
-//Toggle ON and OFF the dropdown submenu options\
-void Menu\_Toggle()\
-{\
-//deactivate the buttons if they are on\
-if (buttonA.activeSelf == true)\
-{\
-buttonA.SetActive(false);\
-buttonB.SetActive(false);\
-buttonC.SetActive(false);\
-}\
-//activate the buttons only if prefabs are set\
-else\
-{\
-if (prefabA!=null)\
-buttonA.SetActive(true);\
-if (prefabB != null)\
-buttonB.SetActive(true);\
-if (prefabC != null)\
-buttonC.SetActive(true);\
-}\
-}\
-public void OnClick\_ChangePrefab(GameObject prefab)\
-{\
-if(prefab!=null)\
-Object\_Spawner.selected\_prefab = prefab;\
-}\
+
+
+
+
+After this let’s look at the instantiator code. The buttons are linked to different modes. These modes are linked to different actions.
+
+
+
+
+```
+// UI Functions
+public void SetMode_A() {
+  mode = 0; // for single placement of objects, like the 3D printed house hologram
 }
-
-After this let’s look at the instantiator code (line 226-234). The buttons are linked to different modes. These modes are linked to different actions.
-
-// UI Functions\
-public void SetMode\_A()\
-{\
-mode = 0; // for single placement of objects, like the 3D printed house hologram\
-}\
-public void SetMode\_B()\
-{\
-mode = 1; // for multiple placement of objects, like multiple trees or characters\
+public void SetMode_B() {
+  mode = 1; // for multiple placement of objects, like multiple trees or characters
 }
+```
 
-**These modes are linked with if statements such as- place one instant or multiple (line 91-104):**
 
-| <p>else if (mode == 1) //ADD MULTIPLE : create multiple instances of object<br>{<br>Debug.Log("***MODE 1***");<br>Touch touch = Input.GetTouch(0);</p><p>// Handle finger movements based on TouchPhase<br>switch (touch.phase)<br>{<br>case TouchPhase.Began:<br>if (Input.touchCount == 1)<br>{<br>_PlaceInstant(objectParent);<br>}<br>break;</p><p><strong>In the unity file you need to link the modes with the buttons:</strong></p><p><img src="../../.gitbook/assets/17 (1)" alt=""></p><p>This works because the void is set to public and the on click is linked with the instantiator script. The button has therefore access to the public void SetMode_B() which sets the mode to 1.</p> |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The instantiator script looks every frame for touch input (as it is in input) and looks for the mode. Depending on the mode and the touch input a different action is activated.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+
+
+**These modes are linked with if statements such as place one instance or multiple:**
+
+```
+else if (mode == 1) { //ADD MULTIPLE : create multiple instances of object
+
+  Debug.Log("***MODE 1***");
+
+  Touch touch = Input.GetTouch(0); // Handle finger movements
+  
+  switch (touch.phase) {
+  
+	case TouchPhase.Began:
+		
+		if (Input.touchCount == 1) {
+		
+			_PlaceInstant(objectParent);
+		
+		}
+		
+		break;
+	}
+}
+```
+
+-	In the unity file you need to link the modes with the buttons:
+
+<img src="../../.gitbook/assets/17 (1)" alt="">
+
+-	This works because the void is set to public and the on click is linked with the instantiator script. The button has therefore access to the _public void SetMode_B()_ which sets the mode to 1.
+
+-	The instantiator script looks every frame for touch input (as it is in input) and looks for the mode. Depending on the mode and the touch input a different action is activated.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
