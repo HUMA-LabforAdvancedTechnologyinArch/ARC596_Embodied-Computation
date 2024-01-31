@@ -44,17 +44,17 @@ Packages: [_https://docs.unity3d.com/Manual/PackagesList.html_](https://docs.uni
 
 ![](../../.gitbook/assets/1)
 
-**Hierarchy Window**
+> **Hierarchy Window**
 
-**Project Window**
+> **Project Window**
 
-**Scene View**
+> **Scene View**
 
-**Game View**
+> **Game View**
 
-**Inspector Window**
+> **Inspector Window**
 
-**Console**
+> **Console**
 
 ### C# in Unity: 
 
