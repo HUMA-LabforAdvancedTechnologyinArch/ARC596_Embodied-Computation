@@ -6,15 +6,18 @@ menu:
   - title: Tutorials
     url: tutorials/
     subfolderitems:
-      - page: Tutorial 1
-        url: tutorials_folder/Tutorial 1/
+      - page: Tutorial 1 - Installation
+        url: tutorials_folder/Tutorial 1 - Installation/
         description: Installation
-      - page: Tutorial 2
-        url: tutorials_folder/Tutorial 2/
+      - page: Tutorial 2 - First Unity Scene
+        url: tutorials_folder/Tutorial 2 - First Unity Scene/
         description: Tutorial 2 description
-      - page: Tutorial 3
-        url: tutorials_folder/Tutorial 3/
-        description: Tutorial 3 description
+      - page: Tutorial 3 - Bluehouse
+        url: tutorials_folder/Tutorial 3 - Bluehouse/
+        description: Tutorial 3 - Bluehouse
+      - page: Tutorial 3 - Bluehouse
+        url: tutorials_folder/Tutorial 4 - Multiple Houses/
+        description: Tutorial 4 - Multiple Houses
   - title: Getting Started
     url: getting_started/
   - title: Inspiration
@@ -27,3 +30,5 @@ menu:
     url: schedule/
   - title: Team
     url: team/
+  - title: Github
+    url: github/
