@@ -195,7 +195,7 @@
 		
 2. Open the test files
 
-	- Open Unity Hube. Go to Start menu and search ```unity hub```
+	- Open Unity Hub. Go to Start menu and search ```unity hub```
 	
 	- Add the test file from ```ARC596_Embodied-Computation\src\arc596_unity``` to Unity 
 	  	
