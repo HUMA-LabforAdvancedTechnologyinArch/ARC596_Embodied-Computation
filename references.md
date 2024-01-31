@@ -9,7 +9,7 @@ A. R. Fender and C. Holz, “Causality-preserving asynchronous reality,” CHI C
 
 ### Augmented Fabrication
 
-R. L. JOHNS, “Augmented materiality:,” Fabricate 2014, pp. 216–223, 2017. doi:10.2307/j.ctt1tp3c5w.30 
+R. L. Johns, “Augmented Materiality: Modelling with Material Indeterminacy” Fabricate 2014, pp. 216–223, 2017. doi:10.2307/j.ctt1tp3c5w.30 
 
 G. Jahn, C. Newnham, and N. van den Berg, “[BENT] Augmented reality for construction from steam-bent timber,” CAADRIA proceedings, 2022. doi:10.52842/conf.caadria.2022.2.191 
 
