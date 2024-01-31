@@ -76,7 +76,7 @@ Scripts manipulate the variables by using functions. There are a number of funct
 
 ### Overview of the code
 
-<img src="../../.gitbook/assets/2 (2)" alt="">
+<img src="../../.gitbook/assets/T4_screenshot.JPG" alt="">
 
 -	The structure of the code is divided into the following sections: 
 
@@ -111,34 +111,42 @@ Let's write the following code:
 
 
 ```
-private void _InstantiateOnTouch() {
-    if (mode == 0) // ADD ONE : destroy previous object with every tap
-    {
-      Debug.Log("MODE 0");
-      Touch touch = Input.GetTouch(0);
-
-      // Handle finger movements based on TouchPhase
-      switch (touch.phase) {
-      case TouchPhase.Began:
-        _PlaceInstant(houseParent);
-        break; //break: If this case is true, it will not check the other.
-
-      case TouchPhase.Moved:
-        // Record initial touch position.
-        if (Input.touchCount == 1) {
-          _Rotate(ARObject_new); //we will write this function together
-        }
-
-        if (Input.touchCount == 2) {
-          _PinchtoZoom(ARObject_new); //existing function
-        }
-        break;
-
-      case TouchPhase.Ended:
-        Debug.Log("Touch Phase Ended.");
-        break;
-      }
-    }
+private void HandleMode()
+{
+	Debug.Log($"we are in mode {mode}");
+	
+	if (Input.touchCount > 0)
+	{
+	    Touch touch = Input.GetTouch(0);
+	
+	    // Handle finger movements based on TouchPhase
+	    switch (touch.phase)
+	    {
+		case TouchPhase.Began:
+		    if (Input.touchCount == 1)
+		    {
+			InstantiateOnTouch(houseParent);
+		    }
+		    break; //break: If this case is true, it will not check the other ones. More computational efficiency, 
+	
+		case TouchPhase.Moved:
+	
+		    if (Input.touchCount == 1)
+		    {
+			Rotate(instantiatedObject);
+		    }
+		    
+		    if (Input.touchCount == 2)
+		    {
+			PinchtoZoom(instantiatedObject);
+		    }
+		    break;
+	
+		case TouchPhase.Ended:
+		    Debug.Log("Touch Phase Ended.");
+		    break;
+	    }
+	}
 }
 ```
 
@@ -148,7 +156,7 @@ private void _InstantiateOnTouch() {
 
 >	**Note:** For code efficiency, we check different cases and “break” the code when one is detected.
 
-Let’s check the _PlaceInstant_ void from yesterday and see what happens if we put ```mode==1``` instead of ```O```
+Let’s check the _InstantiateOnTouch_ void from yesterday and see what happens if we put ```mode==1``` instead of ```O```
 
 
 
@@ -156,49 +164,43 @@ Let’s check the _PlaceInstant_ void from yesterday and see what happens if we 
 
 
 ```
-private void _PlaceInstant(GameObject parentGameObject) {
-
-  Touch touch;
-
-  touch = Input.GetTouch(0);
-
-  Debug.Log("Single Touch");
-
-  List < ARRaycastHit > hits = new List < ARRaycastHit > ();
-
-  rayManager.Raycast(touch.position, hits);
-
-  if (hits.Count > 0) {
-    
-    if ((hits[0].hitType & TrackableType.Planes) != 0) //if our touch hits a scanned plane, it instantiates an object
-    {
-
-      Debug.Log("HIT TYPE = " + hits[0].hitType);
-      
-      if (mode == 0) //default mode
-      {
-        Debug.Log("mode 0");
-        Destroy(ARObject_new); //destroys the previous object in every frame
-      }
-
-      // You can instantiate a 3D object here if you haven't set the Raycast Prefab in the scene.
-      ARObject_new = Instantiate(selected_prefab, hits[0].pose.position, hits[0].pose.rotation);
-      ARObject_new.transform.SetParent(parentGameObject.transform); //Place the GameObject in the correct GameObject folder
-
-      //transform object to Look at our phone camera
-      Vector3 cameraPosition = arCameraTransform.position;
-      cameraPosition.y = hits[0].pose.position.y;
-      ARObject_new.transform.LookAt(cameraPosition, ARObject_new.transform.up);
-      
-      //create AR Anchor for each instantiated object
-
-      if (ARObject_new.GetComponent < ARAnchor > () == null) {
-        Debug.Log("Anchor created");
-        ARObject_new.AddComponent < ARAnchor > ();
-      }
-
-    }
-  }
+void InstantiateOnTouch(GameObject houseParent)
+{
+	Touch touch = Input.GetTouch(0);
+	
+	Debug.Log("Single Touch");
+	
+	// Check if the raycast hit any trackables.
+	if (rayManager.Raycast(Input.GetTouch(0).position, hits, TrackableType.PlaneWithinPolygon))
+	{
+	    // Raycast hits are sorted by distance, so the first hit means the closest.
+	    var hitPose = hits[0].pose;
+	
+	    if (mode == 0)
+		// Check if there is already spawned object. If there is none, instantiated the prefab.
+		if (instantiatedObject == null)
+		{
+		    instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation);
+		}
+		else
+		{
+		    // Change the spawned object position and rotation to the touch position.
+		    instantiatedObject.transform.position = hitPose.position;
+		    instantiatedObject.transform.rotation = hitPose.rotation;
+		}
+	
+	    else if (mode == 1)
+	    {
+		instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation);
+		instantiatedObject.transform.SetParent(houseParent.transform);
+	    }
+	
+	    // To make the spawned object always look at the camera. Delete if not needed.
+	    Vector3 lookPos = Camera.main.transform.position - instantiatedObject.transform.position;
+	    lookPos.y = 0;
+	    instantiatedObject.transform.rotation = Quaternion.LookRotation(lookPos);
+	    
+	}
 }
 ```
 
@@ -215,14 +217,12 @@ Script for rotation of instantiated Objects
 
 
 ```
-// we will write the following script together
-private void _Rotate(GameObject objectToRotate) {
-  Touch touch;
-  touch = Input.GetTouch(0);
-
-  Debug.Log("Rotate touch");
-  objectToRotate.transform.Rotate(Vector3.up * 40 f * Time.deltaTime * touch.deltaPosition.x, Space.Self);
-  Debug.Log("Delta Touch is " + touch.deltaPosition);
+private void Rotate(GameObject objectToRotate)
+{
+	Touch touch = Input.GetTouch(0);
+	Debug.Log("Rotate touch");
+	objectToRotate.transform.Rotate(Vector3.up * 40f * Time.deltaTime * touch.deltaPosition.x, Space.World);
+	Debug.Log("Delta Touch is " + touch.deltaPosition);
 }
 ```
 
