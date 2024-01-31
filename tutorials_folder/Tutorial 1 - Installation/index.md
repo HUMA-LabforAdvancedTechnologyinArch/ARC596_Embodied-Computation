@@ -93,13 +93,13 @@
       - First, open the Command Palette (Ctrl+Shift+P) or click on the top of the screen 
       - Type ```>Terminal: Select Default Profile``` and select the standard Command Prompt System32/cmd.exe)
 
-        <img width="650" alt="" src="https://i.imgur.com/k69forF.jpeg">
-        <img width="650" alt="" src="https://i.imgur.com/IABwVuO.jpeg">
+		<img width="650" alt="" src="https://i.imgur.com/k69forF.jpeg">
+		<img width="650" alt="" src="https://i.imgur.com/IABwVuO.jpeg">
 
       - Now we can select the Anaconda Environment as your python interpreter. Open the Command Palette (Ctrl+Shift+P), type ```Python: Select Interpreter```, and hit enter. A list of available interpreters will appear. Select the one that corresponds to your ARC596 Anaconda environment.
 
-        <img width="650" alt="" src="https://i.imgur.com/ts8WtPz.jpeg">    
-        <img width="650" alt="" src="https://i.imgur.com/CkSIH9J.jpg">   
+		<img width="650" alt="" src="https://i.imgur.com/ts8WtPz.jpeg">    
+		<img width="650" alt="" src="https://i.imgur.com/CkSIH9J.jpg">   
 
 8. Allow the recently installed programs to access the network using the firewall
 		
@@ -113,8 +113,9 @@
 
     - Add a rule, make sure that it is a port-based type. MQTT runs on TCP, and for the specific ports put ```1883, 8883``` You can name it ```MQTT Allow```, for instance. Save the rule. 
 
-    	<img width="650" alt="" src="https://i.imgur.com/vDoGpn4.jpeg">
-   		<img width="650" alt="" src="https://i.imgur.com/4uhkREQ.jpeg">
+		<img width="650" alt="" src="https://i.imgur.com/vDoGpn4.jpeg">
+		
+		<img width="650" alt="" src="https://i.imgur.com/4uhkREQ.jpeg">
 
 
 	
