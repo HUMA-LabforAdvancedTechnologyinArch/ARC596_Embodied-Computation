@@ -7,6 +7,7 @@ title: Github Repository
 
 The repository can be accessed using the following url:
 
-[github.com/IntuitiveRobotics-AugmentedTechnologies/ARC596_Embodied-Computation](https://github.com/IntuitiveRobotics-AugmentedTechnologies/ARC596_Embodied-Computation)
+[github IntuitiveRobotics AugmentedTechnologies - ARC596 Embodied Computation](https://github.com/IntuitiveRobotics-AugmentedTechnologies/ARC596_Embodied-Computation)
 
 
+[file on another domain](https://not-mademistakes.com/absolute-file.html)
