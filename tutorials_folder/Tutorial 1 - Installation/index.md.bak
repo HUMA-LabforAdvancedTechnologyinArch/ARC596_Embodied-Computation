@@ -135,7 +135,9 @@
 	
 		<img width="600" alt="" src="https://i.imgur.com/HUdlboa.jpg">
 		
-	- License unity as personal non-commercial license 
+	- License unity as personal non-commercial license. Open Unity Hub>Account>Preferences>Licenses
+	
+		<img width="400" alt="" src="https://i.imgur.com/RDnocQQ.jpeg">
 	
 		<img width="400" alt="" src="https://i.imgur.com/GChEZvL.jpg">
 	
