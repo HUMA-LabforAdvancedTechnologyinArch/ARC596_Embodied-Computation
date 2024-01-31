@@ -8,7 +8,7 @@ menu:
     subfolderitems:
       - page: Tutorial 1 - Installation
         url: tutorials_folder/Tutorial 1 - Installation/
-        description: Installation
+        description: Tutorial 1 - Installation
       - page: Tutorial 2 - First Unity Scene
         url: tutorials_folder/Tutorial 2 - First Unity Scene/
         description: Tutorial 2 description
