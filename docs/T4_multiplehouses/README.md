@@ -157,16 +157,24 @@ Let’s check the _PlaceInstant_ void from yesterday and see what happens if we 
 
 ```
 private void _PlaceInstant(GameObject parentGameObject) {
+
   Touch touch;
+
   touch = Input.GetTouch(0);
 
   Debug.Log("Single Touch");
+
   List < ARRaycastHit > hits = new List < ARRaycastHit > ();
+
   rayManager.Raycast(touch.position, hits);
+
   if (hits.Count > 0) {
+    
     if ((hits[0].hitType & TrackableType.Planes) != 0) //if our touch hits a scanned plane, it instantiates an object
     {
+
       Debug.Log("HIT TYPE = " + hits[0].hitType);
+      
       if (mode == 0) //default mode
       {
         Debug.Log("mode 0");
@@ -181,11 +189,14 @@ private void _PlaceInstant(GameObject parentGameObject) {
       Vector3 cameraPosition = arCameraTransform.position;
       cameraPosition.y = hits[0].pose.position.y;
       ARObject_new.transform.LookAt(cameraPosition, ARObject_new.transform.up);
+      
       //create AR Anchor for each instantiated object
+
       if (ARObject_new.GetComponent < ARAnchor > () == null) {
         Debug.Log("Anchor created");
         ARObject_new.AddComponent < ARAnchor > ();
       }
+
     }
   }
 }
