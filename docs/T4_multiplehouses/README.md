@@ -293,7 +293,7 @@ The position fields of the rectangle are shown differently depending on whether 
 
 A Button has an **OnClick** UnityEvent to define what it will do when clicked.
 
-![](<../../.gitbook/assets/6 (3)>)
+<img width="200" alt="" src="../../.gitbook/assets/6 (3)">
 
 >	See the [Button](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Button.html) page for details on using the Button component.
 
