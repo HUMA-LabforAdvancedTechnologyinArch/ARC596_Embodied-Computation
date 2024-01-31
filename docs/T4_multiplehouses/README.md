@@ -301,7 +301,7 @@ A Button has an **OnClick** UnityEvent to define what it will do when clicked.
 
 A Slider has a decimal number **Value** that the user can drag between a minimum and maximum value. It can be either horizontal or vertical. It also has a **OnValueChanged** UnityEvent to define what it will do when the value is changed.
 
-<img width="300" alt="" src="<../../.gitbook/assets/7 (2)>">
+<img width="200" alt="" src="<../../.gitbook/assets/7 (2)>">
 
 ### Event System 
 
