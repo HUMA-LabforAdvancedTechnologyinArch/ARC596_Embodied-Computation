@@ -99,7 +99,7 @@ Scripts manipulate the variables by using functions. There are a number of funct
 We check the different types of touch on the screen.
 
 - **TouchPhase.Began** = When a touch has first been detected, the first moment the finger touches the screen (happens **once** in a touch phase)
-- **TouchPhase.Moved** = When the touch is a moving touch (happens **continuously**, detected _on every update frame_)
+- **TouchPhase.Moved** = When the touch is a moving touch (happens **continuously,** detected _on every update frame_)
 - **TouchPhase.Ended** = When we lift up the finger from the screen (happens **once**)
 
 private void \_InstantiateOnTouch()\
