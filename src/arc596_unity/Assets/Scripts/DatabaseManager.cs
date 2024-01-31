@@ -21,16 +21,17 @@ using Unity.VisualScripting;
 using Instantiate;
 using Google.MiniJSON;
 using Extentions;
+using UnityEngine.InputSystem;
 
 
-public class DataItemDictEventArgs : EventArgs
+public class BuildingPlanDataDictEventArgs : EventArgs
 {
     public BuildingPlanData BuildingPlanDataItem { get; set; }
 }
 
 public class TrackingDataDictEventArgs : EventArgs
 {
-    public Dictionary<string, QRcode> QRCodeDataDict { get; set; }
+    public Dictionary<string, Node> QRCodeDataDict { get; set; }
 }
 
 public class UpdateDataItemsDictEventArgs : EventArgs
@@ -66,20 +67,22 @@ public class DatabaseManager : MonoBehaviour
     public DatabaseReference dbreference_qrcodes;
     public DatabaseReference dbrefernece_usersCurrentSteps;
     public StorageReference storageReference;
+    public DatabaseReference dbreference_project;
 
 
     // Data structures to store nodes and steps
-    public Dictionary<string, Node> DataItemDict { get; private set; } = new Dictionary<string, Node>();
+    public Dictionary<string, Node> AssemblyDataDict { get; private set; } = new Dictionary<string, Node>();
     public BuildingPlanData BuildingPlanDataItem { get; private set; } = new BuildingPlanData();
-    public Dictionary<string, QRcode> QRCodeDataDict { get; private set; } = new Dictionary<string, QRcode>();
+    public Dictionary<string, Node> QRCodeDataDict { get; private set; } = new Dictionary<string, Node>();
     public Dictionary<string, UserCurrentInfo> UserCurrentStepDict { get; private set; } = new Dictionary<string, UserCurrentInfo>();
+    public Dictionary<string, List<string>> PriorityTreeDict { get; private set; } = new Dictionary<string, List<string>>();
 
     //Data Structure to Store Application Settings
     public ApplicationSettings applicationSettings;
 
 
     // Define event delegates and events
-    public delegate void StoreDataDictEventHandler(object source, DataItemDictEventArgs e); 
+    public delegate void StoreDataDictEventHandler(object source, BuildingPlanDataDictEventArgs e); 
     public event StoreDataDictEventHandler DatabaseInitializedDict;
 
     public delegate void TrackingDataDictEventHandler(object source, TrackingDataDictEventArgs e); 
@@ -111,9 +114,11 @@ public class DatabaseManager : MonoBehaviour
     //Other Scripts
     public UIFunctionalities UIFunctionalities;
 
-    //Define bool to set object orientation
+    //In script use objects.
     public bool objectOrientation;
     public string TempDatabaseLastBuiltStep;
+
+    public string CurrentPriority = null;
 
     void Awake()
     {
@@ -151,25 +156,26 @@ public class DatabaseManager : MonoBehaviour
     }    
     public async void FetchData(object source, ApplicationSettingsEventArgs e)
     {
-        //Create DB Reference Always
+        //Create DB References
+        dbreference_project = FirebaseDatabase.DefaultInstance.GetReference(e.Settings.parentname);
         dbreference_assembly = FirebaseDatabase.DefaultInstance.GetReference(e.Settings.parentname).Child("assembly").Child("graph").Child("node");
         dbreference_buildingplan = FirebaseDatabase.DefaultInstance.GetReference(e.Settings.parentname).Child("building_plan").Child("data");
         dbreference_steps = FirebaseDatabase.DefaultInstance.GetReference(e.Settings.parentname).Child("building_plan").Child("data").Child("steps");
         dbreference_LastBuiltIndex = FirebaseDatabase.DefaultInstance.GetReference(e.Settings.parentname).Child("building_plan").Child("data").Child("LastBuiltIndex");
-        dbreference_qrcodes = FirebaseDatabase.DefaultInstance.GetReference(e.Settings.parentname).Child("QRFrames");
+        dbreference_qrcodes = FirebaseDatabase.DefaultInstance.GetReference(e.Settings.parentname).Child("QRFrames").Child("graph").Child("node");
         dbrefernece_usersCurrentSteps = FirebaseDatabase.DefaultInstance.GetReference(e.Settings.parentname).Child("UsersCurrenStep");
-        
+
         //If there is nothing to download Storage=="None" then trigger Objects Secured event
         if (e.Settings.storagename == "None")
         {
             //Fetch QR Data no event trigger
-            FetchRTDData(dbreference_qrcodes, snapshot => DesearializeQRSnapshot(snapshot), "TrackingDict");
+            FetchRTDData(dbreference_qrcodes, snapshot => DeserializeDataSnapshot(snapshot, QRCodeDataDict), "TrackingDict");
             
             //Fetch Assembly Data no event trigger
-            FetchRTDData(dbreference_assembly, snapshot => DeserializeDataSnapshot(snapshot));
+            FetchRTDData(dbreference_assembly, snapshot => DeserializeDataSnapshot(snapshot, AssemblyDataDict));
 
             //Fetch Building plan data with event trigger
-            FetchRTDData(dbreference_buildingplan, snapshot => DesearializeBuildingPlan(snapshot), "DataitemDict");
+            FetchRTDData(dbreference_buildingplan, snapshot => DesearializeBuildingPlan(snapshot), "BuildingPlanDataDict");
 
         }
         
@@ -198,13 +204,13 @@ public class DatabaseManager : MonoBehaviour
         await FetchStorageData(files);
 
         //Fetch QR Data no event trigger
-        FetchRTDData(dbreference_qrcodes, snapshot => DesearializeQRSnapshot(snapshot), "TrackingDict");
+        FetchRTDData(dbreference_qrcodes, snapshot => DeserializeDataSnapshot(snapshot, QRCodeDataDict), "TrackingDict");
         
         //Fetch Assembly Data no event trigger
-        FetchRTDData(dbreference_assembly, snapshot => DeserializeDataSnapshot(snapshot));
+        FetchRTDData(dbreference_assembly, snapshot => DeserializeDataSnapshot(snapshot, AssemblyDataDict));
         
         //Fetch Building plan data with event trigger
-        FetchRTDData(dbreference_buildingplan, snapshot => DesearializeBuildingPlan(snapshot), "DataitemDict");
+        FetchRTDData(dbreference_buildingplan, snapshot => DesearializeBuildingPlan(snapshot), "BuildingPlanDataDict");
     }
     async Task<List<FileMetadata>> GetFilesInFolder(string path)
     {
@@ -294,7 +300,7 @@ public class DatabaseManager : MonoBehaviour
             }
         });
 
-        if (eventname != null && eventname == "DataitemDict")
+        if (eventname != null && eventname == "BuildingPlanDataDict")
         {
             OnDatabaseInitializedDict(BuildingPlanDataItem); 
         }
@@ -320,11 +326,11 @@ public class DatabaseManager : MonoBehaviour
     {
         //TODO: Add custom device_id to the assembly data structure.
         //Find step that I changed in the building plan and add my custom device id.
-        // Node specificnode = DataItemDict[key];
+        // Node specificnode = AssemblyDataDict[key];
         // specificnode.attributes.device_id = SystemInfo.deviceUniqueIdentifier;
 
         //Searilize the data for push to firebase
-        string data = JsonConvert.SerializeObject(DataItemDict);
+        string data = JsonConvert.SerializeObject(AssemblyDataDict);
         
         //Push the data to firebase
         dbreference_buildingplan.SetRawJsonValueAsync(data);
@@ -352,10 +358,12 @@ public class DatabaseManager : MonoBehaviour
     
         OnSettingsUpdate(applicationSettings);
     } 
-    private void DeserializeDataSnapshot(DataSnapshot snapshot)
+    private void DeserializeDataSnapshot(DataSnapshot snapshot, Dictionary<string, Node> dataDict)
     {
-        DataItemDict.Clear();
+        //Clear current Dictionary if it contains information
+        dataDict.Clear();
 
+        //Desearialize individual data items from the snapshots
         foreach (DataSnapshot childSnapshot in snapshot.Children)
         {
             string key = childSnapshot.Key;
@@ -364,8 +372,8 @@ public class DatabaseManager : MonoBehaviour
             
             if (IsValidNode(node_data))
             {
-                DataItemDict[key] = node_data;
-                DataItemDict[key].type_id = key;
+                dataDict[key] = node_data;
+                dataDict[key].type_id = key;
             }
             else
             {
@@ -373,27 +381,7 @@ public class DatabaseManager : MonoBehaviour
             }
         }
         
-        Debug.Log("Number of nodes stored as a dictionary = " + DataItemDict.Count);
-
-    }
-    private void DesearializeQRSnapshot(DataSnapshot snapshot)
-    {
-        foreach (DataSnapshot childSnapshot in snapshot.Children)
-        {    
-            string key = childSnapshot.Key;
-            string jsondatastring = childSnapshot.GetRawJsonValue();
-            
-            if (!string.IsNullOrEmpty(jsondatastring))
-            {
-                QRcode newValue = JsonConvert.DeserializeObject<QRcode>(jsondatastring);
-                QRCodeDataDict[key] = newValue;
-                QRCodeDataDict[key].Key = key;
-            }
-            else
-            {
-                Debug.LogWarning("You did not set your QR Code data properly");
-            }
-        }
+        Debug.Log("Number of nodes stored as a dictionary = " + dataDict.Count);
 
     }
     private void DesearializeLastBuiltIndex(DataSnapshot snapshot)
@@ -467,13 +455,35 @@ public class DatabaseManager : MonoBehaviour
             !string.IsNullOrEmpty(node.type_id) &&
             !string.IsNullOrEmpty(node.type_data) &&
             node.part != null &&
-            node.part.frame != null &&
-            node.attributes.length != null &&
-            node.attributes.width != null &&
-            node.attributes.height != null)
+            node.part.frame != null)
         {
-            // Set default values for properties that may be null
-            return true;
+            if (node.type_data == "4.Joint")
+            {
+                Debug.Log("This is a timbers Joint and should be ignored");
+                return false;
+            }
+            else if (node.type_data != "3.Frame")
+            {
+                // Check if the required properties are present or have valid values
+                if (node.attributes != null &&
+                    node.attributes.length != null &&
+                    node.attributes.width != null &&
+                    node.attributes.height != null)
+                {
+                    // Set default values for properties that may be null
+                    return true;
+                }
+                else
+                {
+                    // If it is not a frame assembly and does not have geometric description.
+                    return false;
+                }
+            }
+            else
+            {
+                // Set default values for properties that may be null
+                return true;
+            }
         }
         Debug.Log($"node.type_id is: '{node.type_id}'");
         return false;
@@ -568,6 +578,9 @@ public class DatabaseManager : MonoBehaviour
             //Find the first unbuilt element
             if(step.data.is_built == false)
             {
+                //Set Current Priority as the priority of the first this current step. This needs to be done before setting the current step.
+                UIFunctionalities.SetCurrentPriority(step.data.priority.ToString());
+
                 //Set Current Element
                 UIFunctionalities.SetCurrentStep(i.ToString());
 
@@ -575,12 +588,64 @@ public class DatabaseManager : MonoBehaviour
             }
         }
     }
+    public int OtherUserPriorityChecker(Step step, string stepKey)
+    {        
+        //If the priority of the current priority then check if it is complete.
+        if (CurrentPriority == step.data.priority.ToString())
+        {
+            //New empty list to store unbuilt elements
+            List<string> UnbuiltElements = new List<string>();
+            
+            //Find the current priority in the dictionary for iteration
+            List<string> PriorityDataItem = PriorityTreeDict[CurrentPriority];
+
+            //Iterate through the Priority tree dictionary to check the elements and if the priority is complete
+            foreach(string element in PriorityDataItem)
+            {
+                //Find the step in the dictoinary
+                Step stepToCheck = BuildingPlanDataItem.steps[element];
+
+                //Check if the element is built
+                if(!stepToCheck.data.is_built)
+                {
+                    UnbuiltElements.Add(element);
+                }
+            }
+
+            //If the list is empty return 2 because all elements of that priority are built, and we want to move on to the next priority.
+            if(UnbuiltElements.Count == 0)
+            {
+                Debug.Log($"OtherUser Priority Check: Current Priority is complete. Unlocking Next Priority.");
+                
+                //Return 2, to move on to the next priority.
+                return 2;
+            }
+            
+            //If the list is not empty return 0 so do nothing.
+            else
+            {
+                Debug.Log($"OtherUser Priority Check: Current Priority is not complete. Incomplete Priority");
+                
+                //Return 0 to not push data.
+                return 0;
+            }
+        }
+        else
+        {
+            //If the priority is not the same as the current priority (meaning it is a lower priority) then we should set it.
+            Debug.Log($"OtherUser Priority Check: Current Priority is not the same as the priority of the step. Set this priority.");
+            
+            //Return set this item to the current priority.
+            return 1;
+        }
+
+    }
 
 /////////////////////////////// Input Data Handlers //////////////////////////////////  
+    //This also creates the priority tree dictionary, but this is temporary to limit searching.
     private BuildingPlanData BuildingPlanDeserializer(object jsondata)
     {
         Dictionary<string, object> jsonDataDict = jsondata as Dictionary<string, object>;
-        Debug.Log($"BUILDING PLAN TEST : {JsonConvert.SerializeObject(jsonDataDict)}");
         
         //Create new building plan instance
         BuildingPlanData buidingPlanData = new BuildingPlanData();
@@ -589,7 +654,7 @@ public class DatabaseManager : MonoBehaviour
         //Attempt to get last built index and if it doesn't exist set it to null
         if (jsonDataDict.TryGetValue("LastBuiltIndex", out object last_built_index))
         {
-            Debug.Log($"I GOT LAST BUILT INDEX {last_built_index.ToString()}");
+            Debug.Log($"Last Built Index Fetched From database: {last_built_index.ToString()}");
             buidingPlanData.LastBuiltIndex = last_built_index.ToString();
         }
         else
@@ -606,12 +671,30 @@ public class DatabaseManager : MonoBehaviour
             string key = i.ToString();
             var json_data = stepsList[i];
 
+            //Create step instance from the information
             Step step_data = StepDeserializer(json_data);
             
+            //Check if step is valid and add it to building plan dictionary
             if (IsValidStep(step_data))
             {
+                //Add step to building plan dictionary
                 buidingPlanData.steps[key] = step_data;
                 Debug.Log($"Step {key} successfully added to the building plan dictionary");
+
+                //Add step to priority tree dictionary
+                if (PriorityTreeDict.ContainsKey(step_data.data.priority.ToString()))
+                {
+                    //If the priority already exists add the key to the list
+                    PriorityTreeDict[step_data.data.priority.ToString()].Add(key);
+                    Debug.Log($"Step {key} successfully added to the priority tree dictionary item {step_data.data.priority.ToString()}");
+                }
+                else
+                {
+                    //If not create a new list and add the key to the list
+                    PriorityTreeDict[step_data.data.priority.ToString()] = new List<string>();
+                    PriorityTreeDict[step_data.data.priority.ToString()].Add(key);
+                    Debug.Log($"Step {key} added a new priority {step_data.data.priority.ToString()} to the priority tree dictionary");
+                }
             }
             else
             {
@@ -619,12 +702,12 @@ public class DatabaseManager : MonoBehaviour
             }
         }
 
+        Debug.Log("THIS IS THE PRIORITY TREE DICTIONARY: " + JsonConvert.SerializeObject(PriorityTreeDict));
         return buidingPlanData;
     }
-    public Node NodeDeserializer(string key, object jsondata)
+    public Node NodeDeserializer(string key, object jsondata, bool additionalAttributes = false)
     {
-        //TODO: This will need to be adjusted so it works for the native assembly and the assembly from the database we write.
-        
+        //Generic Dictionary for deserialization     
         Dictionary<string, object> jsonDataDict = jsondata as Dictionary<string, object>;
 
         // Access nested values 
@@ -638,21 +721,21 @@ public class DatabaseManager : MonoBehaviour
         node.attributes = new Attributes();
         node.part.frame = new Frame();
 
-        //Try get value type to ignore joints
-        if (jsonDataDict.TryGetValue("type", out object type))
-        {
-            if((string)jsonDataDict["type"] == "joint")
-            {
-                node.type_id = key; 
-                Debug.Log("This is a joint");
-                return node;
-            }
-            Debug.Log($"type is: {type}");
-        }
+        //Set node type_id
+        node.type_id = key;
 
-        //Set values for base node class //TODO: Add try get value for safety?
-        node.type_id = jsonDataDict["type_id"].ToString();
-        node.type_data = jsonDataDict["type_data"].ToString();
+        //Get dtype from partDict
+        string dtype = (string)partDict["dtype"];
+        
+        //Check dtype, and determine how they should be deserilized.
+        if (dtype != "compas.datastructures/Part")
+        {
+            DtypeGeometryDesctiptionSelector(node, dtype, dataDict);
+        }
+        else
+        {
+            PartDesctiptionSelector(node, dataDict);
+        }
 
         //Convert System.double items to float for use in instantiation
         List<object> pointslist = frameDataDict["point"] as List<object>;
@@ -669,22 +752,35 @@ public class DatabaseManager : MonoBehaviour
         {
             Debug.Log("One of the Frame lists is null");
         }
-                
-        //Add Items to the attributes dictionary depending on the type of geometry
-        GeometricDesctiptionSelector(node.type_data, dataDict, node);
 
-        //Set Attributes Class Values
+        //If additional Attributes bool then get additional attributes
+        if (additionalAttributes)
+        {
+            GetAdditionalNodeAttributes(node, jsonDataDict);
+        }
+
+        return node;
+    }
+    private void GetAdditionalNodeAttributes(Node node, Dictionary<string, object> jsonDataDict)
+    {
+        //Set Attributes Class Values for extra assembly processes
         node.attributes.is_built = (bool)jsonDataDict["is_built"];
         node.attributes.is_planned =  (bool)jsonDataDict["is_planned"];
         node.attributes.placed_by = (string)jsonDataDict["placed_by"];
-        
-        return node;
+       
     }
-    private void GeometricDesctiptionSelector(string type_data, Dictionary<string, object> jsonDataDict, Node node)
+    private void DtypeGeometryDesctiptionSelector(Node node, string dtype, Dictionary<string, object> jsonDataDict)
     {
-        switch (type_data)
+        //Set node part dtype
+        node.part.dtype = dtype;
+
+        switch (dtype)
         {
-            case "0.Cylinder":
+            case "compas.geometry/Cylinder":
+                
+                //Set node type_data (THIS IS FOR INTERNAL USE... IN any scenario where I am pushing data it should contain this information)
+                node.type_data = "0.Cylinder";
+                
                 // Accessing different parts of json data to make common attributes dictionary
                 float height = Convert.ToSingle(jsonDataDict["height"]);
                 float radius = Convert.ToSingle(jsonDataDict["radius"]);
@@ -695,7 +791,11 @@ public class DatabaseManager : MonoBehaviour
                 node.attributes.height = height;
                 break;
 
-            case "1.Box":
+            case "compas.geometry/Box":
+                
+                //Set node type_data (THIS IS FOR INTERNAL USE... IN any scenario where I am pushing data it should contain this information)
+                node.type_data = "1.Box";
+
                 // Accessing different parts of json data to make common attributes dictionary
                 float xsize = Convert.ToSingle(jsonDataDict["xsize"]);
                 float ysize = Convert.ToSingle(jsonDataDict["ysize"]);
@@ -706,9 +806,38 @@ public class DatabaseManager : MonoBehaviour
                 node.attributes.width = ysize;
                 node.attributes.height = zsize;
                 break;
+            
+            case "compas.datastructures/Mesh":
 
-            case "2.ObjFile":
-                //TODO: THIS ONLY WORKS BECAUSE IT IS SPECIFICALLY SET FOR TIMBERS. NEED TO MAKE THIS MORE GENERIC
+                //Set node type_data (THIS IS FOR INTERNAL USE... IN any scenario where I am pushing data it should contain this information)
+                node.type_data = "2.ObjFile";
+
+                /* TODO: OBJ FILE OPTIONS
+                 I think we need a clearer plan for handling OBJ files.
+                 I think I should make a generic component for them on the python side that takes a list of frames & a list of (breps or meshs)
+                 This componenet should either converts it to a mesh assembly or a frame assembly and Export the proper obj files.
+                */
+                Debug.Log("This is a Mesh assembly");
+                break;
+
+            case "compas.geometry/Frame":
+                
+                //Set node type_data (THIS IS FOR INTERNAL USE... IN any scenario where I am pushing data it should contain this information)
+                node.type_data = "3.Frame";
+
+                /* TODO: OBJ FILE OPTIONS
+                 I think we need a clearer plan for handling OBJ files.
+                 I think I should make a generic component for them on the python side that takes a list of frames & a list of (breps or meshs)
+                 This componenet should either converts it to a mesh assembly or a frame assembly and Export the proper obj files.
+                */
+                Debug.Log("This is a frame assembly");
+                break;
+
+            case "compas_timber.parts/Beam":
+
+                //Set node type_data (THIS IS FOR INTERNAL USE... IN any scenario where I am pushing data it should contain this information)
+                node.type_data = "2.ObjFile";
+
                 // Accessing different parts of json data to make common attributes dictionary
                 float objLength = Convert.ToSingle(jsonDataDict["length"]);
                 float objWidth = Convert.ToSingle(jsonDataDict["width"]);
@@ -718,16 +847,41 @@ public class DatabaseManager : MonoBehaviour
                 node.attributes.length = objLength;
                 node.attributes.width = objWidth;
                 node.attributes.height = objHeight;
+
                 break;
-                
-            case "3.Mesh":
-                Debug.Log("Mesh");
+
+            case string connectionType when connectionType.StartsWith("compas_timber.connections"):
+        
+                //Set node type_data (THIS IS FOR INTERNAL USE... IN any scenario where I am pushing data it should contain this information)
+                node.type_data = "4.Joint";
+
+                // This actually serves as a great oppertunity to split off for joints and use the information.
+                //......
+
+                Debug.Log("This is a timbers connection");
                 break;
+
 
             default:
                 Debug.Log("Default");
                 break;
         }
+    }
+    private void PartDesctiptionSelector(Node node, Dictionary<string, object> jsonDataDict)
+    {
+        Debug.Log("Assembly is constructed of Parts");
+
+        //Access nested Part information.
+        Dictionary<string, object> attributesDict = jsonDataDict["attributes"] as Dictionary<string, object>;
+        Dictionary<string, object> nameDict = attributesDict["name"] as Dictionary<string, object>;
+        Dictionary<string, object> partdataDict = nameDict["data"] as Dictionary<string, object>;
+
+        //Get dtype from name dictionary
+        string dtype = (string)nameDict["dtype"];
+
+        //Call dtype description selector.
+        DtypeGeometryDesctiptionSelector(node, dtype, partdataDict);
+
     }
     public Step StepDeserializer(object jsondata)
     {
@@ -814,61 +968,49 @@ public class DatabaseManager : MonoBehaviour
     {        
         Debug.Log("Adding Listners");
         
-        //Updated listners for building plan steps
-        dbreference_steps.ChildAdded += OnChildAdded;
-        dbreference_steps.ChildChanged += OnChildChanged;
-        dbreference_steps.ChildRemoved += OnChildRemoved;
+        //Add listners for building plan steps
+        dbreference_steps.ChildAdded += OnStepsChildAdded;
+        dbreference_steps.ChildChanged += OnStepsChildChanged;
+        dbreference_steps.ChildRemoved += OnStepsChildRemoved;
         
-        //Updated listeners for building plan last built index
+        //Add Listners for Users Current Step
+        dbrefernece_usersCurrentSteps.ChildAdded += OnUserChildAdded; 
+        dbrefernece_usersCurrentSteps.ChildChanged += OnUserChildChanged;
+        dbrefernece_usersCurrentSteps.ChildRemoved += OnUserChildRemoved;
+
+        //Add Listner for building plan last built index
         dbreference_LastBuiltIndex.ValueChanged += OnLastBuiltIndexChanged;
 
-        //Add Listners for the Assembly //TODO: NEED TO FIND A WAY TO NOT PULL THE INFORMATION ON THE UNAVOIDABLE FIRST CALL
-        dbreference_assembly.ChildAdded += OnAssemblyChanged;
-        dbreference_assembly.ChildChanged += OnAssemblyChanged;
-        dbreference_assembly.ChildRemoved += OnAssemblyChanged;
-
-        //Add Listners for the QR codes //TODO: NEED TO FIND A WAY TO NOT PULL THE INFORMATION ON THE UNAVOIDABLE FIRST CALL
-        dbreference_qrcodes.ChildAdded += OnQRChanged;
-        dbreference_qrcodes.ChildChanged += OnQRChanged;
-        dbreference_qrcodes.ChildRemoved += OnQRChanged;
-
-        // Add Listners for current step
-        dbrefernece_usersCurrentSteps.ChildAdded += OnUserAdded;
-        dbrefernece_usersCurrentSteps.ChildChanged += OnUserChanged;
-        dbrefernece_usersCurrentSteps.ChildRemoved += OnUserRemoved;
-
+        //Add Listners to the Overall project to list for data changes in assembly, qrcodes, and additional Info.
+        dbreference_project.ChildAdded += OnProjectInfoChangedUpdate;
+        dbreference_project.ChildChanged += OnProjectInfoChangedUpdate;
+        dbreference_project.ChildRemoved += OnProjectInfoChangedUpdate;
     }
     public void RemoveListners()
     {        
         Debug.Log("Removing the listeners");
 
-        //Updated listners for building plan steps
-        dbreference_steps.ChildAdded -= OnChildAdded;
-        dbreference_steps.ChildChanged -= OnChildChanged;
-        dbreference_steps.ChildRemoved -= OnChildRemoved;
+        //Remove listners for building plan steps
+        dbreference_steps.ChildAdded += OnStepsChildAdded;
+        dbreference_steps.ChildChanged += OnStepsChildChanged;
+        dbreference_steps.ChildRemoved += OnStepsChildRemoved;
         
-        //Updated listeners for building plan last built index
-        dbreference_LastBuiltIndex.ValueChanged -= OnLastBuiltIndexChanged;
+        //Remove Listners for Users Current Step
+        dbrefernece_usersCurrentSteps.ChildAdded += OnUserChildAdded; 
+        dbrefernece_usersCurrentSteps.ChildChanged += OnUserChildChanged;
+        dbrefernece_usersCurrentSteps.ChildRemoved += OnUserChildRemoved;
 
-        //Add Listners for the Assembly 
-        dbreference_assembly.ChildAdded -= OnAssemblyChanged;
-        dbreference_assembly.ChildChanged -= OnAssemblyChanged;
-        dbreference_assembly.ChildRemoved -= OnAssemblyChanged;
+        //Remove Listner for building plan last built index
+        dbreference_LastBuiltIndex.ValueChanged += OnLastBuiltIndexChanged;
 
-        //Add Listners for the QR codes 
-        dbreference_qrcodes.ChildAdded -= OnQRChanged;
-        dbreference_qrcodes.ChildChanged -= OnQRChanged;
-        dbreference_qrcodes.ChildRemoved -= OnQRChanged;
-
-        //Add Listners for current step
-        dbrefernece_usersCurrentSteps.ChildAdded -= OnUserAdded;
-        dbrefernece_usersCurrentSteps.ChildChanged -= OnUserChanged;
-        dbrefernece_usersCurrentSteps.ChildRemoved -= OnUserRemoved;
-
+        //Remove Listners to the Overall project to list for data changes in assembly, qrcodes, and additional Info.
+        dbreference_project.ChildAdded += OnProjectInfoChangedUpdate;
+        dbreference_project.ChildChanged += OnProjectInfoChangedUpdate;
+        dbreference_project.ChildRemoved += OnProjectInfoChangedUpdate;
     }
 
-    // Event handler for child changes    
-    public void OnChildAdded(object sender, Firebase.Database.ChildChangedEventArgs args) 
+    // Event handler for BuildingPlan child changes
+    public void OnStepsChildAdded(object sender, Firebase.Database.ChildChangedEventArgs args) 
     {
         if (args.DatabaseError != null)
         {
@@ -896,17 +1038,38 @@ public class DatabaseManager : MonoBehaviour
                     Debug.Log($"The key '{key}' does not exist in the dictionary");
                     BuildingPlanDataItem.steps.Add(key, newValue);
 
+                    //TODO: Remove Temporary Building Plan Priority Tree Dictionary
+                    //Check if the steps priority is one that I already have in the priority tree dictionary
+                    if (PriorityTreeDict.ContainsKey(newValue.data.priority.ToString()))
+                    {
+                        //If the priority already exists add the key to the list
+                        PriorityTreeDict[newValue.data.priority.ToString()].Add(key);
+                        Debug.Log($"Step {key} successfully added to the priority tree dictionary item {newValue.data.priority.ToString()}");
+                    }
+                    else
+                    {
+                        //If not create a new list and add the key to the list
+                        PriorityTreeDict[newValue.data.priority.ToString()] = new List<string>();
+                        PriorityTreeDict[newValue.data.priority.ToString()].Add(key);
+                        Debug.Log($"Step {key} added a new priority {newValue.data.priority.ToString()} to the priority tree dictionary");
+                    }
+                    //TODO: Remove Temporary Building Plan Priority Tree Dictionary
+
                     //Instantiate new object
                     OnDatabaseUpdate(newValue, key);
+                    
                 }
             }
             else
             {
                 Debug.LogWarning($"Invalid Step structure for key '{key}'. Not added to the dictionary.");
             }
+
+            //Print out the priority tree as a check
+            Debug.Log("THIS IS THE PRIORITY TREE DICTIONARY: " + JsonConvert.SerializeObject(PriorityTreeDict));
         }
     } 
-    public void OnChildChanged(object sender, Firebase.Database.ChildChangedEventArgs args) 
+    public void OnStepsChildChanged(object sender, Firebase.Database.ChildChangedEventArgs args) 
     {
         if (args.DatabaseError != null) {
         Debug.LogError($"Database error: {args.DatabaseError}");
@@ -919,6 +1082,10 @@ public class DatabaseManager : MonoBehaviour
         }
 
         string key = args.Snapshot.Key;
+        if (key == null) {
+            Debug.LogWarning("Snapshot key is null. Ignoring the child change.");
+        }
+
         var childSnapshot = args.Snapshot.GetValue(true);
 
         if (childSnapshot != null)
@@ -941,9 +1108,43 @@ public class DatabaseManager : MonoBehaviour
                     //This means that the change was specifically from another device.
                     else
                     {    
-                        Debug.Log($"I entered here for key {key}");
                         if(IsValidStep(newValue))
                         {
+                            //TODO: Remove Temporary Building Plan Priority Tree Dictionary
+                            //First check if the new steps priorty is different from the old one then remove the old one and add a new one.
+                            if (newValue.data.priority != BuildingPlanDataItem.steps[key].data.priority)
+                            {
+                                //Remove the old key from the priority tree dictionary
+                                PriorityTreeDict[BuildingPlanDataItem.steps[key].data.priority.ToString()].Remove(key);
+
+                                //Check if the priority tree value item is null and if so remove it from the dictionary
+                                if (PriorityTreeDict[BuildingPlanDataItem.steps[key].data.priority.ToString()].Count == 0)
+                                {
+                                    PriorityTreeDict.Remove(BuildingPlanDataItem.steps[key].data.priority.ToString());
+                                }
+
+                                //Check if the steps priority is one that I already have in the priority tree dictionary
+                                if (PriorityTreeDict.ContainsKey(newValue.data.priority.ToString()))
+                                {
+                                    //If the priority already exists add the key to the list
+                                    PriorityTreeDict[newValue.data.priority.ToString()].Add(key);
+                                    Debug.Log($"Step {key} successfully added to the priority tree dictionary item {newValue.data.priority.ToString()}");
+                                }
+                                else
+                                {
+                                    //If not create a new list and add the key to the list
+                                    PriorityTreeDict[newValue.data.priority.ToString()] = new List<string>();
+                                    PriorityTreeDict[newValue.data.priority.ToString()].Add(key);
+                                    Debug.Log($"Step {key} added a new priority {newValue.data.priority.ToString()} to the priority tree dictionary");
+                                }
+                            }
+                            else
+                            {
+                                Debug.Log($"The priority of the step {key} did not change");
+                            }
+                            //TODO: Remove Temporary Building Plan Priority Tree Dictionary
+
+                            //Add the new value to the Building plan dictionary
                             BuildingPlanDataItem.steps[key] = newValue;
                         }
                         else
@@ -958,14 +1159,49 @@ public class DatabaseManager : MonoBehaviour
                         OnDatabaseUpdate(newValue, key);
                     }
                 }
-                //Check: This change happened either manually or from grasshopper.
+                //Check: This change happened either manually or from grasshopper. To an object that doesn't have a device id.
                 else
                 {
                     Debug.LogWarning($"Device ID is null: the change for key {key} happened from gh or manually.");
 
                     if(IsValidStep(newValue))
                     {
-                        BuildingPlanDataItem.steps[key] = newValue;
+                        //TODO: Remove Temporary Building Plan Priority Tree Dictionary
+                        //First check if the new steps priorty is different from the old one then remove the old one and add a new one.
+                        if (newValue.data.priority != BuildingPlanDataItem.steps[key].data.priority)
+                        {                            
+                            //Remove the old key from the priority tree dictionary
+                            PriorityTreeDict[BuildingPlanDataItem.steps[key].data.priority.ToString()].Remove(key);
+
+                            //Check if the priority tree value item is null and if so remove it from the dictionary
+                            if (PriorityTreeDict[BuildingPlanDataItem.steps[key].data.priority.ToString()].Count == 0)
+                            {
+                                PriorityTreeDict.Remove(BuildingPlanDataItem.steps[key].data.priority.ToString());
+                            }
+
+                            //Check if the steps priority is one that I already have in the priority tree dictionary
+                            if (PriorityTreeDict.ContainsKey(newValue.data.priority.ToString()))
+                            {
+                                //If the priority already exists add the key to the list
+                                PriorityTreeDict[newValue.data.priority.ToString()].Add(key);
+                                Debug.Log($"Step {key} successfully added to the priority tree dictionary item {newValue.data.priority.ToString()}");
+                            }
+                            else
+                            {
+                                //If not create a new list and add the key to the list
+                                PriorityTreeDict[newValue.data.priority.ToString()] = new List<string>();
+                                PriorityTreeDict[newValue.data.priority.ToString()].Add(key);
+                                Debug.Log($"Step {key} added a new priority {newValue.data.priority.ToString()} to the priority tree dictionary");
+                            }
+                            
+                            BuildingPlanDataItem.steps[key] = newValue;
+                        }
+                        else
+                        {
+                            Debug.Log($"The priority of the step {key} did not change");
+                        }
+                        //TODO: Remove Temporary Building Plan Priority Tree Dictionary
+
                     }
                     else
                     {
@@ -977,12 +1213,16 @@ public class DatabaseManager : MonoBehaviour
                     
                     //Instantiate new object
                     OnDatabaseUpdate(newValue, key);
+
                 }
+
+                //Print out the priority tree as a check
+                Debug.Log("THIS IS THE PRIORITY TREE DICTIONARY: " + JsonConvert.SerializeObject(PriorityTreeDict));
             }
 
         }
     }
-    public void OnChildRemoved(object sender, Firebase.Database.ChildChangedEventArgs args)
+    public void OnStepsChildRemoved(object sender, Firebase.Database.ChildChangedEventArgs args)
     {
         if (args.DatabaseError != null)
         {
@@ -1000,7 +1240,22 @@ public class DatabaseManager : MonoBehaviour
             {
                 Step newValue = null;
                 Debug.Log("The key exists in the dictionary and is going to be removed");
+                
+                //TODO: Remove Temporary Building Plan Priority Tree Dictionary
+                //First check thee steps priorty Remove the steps key from the priority tree dictionary
+                PriorityTreeDict[BuildingPlanDataItem.steps[key].data.priority.ToString()].Remove(key);
+
+                //Check if the priority tree value item is null and if so remove it from the dictionary
+                if (PriorityTreeDict[BuildingPlanDataItem.steps[key].data.priority.ToString()].Count == 0)
+                {
+                    PriorityTreeDict.Remove(BuildingPlanDataItem.steps[key].data.priority.ToString());
+                }
+                //TODO: Remove Temporary Building Plan Priority Tree Dictionary
+                
+                //Remove the step from the building plan dictionary
                 BuildingPlanDataItem.steps.Remove(key);
+
+                //Trigger database event
                 OnDatabaseUpdate(newValue, key);
             }
             else
@@ -1009,7 +1264,82 @@ public class DatabaseManager : MonoBehaviour
             }
         }
     }  
-    public void OnUserAdded(object sender, Firebase.Database.ChildChangedEventArgs args)
+    public async void OnLastBuiltIndexChanged(object sender, Firebase.Database.ValueChangedEventArgs args)
+    {
+
+        if (args.DatabaseError != null) {
+        Debug.LogError($"Database error: {args.DatabaseError}");
+        return;
+        }
+
+        if (args.Snapshot == null) {
+            Debug.LogWarning("Snapshot is null. Ignoring the child change.");
+            return;
+        }
+        
+        Debug.Log("Last Built Index Changed");
+        
+        //Set Temp Current Element to null so that everytime an event is triggered it becomes null again and doesnt keep old data.
+        TempDatabaseLastBuiltStep = null;
+        
+        await FetchRTDData(dbreference_LastBuiltIndex, snapshot => DesearializeLastBuiltIndex(snapshot));
+    
+        if (TempDatabaseLastBuiltStep != null)
+        {
+            if(TempDatabaseLastBuiltStep != BuildingPlanDataItem.LastBuiltIndex)
+            {
+                // Update Last Built Index
+                BuildingPlanDataItem.LastBuiltIndex = TempDatabaseLastBuiltStep;
+                Debug.Log($"Last Built Index is now {BuildingPlanDataItem.LastBuiltIndex}");
+
+                // Update On Screen Text
+                UIFunctionalities.SetLastBuiltText(BuildingPlanDataItem.LastBuiltIndex);
+            
+                // Check Priority to see if its complete.
+                Step step = BuildingPlanDataItem.steps[BuildingPlanDataItem.LastBuiltIndex];
+                int priorityCheck = OtherUserPriorityChecker(step, BuildingPlanDataItem.LastBuiltIndex);
+
+                // If the priority checker == 1 then set priority from this step. If it == 2 then set priority from the next step. (THIS COULD BE PRIORITY + 1, but safest to use the next step because it avoids errors from if a priority is missing)
+                if (priorityCheck == 1)
+                {
+                    UIFunctionalities.SetCurrentPriority(step.data.priority.ToString());
+                }
+                else if (priorityCheck == 2 && Convert.ToInt32(BuildingPlanDataItem.LastBuiltIndex) < BuildingPlanDataItem.steps.Count - 1)
+                {
+                    //Get my current priority
+                    string localCurrentPriority = CurrentPriority;
+
+                    //convert to int and add 1
+                    int nextPriority = Convert.ToInt32(localCurrentPriority) + 1;
+
+                    //Set this as my new current priority
+                    UIFunctionalities.SetCurrentPriority(nextPriority.ToString());
+
+                    //If my CurrentStep Priority is the same as New Current Priority then update UI graphics
+                    Step localCurrentStep = BuildingPlanDataItem.steps[UIFunctionalities.CurrentStep];
+
+                    //If my CurrentStep Priority is the same as New Current Priority then update UI graphics
+                    if(localCurrentStep.data.priority.ToString() == CurrentPriority)
+                    {    
+                        UIFunctionalities.IsBuiltButtonGraphicsControler(localCurrentStep.data.is_built, localCurrentStep.data.priority);
+                    }
+
+                }
+                else
+                {
+                    Debug.Log($"OtherUser Priority Check: returned {priorityCheck} and is not 1 or 2 and shouldn't do anything");
+                }
+            }
+            else
+            {
+                Debug.Log("Last Built Index is the same your current Last Built Index");
+            }
+
+        }
+    }    
+    
+    // Event handlers for User Current Step
+    public void OnUserChildAdded(object sender, Firebase.Database.ChildChangedEventArgs args)
     {
         if (args.DatabaseError != null) {
         Debug.LogError($"Database error: {args.DatabaseError}");
@@ -1050,7 +1380,7 @@ public class DatabaseManager : MonoBehaviour
             }
         }
     }
-    public void OnUserChanged(object sender, Firebase.Database.ChildChangedEventArgs args)
+    public void OnUserChildChanged(object sender, Firebase.Database.ChildChangedEventArgs args)
     {
         if (args.DatabaseError != null) {
         Debug.LogError($"Database error: {args.DatabaseError}");
@@ -1097,7 +1427,7 @@ public class DatabaseManager : MonoBehaviour
 
         }
     }
-    public void OnUserRemoved(object sender, Firebase.Database.ChildChangedEventArgs args)
+    public void OnUserChildRemoved(object sender, Firebase.Database.ChildChangedEventArgs args)
     {
         if (args.DatabaseError != null) {
         Debug.LogError($"Database error: {args.DatabaseError}");
@@ -1124,7 +1454,9 @@ public class DatabaseManager : MonoBehaviour
         }
 
     }
-    public void OnAssemblyChanged(object sender, Firebase.Database.ChildChangedEventArgs args)
+
+    // Event Handlers for Additional Project Information, Assembly, Parts, QRFrames, & Joints
+    public async void OnProjectInfoChangedUpdate(object sender, Firebase.Database.ChildChangedEventArgs args)
     {
         if (args.DatabaseError != null) {
         Debug.LogError($"Database error: {args.DatabaseError}");
@@ -1135,61 +1467,48 @@ public class DatabaseManager : MonoBehaviour
             Debug.LogWarning("Snapshot is null. Ignoring the child change.");
             return;
         }
-        
-        Debug.Log("Assembly Changed");
-        FetchRTDData(dbreference_assembly, snapshot => DeserializeDataSnapshot(snapshot));
-    }
-    public void OnQRChanged(object sender, Firebase.Database.ChildChangedEventArgs args)
-    {
-        if (args.DatabaseError != null) {
-        Debug.LogError($"Database error: {args.DatabaseError}");
-        return;
-        }
 
-        if (args.Snapshot == null) {
-            Debug.LogWarning("Snapshot is null. Ignoring the child change.");
-            return;
-        }
-        
-        Debug.Log("QRCodes Changed");
-        FetchRTDData(dbreference_qrcodes, snapshot => DesearializeQRSnapshot(snapshot), "TrackingDict");
-    }
-    public async void OnLastBuiltIndexChanged(object sender, Firebase.Database.ValueChangedEventArgs args)
-    {
+        //Get the child changed key and value
+        string key = args.Snapshot.Key;
+        var childSnapshot = args.Snapshot.GetValue(true);
 
-        if (args.DatabaseError != null) {
-        Debug.LogError($"Database error: {args.DatabaseError}");
-        return;
-        }
-
-        if (args.Snapshot == null) {
-            Debug.LogWarning("Snapshot is null. Ignoring the child change.");
-            return;
-        }
-        
-        Debug.Log("Last Built Index Changed");
-        
-        //Set Temp Current Element to null so that everytime an event is triggered it becomes null again and doesnt keep old data.
-        TempDatabaseLastBuiltStep = null;
-        
-        await FetchRTDData(dbreference_LastBuiltIndex, snapshot => DesearializeLastBuiltIndex(snapshot));
-    
-        if (TempDatabaseLastBuiltStep != null)
+        //If Snapshot and Key are not null check for where the change needs to happen.
+        if (childSnapshot != null && key != null)
         {
-            if(TempDatabaseLastBuiltStep != BuildingPlanDataItem.LastBuiltIndex)
+            if(key == "assembly")
             {
-                // Update Last Built Index
-                BuildingPlanDataItem.LastBuiltIndex = TempDatabaseLastBuiltStep;
-                Debug.Log($"Last Built Index is now {BuildingPlanDataItem.LastBuiltIndex}");
+                Debug.Log("Project Changed: Assembly Changed");
+                
+                //If the assembly changed then fetch new assembly data
+                await FetchRTDData(dbreference_assembly, snapshot => DeserializeDataSnapshot(snapshot, AssemblyDataDict));
+            }
+            else if(key == "QRFrames")
+            {
+                Debug.Log("Project Changed: QRFrames Changed");
 
-                // Update On Screen Text
-                UIFunctionalities.SetLastBuiltText(BuildingPlanDataItem.LastBuiltIndex);
+                //If the qrcodes changed then fetch new qrcode data
+                await FetchRTDData(dbreference_qrcodes, snapshot => DeserializeDataSnapshot(snapshot, QRCodeDataDict), "TrackingDict");
+            }
+            else if(key == "beams")
+            {
+                Debug.Log("Project Changed: Beams");
+            }
+            else if(key == "joints")
+            {
+                Debug.Log("Project Changed: Joints");
+            }
+            else if(key == "building_plan")
+            {
+                Debug.Log("Project Changed: BuildingPlan and should be handled by other listners");
+            }
+            else if(key == "UserCurrentStep")
+            {
+                Debug.Log("Project Changed: User Current Step Changed this should be handled by other listners");
             }
             else
             {
-                Debug.Log("Last Built Index is the same your current Last Built Index");
+                Debug.LogWarning($"Project Changed: The key: {key} did not match the expected project keys");
             }
-
         }
     }
     
@@ -1197,9 +1516,10 @@ public class DatabaseManager : MonoBehaviour
     protected virtual void OnDatabaseInitializedDict(BuildingPlanData BuildingPlanDataItem)
     {
         UnityEngine.Assertions.Assert.IsNotNull(DatabaseInitializedDict, "Database dict is null!");
-        DatabaseInitializedDict(this, new DataItemDictEventArgs() {BuildingPlanDataItem = BuildingPlanDataItem});
+        Debug.Log("Building Plan Data Received");
+        DatabaseInitializedDict(this, new BuildingPlanDataDictEventArgs() {BuildingPlanDataItem = BuildingPlanDataItem});
     }
-    protected virtual void OnTrackingDataReceived(Dictionary<string, QRcode> QRCodeDataDict)
+    protected virtual void OnTrackingDataReceived(Dictionary<string, Node> QRCodeDataDict)
     {
         UnityEngine.Assertions.Assert.IsNotNull(TrackingDictReceived, "Tracking Dict is null!");
         Debug.Log("Tracking Data Received");

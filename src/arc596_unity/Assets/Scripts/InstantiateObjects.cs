@@ -19,6 +19,7 @@ using ApplicationModeControler;
 using UnityEngine.Events;
 using UnityEngine.Analytics;
 using UnityEngine.InputSystem;
+using System.Xml.Linq;
 
 
 //scripts to initiate all geometries in the scene
@@ -61,6 +62,7 @@ namespace Instantiate
         private GameObject IdxImage;
         private GameObject SelectionArrow;
         private GameObject NewUserArrow;
+        private GameObject ObjectLengthsTags;
 
         public struct Rotation
         {
@@ -69,7 +71,7 @@ namespace Instantiate
             public Vector3 z;
         }
 
-        //PRIVATE IN SCRIPT USE OBJECTS
+        //Private in script use objects
         private ARRaycastManager rayManager;
 
         public void Awake()
@@ -101,17 +103,15 @@ namespace Instantiate
             SearchedObjectMaterial = GameObject.Find("Materials").FindObject("SearchedObjects").GetComponentInChildren<Renderer>().material;
             
             //Find GameObjects fo internal use
-            IdxImage = GameObject.Find("IdxTags").FindObject("Circle");
+            IdxImage = GameObject.Find("IdxTagsTemplates").FindObject("Circle");
             SelectionArrow = GameObject.Find("SelectionArrows").FindObject("Arrow");
             NewUserArrow = GameObject.Find("SelectionArrows").FindObject("NewUserArrow");
+            ObjectLengthsTags = GameObject.Find("ObjectLengthsTags");
 
             //Set Initial Visulization Modes
             visulizationController.VisulizationMode = VisulizationMode.BuiltUnbuilt;
             visulizationController.TouchMode = TouchMode.None;
-            visulizationController.TagsMode = false;
-
         }
-
         public void placeElements(List<Step> DataItems) 
         {
             int i = 0;
@@ -160,7 +160,7 @@ namespace Instantiate
             elementPrefab.name = Key;
 
             //Get the nested gameobject from the .Obj so we can adapt colors only the first object
-            GameObject geometryObject = elementPrefab.FindObject("Geometry");
+            GameObject geometryObject = elementPrefab.FindObject(step.data.element_ids[0] + " Geometry");
 
             // Create and attach text label to the GameObject
             CreateIndexTextForGameObject(elementPrefab, step.data.element_ids[0]);
@@ -170,19 +170,25 @@ namespace Instantiate
             ObjectColorandTouchEvaluater(visulizationController.VisulizationMode, visulizationController.TouchMode, step, geometryObject);
             
             //Check if the visulization tags mode is on
-            if (visulizationController.TagsMode)
+            if (UIFunctionalities.IDToggleObject.GetComponent<Toggle>().isOn)
             {
                 //Set tag and Image visibility if the mode is on
                 elementPrefab.FindObject(elementPrefab.name + " Text").gameObject.SetActive(true);
                 elementPrefab.FindObject(elementPrefab.name + "IdxImage").gameObject.SetActive(true);
             }
 
-            //If the object is equal to the current step also color it human or robot
+            //If Priority Viewer toggle is on then color the add additional color based on priority: //TODO: IF I CHANGE PV then it checks text.
+            if (UIFunctionalities.PriorityViewerToggleObject.GetComponent<Toggle>().isOn)
+            {
+                ColorObjectByPriority(databaseManager.CurrentPriority, step.data.priority.ToString(), Key, geometryObject);
+            }
+
+            //If the object is equal to the current step also color it human or robot and instantiate an arrow again.
             if (Key == UIFunctionalities.CurrentStep)
             {
                 ColorHumanOrRobot(step.data.actor, step.data.is_built, geometryObject);
+                ArrowInstantiator(elementPrefab, Key);
             }
-
         }
         public void placeElementAssembly(string Key, Node node)
         {
@@ -250,9 +256,6 @@ namespace Instantiate
                 Debug.LogWarning("The dictionary is null");
             }
         }   
-        
-        //TODO: Add Empty Parent object to the GameObject and name the child Object Geometry to match the .obj file.
-        //TODO: Add a Colider - Everything but Obj files.
         public GameObject gameobjectTypeSelector(Step step)
         {
 
@@ -268,23 +271,55 @@ namespace Instantiate
                 {
                     //TODO:REVIEW THE SIZE AND SCALE OF THESE
                     case "0.Cylinder":
+                        //Create Empty gameObject to store the cylinder (Named by Step Number)
+                        element = new GameObject();
+                        element.transform.position = Vector3.zero;
+                        element.transform.rotation = Quaternion.identity;
+                        
                         //Define the Size of the Cylinder from the data values
-                        float cylinderRadius = DataItemDict[step.data.element_ids[0].ToString()].attributes.width;
-                        float cylinderHeight = DataItemDict[step.data.element_ids[0].ToString()].attributes.height;
+                        float cylinderRadius = databaseManager.AssemblyDataDict[step.data.element_ids[0].ToString()].attributes.width;
+                        float cylinderHeight = databaseManager.AssemblyDataDict[step.data.element_ids[0].ToString()].attributes.height;
                         Vector3 cylindersize = new Vector3(cylinderRadius*2, cylinderHeight, cylinderRadius*2);
                         
-                        //Create and Scale Element
-                        element = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-                        element.transform.localScale = cylindersize;
+                        //Create, Scale, & name child object (Named by Assembly ID)
+                        GameObject cylinderObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                        cylinderObject.transform.localScale = cylindersize;
+                        cylinderObject.name = step.data.element_ids[0].ToString() + " Geometry";
+
+                        //Add a collider to the gameobject
+                        BoxCollider cylinderCollider = cylinderObject.AddComponent<BoxCollider>();
+                        Vector3 cylinderSize = cylinderObject.GetComponent<MeshRenderer>().bounds.size;
+                        Vector3 cylinderColliderSize = new Vector3(cylinderSize.x*1.1f, cylinderSize.y*1.2f, cylinderSize.z*1.2f);
+                        cylinderCollider.size = cylinderColliderSize;
+
+                        //Set the cylinder as a child of the empty gameObject
+                        cylinderObject.transform.SetParent(element.transform);
+
                         break;
 
                     case "1.Box":                    
-                        //Define the Size of the Cube from the data values
-                        Vector3 cubesize = new Vector3(DataItemDict[step.data.element_ids[0].ToString()].attributes.width, DataItemDict[step.data.element_ids[0].ToString()].attributes.height, DataItemDict[step.data.element_ids[0].ToString()].attributes.length);
+                        //Create Empty gameObject to store the cylinder (Named by step number)
+                        element = new GameObject();
+                        element.transform.position = Vector3.zero;
+                        element.transform.rotation = Quaternion.identity;
                         
-                        //Create and Scale Element
-                        element = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                        element.transform.localScale = cubesize;
+                        //Define the Size of the Cube from the data values
+                        Vector3 cubesize = new Vector3(databaseManager.AssemblyDataDict[step.data.element_ids[0].ToString()].attributes.width, databaseManager.AssemblyDataDict[step.data.element_ids[0].ToString()].attributes.height, databaseManager.AssemblyDataDict[step.data.element_ids[0].ToString()].attributes.length);
+                        
+                        //Create, Scale, & name Box object (Named by Assembly ID)
+                        GameObject boxObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                        boxObject.transform.localScale = cubesize;
+                        boxObject.name = step.data.element_ids[0].ToString() + " Geometry";
+
+                        //Add a collider to the gameobject
+                        BoxCollider boxCollider = boxObject.AddComponent<BoxCollider>();
+                        Vector3 boxSize = boxObject.GetComponent<MeshRenderer>().bounds.size;
+                        Vector3 boxColliderSize = new Vector3(boxSize.x*1.1f, boxSize.y*1.2f, boxSize.z*1.2f);
+                        boxCollider.size = boxColliderSize;
+
+                        //Set the cylinder as a child of the empty gameObject
+                        boxObject.transform.SetParent(element.transform);
+
                         break;
 
                     case "2.ObjFile":
@@ -303,25 +338,17 @@ namespace Instantiate
                             Debug.Log ("ObjPrefab is null");
                         }
 
-                        //Change Objects Name and Add collider
+                        //Change Objects Name to the name of the key from the assembly and Add collider
                         if (element!=null && element.transform.childCount > 0)
                         {
+                            //Set name of the child to the Element ID name.
                             GameObject child_object = element.transform.GetChild(0).gameObject;
-                            child_object.name = "Geometry";
+                            child_object.name = step.data.element_ids[0].ToString() + " Geometry";
 
                             //Add a collider to the object
                             BoxCollider collider = child_object.AddComponent<BoxCollider>();
-
-                            //Mesh Object size to define the size of the collider
                             Vector3 MeshSize = child_object.GetComponent<MeshRenderer>().bounds.size;
-
-                            //Scale Original Size by just a bit to make sure the collider is not too small.
                             Vector3 colliderSize = new Vector3(MeshSize.x*1.1f, MeshSize.y*1.2f, MeshSize.z*1.2f);
-                            
-                            //TODO: TESTING COLLIDER SIZE
-                            // Vector3 colliderSize = new Vector3(1f, 1f, 1f);
-
-                            //Set the collider size
                             collider.size = colliderSize;
 
                             Debug.Log($"Atempting to add colider to object {element.name}");
@@ -411,34 +438,37 @@ namespace Instantiate
                 return element;
             
         }
-        private void CreateIndexTextForGameObject(GameObject gameObject, string text)
+        private void CreateIndexTextForGameObject(GameObject gameObject, string assemblyID)
         {
             // Create a new GameObject for the text
             GameObject IndexTextContainer = new GameObject(gameObject.name + " Text");
             TextMeshPro IndexText = IndexTextContainer.AddComponent<TextMeshPro>();
-            IndexText.text = text;
+            IndexText.text = assemblyID;
             IndexText.fontSize = 1f;
             IndexText.alignment = TextAlignmentOptions.Center;
 
             // Calculate the center of the GameObject
-            GameObject childobject = gameObject.FindObject("Geometry");
+            GameObject childobject = gameObject.FindObject(assemblyID + " Geometry");
             Renderer renderer = childobject.GetComponent<Renderer>();
+            if (renderer == null)
+            {
+                Debug.Log("Renderer not found in the parent object.");
+            }
             Vector3 center = Vector3.zero;
             center = renderer.bounds.center;
 
             // Offset the position slightly above the GameObject
             float verticalOffset = 0.13f;
             Vector3 textPosition = new Vector3(center.x, center.y + verticalOffset, center.z);
-
             IndexTextContainer.transform.position = textPosition;
             IndexTextContainer.transform.rotation = Quaternion.identity;
             IndexTextContainer.transform.SetParent(gameObject.transform);
 
             // Add billboard effect(object rotating with camera)
-            Billboard billboard = IndexTextContainer.AddComponent<Billboard>();
-        
+            GameObjectExtensions.Billboard billboard = IndexTextContainer.AddComponent<GameObjectExtensions.Billboard>();
+
             // Initially set the text as inactive
-            IndexTextContainer.SetActive(false);   
+            IndexTextContainer.SetActive(false);
 
         }
         private void CreateCircleImageForTag(GameObject parentObject)
@@ -449,8 +479,11 @@ namespace Instantiate
                 return;
             }
 
+            //Find the element ID from the step associated with this geometry
+            string elementID = databaseManager.BuildingPlanDataItem.steps[parentObject.name].data.element_ids[0];
+
             // Find the center of the parent object's renderer
-            Renderer renderer = parentObject.FindObject("Geometry").GetComponentInChildren<Renderer>();
+            Renderer renderer = parentObject.FindObject(elementID + " Geometry").GetComponentInChildren<Renderer>();
             if (renderer == null)
             {
                 Debug.LogError("Renderer not found in the parent object.");
@@ -471,7 +504,7 @@ namespace Instantiate
             circleImage.name = $"{parentObject.name}IdxImage";
 
             // Add billboard effect
-            Billboard billboard = circleImage.AddComponent<Billboard>();
+            GameObjectExtensions.Billboard billboard = circleImage.AddComponent<GameObjectExtensions.Billboard>();
 
             //Set Initial Visivility to false
             circleImage.SetActive(false);
@@ -486,7 +519,9 @@ namespace Instantiate
 
             //Find the center of the Item key object
             GameObject itemObject = Elements.FindObject(itemKey);
-            Renderer renderer = itemObject.FindObject("Geometry").GetComponentInChildren<Renderer>();
+            string elementID = databaseManager.BuildingPlanDataItem.steps[itemKey].data.element_ids[0];
+
+            Renderer renderer = itemObject.FindObject(elementID + " Geometry").GetComponentInChildren<Renderer>();
             if (renderer == null)
             {
                 Debug.LogError("Renderer not found in the parent object.");
@@ -537,9 +572,50 @@ namespace Instantiate
             //Instantiate Arrow
             ArrowInstantiator(userObject, itemKey, true);
         }
+        public void CalculateandSetLengthPositions(string key)
+        {
+            //Find Gameobject Associated with that step
+            GameObject element = Elements.FindObject(key);
+            Step step = databaseManager.BuildingPlanDataItem.steps[key];
+
+            //Find gameobject center
+            Vector3 center = element.FindObject(step.data.element_ids[0] + " Geometry").GetComponent<Renderer>().bounds.center;
+
+            //Find length from assembly dictionary
+            float length = databaseManager.AssemblyDataDict[step.data.element_ids[0]].attributes.length;
+
+            //Calculate position of P1 and P2 
+            Vector3 P1Position = center + element.transform.right * (length / 2)* -1;
+            Vector3 P2Position = center + element.transform.right * (length / 2);
+
+            //Set Positions of P1 and P2
+            ObjectLengthsTags.FindObject("P1Tag").transform.position = P1Position;
+            ObjectLengthsTags.FindObject("P2Tag").transform.position = P2Position;
+
+            //Check if the component has a billboard component and if it doesn't add it.
+            if (ObjectLengthsTags.FindObject("P1Tag").GetComponent<GameObjectExtensions.Billboard>() == null)
+            {
+                ObjectLengthsTags.FindObject("P1Tag").AddComponent<GameObjectExtensions.Billboard>();
+            }
+            if (ObjectLengthsTags.FindObject("P2Tag").GetComponent<GameObjectExtensions.Billboard>() == null)
+            {
+                ObjectLengthsTags.FindObject("P2Tag").AddComponent<GameObjectExtensions.Billboard>();
+            }
+
+            //Adjust P1 and P2 to be the same xz position as the elements for distance calculation
+            Vector3 ElementsPosition = Elements.transform.position;
+            Vector3 P1Adjusted = new Vector3(ElementsPosition.x, P1Position.y, ElementsPosition.z);
+            Vector3 P2Adjusted = new Vector3(ElementsPosition.x, P2Position.y, ElementsPosition.z);
+
+            //Get distance between position of P1, P2 and position of elements
+            float P1distance = Vector3.Distance(P1Adjusted, ElementsPosition);
+            float P2distance = Vector3.Distance(P2Adjusted, ElementsPosition);
+
+            //Update Distance Text
+            UIFunctionalities.SetObjectLengthsText(P1distance, P2distance);
+        }
     
     /////////////////////////////// POSITION AND ROTATION ////////////////////////////////////////
-        //Handle rotation of objects from Rhino to Unity. With option to add additional rotation around for .obj files.
         public Quaternion FromRhinotoUnityRotation(Rotation rotation, bool objZ_up)
         {   
             //Set Unity Rotation
@@ -612,7 +688,7 @@ namespace Instantiate
             return rotation;
         }
 
-        //Functions for obj imort correctoin.
+        //Methods for obj imort correction.
         public Rotation ZRotation(Rotation ObjectRotation)
         {
             //Deconstruct Rotation Struct into Vector3
@@ -736,23 +812,32 @@ namespace Instantiate
                 }
             }
         }
-        public Material CreateMaterial(float red, float green, float blue, float alpha) //TODO: Color is incorrect
+        public void ColorObjectByPriority(string SelectedPriority, string StepPriority,string Key, GameObject gamobj)
         {
-            Material mat = new Material(Shader.Find("Standard"));
-            mat.SetColor("_Color",  new Color(red, green, blue, alpha));
-            mat.SetFloat("_Mode", 3);
-            mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-            mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-            mat.EnableKeyword("_ALPHABLEND_ON");
-            mat.SetInt("_ZWrite", 0);
-            mat.DisableKeyword("_ALPHATEST_ON");
-            mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-            mat.renderQueue = 3000;
+            //Get Object Renderer
+            Renderer m_renderer= gamobj.GetComponentInChildren<Renderer>();
 
-            return mat;
+            //If the steps priority is not the same as the selected priority then color it grey
+            if (StepPriority != SelectedPriority)
+            {
+                Debug.Log($"Coloring object {gamobj.name} grey");
+
+                //Create a new color for the object based on its current color, and add a greyscale blend factor
+                Color objectAdjustedColor = AdjustColorByGreyscale(m_renderer.material.color, 0.45f);
+
+                //Set the object to the new color
+                m_renderer.material.color = objectAdjustedColor;
+            }
+            else
+            {
+                //Find the item in the dictionary
+                Step step = databaseManager.BuildingPlanDataItem.steps[Key];
+                string elementID = step.data.element_ids[0];
+
+                //Color based on visulization mode
+                ObjectColorandTouchEvaluater(visulizationController.VisulizationMode, visulizationController.TouchMode, step, gamobj.FindObject(elementID + " Geometry"));
+            }
         }
-
-        // Apply color for objects based on Built or Unbuilt state
         public void ApplyColorBasedOnBuildState()
         {
             if (databaseManager.BuildingPlanDataItem.steps != null)
@@ -763,13 +848,18 @@ namespace Instantiate
 
                     if (gameObject != null && gameObject.name != UIFunctionalities.CurrentStep)
                     {
-                        ColorBuiltOrUnbuilt(entry.Value.data.is_built, gameObject.FindObject("Geometry"));
+                        ColorBuiltOrUnbuilt(entry.Value.data.is_built, gameObject.FindObject(entry.Value.data.element_ids[0]));
+
+                        //Check if Priority Viewer is on and color based on priority also if it is.
+                        if (UIFunctionalities.PriorityViewerToggleObject.GetComponent<Toggle>().isOn)
+                        {
+                            //Color based on Priority
+                            ColorObjectByPriority(databaseManager.CurrentPriority, entry.Value.data.priority.ToString(), entry.Key, gameObject.FindObject(entry.Value.data.element_ids[0]));
+                        }
                     }
                 }
             }
         }
-
-        //Apply color for objects based on Actor View state
         public void ApplyColorBasedOnActor()
         {
             if (databaseManager.BuildingPlanDataItem.steps != null)
@@ -780,14 +870,77 @@ namespace Instantiate
                     
                     if (gameObject != null && gameObject.name != UIFunctionalities.CurrentStep)
                     {
-                        ColorHumanOrRobot(entry.Value.data.actor, entry.Value.data.is_built, gameObject.FindObject("Geometry"));
+                        ColorHumanOrRobot(entry.Value.data.actor, entry.Value.data.is_built, gameObject.FindObject(entry.Value.data.element_ids[0]));
+
+                        //Check if Priority Viewer is on and color based on priority if it is.
+                        if (UIFunctionalities.PriorityViewerToggleObject.GetComponent<Toggle>().isOn)
+                        {
+                            //Color based on priority
+                            ColorObjectByPriority(databaseManager.CurrentPriority, entry.Value.data.priority.ToString(), entry.Key, gameObject.FindObject(entry.Value.data.element_ids[0]));
+                        }
                     }
                 }
             }
         }
+        public void ApplyColorBasedOnPriority(string SelectedPriority)
+        {
+            Debug.Log($"Applying color based on priority: {SelectedPriority}.");
+            if (databaseManager.BuildingPlanDataItem.steps != null)
+            {
+                foreach (var entry in databaseManager.BuildingPlanDataItem.steps)
+                {
+                    GameObject gameObject = GameObject.Find(entry.Key);
+                    
+                    //If the objects are not null color by priority function.
+                    if (gameObject != null && entry.Key != UIFunctionalities.CurrentStep)
+                    {
+                        //Color based on priority
+                        ColorObjectByPriority(SelectedPriority, entry.Value.data.priority.ToString(), entry.Key, gameObject.FindObject(entry.Value.data.element_ids[0]));
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Could not find object with key: {entry.Key}");
+                    }
+                }
+            }
+        }
+        public Color AdjustColorByGreyscale(Color originalColor, float factor)
+        {
+            //If Color is not white (Built and Unbuilt Colors)
+            if (originalColor.r != 1.000f && originalColor.g != 1.000f && originalColor.b != 1.000f)
+            {
+                // Factor should be between 0 and 1, where 0 is unchanged and 1 is fully gray
+                factor = Mathf.Clamp01(factor);
 
+                // Convert the original color to grayscale
+                float grayscaleValue = originalColor.r * 0.3f + originalColor.g * 0.59f + originalColor.b * 0.11f;
+
+                // Blend the grayscale color with the original color based on the factor
+                float blendedR = originalColor.r * (1 - factor) + grayscaleValue * factor;
+                float blendedG = originalColor.g * (1 - factor) + grayscaleValue * factor;
+                float blendedB = originalColor.b * (1 - factor) + grayscaleValue * factor;
+
+                // Ensure color values are in the valid range (0 to 1)
+                blendedR = Mathf.Clamp01(blendedR);
+                blendedG = Mathf.Clamp01(blendedG);
+                blendedB = Mathf.Clamp01(blendedB);
+
+                // Create and return the new color
+                Color newColor = new Color(blendedR, blendedG, blendedB, originalColor.a);
+                
+                Debug.Log($"Original Color: {originalColor} New Color: {newColor}");
+                
+                return newColor;
+            }
+            else
+            {
+                Color newColor = new Color(originalColor.r * factor, originalColor.g * factor, originalColor.b * factor, originalColor.a);
+                return newColor;
+            }
+        }
+    
     /////////////////////////////// EVENT HANDLING ////////////////////////////////////////
-        public void OnDatabaseInitializedDict(object source, DataItemDictEventArgs e)
+        public void OnDatabaseInitializedDict(object source, BuildingPlanDataDictEventArgs e)
         {
             Debug.Log("Database is loaded." + " " + "Number of nodes stored as a dict= " + e.BuildingPlanDataItem.steps.Count);
             placeElementsDict(e.BuildingPlanDataItem.steps);
@@ -864,7 +1017,7 @@ namespace Instantiate
         {
             PlacedInitialElements(this, EventArgs.Empty);
 
-            //TODO: FIND CURRENT STEP AND LAST BUILT STEP
+            //Find the first unbuilt element in the database
             databaseManager.FindInitialElement();
         }
     }

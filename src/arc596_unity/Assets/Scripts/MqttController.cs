@@ -35,6 +35,12 @@ public class MqttController : MonoBehaviour
     saveAppSettings.UpdateInputFields();
 
   }
+
+  private void StoreMessage(string eventMsg)
+  {
+      if (eventMsg.Count > 50) eventMsg.Clear();
+      eventMessages.Add(eventMsg);
+  }
   
 }
 

@@ -25,34 +25,6 @@ public class Instantiator : MonoBehaviour
         PinchToZoom(instantiatedObject);
     }
 
-    private void HandleMode()
-    {
-
-        Debug.Log("***MODE 0***");
-        Touch touch = Input.GetTouch(0);
-
-        // Handle finger movements based on TouchPhase
-        switch (touch.phase)
-        {
-            case TouchPhase.Began:
-                InstantiateOnTouch();
-                break; //break: If this case is true, it will not check the other ones. More computational efficiency, 
-
-            case TouchPhase.Moved:
-
-                if (Input.touchCount == 2)
-                {
-                    PinchToZoom(instantiatedObject);
-                }
-                break;
-
-            case TouchPhase.Ended:
-                Debug.Log("Touch Phase Ended.");
-                break;
-        }
-
-    }
-
     void InstantiateOnTouch()
     {
         // Check if there is existing touch.

@@ -15,7 +15,7 @@ public class Eventmanager : MonoBehaviour
     public GameObject Databasemanager;
     public GameObject Instantiateobjects;
     public GameObject Checkfirebase;
-    public GameObject QRTracking;
+    public GameObject QRLocalization;
     public DatabaseReference dbreference_design;
     public DatabaseReference settings_reference;
     DatabaseManager databaseManager;
@@ -35,7 +35,7 @@ public class Eventmanager : MonoBehaviour
         databaseManager = Databasemanager.AddComponent<DatabaseManager>();  
         InstantiateObjects instantiateObjects = Instantiateobjects.AddComponent<InstantiateObjects>();
         CheckFirebase checkFirebase = Checkfirebase.AddComponent<CheckFirebase>();
-        QRTrackingScript qrTracking = QRTracking.GetComponent<QRTrackingScript>();
+        QRLocalization qrLocalization = QRLocalization.GetComponent<QRLocalization>();
 
         //Initialize Firebase 
         checkFirebase.FirebaseInitialized += Initialized;
@@ -50,7 +50,7 @@ public class Eventmanager : MonoBehaviour
         databaseManager.DatabaseInitializedDict += instantiateObjects.OnDatabaseInitializedDict;
 
         //Start tracking Codes only once tracking information is received
-        databaseManager.TrackingDictReceived += qrTracking.OnTrackingInformationReceived;
+        databaseManager.TrackingDictReceived += qrLocalization.OnTrackingInformationReceived;
 
         //Add listners after initial objects have been placed to avoid simultanous item placement
         instantiateObjects.PlacedInitialElements += databaseManager.AddListeners;

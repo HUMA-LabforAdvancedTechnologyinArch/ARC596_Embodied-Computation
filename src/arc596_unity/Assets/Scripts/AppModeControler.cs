@@ -7,7 +7,6 @@ namespace ApplicationModeControler
     {
         public VisulizationMode VisulizationMode { get; set; }
         public TouchMode TouchMode { get; set; }
-        public bool TagsMode { get; set; }
     }
 
     //Enum to addapt to various coloring modes
