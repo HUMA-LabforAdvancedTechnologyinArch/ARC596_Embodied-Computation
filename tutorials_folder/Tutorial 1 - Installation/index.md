@@ -34,6 +34,8 @@
 
 3. Install Github Desktop https://desktop.github.com/
 
+	  - Install Git for windows: https://gitforwindows.org/
+
       - Note: Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. Github is a web-based repository to use Git to post/host your files
 
 4. Install Git LFS https://git-lfs.com/ using the Window Command Prompt (or Anaconda Prompt). Be sure to activate the ARC596 environment. 

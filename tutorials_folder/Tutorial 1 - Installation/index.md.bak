@@ -10,7 +10,7 @@
 2. [Github Desktop](https://desktop.github.com/) 
 3. [Anaconda](https://www.anaconda.com/)
 4. [Unity 2022.3.3f1](https://unity.com/) 
->	Note: Android SDK and Java JDK (when developing for Android) - have to be ticked in the installation modules when installing Unity.
+>	Note: When developing for Android, the Android SDK and Java JDK have to be ticked in the installation modules when installing Unity.
 
 ### Dependencies
 
