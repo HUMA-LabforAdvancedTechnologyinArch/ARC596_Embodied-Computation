@@ -76,7 +76,7 @@ Scripts manipulate the variables by using functions. There are a number of funct
 
 ### Overview of the code
 
-<img src="../../.gitbook/assets/T4_screenshot" alt="">
+<img src="../../.gitbook/assets/T4_screenshot.jpg" alt="">
 
 -	The structure of the code is divided into the following sections: 
 
