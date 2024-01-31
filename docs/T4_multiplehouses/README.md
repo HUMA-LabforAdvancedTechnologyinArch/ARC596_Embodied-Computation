@@ -22,7 +22,7 @@
 
 # Create the Multiple Houses App
 
-### Useful Links <a href="_toc86159639" id="_toc86159639"></a>
+### Useful Links 
 
 → [Unity Manual](https://docs.unity3d.com/Manual/index.html)
 
@@ -42,7 +42,7 @@ Packages: [_https://docs.unity3d.com/Manual/PackagesList.html_](https://docs.uni
 
 ### Unity Interface 
 
-![](../../.gitbook/assets/1)
+<img src="../../.gitbook/assets/1" alt="">
 
 > **Hierarchy Window**
 
@@ -76,7 +76,7 @@ Scripts manipulate the variables by using functions. There are a number of funct
 
 ### Overview of the code
 
-![](<../../.gitbook/assets/2 (2)>)
+<img src="../../.gitbook/assets/2 (2)" alt="">
 
 -	The structure of the code is divided into the following sections: 
 
@@ -265,7 +265,7 @@ In this section we'll look at how you can position UI elements relative to the C
 
 The **Rect Transform** is a new transform component that is used for all UI elements instead of the regular **Transform** component.
 
-![](<../../.gitbook/assets/3 (1)>)
+<img src="../../.gitbook/assets/3 (1)" alt="">
 
 Rect Transforms have position, rotation, and scale just like regular Transforms, but it also has a width and height, used to specify the dimensions of the rectangle.
 
@@ -277,7 +277,7 @@ When the Rect Tool is used to change the size of an object, normally for Sprites
 
 In the Inspector, the **Anchor Preset** button can be found in the upper left corner of the Rect Transform component. Clicking the button brings up the Anchor Presets dropdown. From here you can quickly select from some of the most common anchoring options. You can anchor the UI element to the sides or middle of the parent, or stretch together with the parent size. The horizontal and vertical anchoring is independent.
 
-![](<../../.gitbook/assets/4 (3)>)
+<img src="../../.gitbook/assets/4 (3)" alt="">
 
 The _Anchor Presets_ buttons displays the currently selected preset option if there is one. If the anchors on either the horizontal or vertical axis are set to different positions than any of the presets, the custom options are shown.
 
@@ -287,7 +287,7 @@ You can click the Anchors expansion arrow to reveal the anchor number fields if 
 
 The position fields of the rectangle are shown differently depending on whether the anchors are together (which produces a fixed width and height) or separated (which causes the rectangle to stretch together with the parent rectangle).
 
-![](<../../.gitbook/assets/5 (2)>)
+<img src="../../.gitbook/assets/5 (2)" alt="">
 
 ### Button 
 
@@ -385,17 +385,17 @@ We first will take a look at our canvas options. Currently we have 4 menus and o
 
 For each we can insert different GameObjects to place multiple instants.
 
-![](<../../.gitbook/assets/8 (1)>) ![](<../../.gitbook/assets/9 (3)>)
+<img src="../../.gitbook/assets/8 (1)" alt=""> <img src="../../.gitbook/assets/9 (3)" alt="">
 
 **Change the GameObjects to initiate:**
 
 Click on the main Menu button such as ```Menu_Button_Trees```. You will see it highlighted in the scene
 
-![](../../.gitbook/assets/10)
+<img src="../../.gitbook/assets/10" alt="">
 
 In the inspector you find the object manager and the 3 specific prefabs
 
-![](<../../.gitbook/assets/11 (1)>)
+<img src="../../.gitbook/assets/11 (1)" alt="">
 
 We can just drag and drop another GameObject onto the prefab tab
 
@@ -403,25 +403,25 @@ We can just drag and drop another GameObject onto the prefab tab
 
 First, we need to upload a new Logo in the asset folder logo. Ideally a .png with no background.
 
-![](<../../.gitbook/assets/12 (1)>)
+<img src="../../.gitbook/assets/12 (1)" alt="">
 
 Then we click on the new logo and in the Inspector switch the Texture type to “Sprite (2D and UI)
 
-![](<../../.gitbook/assets/13 (3)>)
+<img src="../../.gitbook/assets/13 (3)" alt="">
 
 Then we click on image in the desired menu area
 
-![](<../../.gitbook/assets/14 (3)>)
+<img src="../../.gitbook/assets/14 (3)" alt="">
 
 In the inspector we drag our newly created logo onto the source image. We should tick preserve aspect and might need to adjust position and scale
 
-![](../../.gitbook/assets/15)
+<img src="../../.gitbook/assets/15" alt="">
 
 **How to personalize the button:**
 
 We can adjust the color of the button, once pressed, selected, or disabled.
 
-![](../../.gitbook/assets/16)
+<img src="../../.gitbook/assets/16" alt="">
 
 **Now we all should personalize the buttons and link our own prefabs with it!**
 
