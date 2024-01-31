@@ -10,7 +10,7 @@
 2. [Github Desktop](https://desktop.github.com/) 
 3. [Anaconda](https://www.anaconda.com/)
 4. [Unity 2022.3.3f1](https://unity.com/) 
->	*Note: Android SDK and Java JDK (when developing for Android) - have to be ticked in the installation modules when installing Unity.*
+>	Note: When developing for Android, the Android SDK and Java JDK have to be ticked in the installation modules when installing Unity.
 
 ### Dependencies
 
@@ -34,7 +34,7 @@
 
 3. Install Github Desktop https://desktop.github.com/
 
-      - *Note: Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. Github is a web-based repository to use Git to post/host your files*
+      - Note: Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. Github is a web-based repository to use Git to post/host your files
 
 4. Install Git LFS https://git-lfs.com/ using the Window Command Prompt (or Anaconda Prompt). Be sure to activate the ARC596 environment. 
 
