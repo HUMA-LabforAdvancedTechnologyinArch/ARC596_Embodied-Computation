@@ -350,7 +350,7 @@ _Now we can start the scripting base! The goal for today is to **“Tap and Inst
 
 -   To open the script, you can either go to **Assets>Scripts** and double click, or on the **component** itself, and **double click** on the name.
 
-    <img width="500" alt="" src="https://i.imgur.com/WByAdzW.jpg">
+    <img width="500" alt="" src="../../.gitbook/assets/T3_emptyinstantiator.JPG">
 
     <img width="800" alt="" src="https://i.imgur.com/Czw4zBy.jpg">
 
@@ -368,10 +368,6 @@ Let’s drag and drop the objects we need.
 -   For the **AR Camera Transform**, we will drag and drop the **Camera Offset**, which we can find under **XR Origin** in the Hierarchy.
 
     <img width="250" alt="" src="https://i.imgur.com/FyMXSpT.jpg">
-
--   As we saw in the C# script, the **House Parent**, is an empty GameObject that will be the **parent** of all the instances we will create with our taps on the screen. So let’s create an **Empty GameObject** and name it **HouseParent**. Then, drag and drop it on the Instantiator Script.
-
-    <img width="400" alt="" src="https://i.imgur.com/F8kJ0FG.jpg">
 
 >   Note: Make sure the Transform is set to 0,0,0 in the Inspector for the new object. Likewise, make sure it is set to zero for the AR Session and XR Origin GameObjects. 
 
