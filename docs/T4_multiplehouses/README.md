@@ -322,12 +322,14 @@ ARRaycastManager m_RaycastManager;
 List < ARRaycastHit > m_Hits = new List < ARRaycastHit > ();
 
 void Update() {
+	
   if (Input.touchCount == 0)
     return;
 
   if (m_RaycastManager.Raycast(Input.GetTouch(0).position, m_Hits)) {
     // Only returns true if there is at least one hit
   }
+
 }
 ```
 
@@ -350,10 +352,13 @@ Used for 3D physics elements. Casts a ray against all colliders in the Scene and
 ```
 public class RaycastExample: MonoBehaviour {
   void FixedUpdate() {
+	
     RaycastHit hit;
 
-    if (Physics.Raycast(transform.position, -Vector3.up, out hit))
+    if (Physics.Raycast(transform.position, -Vector3.up, out hit)){
       print("Found an object - distance: " + hit.distance);
+	}
+
   }
 }
 ```
@@ -367,13 +372,13 @@ public class RaycastExample: MonoBehaviour {
 
 We first will take a look at our canvas options. Currently we have 4 menus and one reset button.
 
-For each we can insert different 3 GamObjects to place multiple instants.
+For each we can insert different GameObjects to place multiple instants.
 
 ![](<../../.gitbook/assets/8 (1)>) ![](<../../.gitbook/assets/9 (3)>)
 
 **Change the GameObjects to initiate:**
 
-Click on the main Menu button such as Menu_Button_Trees. You will see it highlighted in the scene
+Click on the main Menu button such as ```Menu_Button_Trees```. You will see it highlighted in the scene
 
 ![](../../.gitbook/assets/10)
 
