@@ -10,7 +10,7 @@
 2. [Github Desktop](https://desktop.github.com/) 
 3. [Anaconda](https://www.anaconda.com/)
 4. [Unity 2022.3.3f1](https://unity.com/) 
->	*Note: Android SDK and Java JDK (when developing for Android) - have to be ticked in the installation modules when installing Unity.*
+>	Note: When developing for Android, the Android SDK and Java JDK have to be ticked in the installation modules when installing Unity.
 
 ### Dependencies
 
@@ -34,7 +34,9 @@
 
 3. Install Github Desktop https://desktop.github.com/
 
-      - *Note: Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. Github is a web-based repository to use Git to post/host your files*
+	  - Install Git for windows: https://gitforwindows.org/
+
+      - Note: Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. Github is a web-based repository to use Git to post/host your files
 
 4. Install Git LFS https://git-lfs.com/ using the Window Command Prompt (or Anaconda Prompt). Be sure to activate the ARC596 environment. 
 
@@ -75,8 +77,10 @@
 
       - *Note: For documentation or help, please see: https://compas.dev/compas/latest/userguide/installation.html*
 	  
+>	Note: if the rhino install fails, you d not have the right folders. Need to make the scripts folder. Open explorer, put ``` \%appdata%\McNeel\Rhinoceros\7.0\ ``` in the search bar. Create a "scripts" folder. Run the command again. 
+	  
 
-		<img width="650" alt="" src="https://i.imgur.com/Qs8CP1P.jpg">
+	<img width="650" alt="" src="https://i.imgur.com/Qs8CP1P.jpg">
 
 7. Install Visual Studio Code (VSCode) https://code.visualstudio.com/
 
@@ -93,13 +97,13 @@
       - First, open the Command Palette (Ctrl+Shift+P) or click on the top of the screen 
       - Type ```>Terminal: Select Default Profile``` and select the standard Command Prompt System32/cmd.exe)
 
-        <img width="650" alt="" src="https://i.imgur.com/k69forF.jpeg">
-        <img width="650" alt="" src="https://i.imgur.com/IABwVuO.jpeg">
+		<img width="650" alt="" src="https://i.imgur.com/k69forF.jpeg">
+		<img width="650" alt="" src="https://i.imgur.com/IABwVuO.jpeg">
 
       - Now we can select the Anaconda Environment as your python interpreter. Open the Command Palette (Ctrl+Shift+P), type ```Python: Select Interpreter```, and hit enter. A list of available interpreters will appear. Select the one that corresponds to your ARC596 Anaconda environment.
 
-        <img width="650" alt="" src="https://i.imgur.com/ts8WtPz.jpeg">    
-        <img width="650" alt="" src="https://i.imgur.com/CkSIH9J.jpg">   
+		<img width="650" alt="" src="https://i.imgur.com/ts8WtPz.jpeg">    
+		<img width="650" alt="" src="https://i.imgur.com/CkSIH9J.jpg">   
 
 8. Allow the recently installed programs to access the network using the firewall
 		
@@ -113,8 +117,9 @@
 
     - Add a rule, make sure that it is a port-based type. MQTT runs on TCP, and for the specific ports put ```1883, 8883``` You can name it ```MQTT Allow```, for instance. Save the rule. 
 
-    	<img width="650" alt="" src="https://i.imgur.com/vDoGpn4.jpeg">
-   		<img width="650" alt="" src="https://i.imgur.com/4uhkREQ.jpeg">
+		<img width="650" alt="" src="https://i.imgur.com/vDoGpn4.jpeg">
+		
+		<img width="650" alt="" src="https://i.imgur.com/4uhkREQ.jpeg">
 
 
 	
@@ -130,7 +135,9 @@
 	
 		<img width="600" alt="" src="https://i.imgur.com/HUdlboa.jpg">
 		
-	- License unity as personal non-commercial license 
+	- License unity as personal non-commercial license. Open Unity Hub>Account>Preferences>Licenses
+	
+		<img width="600" alt="" src="https://i.imgur.com/RDnocQQ.jpeg">
 	
 		<img width="400" alt="" src="https://i.imgur.com/GChEZvL.jpg">
 	
@@ -188,7 +195,7 @@
 		
 2. Open the test files
 
-	- Open Unity Hube. Go to Start menu and search ```unity hub```
+	- Open Unity Hub. Go to Start menu and search ```unity hub```
 	
 	- Add the test file from ```ARC596_Embodied-Computation\src\arc596_unity``` to Unity 
 	  	
