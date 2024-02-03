@@ -30,13 +30,13 @@
 
 When Docker asks you whether to use WSL 2, use it:
 
-  <img width="400" alt="" src="https://i.imgur.com/5r8F3Gx.jpeg">
+  <img width="600" alt="" src="https://i.imgur.com/5r8F3Gx.jpeg">
 
 Allow Docker through the firewall when it asks: 
 
-  <img width="400" alt="" src="https://i.imgur.com/xNJTqXY.jpeg">
+  <img width="450" alt="" src="https://i.imgur.com/xNJTqXY.jpeg">
 
-- Docker works in the following way. When containers are ```UP```, the operating system within the container is running. When the container has exited, it means that the operating system has shut off. 
+> Note: Docker works in the following way: when containers are ```UP```, the operating system within the container is running. When the container has exited, it means that the operating system has shut off. 
 
   <img width="600" alt="" src="https://i.imgur.com/YTrXAaE.png">
 
