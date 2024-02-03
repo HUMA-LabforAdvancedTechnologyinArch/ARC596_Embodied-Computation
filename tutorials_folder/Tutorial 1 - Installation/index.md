@@ -38,22 +38,12 @@
 
       - Note: Git is a package manager, and it allows you to publish code onto the cloud or public web. It also tracks your changes. Github is a web-based repository to use Git to post/host your files
 
-4. Install Git LFS https://git-lfs.com/ using the Window Command Prompt (or Anaconda Prompt). Be sure to activate the ARC596 environment. 
-
-	- Open the Windows Command Prompt. Search CMD in the start menu. 
-	
-		<img width="650" alt="" src="https://i.imgur.com/6O0JqTz.jpg">
-	
-	- Run ```git lfs install```
-
-      - *Note: This is a Git extension to allow you to post larger files to the cloud folder called a repository*
-
-5. Install Anaconda https://www.anaconda.com/download
+4. Install Anaconda https://www.anaconda.com/download
 
       - *Note: Anaconda is a package management system for Python; it manages python and related packages on your computer.*
 
 
-6. Install compas, compas_fab, and compas_eve
+5. Install compas, compas_fab, and compas_eve
 
       - *Note: Compas is an open-source library for digital fabrication and computation within architecture, engineering, and construction*
 	  
@@ -82,7 +72,7 @@
 
 	<img width="650" alt="" src="https://i.imgur.com/Qs8CP1P.jpg">
 
-7. Install Visual Studio Code (VSCode) https://code.visualstudio.com/
+6. Install Visual Studio Code (VSCode) https://code.visualstudio.com/
 
       - *Note: Visual Studio Code is a simplified IDE (Integrated Development Environment), which allows you to write and run code within the same application for convenience.*
 	
@@ -104,22 +94,6 @@
 
 		<img width="650" alt="" src="https://i.imgur.com/ts8WtPz.jpeg">    
 		<img width="650" alt="" src="https://i.imgur.com/CkSIH9J.jpg">   
-
-8. Allow the recently installed programs to access the network using the firewall
-		
-	- When Windows asks whether to allow network access for Python, be sure to allow for both private and public networks. 
-
-		<img width="400" alt="" src="https://i.imgur.com/2lRvYge.jpg">
-			
-		- *Note: If your host (broker/server) for messages is not localhost. DISABLE your Firewall or ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible. Please note that this does open your computer to possible attacks at these ports, especially since you are running custom code that may not be secure.*
-		
-    - To open the ports for MQTT, which is a communication protocol we will be using to pass data to and from the robots, please open the Windows Firewall. Start Menu > Search ```Firewall```
-
-    - Add a rule, make sure that it is a port-based type. MQTT runs on TCP, and for the specific ports put ```1883, 8883``` You can name it ```MQTT Allow```, for instance. Save the rule. 
-
-		<img width="650" alt="" src="https://i.imgur.com/vDoGpn4.jpeg">
-		
-		<img width="650" alt="" src="https://i.imgur.com/4uhkREQ.jpeg">
 
 
 	
@@ -152,7 +126,7 @@
 	  <img width="400" alt="" src=" https://i.imgur.com/cqnSaTm.jpg">
 	 
 	- Be sure to select the appropriate dependencies below.
-      - *Note: this installs roughly 20gb of data, make sure you have enough free space on your computer.*
+      - *Note: this installs roughly 20GB of data, make sure you have enough free space on your computer.*
 		<img width="600" alt="" src="https://i.imgur.com/D9o3zho.jpg">
 		
 		- Microsoft Visual Studio 
@@ -214,3 +188,33 @@
 	- Open Rhino
 	
 	- Go to the ```ARC596_Embodied-Computation\docs\T2 folder```, and see if you can run the grasshopper script without any errors. 
+
+
+## Optional Steps and Troubleshooting
+
+- Install Git LFS https://git-lfs.com/ using the Window Command Prompt (or Anaconda Prompt). Be sure to activate the ARC596 environment. 
+
+	- Open the Windows Command Prompt. Search CMD in the start menu. 
+	
+		<img width="650" alt="" src="https://i.imgur.com/6O0JqTz.jpg">
+	
+	- Run ```git lfs install```
+
+      - *Note: This is a Git extension to allow you to post larger files to the cloud folder called a repository*
+
+- Allow the recently installed programs to access the network using the firewall
+		
+	- When Windows asks whether to allow network access for Python, be sure to allow for both private and public networks. 
+
+		<img width="400" alt="" src="https://i.imgur.com/2lRvYge.jpg">
+			
+		- *Note: If your host (broker/server) for messages is not localhost. DISABLE your Firewall or ensure that the required ports for MQTT (typically 1883 or 8883 for secure connections) are open and accessible. Please note that this does open your computer to possible attacks at these ports, especially since you are running custom code that may not be secure.*
+		
+    - To open the ports for MQTT, which is a communication protocol we will be using to pass data to and from the robots, please open the Windows Firewall. Start Menu > Search ```Firewall```
+
+    - Add a rule, make sure that it is a port-based type. MQTT runs on TCP, and for the specific ports put ```1883, 8883``` You can name it ```MQTT Allow```, for instance. Save the rule. 
+
+		<img width="650" alt="" src="https://i.imgur.com/vDoGpn4.jpeg">
+		
+		<img width="650" alt="" src="https://i.imgur.com/4uhkREQ.jpeg">
+
