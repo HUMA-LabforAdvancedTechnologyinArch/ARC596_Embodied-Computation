@@ -20,13 +20,13 @@
 4. [Vuforia](https://developer.vuforia.com/downloads/sdk)
 5. [ROS#](https://www.ros.org/)
 
-## Getting Started with This Project
-
-### Installing Basic Requirements 
+## Installing Basic Requirements 
 
 - Install Docker [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
 
-> Note: Make sure that you enable virtualization support in your BIOS. If you have a Mac (even if it is running Windows), scroll down to the end of this page to enable CPU virtualization.
+> Note: Docker is a virtualization platform that lets you run linux on windows. You need linux to run a ROS server. ROS ias a communication protocol that allows you to communicate with the robots. Make sure that you enable virtualization support in your BIOS. If you have a Mac (even if it is running Windows), scroll down to the end of this page to enable CPU virtualization.
+
+- Docker works in the following way. When containers are ~~~UP~~~, the operating system within the container is running. 
 
 <img width="400" alt="" src="https://i.imgur.com/YTrXAaE.png">
 
