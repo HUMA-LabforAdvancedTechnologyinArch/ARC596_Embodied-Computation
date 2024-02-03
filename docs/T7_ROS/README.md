@@ -1,3 +1,76 @@
+# ARC596 - Tutorial 1 - Installation Guide
+
+- ARC596: Embodied Computation
+- Professor: Daniela Mitterberger - mitterberger@princeton.edu
+- Assistant Instructor: Kirill Volchinskiy - kvolchinskiy@princeton.edu
+
+### Requirements
+
+1. [Rhinoceros 7](https://www.rhino3d.com/en/7/)
+2. [Github Desktop](https://desktop.github.com/) 
+3. [Anaconda](https://www.anaconda.com/)
+4. [Unity 2022.3.3f1](https://unity.com/) 
+>	Note: When developing for Android, the Android SDK and Java JDK have to be ticked in the installation modules when installing Unity.
+
+### Dependencies
+
+1. [COMPAS](https://compas.dev)
+2. [COMPAS Fab - Fabrication Library for Robots](https://gramaziokohler.github.io/compas_fab/latest/)
+3. [COMPAS Eve - Communication](https://compas.dev/compas_eve/latest/index.html)
+4. [Vuforia](https://developer.vuforia.com/downloads/sdk)
+5. [ROS#](https://www.ros.org/)
+
+## Getting Started with This Project
+
+### Installing Basic Requirements 
+
+- Install Docker [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
+
+> Note: Make sure that you enable virtualization support in your BIOS. If you have a Mac (even if it is running Windows), scroll down to the end of this page to enable CPU virtualization.
+
+<img width="400" alt="" src="https://i.imgur.com/YTrXAaE.png">
+
+<img width="400" alt="" src="https://i.imgur.com/eELy2gM.png">
+
+<img width="400" alt="" src="https://i.imgur.com/5r8F3Gx.jpeg">
+
+
+
+- Open the Unity Project. 
+
+## Troubleshooting
+
+https://docs.docker.com/desktop/troubleshoot/topics/#virtualization
+
+https://www.virtualmetric.com/blog/how-to-enable-hardware-virtualization
+<img width="400" alt="" src="https://i.imgur.com/WLSNHDZ.jpeg">
+
+
+# OLDE ####
+
+
+3. Accept the Developer Agreement
+
+    - In Unity, go through the following steps in order to accept Vuforia’s Developer Agreement:
+      Help - Vuforia Engine - Show Developer Agreement -> Accept
+      
+       <img width="499" alt="Screenshot 2023-10-30 at 11 27 16" src="https://github.com/gramaziokohler/compas_xr_unity/assets/146987499/8f08fced-6fd9-4662-a77e-a390f20be665">
+
+4. Import Ros# into the project
+
+    - In case you don’t have a Unity ID yet, go to the Unity website and register an account.
+      https://id.unity.com/en/conversations/5c9a9838-2b4d-4c7e-bc53-d31475d0ba8001af 
+    - Following that, go to the Asset Store and add Ros# to your asset list:
+      https://assetstore.unity.com/packages/tools/physics/ros-107085
+    
+      <img width="488" alt="Screenshot 2023-10-30 at 11 28 14" src="https://github.com/gramaziokohler/compas_xr_unity/assets/146987499/3d207ce7-09eb-4e0b-b37f-09afa575621a">
+
+    - In Unity’s Package Manager Window open the Packages drop-down menu and choose My Assets.  Make sure you are loading all your assets in the list.
+    - Download and import Ros# to the project 
+
+
+
+
 # Course on embodied Computation
 COMPAS XR: Visualizer app for collaborative robotic assembly
 
