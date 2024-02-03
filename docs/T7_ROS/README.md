@@ -76,4 +76,4 @@ docker run -p 9090:9090 -t gramaziokohler/ros-base roslaunch rosbridge_server ro
 
 - Install the rEFInd boot manager for mac: [https://sourceforge.net/projects/refind/](https://sourceforge.net/projects/refind/) 
 
-  <img width="800" alt="" src="https://i.imgur.com/WLSNHDZ.jpeg">
+  <img width="650" alt="" src="https://i.imgur.com/WLSNHDZ.jpeg">
