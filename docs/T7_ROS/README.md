@@ -24,26 +24,41 @@
 
 - Install Docker [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
 
-> Note: Docker is a virtualization platform that lets you run linux on windows. You need linux to run a ROS server. ROS ias a communication protocol that allows you to communicate with the robots. Make sure that you enable virtualization support in your BIOS. If you have a Mac (even if it is running Windows), scroll down to the end of this page to enable CPU virtualization.
+> Note: Docker is a virtualization platform that lets you run linux on windows. You need linux to run a ROS server. ROS ias a communication protocol that allows you to communicate with the robots. 
 
-- Docker works in the following way. When containers are ~~~UP~~~, the operating system within the container is running. 
+> Important! Make sure that you enable virtualization support in your BIOS. If you have a Mac (even if it is running Windows), scroll down to the end of this page to enable CPU virtualization. Go to the end of this guide for information on how to enable it. 
 
-<img width="400" alt="" src="https://i.imgur.com/YTrXAaE.png">
-
-<img width="400" alt="" src="https://i.imgur.com/eELy2gM.png">
+When Docker asks you whether to use WSL 2, use it:
 
 <img width="400" alt="" src="https://i.imgur.com/5r8F3Gx.jpeg">
 
+- Docker works in the following way. When containers are ```UP```, the operating system within the container is running. When the container has exited, it means that the operating system has shut off. 
+
+<img width="600" alt="" src="https://i.imgur.com/YTrXAaE.png">
 
 
-- Open the Unity Project. 
+
 
 ## Troubleshooting
 
-https://docs.docker.com/desktop/troubleshoot/topics/#virtualization
+### Virtualization 
 
-https://www.virtualmetric.com/blog/how-to-enable-hardware-virtualization
-<img width="400" alt="" src="https://i.imgur.com/WLSNHDZ.jpeg">
+- If you receive the ```Docker Desktop - Unexepcted WSL Error```, you need to enable virtualization on your computer. 
+
+  <img width="600" alt="" src="https://i.imgur.com/eELy2gM.png">
+
+- Personal Computer users, user the following links to enable it in your BIOS:
+
+  - [https://docs.docker.com/desktop/troubleshoot/topics/#virtualization](https://docs.docker.com/desktop/troubleshoot/topics/#virtualization)
+
+  - [https://www.virtualmetric.com/blog/how-to-enable-hardware-virtualization](https://docs.docker.com/desktop/troubleshoot/topics/#virtualization)
+
+- Mac or Apple computers, enable virualization in the following way:
+
+  <img width="400" alt="" src="https://i.imgur.com/WLSNHDZ.jpeg">
+
+
+
 
 
 # OLDE ####
