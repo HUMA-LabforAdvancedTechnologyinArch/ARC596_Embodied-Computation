@@ -1,4 +1,4 @@
-# ARC596 - Tutorial 1 - Installation Guide
+# ARC596 - Tutorial 7 - ROS
 
 - ARC596: Embodied Computation
 - Professor: Daniela Mitterberger - mitterberger@princeton.edu
