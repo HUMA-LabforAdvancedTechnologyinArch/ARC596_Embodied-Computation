@@ -52,6 +52,11 @@ Allow Docker through the firewall when it asks:
 docker run -p 9090:9090 -t gramaziokohler/ros-base roslaunch rosbridge_server rosbridge_websocket.launch
 ```
 
+- If the command executes, you are running Docker and ROS successfully, specifically if it states ```[-] [INFO] [1707004071.416390]: Rosbridge WebSocket server started at ws://0.0.0.0:9090``` at the end or similar:
+
+  <img width="600" alt="" src="https://i.imgur.com/EtnD7P7.jpeg">
+
+
 ## Troubleshooting
 
 ### Virtualization 
@@ -67,6 +72,8 @@ docker run -p 9090:9090 -t gramaziokohler/ros-base roslaunch rosbridge_server ro
 
   - [https://www.virtualmetric.com/blog/how-to-enable-hardware-virtualization](https://docs.docker.com/desktop/troubleshoot/topics/#virtualization)
 
-- Mac or Apple computers, enable virualization in the following way:
+- Mac or Apple computers, enable virualization in the following way. See here for the guide [https://apple.stackexchange.com/questions/120361/how-to-turn-on-hardware-virtualization-on-late-2013-macbook-pro-for-windows-8-1](https://apple.stackexchange.com/questions/120361/how-to-turn-on-hardware-virtualization-on-late-2013-macbook-pro-for-windows-8-1):
+
+- Install the rEFInd boot manager for mac: [https://sourceforge.net/projects/refind/](https://sourceforge.net/projects/refind/) 
 
   <img width="800" alt="" src="https://i.imgur.com/WLSNHDZ.jpeg">
