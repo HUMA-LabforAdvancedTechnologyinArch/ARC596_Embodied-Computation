@@ -3,7 +3,7 @@
 - ARC596: Embodied Computation
 - Professor: Daniela Mitterberger - mitterberger@princeton.edu
 - Assistant Instructor: Kirill Volchinskiy - kvolchinskiy@princeton.edu
-
+  
 ### Requirements
 
 1. [Rhinoceros 7](https://www.rhino3d.com/en/7/)
