@@ -10,14 +10,13 @@ public class Instantiator_MultipleHouses: MonoBehaviour
 {
     public GameObject selectedPrefab;
     private GameObject instantiatedObject;
-    public GameObject houseParent; //house prefab parent 
-    public Transform arCameraTransform;
+    public GameObject singleObjectParent; //house prefab parent 
+    public GameObject multipleObjectParent; //all other objects prefab parent
     public int mode = 0; //place one house is mode 0, place multiple houses is mode 1
 
         //raycast related variables here
     private ARRaycastManager rayManager;
     private ARSession arSession;
-    public Camera arCamera;
     List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     void Start()
@@ -45,7 +44,7 @@ public class Instantiator_MultipleHouses: MonoBehaviour
                 case TouchPhase.Began:
                     if (Input.touchCount == 1)
                     {
-                        InstantiateOnTouch(houseParent);
+                        InstantiateOnTouch();
                     }
                     break; //break: If this case is true, it will not check the other ones. More computational efficiency, 
 
@@ -69,7 +68,7 @@ public class Instantiator_MultipleHouses: MonoBehaviour
         }
     }
 
-    private void InstantiateOnTouch(GameObject houseParent)
+    private void InstantiateOnTouch()
     {
         Touch touch = Input.GetTouch(0);
         
@@ -86,6 +85,7 @@ public class Instantiator_MultipleHouses: MonoBehaviour
                     if (instantiatedObject == null)
                     {
                         instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation);
+                        instantiatedObject.transform.SetParent(singleObjectParent.transform);
                     }
                     else
                     {
@@ -97,14 +97,13 @@ public class Instantiator_MultipleHouses: MonoBehaviour
                 else if (mode == 1)
                 {
                     instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation);
-                    instantiatedObject.transform.SetParent(houseParent.transform);
+                    instantiatedObject.transform.SetParent(multipleObjectParent.transform);
                 }
 
                 // To make the spawned object always look at the camera. Delete if not needed.
                 Vector3 lookPos = Camera.main.transform.position - instantiatedObject.transform.position;
                 lookPos.y = 0;
                 instantiatedObject.transform.rotation = Quaternion.LookRotation(lookPos);
-            
         }
     }
 
@@ -188,9 +187,13 @@ public class Instantiator_MultipleHouses: MonoBehaviour
     public void ResetApp()
     {
         //destroy all created objects
-        if (houseParent.transform.childCount > 0)
+        if (singleObjectParent.transform.childCount > 0 || multipleObjectParent.transform.childCount > 0)
         {
-            foreach (Transform child in houseParent.transform)
+            foreach (Transform child in singleObjectParent.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            foreach (Transform child in multipleObjectParent.transform)
             {
                 GameObject.Destroy(child.gameObject);
             }
