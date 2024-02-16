@@ -4,106 +4,126 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.XR.ARCore;
+using UnityEngine.EventSystems;
 
 public class Instantiator_MultipleHouses: MonoBehaviour
 {
-    private GameObject instantiatedObject;
-    public GameObject houseParent; //house prefab parent 
-    public Transform arCameraTransform;
-    public int mode = 0; //place one house is mode 0, place multiple houses is mode 1
-    private ARRaycastManager rayManager;
     public GameObject selectedPrefab;
+    private GameObject instantiatedObject;
+    public GameObject singleObjectParent; //house prefab parent 
+    public GameObject multipleObjectParent; //all other objects prefab parent
+    public int mode = 0; //place one house is mode 0, place multiple houses is mode 1
+    private GameObject lastUsedPrefab; // Add this to track the last used prefab
+
+    //raycast related variables here
+    private ARRaycastManager rayManager;
+    private ARSession arSession;
     List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     void Start()
     {
         rayManager = FindObjectOfType<ARRaycastManager>();
+        arSession = FindObjectOfType<ARSession>();
     }
 
     void Update()
     {
-        HandleMode();
+        if (Input.touchCount > 0 && !IsPointerOverUIObject(Input.GetTouch(0).position))
+        {
+            HandleTouch(Input.GetTouch(0));
+        }
     }
 
-    private void HandleMode()
+    private void HandleTouch(Touch touch)
     {
-
-        Debug.Log($"we are in mode {mode}");
-
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
 
             // Handle finger movements based on TouchPhase
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    if (Input.touchCount == 1)
-                    {
-                        InstantiateOnTouch(houseParent);
-                    }
+                    InstantiateOnTouch(touch);
                     break; //break: If this case is true, it will not check the other ones. More computational efficiency, 
 
                 case TouchPhase.Moved:
+                    if (instantiatedObject != null)
+                    {
+                        if (Input.touchCount == 1)
+                        {
+                            Rotate(instantiatedObject, touch);
+                        }
+                        
+                        else if (Input.touchCount == 2)
+                        {
+                            PinchtoZoom(instantiatedObject);
+                        }
+                    }
 
-                    if (Input.touchCount == 1)
-                    {
-                        Rotate(instantiatedObject);
-                    }
-                    
-                    if (Input.touchCount == 2)
-                    {
-                        PinchtoZoom(instantiatedObject);
-                    }
                     break;
 
                 case TouchPhase.Ended:
                     Debug.Log("Touch Phase Ended.");
                     break;
             }
-        }
     }
 
-    void InstantiateOnTouch(GameObject houseParent)
+
+    private void InstantiateOnTouch(Touch touch)
     {
-        Touch touch = Input.GetTouch(0);
-        
-        Debug.Log("Single Touch");
+       
+            Debug.Log("Single Touch");
 
-        // Check if the raycast hit any trackables.
-        if (rayManager.Raycast(Input.GetTouch(0).position, hits, TrackableType.PlaneWithinPolygon))
-        {
-            // Raycast hits are sorted by distance, so the first hit means the closest.
-            var hitPose = hits[0].pose;
+            // Check if the raycast hit any trackables.
+            if (rayManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon))
+            {
+                // Raycast hits are sorted by distance, so the first hit means the closest.
+                var hitPose = hits[0].pose;
 
-            if (mode == 0)
-                // Check if there is already spawned object. If there is none, instantiated the prefab.
-                if (instantiatedObject == null)
+                //mode 0: single placement of objects, like the 3D printed house hologram
+                //mode 1: multiple placement of objects, like multiple trees or characters
+                bool shouldInstantiateNewObject = mode == 1 || (mode == 0 && instantiatedObject == null);
+                bool prefabChanged = lastUsedPrefab != selectedPrefab && mode == 0;
+
+                if (shouldInstantiateNewObject || prefabChanged)
                 {
-                    instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation);
+                    if (prefabChanged && instantiatedObject != null)
+                    {
+                        Destroy(instantiatedObject); // Optionally destroy the old object if a new prefab is selected
+                        Debug.Log("Prefab changed, instantiating new prefab.");
+                    }
+
+                    instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation, GetParentTransform());
+                    lastUsedPrefab = selectedPrefab;
                 }
                 else
                 {
-                    // Change the spawned object position and rotation to the touch position.
+                    // Move the existing instantiated object
                     instantiatedObject.transform.position = hitPose.position;
                     instantiatedObject.transform.rotation = hitPose.rotation;
                 }
-
-            else if (mode == 1)
-            {
-                instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation);
-                instantiatedObject.transform.SetParent(houseParent.transform);
-            }
-
-            // To make the spawned object always look at the camera. Delete if not needed.
-            Vector3 lookPos = Camera.main.transform.position - instantiatedObject.transform.position;
-            lookPos.y = 0;
-            instantiatedObject.transform.rotation = Quaternion.LookRotation(lookPos);
-            
+                AdjustRotationToCamera(instantiatedObject);
         }
+        
     }
 
 
+    private Transform GetParentTransform()
+    {
+        return mode == 0 ? singleObjectParent.transform : multipleObjectParent.transform;
+    }
+
+    private void AdjustRotationToCamera(GameObject obj)
+    {
+        Vector3 cameraPosition = Camera.main.transform.position;
+        Vector3 direction = new Vector3(cameraPosition.x, obj.transform.position.y, cameraPosition.z) - obj.transform.position;
+        obj.transform.rotation = Quaternion.LookRotation(direction);
+    }
+
+    private void Rotate(GameObject objectToRotate, Touch touch)
+    {
+        float rotationSpeed = 0.1f; // Adjust rotation speed as needed
+        objectToRotate.transform.Rotate(Vector3.up, touch.deltaPosition.x * rotationSpeed, Space.World);
+    }
+    
     private void PinchtoZoom(GameObject objectToZoom)
 
     //scale using pinch involves 2 touches
@@ -135,14 +155,44 @@ public class Instantiator_MultipleHouses: MonoBehaviour
         }
     }
 
-    // we will write the following script together 
-    private void Rotate(GameObject objectToRotate)
-    {
-        Touch touch = Input.GetTouch(0);
-        Debug.Log("Rotate touch");
-        objectToRotate.transform.Rotate(Vector3.up * 40f * Time.deltaTime * touch.deltaPosition.x, Space.World);
-        Debug.Log("Delta Touch is " + touch.deltaPosition);
 
+    //   UI Functions
+    public void SetMode_A()
+    {
+        mode = 0; // for single placement of objects, like the 3D printed house hologram
+    }
+    public void SetMode_B()
+    {
+        mode = 1; // for multiple placement of objects, like multiple trees or characters
+    }
+    
+
+    public static bool IsPointerOverUIObject(Vector2 touchPosition)
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current) { position = touchPosition };
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
+    
+    public void ResetApp()
+    {
+        //destroy all created objects
+        if (singleObjectParent.transform.childCount > 0 || multipleObjectParent.transform.childCount > 0)
+        {
+            foreach (Transform child in singleObjectParent.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            foreach (Transform child in multipleObjectParent.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+        }
+       
+        //reset AR session : resets all trackable objects and planes. 
+        arSession = FindObjectOfType<ARSession>();
+        arSession.Reset();
     }
 
 }

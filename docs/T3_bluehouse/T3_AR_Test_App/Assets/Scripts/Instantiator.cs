@@ -9,7 +9,6 @@ public class Instantiator : MonoBehaviour
 {
     public GameObject selectedPrefab;
     private GameObject instantiatedObject;
-    public Transform arCameraTransform;
 
     private ARRaycastManager rayManager;
     List<ARRaycastHit> hits = new List<ARRaycastHit>();

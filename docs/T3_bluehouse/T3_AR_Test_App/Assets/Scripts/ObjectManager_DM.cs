@@ -64,6 +64,7 @@ public class ObjectManager_DM : MonoBehaviour
     {
         if(prefab!=null)
             instantiator.selectedPrefab = prefab;
+            Debug.Log("the selected prefab is" + prefab.name);
     }
     
 }
