@@ -154,7 +154,7 @@ private void HandleMode()
 
 
 
->	**Note:** For code efficiency, we check different cases and “break” the code when one is detected.
+>	Note: For code efficiency, we check different cases and “break” the code when one is detected.
 
 Let’s check the _InstantiateOnTouch_ void from yesterday and see what happens if we put ```mode==1``` instead of ```O```
 
@@ -164,44 +164,44 @@ Let’s check the _InstantiateOnTouch_ void from yesterday and see what happens 
 
 
 ```
-void InstantiateOnTouch(GameObject houseParent)
-{
-	Touch touch = Input.GetTouch(0);
-	
-	Debug.Log("Single Touch");
-	
-	// Check if the raycast hit any trackables.
-	if (rayManager.Raycast(Input.GetTouch(0).position, hits, TrackableType.PlaneWithinPolygon))
-	{
-	    // Raycast hits are sorted by distance, so the first hit means the closest.
-	    var hitPose = hits[0].pose;
-	
-	    if (mode == 0)
-		// Check if there is already spawned object. If there is none, instantiated the prefab.
-		if (instantiatedObject == null)
-		{
-		    instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation);
-		}
-		else
-		{
-		    // Change the spawned object position and rotation to the touch position.
-		    instantiatedObject.transform.position = hitPose.position;
-		    instantiatedObject.transform.rotation = hitPose.rotation;
-		}
-	
-	    else if (mode == 1)
-	    {
-		instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation);
-		instantiatedObject.transform.SetParent(houseParent.transform);
-	    }
-	
-	    // To make the spawned object always look at the camera. Delete if not needed.
-	    Vector3 lookPos = Camera.main.transform.position - instantiatedObject.transform.position;
-	    lookPos.y = 0;
-	    instantiatedObject.transform.rotation = Quaternion.LookRotation(lookPos);
-	    
-	}
-}
+ private void InstantiateOnTouch(Touch touch)
+    {
+       
+            Debug.Log("Single Touch");
+
+            // Check if the raycast hit any trackables.
+            if (rayManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon))
+            {
+                // Raycast hits are sorted by distance, so the first hit means the closest.
+                var hitPose = hits[0].pose;
+
+                //mode 0: single placement of objects, like the 3D printed house hologram
+                //mode 1: multiple placement of objects, like multiple trees or characters
+                bool shouldInstantiateNewObject = mode == 1 || (mode == 0 && instantiatedObject == null);
+                bool prefabChanged = lastUsedPrefab != selectedPrefab && mode == 0;
+
+                if (shouldInstantiateNewObject || prefabChanged)
+                {
+                    if (prefabChanged && instantiatedObject != null)
+                    {
+                        Destroy(instantiatedObject); // Optionally destroy the old object if a new prefab is selected
+                        Debug.Log("Prefab changed, instantiating new prefab.");
+                    }
+
+                    instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation, GetParentTransform());
+                    lastUsedPrefab = selectedPrefab;
+                }
+                else
+                {
+                    // Move the existing instantiated object
+                    instantiatedObject.transform.position = hitPose.position;
+                    instantiatedObject.transform.rotation = hitPose.rotation;
+                }
+                AdjustRotationToCamera(instantiatedObject);
+        }
+        
+    }
+
 ```
 
 
@@ -217,13 +217,11 @@ Script for rotation of instantiated Objects
 
 
 ```
-private void Rotate(GameObject objectToRotate)
-{
-	Touch touch = Input.GetTouch(0);
-	Debug.Log("Rotate touch");
-	objectToRotate.transform.Rotate(Vector3.up * 40f * Time.deltaTime * touch.deltaPosition.x, Space.World);
-	Debug.Log("Delta Touch is " + touch.deltaPosition);
-}
+    private void Rotate(GameObject objectToRotate, Touch touch)
+    {
+        float rotationSpeed = 0.1f; // Adjust rotation speed as needed
+        objectToRotate.transform.Rotate(Vector3.up, touch.deltaPosition.x * rotationSpeed, Space.World);
+    }
 ```
 
 
@@ -243,9 +241,7 @@ public int mode = 1; //int = integer number (without decimals)
 
 ### Unity UI
 
-**Unity UI** is a UI toolkit for developing user interfaces for games and applications. It is a _GameObject-based UI system_ that uses _Components_ and the _Game View_ to arrange, position, and style user interfaces.
-
->	[Documentation here](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/index.html)
+**Unity UI** is a UI toolkit for developing user interfaces for games and applications. It is a _GameObject-based UI system_ that uses _Components_ and the _Game View_ to arrange, position, and style user interfaces. [Documentation here](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/index.html)
 
 ### Canvas
 
@@ -367,7 +363,9 @@ public class RaycastExample: MonoBehaviour {
     RaycastHit hit;
 
     if (Physics.Raycast(transform.position, -Vector3.up, out hit)){
-      print("Found an object - distance: " + hit.distance);
+      
+		print("Found an object - distance: " + hit.distance);
+
 	}
 
   }
@@ -435,61 +433,200 @@ We can adjust the color of the button, once pressed, selected, or disabled.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
+using UnityEngine.XR.ARCore;
+using UnityEngine.EventSystems;
 
-public class ObjectManager_DM: MonoBehaviour {
-  //public variables
-  public GameObject prefabA;
-  public GameObject prefabB;
-  public GameObject prefabC;
+public class Instantiator_MultipleHouses: MonoBehaviour
+{
+    public GameObject selectedPrefab;
+    private GameObject instantiatedObject;
+    public GameObject singleObjectParent; //house prefab parent 
+    public GameObject multipleObjectParent; //all other objects prefab parent
+    public int mode = 0; //place one house is mode 0, place multiple houses is mode 1
+    private GameObject lastUsedPrefab; // Add this to track the last used prefab
 
-  //private variables
-  private Instantiator Object_Spawner;
-  private GameObject buttonA;
-  private GameObject buttonB;
-  private GameObject buttonC;
+    //raycast related variables here
+    private ARRaycastManager rayManager;
+    private ARSession arSession;
+    List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
-  // Start is called before the first frame update
-  void Start() {
-    //find the ObjectSpawner script
-    Object_Spawner = FindObjectOfType < Instantiator > ();
-
-    //For each button, define OnClick Action and prefab
-    Button btn = GetComponent < Button > ();
-    btn.onClick.AddListener(Menu_Toggle);
-
-    buttonA = transform.GetChild(1).gameObject;
-    buttonA.GetComponent < Button > ().onClick.AddListener(() => OnClick_ChangePrefab(prefabA));
-
-    buttonB = transform.GetChild(2).gameObject;
-    buttonB.GetComponent < Button > ().onClick.AddListener(() => OnClick_ChangePrefab(prefabB));
-
-    buttonC = transform.GetChild(3).gameObject;
-    buttonC.GetComponent < Button > ().onClick.AddListener(() => OnClick_ChangePrefab(prefabC));
-  }
-
-  //Toggle ON and OFF the dropdown submenu options
-  void Menu_Toggle() {
-    //deactivate the buttons if they are on
-    if (buttonA.activeSelf == true) {
-      buttonA.SetActive(false);
-      buttonB.SetActive(false);
-      buttonC.SetActive(false);
+    void Start()
+    {
+        rayManager = FindObjectOfType<ARRaycastManager>();
+        arSession = FindObjectOfType<ARSession>();
     }
-    //activate the buttons only if prefabs are set
-    else {
-      if (prefabA != null)
-        buttonA.SetActive(true);
-      if (prefabB != null)
-        buttonB.SetActive(true);
-      if (prefabC != null)
-        buttonC.SetActive(true);
+
+    void Update()
+    {
+        if (Input.touchCount > 0 && !IsPointerOverUIObject(Input.GetTouch(0).position))
+        {
+            HandleTouch(Input.GetTouch(0));
+        }
     }
-  }
-  public void OnClick_ChangePrefab(GameObject prefab) {
-    if (prefab != null)
-      Object_Spawner.selected_prefab = prefab;
-  }
+
+    private void HandleTouch(Touch touch)
+    {
+
+            // Handle finger movements based on TouchPhase
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    InstantiateOnTouch(touch);
+                    break; //break: If this case is true, it will not check the other ones. More computational efficiency, 
+
+                case TouchPhase.Moved:
+                    if (instantiatedObject != null)
+                    {
+                        if (Input.touchCount == 1)
+                        {
+                            Rotate(instantiatedObject, touch);
+                        }
+                        
+                        else if (Input.touchCount == 2)
+                        {
+                            PinchtoZoom(instantiatedObject);
+                        }
+                    }
+
+                    break;
+
+                case TouchPhase.Ended:
+                    Debug.Log("Touch Phase Ended.");
+                    break;
+            }
+    }
+
+
+    private void InstantiateOnTouch(Touch touch)
+    {
+       
+            Debug.Log("Single Touch");
+
+            // Check if the raycast hit any trackables.
+            if (rayManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon))
+            {
+                // Raycast hits are sorted by distance, so the first hit means the closest.
+                var hitPose = hits[0].pose;
+
+                //mode 0: single placement of objects, like the 3D printed house hologram
+                //mode 1: multiple placement of objects, like multiple trees or characters
+                bool shouldInstantiateNewObject = mode == 1 || (mode == 0 && instantiatedObject == null);
+                bool prefabChanged = lastUsedPrefab != selectedPrefab && mode == 0;
+
+                if (shouldInstantiateNewObject || prefabChanged)
+                {
+                    if (prefabChanged && instantiatedObject != null)
+                    {
+                        Destroy(instantiatedObject); // Optionally destroy the old object if a new prefab is selected
+                        Debug.Log("Prefab changed, instantiating new prefab.");
+                    }
+
+                    instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation, GetParentTransform());
+                    lastUsedPrefab = selectedPrefab;
+                }
+                else
+                {
+                    // Move the existing instantiated object
+                    instantiatedObject.transform.position = hitPose.position;
+                    instantiatedObject.transform.rotation = hitPose.rotation;
+                }
+                AdjustRotationToCamera(instantiatedObject);
+        }
+        
+    }
+
+
+    private Transform GetParentTransform()
+    {
+        return mode == 0 ? singleObjectParent.transform : multipleObjectParent.transform;
+    }
+
+    private void AdjustRotationToCamera(GameObject obj)
+    {
+        Vector3 cameraPosition = Camera.main.transform.position;
+        Vector3 direction = new Vector3(cameraPosition.x, obj.transform.position.y, cameraPosition.z) - obj.transform.position;
+        obj.transform.rotation = Quaternion.LookRotation(direction);
+    }
+
+    private void Rotate(GameObject objectToRotate, Touch touch)
+    {
+        float rotationSpeed = 0.1f; // Adjust rotation speed as needed
+        objectToRotate.transform.Rotate(Vector3.up, touch.deltaPosition.x * rotationSpeed, Space.World);
+    }
+    
+    private void PinchtoZoom(GameObject objectToZoom)
+
+    //scale using pinch involves 2 touches
+    // we count both the touches, store them and measure the distance between pinch
+    // and scale depending on the pinch distance
+    {
+        if (Input.touchCount == 2)
+        {
+            Debug.Log("Double Touch");
+            var touchZero = Input.GetTouch(0);
+            var touchOne = Input.GetTouch(1);
+
+            // Find the position in the previous frame of each touch.
+            Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+            Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+
+            // Find the magnitude of the vector (the distance) between the touches in each frame.
+            float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+            float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
+
+            // Find the difference in the distances between each frame.
+            float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
+            float pinchAmount = deltaMagnitudeDiff * -0.02f * Time.deltaTime;
+
+            Debug.Log("Scaling Initialized");
+            Debug.Log(objectToZoom);
+            //scale according to pinch amount
+            objectToZoom.transform.localScale += new Vector3(pinchAmount, pinchAmount, pinchAmount);
+        }
+    }
+
+
+    //   UI Functions
+    public void SetMode_A()
+    {
+        mode = 0; // for single placement of objects, like the 3D printed house hologram
+    }
+    public void SetMode_B()
+    {
+        mode = 1; // for multiple placement of objects, like multiple trees or characters
+    }
+    
+
+    public static bool IsPointerOverUIObject(Vector2 touchPosition)
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current) { position = touchPosition };
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
+    
+    public void ResetApp()
+    {
+        //destroy all created objects
+        if (singleObjectParent.transform.childCount > 0 || multipleObjectParent.transform.childCount > 0)
+        {
+            foreach (Transform child in singleObjectParent.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            foreach (Transform child in multipleObjectParent.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+        }
+       
+        //reset AR session : resets all trackable objects and planes. 
+        arSession = FindObjectOfType<ARSession>();
+        arSession.Reset();
+    }
+
 }
 ```
 
@@ -503,13 +640,13 @@ After this let’s look at the instantiator code. The buttons are linked to diff
 
 
 ```
-// UI Functions
-public void SetMode_A() {
-  mode = 0; // for single placement of objects, like the 3D printed house hologram
-}
-public void SetMode_B() {
-  mode = 1; // for multiple placement of objects, like multiple trees or characters
-}
+	// UI Functions
+	public void SetMode_A() {
+	mode = 0; // for single placement of objects, like the 3D printed house hologram
+	}
+	public void SetMode_B() {
+	mode = 1; // for multiple placement of objects, like multiple trees or characters
+	}
 ```
 
 
@@ -518,25 +655,28 @@ public void SetMode_B() {
 **These modes are linked with if statements such as place one instance or multiple:**
 
 ```
-else if (mode == 1) { //ADD MULTIPLE : create multiple instances of object
+	//mode 0: single placement of objects, like the 3D printed house hologram
+	//mode 1: multiple placement of objects, like multiple trees or characters
+	bool shouldInstantiateNewObject = mode == 1 || (mode == 0 && instantiatedObject == null);
+	bool prefabChanged = lastUsedPrefab != selectedPrefab && mode == 0;
 
-  Debug.Log("***MODE 1***");
-
-  Touch touch = Input.GetTouch(0); // Handle finger movements
-  
-  switch (touch.phase) {
-  
-	case TouchPhase.Began:
-		
-		if (Input.touchCount == 1) {
-		
-			_PlaceInstant(objectParent);
-		
+	if (shouldInstantiateNewObject || prefabChanged)
+	{
+		if (prefabChanged && instantiatedObject != null)
+		{
+			Destroy(instantiatedObject); // Optionally destroy the old object if a new prefab is selected
+			Debug.Log("Prefab changed, instantiating new prefab.");
 		}
-		
-		break;
+
+		instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation, GetParentTransform());
+		lastUsedPrefab = selectedPrefab;
 	}
-}
+	else
+	{
+		// Move the existing instantiated object
+		instantiatedObject.transform.position = hitPose.position;
+		instantiatedObject.transform.rotation = hitPose.rotation;
+	}
 ```
 
 -	In the unity file you need to link the modes with the buttons:
