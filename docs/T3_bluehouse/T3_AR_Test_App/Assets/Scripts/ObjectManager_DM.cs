@@ -12,8 +12,7 @@ public class ObjectManager_DM : MonoBehaviour
     
 
     //private variables
-    public GameObject Instantiator;
-    private Instantiator_MultipleHouses instantiator;   
+    private Instantiator Object_Spawner;
     private GameObject buttonA;
     private GameObject buttonB;
     private GameObject buttonC;
@@ -23,7 +22,7 @@ public class ObjectManager_DM : MonoBehaviour
     void Start()
     {
         //find the ObjectSpawner script
-        instantiator= Instantiator.GetComponent<Instantiator_MultipleHouses>();
+        Object_Spawner = FindObjectOfType<Instantiator>();
 
         //For each button, define OnClick Action and prefab
         Button btn = GetComponent<Button>();
@@ -63,8 +62,7 @@ public class ObjectManager_DM : MonoBehaviour
     public void OnClick_ChangePrefab(GameObject prefab)
     {
         if(prefab!=null)
-            instantiator.selectedPrefab = prefab;
-            Debug.Log("the selected prefab is" + prefab.name);
+            Object_Spawner.selected_prefab = prefab;
     }
     
 }
