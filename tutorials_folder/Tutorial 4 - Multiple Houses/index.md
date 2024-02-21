@@ -111,43 +111,38 @@ Let's write the following code:
 
 
 ```
-private void HandleMode()
-{
-	Debug.Log($"we are in mode {mode}");
-	
-	if (Input.touchCount > 0)
-	{
-	    Touch touch = Input.GetTouch(0);
-	
-	    // Handle finger movements based on TouchPhase
-	    switch (touch.phase)
-	    {
-		case TouchPhase.Began:
-		    if (Input.touchCount == 1)
-		    {
-			InstantiateOnTouch(houseParent);
-		    }
-		    break; //break: If this case is true, it will not check the other ones. More computational efficiency, 
-	
-		case TouchPhase.Moved:
-	
-		    if (Input.touchCount == 1)
-		    {
-			Rotate(instantiatedObject);
-		    }
-		    
-		    if (Input.touchCount == 2)
-		    {
-			PinchtoZoom(instantiatedObject);
-		    }
-		    break;
-	
-		case TouchPhase.Ended:
-		    Debug.Log("Touch Phase Ended.");
-		    break;
-	    }
-	}
-}
+	private void HandleTouch(Touch touch)
+    {
+
+            // Handle finger movements based on TouchPhase
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    InstantiateOnTouch(touch);
+                    break; //break: If this case is true, it will not check the other ones. More computational efficiency, 
+
+                case TouchPhase.Moved:
+                    if (instantiatedObject != null)
+                    {
+                        if (Input.touchCount == 1)
+                        {
+                            Rotate(instantiatedObject, touch);
+                        }
+                        
+                        else if (Input.touchCount == 2)
+                        {
+                            PinchtoZoom(instantiatedObject);
+                        }
+                    }
+
+                    break;
+
+                case TouchPhase.Ended:
+                    Debug.Log("Touch Phase Ended.");
+                    break;
+            }
+    }
+
 ```
 
 
