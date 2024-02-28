@@ -55,6 +55,25 @@ Raycasters are used for figuring out what the pointer is over
 AR Raycast Manager 
 Also known as hit testing, ray casting allows you to determine where a ray (defined by an origin and direction) intersects with a trackable. A "trackable" is a feature in the physical environment that can be detected and tracked by an XR device.
 
+Example:
+```
+[SerializeField]
+ARRaycastManager m_RaycastManager;
+
+List<ARRaycastHit> m_Hits = new List<ARRaycastHit>();
+
+void Update()
+{
+    if (Input.touchCount == 0)
+        return;
+
+    if (m_RaycastManager.Raycast(Input.GetTouch(0).position, m_Hits))
+    {
+        // Only returns true if there is at least one hit
+    }
+}
+```
+
 Physics Raycaster 
 Used for 3D physics elements. Casts a ray against all colliders in the Scene and returns detailed information on what was hit. This example reports the distance between the current object and the reported Collider:
  
@@ -67,7 +86,6 @@ Used for 3D physics elements. Casts a ray against all colliders in the Scene and
 **Start Function** Start will be called if a GameObject is active, but only if the component is enabled.
 
 **Update Function**  is called once per frame. This is where you put code to define the logic that runs continuously, like animations, AI, and other parts of the game that have to be constantly updated.
-
 
 
 ### New Features
@@ -94,500 +112,159 @@ Import UnityPackage
     • Go to Assets>Import Package>Custom Package
     • Select the .unitypackage file you downloaded
     • Select all Assets and click Import
-    • You should be able to see a new Day 03 Assets folder in your Assets.
+    • You should be able to see a new folder in your Assets.
 
 ### Configure new GameObjects 
 
+Since we imported new Prefabs and we want to incorporate them in our scene, we have to do some necessary steps to Relink some dependencies for Scripts and Buttons. 
+4.1 Instantiator
+    • Since we have a new Instantiator for Day 03, we will delete the previous Instantiator GameObject.
+
+
+    • Import as GameObject
+Drag and Drop the Instantiator Prefab from the Day03 Materials to the Hierarchy. 
+
+    • Unpack GameObject
+Respectively, we will Unpack the Prefab Completely
+ 
+
+    • Relink GameObject
+Since we imported Instantiator again, we have to re-link the previous GameObject, where needed.
+ 
+
+
+4.2 AR Canvas - New Buttons
+    • Import as GameObject
+Drag and drop the AR Canvas Prefab of Day 03 Asset Folder to the Hierarchy 
+ 
+Note: Notice that it is renamed to  AR_Canvas(1). This happens because the Prefab has the same name as the Menu. We will take the Children we need and import them in our existing AR_Canvas. 
+
+    • Unpack Prefab
+Respectively, unpack completely the AR_Canvas(1). 
+
+
+    • Format  AR Canvas
+These are the 4 buttons we will import in our existing AR_Canvas.[1] Drag them into the existing AR_Canvas, as children.  The structure should look like this [2]
+[1][2]
+Delete the existing Reset button (there is already one included in the new Menu).
+
+
+    • Delete the AR_Canvas(1)  (Should be now an empty GameObject).
+
+
+4.3 Relink Menu Buttons
+We will relink the buttons on their OnClick Modes.
+    • Go to your Menu Buttons from Day 2, go to the Inspector, and Drag & Drop the Instantiator on the On Click () component on the Inspector. 
+    • Re-configure the Function for the button you need (Mode A = Instantiate one (for the 3d object) , Mode B = Instantiate multiple).
+
+
+
+
+ 
+
+4.4 Link new modes to the new Instantiator Script
+4.4.1 Link Edit Button (mode==2) 
+In this new mode, we will be able to select existing objects we created, scale, rotate and move them. ( AR Canvas > Edit_Button)
+Drag and drop the Instantiator GameObject and choose:  Instantiator> Instantiator.SetMode_C()
+ 
+4.4.2 Link Delete Button (mode ==3) 
+In this mode, we will be able to delete existing objects by tapping on them.
+Drag and drop the Instantiator GameObject and choose:  Instantiator> Instantiator.SetMode_D()
+. ( AR Canvas >Delete_Button)
+
+ 
+4.4.3 Link Visibility Button
+. ( AR Canvas >Menu> Shadow_Button) ///Directional_Light >  Sun.VisibilityToggle()
+
+
+  
+4.4.4 Link Reset Button
+. ( AR Canvas >Menu> Reset_Button) /// Instantiator > Instatiator.ResetApp()
+
+
+
+  
+
+4.5 Light
+    • Delete Previous Light
+We will import a new Light in the Scene, so let’s delete the existing Directional Light in the Hierarchy.
+
+
+    • Import as GameObject
+We will now drag and drop the Directional Light Prefab from the Day 03 Asset Folder to the Hierarchy.
+  
+
+
+
+    • Unpack Prefab Completely
+Right Click on the Directional Light > Prefab> Unpack Completely. This will “detach” the link between the GameObject and the Prefab.
+ 
+
+4.6 Sun Sliders
+4.6.1 Link Sliders to the Script
+Click on the Directional Light we imported, go to the Inspector on the Sun Script and drag and drop the 2 sliders we imported from the Day 3 Assets package. 
+
+
+  
+Drag and drop the Azimuth and Altitude slider (children in AR Canvas) to the Sun Script in the Inspector. Drag and drop the parent of the 3d object (houseParent).
+
+
+You should be able to see the newly added UI Menu on the Right.
+
+
+
 ### Tutorial
 
-We check the different types of touch on the screen.
 
-- **TouchPhase.Began** = When a touch has first been detected, the first moment the finger touches the screen (happens **once** in a touch phase)
-- **TouchPhase.Moved** = When the touch is a moving touch (happens **continuously**, detected _on every update frame_)
-- **TouchPhase.Ended** = When we lift up the finger from the screen (happens **once**)
+Go to the new Menu GameObject that was imported. On the Inspector, find the MenuScript (C# Script component), double click and open the code. 
 
+6.1 Script Overview
 
-Let's write the following code: 
-
-
-
-
-
-
-```
-	private void HandleTouch(Touch touch)
-    {
-
-            // Handle finger movements based on TouchPhase
-            switch (touch.phase)
-            {
-                case TouchPhase.Began:
-                    InstantiateOnTouch(touch);
-                    break; //break: If this case is true, it will not check the other ones. More computational efficiency, 
-
-                case TouchPhase.Moved:
-                    if (instantiatedObject != null)
-                    {
-                        if (Input.touchCount == 1)
-                        {
-                            Rotate(instantiatedObject, touch);
-                        }
-                        
-                        else if (Input.touchCount == 2)
-                        {
-                            PinchtoZoom(instantiatedObject);
-                        }
-                    }
-
-                    break;
-
-                case TouchPhase.Ended:
-                    Debug.Log("Touch Phase Ended.");
-                    break;
-            }
-    }
-
-```
-
-
-
-
-
->	Note: For code efficiency, we check different cases and “break” the code when one is detected.
-
-Let’s check the _InstantiateOnTouch_ void from yesterday and see what happens if we put ```mode==1``` instead of ```O```
-
-
-
-
-
-
-```
- private void InstantiateOnTouch(Touch touch)
-    {
-       
-            Debug.Log("Single Touch");
-
-            // Check if the raycast hit any trackables.
-            if (rayManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon))
-            {
-                // Raycast hits are sorted by distance, so the first hit means the closest.
-                var hitPose = hits[0].pose;
-
-                //mode 0: single placement of objects, like the 3D printed house hologram
-                //mode 1: multiple placement of objects, like multiple trees or characters
-                bool shouldInstantiateNewObject = mode == 1 || (mode == 0 && instantiatedObject == null);
-                bool prefabChanged = lastUsedPrefab != selectedPrefab && mode == 0;
-
-                if (shouldInstantiateNewObject || prefabChanged)
-                {
-                    if (prefabChanged && instantiatedObject != null)
-                    {
-                        Destroy(instantiatedObject); // Optionally destroy the old object if a new prefab is selected
-                        Debug.Log("Prefab changed, instantiating new prefab.");
-                    }
-
-                    instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation, GetParentTransform());
-                    lastUsedPrefab = selectedPrefab;
-                }
-                else
-                {
-                    // Move the existing instantiated object
-                    instantiatedObject.transform.position = hitPose.position;
-                    instantiatedObject.transform.rotation = hitPose.rotation;
-                }
-                AdjustRotationToCamera(instantiatedObject);
-        }
-        
-    }
-
-```
-
-
-
-
-
-
-Script for rotation of instantiated Objects
-
-
-
-
-
-
-```
-    private void Rotate(GameObject objectToRotate, Touch touch)
-    {
-        float rotationSpeed = 0.1f; // Adjust rotation speed as needed
-        objectToRotate.transform.Rotate(Vector3.up, touch.deltaPosition.x * rotationSpeed, Space.World);
-    }
-```
-
-
-
-
-Change _mode_ variable to public and try ```mode==1```
-
-
-
-
-```
-public int mode = 1; //int = integer number (without decimals)
-```
-
-
-→	**Build the App to instantiate multiple objects!**
-
-### Unity UI
-
-**Unity UI** is a UI toolkit for developing user interfaces for games and applications. It is a _GameObject-based UI system_ that uses _Components_ and the _Game View_ to arrange, position, and style user interfaces. [Documentation here](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/index.html)
-
-### Canvas
-
-The **Canvas** is the area that all _UI elements_ should be inside. The _Canvas_ is _a Game Object_ with a **Canvas component** on it, and all UI elements must be children of such a Canvas.
-
-Creating a new UI element, such as an Image using the menu _GameObject > UI > Image_, automatically creates a Canvas, if there isn't already a Canvas in the scene. The UI element is created as a _child_ to this Canvas.
-
-The _Canvas_ area is shown as a _rectangle_ in the _Scene View._ This makes it easy to position _UI_ elements without needing to have the _Game View_ visible at all times.
-
-Canvas uses the _EventSystem_ object to help the Messaging System.
-
-### Basic Layout
-
-In this section we'll look at how you can position UI elements relative to the Canvas and each other. If you want to test yourself while reading, you can create an Image using the menu **GameObject -> UI -> Image**.
-
-### Rect Transform
-
-The **Rect Transform** is a new transform component that is used for all UI elements instead of the regular **Transform** component.
-
-<img src="{{ site.baseurl }}public/assets/3 (1)" alt="">
-
-Rect Transforms have position, rotation, and scale just like regular Transforms, but it also has a width and height, used to specify the dimensions of the rectangle.
-
-### Resizing Versus Scaling 
-
-When the Rect Tool is used to change the size of an object, normally for Sprites in the 2D system and for 3D objects it will change the local _scale_ of the object. However, when it's used on an object with a Rect Transform on it, it will instead change the width and the height, keeping the local scale unchanged. This resizing will not affect font sizes, border on sliced images, and so on.
-
-### Anchor presets
-
-In the Inspector, the **Anchor Preset** button can be found in the upper left corner of the Rect Transform component. Clicking the button brings up the Anchor Presets dropdown. From here you can quickly select from some of the most common anchoring options. You can anchor the UI element to the sides or middle of the parent, or stretch together with the parent size. The horizontal and vertical anchoring is independent.
-
-<img src="{{ site.baseurl }}public/assets/4 (3)" alt="">
-
-The _Anchor Presets_ buttons displays the currently selected preset option if there is one. If the anchors on either the horizontal or vertical axis are set to different positions than any of the presets, the custom options are shown.
-
-### Anchor and position fields in the Inspector
-
-You can click the Anchors expansion arrow to reveal the anchor number fields if they are not already visible. **Anchor Min** corresponds to the lower left anchor handle in the Scene View, and **Anchor Max** corresponds to the upper right handle.
-
-The position fields of the rectangle are shown differently depending on whether the anchors are together (which produces a fixed width and height) or separated (which causes the rectangle to stretch together with the parent rectangle).
-
-<img src="{{ site.baseurl }}public/assets/5 (2)" alt="">
-
-### Button 
-
-A Button has an **OnClick** UnityEvent to define what it will do when clicked.
-
-<img width="200" alt="" src="{{ site.baseurl }}public/assets/6 (3)">
-
->	See the [Button](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Button.html) page for details on using the Button component.
-
-### Slider
-
-A Slider has a decimal number **Value** that the user can drag between a minimum and maximum value. It can be either horizontal or vertical. It also has a **OnValueChanged** UnityEvent to define what it will do when the value is changed.
-
-<img width="200" alt="" src="{{ site.baseurl }}public/assets/7 (2)">
-
-### Event System 
-
-The Event System is a way of sending events to objects in the application based on input, be it keyboard, mouse, touch, or custom input. The Event System consists of a few components that work together to send events.
-
-When you add an Event System component to a GameObject you will notice that it does not have much functionality exposed, this is because the Event System itself is designed as a manager and facilitator of communication between Event System modules.
-
-The primary roles of the Event System are as follows:
-
--	Manage which GameObject is considered selected
--	Manage which Input Module is in use
--	Manage Raycasting (if required)
--	Updating all Input Modules as required
-
-### Raycasters 
-
-Raycasters are used for figuring out what the pointer is over. It is common for Input Modules to use the Raycasters configured in the Scene to calculate what the pointing device is over. The Raycasters that we will be using for our App are:
-
-### [AR Raycast Manager](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.0/manual/raycast-manager.html)
-
-Also known as hit testing, ray casting allows you to determine where a [ray](https://docs.unity3d.com/2020.2/Documentation/ScriptReference/Ray.html) (defined by an origin and direction) intersects with a [trackable](https://docs.unity3d.com/Packages/com.unity.xr.arfoundation@4.0/api/UnityEngine.XR.ARFoundation.ARTrackable-2.html). A "trackable" is a feature in the physical environment that can be detected and tracked by an XR device.
-
-**Example:**
-
-```
-[SerializeField]
-ARRaycastManager m_RaycastManager;
-
-List < ARRaycastHit > m_Hits = new List < ARRaycastHit > ();
-
-void Update() {
-	
-  if (Input.touchCount == 0)
-    return;
-
-  if (m_RaycastManager.Raycast(Input.GetTouch(0).position, m_Hits)) {
-    // Only returns true if there is at least one hit
-  }
-
-}
-```
-
-
-
-
-
-
-### [Physics Raycaster](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-PhysicsRaycaster.html)
-
-Used for 3D physics elements. Casts a ray against all colliders in the Scene and returns detailed information on what was hit. This example reports the distance between the current object and the reported Collider:
-
-**Example:**
-
-
-
-
-
-
-```
-public class RaycastExample: MonoBehaviour {
-  void FixedUpdate() {
-	
-    RaycastHit hit;
-
-    if (Physics.Raycast(transform.position, -Vector3.up, out hit)){
-      
-		print("Found an object - distance: " + hit.distance);
-
-	}
-
-  }
-}
-```
-
-
-
-
-
-
-### User interface: 
-
-We first will take a look at our canvas options. Currently we have 4 menus and one reset button.
-
-For each we can insert different GameObjects to place multiple instants.
-
-<img src="{{ site.baseurl }}public/assets/8 (1)" alt=""> <img src="{{ site.baseurl }}public/assets/9 (3)" alt="">
-
-**Change the GameObjects to initiate:**
-
-Click on the main Menu button such as ```Menu_Button_Trees```. You will see it highlighted in the scene
-
-<img src="{{ site.baseurl }}public/assets/10" alt="">
-
-In the inspector you find the object manager and the 3 specific prefabs
-
-<img src="{{ site.baseurl }}public/assets/11 (1)" alt="">
-
-We can just drag and drop another GameObject onto the prefab tab
-
-**Change the Logo in the Menu:**
-
-First, we need to upload a new Logo in the asset folder logo. Ideally a .png with no background.
-
-<img src="{{ site.baseurl }}public/assets/12 (1)" alt="">
-
-Then we click on the new logo and in the Inspector switch the Texture type to “Sprite (2D and UI)
-
-<img src="{{ site.baseurl }}public/assets/13 (3)" alt="">
-
-Then we click on image in the desired menu area
-
-<img src="{{ site.baseurl }}public/assets/14 (3)" alt="">
-
-In the inspector we drag our newly created logo onto the source image. We should tick preserve aspect and might need to adjust position and scale
-
-<img src="{{ site.baseurl }}public/assets/15" alt="">
-
-**How to personalize the button:**
-
-We can adjust the color of the button, once pressed, selected, or disabled.
-
-<img src="{{ site.baseurl }}public/assets/16" alt="">
-
-**Now we all should personalize the buttons and link our own prefabs with it!**
-
-**After this let’s look at the code and try to understand the logic of it:**
-
-
-
-
-
-```
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems;
-using UnityEngine.XR.ARCore;
-using UnityEngine.EventSystems;
-
-public class Instantiator_MultipleHouses: MonoBehaviour
+public class Menuscript : MonoBehaviour
 {
-    public GameObject selectedPrefab;
-    private GameObject instantiatedObject;
-    public GameObject singleObjectParent; //house prefab parent 
-    public GameObject multipleObjectParent; //all other objects prefab parent
-    public int mode = 0; //place one house is mode 0, place multiple houses is mode 1
-    private GameObject lastUsedPrefab; // Add this to track the last used prefab
+    //variables
+    public GameObject Shadow_Button;
+    public GameObject Reset_Button;
+    public GameObject Animation_Button;
 
-    //raycast related variables here
-    private ARRaycastManager rayManager;
-    private ARSession arSession;
-    List<ARRaycastHit> hits = new List<ARRaycastHit>();
-
+    // Start is called before the first frame update
     void Start()
     {
-        rayManager = FindObjectOfType<ARRaycastManager>();
-        arSession = FindObjectOfType<ARSession>();
+        //For each button, define OnClick Action and prefab
+        Button btn = GetComponent<Button>();
+        btn.onClick.AddListener(Menu_Toggle);
+
     }
 
-    void Update()
+     //Toggle ON and OFF the dropdown submenu options
+    private void Menu_Toggle()
     {
-        if (Input.touchCount > 0 && !IsPointerOverUIObject(Input.GetTouch(0).position))
+        //deactivate the buttons if they are on
+        if (Shadow_Button.activeSelf == true)
         {
-            HandleTouch(Input.GetTouch(0));
+            Shadow_Button.SetActive(false);
+            Reset_Button.SetActive(false);
+            Animation_Button.SetActive(false);
         }
-    }
-
-    private void HandleTouch(Touch touch)
-    {
-
-            // Handle finger movements based on TouchPhase
-            switch (touch.phase)
-            {
-                case TouchPhase.Began:
-                    InstantiateOnTouch(touch);
-                    break; //break: If this case is true, it will not check the other ones. More computational efficiency, 
-
-                case TouchPhase.Moved:
-                    if (instantiatedObject != null)
-                    {
-                        if (Input.touchCount == 1)
-                        {
-                            Rotate(instantiatedObject, touch);
-                        }
-                        
-                        else if (Input.touchCount == 2)
-                        {
-                            PinchtoZoom(instantiatedObject);
-                        }
-                    }
-
-                    break;
-
-                case TouchPhase.Ended:
-                    Debug.Log("Touch Phase Ended.");
-                    break;
-            }
-    }
-
-
-    private void InstantiateOnTouch(Touch touch)
-    {
-       
-            Debug.Log("Single Touch");
-
-            // Check if the raycast hit any trackables.
-            if (rayManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon))
-            {
-                // Raycast hits are sorted by distance, so the first hit means the closest.
-                var hitPose = hits[0].pose;
-
-                //mode 0: single placement of objects, like the 3D printed house hologram
-                //mode 1: multiple placement of objects, like multiple trees or characters
-                bool shouldInstantiateNewObject = mode == 1 || (mode == 0 && instantiatedObject == null);
-                bool prefabChanged = lastUsedPrefab != selectedPrefab && mode == 0;
-
-                if (shouldInstantiateNewObject || prefabChanged)
-                {
-                    if (prefabChanged && instantiatedObject != null)
-                    {
-                        Destroy(instantiatedObject); // Optionally destroy the old object if a new prefab is selected
-                        Debug.Log("Prefab changed, instantiating new prefab.");
-                    }
-
-                    instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation, GetParentTransform());
-                    lastUsedPrefab = selectedPrefab;
-                }
-                else
-                {
-                    // Move the existing instantiated object
-                    instantiatedObject.transform.position = hitPose.position;
-                    instantiatedObject.transform.rotation = hitPose.rotation;
-                }
-                AdjustRotationToCamera(instantiatedObject);
-        }
-        
-    }
-
-
-    private Transform GetParentTransform()
-    {
-        return mode == 0 ? singleObjectParent.transform : multipleObjectParent.transform;
-    }
-
-    private void AdjustRotationToCamera(GameObject obj)
-    {
-        Vector3 cameraPosition = Camera.main.transform.position;
-        Vector3 direction = new Vector3(cameraPosition.x, obj.transform.position.y, cameraPosition.z) - obj.transform.position;
-        obj.transform.rotation = Quaternion.LookRotation(direction);
-    }
-
-    private void Rotate(GameObject objectToRotate, Touch touch)
-    {
-        float rotationSpeed = 0.1f; // Adjust rotation speed as needed
-        objectToRotate.transform.Rotate(Vector3.up, touch.deltaPosition.x * rotationSpeed, Space.World);
-    }
-    
-    private void PinchtoZoom(GameObject objectToZoom)
-
-    //scale using pinch involves 2 touches
-    // we count both the touches, store them and measure the distance between pinch
-    // and scale depending on the pinch distance
-    {
-        if (Input.touchCount == 2)
+        else 
         {
-            Debug.Log("Double Touch");
-            var touchZero = Input.GetTouch(0);
-            var touchOne = Input.GetTouch(1);
-
-            // Find the position in the previous frame of each touch.
-            Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
-            Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
-
-            // Find the magnitude of the vector (the distance) between the touches in each frame.
-            float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
-            float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
-
-            // Find the difference in the distances between each frame.
-            float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
-            float pinchAmount = deltaMagnitudeDiff * -0.02f * Time.deltaTime;
-
-            Debug.Log("Scaling Initialized");
-            Debug.Log(objectToZoom);
-            //scale according to pinch amount
-            objectToZoom.transform.localScale += new Vector3(pinchAmount, pinchAmount, pinchAmount);
+            Shadow_Button.SetActive(true);
+            Reset_Button.SetActive(true);
+            Animation_Button.SetActive(true);
         }
     }
+}
+
+→ Here the “AddListener” redirects to the Menu_Toggle() function. This is a computationally efficient way of checking if a button is clicked to execute a function. 
+→ This Menu Script turns on and off different buttons. This allows us to create a “pop up” Menu that includes multiple buttons, and make the UI Experience more compact. 
 
 
-    //   UI Functions
+### New Instantiator Script - Overview 
+
+Go to the Instantiator C# Script. 
+
+How we set a mode
+```
     public void SetMode_A()
     {
         mode = 0; // for single placement of objects, like the 3D printed house hologram
@@ -596,92 +273,369 @@ public class Instantiator_MultipleHouses: MonoBehaviour
     {
         mode = 1; // for multiple placement of objects, like multiple trees or characters
     }
-    
-
-    public static bool IsPointerOverUIObject(Vector2 touchPosition)
+    public void SetMode_C()
     {
-        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current) { position = touchPosition };
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        return results.Count > 0;
+        mode = 2; // for editing existing objects
     }
-    
-    public void ResetApp()
+    public void SetMode_D()
     {
-        //destroy all created objects
-        if (singleObjectParent.transform.childCount > 0 || multipleObjectParent.transform.childCount > 0)
+        mode = 3; // for deleting objects
+    }
+```
+
+How these modes are used
+```
+   private void _InstantiateOnTouch()
+    {
+        if (Input.touchCount > 0) //if there is an input..           
         {
-            foreach (Transform child in singleObjectParent.transform)
+            if (PhysicRayCastBlockedByUi(Input.GetTouch(0).position))
             {
-                GameObject.Destroy(child.gameObject);
-            }
-            foreach (Transform child in multipleObjectParent.transform)
-            {
-                GameObject.Destroy(child.gameObject);
+                if (mode == 0) // ADD ONE : destroy previous object with every tap
+                {
+                    Debug.Log("***MODE 0***");
+                    Touch touch = Input.GetTouch(0);
+
+                    // Handle finger movements based on TouchPhase
+                    switch (touch.phase)
+                    {
+                        case TouchPhase.Began:
+                            if (Input.touchCount == 1)
+                            { 
+                                _PlaceInstant(houseParent);
+                            }
+                            break; //break: If this case is true, it will not check the other ones. More computational efficiency, 
+
+                        case TouchPhase.Moved:
+                        // Record initial touch position.
+                            if (Input.touchCount == 1)
+                                {
+                                _Rotate(ARObject_new);
+                                }
+                            
+                            if (Input.touchCount == 2)
+                            {
+                                _PinchtoZoom(ARObject_new);
+                            }
+                            break;
+
+                        case TouchPhase.Ended:
+                            Debug.Log("Touch Phase Ended.");
+                            break;
+                    }
+                }
+                else if (mode == 1) //ADD MULTIPLE : create multiple instances of object
+                {
+
+                    Debug.Log("***MODE 1***");
+                    Touch touch = Input.GetTouch(0);
+
+                    // Handle finger movements based on TouchPhase
+                    switch (touch.phase)
+                    {
+                        case TouchPhase.Began:
+                            if (Input.touchCount == 1)
+                            {
+                                _PlaceInstant(objectParent);
+                            }                          
+                            break;
+
+                        case TouchPhase.Moved:
+                        // Record initial touch position.
+                            if (Input.touchCount == 1)
+                                {
+                                _Rotate(ARObject_new);
+                                }
+                            
+                            if (Input.touchCount == 2)
+                            {
+                                _PinchtoZoom(ARObject_new);
+                            }
+                            break;
+
+                        case TouchPhase.Ended:
+                            Debug.Log("Touch Phase Ended.");
+                            break;
+                    }
+                }
+
+                else if (mode == 2) //EDIT MODE
+                {
+                    Debug.Log("***MODE 2***");
+                    _EditMode();                                    
+                }
+
+                else if (mode == 3) //DELETE MODE
+                {
+                    Debug.Log("***MODE 3***");
+                    activeGameObject = SelectedObject();
+                    _DestroySelected(activeGameObject);
+                }
+                else
+                {
+                    Debug.Log("Press a button to initialize a mode");
+                }
             }
         }
-       
-        //reset AR session : resets all trackable objects and planes. 
-        arSession = FindObjectOfType<ARSession>();
-        arSession.Reset();
+    }
+```
+
+EditMode() Function
+```
+mode==2
+    private void _EditMode()
+    {
+        if (Input.touchCount == 1) //try and locate the selected object only when we click, not on update
+        {
+            activeGameObject = SelectedObject();
+        }
+        if (activeGameObject != null) //change the pinch and zoom place holder only when we locate a new object
+        {           
+            temporaryObject = activeGameObject;
+            _addBoundingBox(temporaryObject); //add bounding box around selected game object
+        }
+
+        _Move(temporaryObject);
+        _PinchtoZoom(temporaryObject);
+        
+    }
+```
+
+Find Selected Object by RayCasting
+|	Note: This This function Returns an object (the activeGameObject), when the Raycast hits the Physics collider of that object. 
+
+```
+private GameObject SelectedObject(GameObject activeGameObject = null)
+    {
+        Touch touch;
+        touch = Input.GetTouch(0);
+
+        //delete the previous selection boundary, will be replaced with a new one
+
+        if (Input.touchCount == 1 && touch.phase == TouchPhase.Ended)
+        {
+            Debug.Log("Single Touch");
+            List<ARRaycastHit> hits = new List<ARRaycastHit>();
+            rayManager.Raycast(touch.position, hits);
+
+            if (hits.Count > 0)
+            {
+
+                Debug.Log("Ray shooting from camera");
+                Ray ray = arCamera.ScreenPointToRay(touch.position);
+                RaycastHit hitObject;              
+
+                //if our touch hits an existing object, we find that object
+                if (Physics.Raycast(ray, out hitObject))  
+                {
+                    //we make sure we didn't tap a plane
+                    if (hitObject.collider.tag != "plane")
+                    {
+                        //setting the variable
+                        Debug.Log("Selected object located");
+                        activeGameObject = hitObject.collider.gameObject; //assign GameObject as the active
+                        Debug.Log(activeGameObject);
+
+                    }
+                }
+            }
+        }
+```
+Delete mode
+mode==3
+In delete mode, we use the same script to locate the Raycast hit Object, and then instead of Moving, Rotating or Scaling, we just use the Destroy()  function.
+
+``` 
+                else if (mode == 3) //DELETE MODE
+                {
+                    Debug.Log("***MODE 3***");
+                    activeGameObject = SelectedObject();
+                    _DestroySelected(activeGameObject);
+                }
+   ------------------------------------------------------------------------
+```
+
+```
+   private void _DestroySelected(GameObject gameObjectToDestroy)
+    {
+        Destroy(gameObjectToDestroy);
+    }
+```
+→ Pro Tip: If you want to go directly to a function  you see in the code, you can CTRL+ click on the name. (e.g. here we would CTRL+click on the _DestroySelected(activeGameObject))
+
+Interactive Sunlight
+In the new Directional Light we imported, there is a custom C# script attached named “Sun”.
+
+
+Here, we link the position and rotation of our Sunlight according to the slider values we have on our UI Canvas, which we manipulate on the fly. 
+
+Also, we use this script to turn ON/OFF the visibility of our 3D printed object (that’s why we use the House Parent GameObject).
+Let’s take a look at the scripts.
+
+
+Azimuth - Altitude
+
+AddListener
+On line 40, we add listeners for everytime we change the slider for each parameter. 
+
+```
+     azimuth_slider.onValueChanged.AddListener(AdjustLatitude);
+      altitude_slider.onValueChanged.AddListener(AdjustLongitude);
+8.1.2 Adjust Values
+On line 45, we assign these new values in the AdjustTime() function.
+   public void AdjustAzimuth(float value)
+     {
+         New_Azimuth = value;
+         AdjustTime(New_Azimuth, New_Altitude);
+     }
+
+     public void AdjustAltitude(float value)
+     {
+         New_Altitude = value;
+         AdjustTime(New_Azimuth, New_Altitude);
+     }  
+```
+
+Adjust Sun transform
+On line 69,  we adjust the position of our 3D Sphere object, according to the Azimuth and Altitude values. 
+The centerpoint of this sphere, is the House (the 3D printed object)
+
+```
+        if (house!=null)
+        {
+            coordPosition.x = radius*Mathf.Cos(New_Azimuth*Mathf.Deg2Rad)*Mathf.Cos(New_Altitude*Mathf.Deg2Rad);
+            coordPosition.z = radius*Mathf.Cos(New_Azimuth*Mathf.Deg2Rad)*Mathf.Sin(New_Altitude*Mathf.Deg2Rad);
+            coordPosition.y = radius*Mathf.Sin(New_Azimuth*Mathf.Deg2Rad);
+     
+            coordPosition += centerpoint;
+            sun.transform.position = new Vector3(coordPosition.x, coordPosition.y, coordPosition.z);
+            sun.transform.LookAt(house.transform);      
+        }
+```
+
+Note: We use the LookAt command, to rotate the sunlight, by making it “look” at our object each time it is moving. 
+
+Visibility Toggle
+In the same C# Script (Sun), we use the function VisibilityToggle() to be able to turn ON/OFF the visibility of the 3d model, while still keeping the shadows of it. 
+
+```
+    public void VisibilityToggle()
+    {
+        //**Preview ON/Off the house 3dmodel**
+
+        //Check if the house is instantiated
+        if (houseParent.transform.childCount != 0)
+            house = houseParent.transform.GetChild(0).gameObject;
+
+        if(house != null)
+        {
+            //Get access to the model obj and adjust the MeshRenderer parameters
+            GameObject obj = house.transform.GetChild(0).gameObject;
+            Debug.Log(obj);
+
+            if (shadowMode == 0)
+            {
+                obj.GetComponent<MeshRenderer>().shadowCastingMode =         UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+                shadowMode = 1;
+            }
+            else
+            {
+                obj.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+                shadowMode = 0;
+            }
+        }
+```
+
+
+
+### Animation
+
+“Animanimals” Script
+Go to the Prefabs, on the Animated Characters
+
+These downloaded Assets come with different Animations embedded in the prefab. This means that by assigning different functions, they can “switch” their animation to the desired preset. 
+Our goal is to activate the “Walk” animation, so that our characters can walk around in the Augmented Reality environment. 
+
+
+-	Add Animanimals Script
+    1. Select the animated character Prefab.
+
+    2. Go to the Inspector, click on “Add Component”, type in “ Animanimals ” and import the Script. 
+
+
+Overview of Animanimals Script
+
+Open the code by double clicking on the Animanimals Script.
+First, we locate the Button we need (Which is named “Animation_Button, in our AR Canvas)
+And then Add a Listener to it. When it is clicked, the ControllPLayer() void is called. This sets a value of either 1 or 0 (1 is for moving = “Walk”).
+When the “Animation_Button”  button is clicked, the animation “Walk” is activated, and our characters start to move. 
+
+
+```
+    void Start()
+    {
+        anim = gameObject.GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
+        //Button btn = Anim_Button.GetComponent<Button>();
+        btn = GameObject.Find("/AR_Canvas/Menu/Animation_Button").GetComponent<Button>(); //.GetComponent<Button>();
+        btn.onClick.AddListener(ControllPlayer);        
     }
 
-}
+
+    void Update()
+    {
+        Debug.Log(move);
+        if (move)
+        {
+            Vector3 movement = transform.forward;
+            transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
+        }
+    }
+
+    public void ControllPlayer()
+    {
+        Debug.Log("walk");
+        anim.SetInteger("Walk", 1);
+        if (move)
+        {
+            move = false;
+        }
+        else{
+        move = true;
+        }
+        Debug.Log("move");        
+     }
 ```
+	 
+
+Colliders
+
+In order for our animations and placement of the objects to work, we have to make sure our imported Prefabs have Colliders and are Rigid Bodies.
+Collider components define the shape of a GameObject for the purposes of physical collisions. A collider, which is invisible, does not need to be the exact same shape as the GameObject’s mesh. 
+
+→ Our cat has a Box Collider attached to it.
+A rough approximation of the mesh is often more efficient and indistinguishable in gameplay.The simplest (and least processor-intensive) colliders are primitive collider types. In 3D, these are the Box Collider, Sphere Collider and Capsule Collider.
+9.2.1 Mesh Collider (Component)
+→ Documentation Here
+The Mesh Collider builds its collision representation from the Mesh attached to the GameObject, and reads the properties of the attached Transform to set its position and scale correctly. The benefit of this is that you can make the shape of the Collider exactly the same as the shape of the visible Mesh for the GameObject, resulting in more precise and authentic collisions. However, this precision comes with a higher processing overhead than collisions involving primitive colliders (such as Sphere, Box, and Capsule) and so it is best to use Mesh Colliders sparingly.
+→ Check if all of your prefabs have some sort of Collider.
+
+Rigid Body (Component)
+Rigidbodies enable your GameObjects to act under the control of physics. The Rigidbody can receive forces to make your objects move in a realistic way. Any GameObject must contain a Rigidbody to be influenced by gravity, act under added forces via scripting, or interact with other objects.
 
 
+Rigid Body Properties
+Property:
+Function:
+Mass
+The mass of the object (in kilograms by default).
+Drag
+How much air resistance affects the object when moving from forces. 0 means no air resistance, and infinity makes the object stop moving immediately.
+Angular Drag
+How much air resistance affects the object when rotating from torque. 0 means no air resistance. Note that you cannot make the object stop rotating just by setting its Angular Drag to infinity.
+Use Gravity
+If enabled, the object is affected by gravity.
+Is Kinematic
+If enabled, the object will not be driven by the physics engine, and can only be manipulated by its Transform. This is useful for moving platforms or if you want to animate a Rigidbody that has a HingeJoint attached.
 
-
-
-After this let’s look at the instantiator code. The buttons are linked to different modes. These modes are linked to different actions.
-
-
-
-
-```
-	// UI Functions
-	public void SetMode_A() {
-	mode = 0; // for single placement of objects, like the 3D printed house hologram
-	}
-	public void SetMode_B() {
-	mode = 1; // for multiple placement of objects, like multiple trees or characters
-	}
-```
-
-
-
-
-**These modes are linked with if statements such as place one instance or multiple:**
-
-```
-	//mode 0: single placement of objects, like the 3D printed house hologram
-	//mode 1: multiple placement of objects, like multiple trees or characters
-	bool shouldInstantiateNewObject = mode == 1 || (mode == 0 && instantiatedObject == null);
-	bool prefabChanged = lastUsedPrefab != selectedPrefab && mode == 0;
-
-	if (shouldInstantiateNewObject || prefabChanged)
-	{
-		if (prefabChanged && instantiatedObject != null)
-		{
-			Destroy(instantiatedObject); // Optionally destroy the old object if a new prefab is selected
-			Debug.Log("Prefab changed, instantiating new prefab.");
-		}
-
-		instantiatedObject = Instantiate(selectedPrefab, hitPose.position, hitPose.rotation, GetParentTransform());
-		lastUsedPrefab = selectedPrefab;
-	}
-	else
-	{
-		// Move the existing instantiated object
-		instantiatedObject.transform.position = hitPose.position;
-		instantiatedObject.transform.rotation = hitPose.rotation;
-	}
-```
-
--	In the unity file you need to link the modes with the buttons:
-
-<img src="{{ site.baseurl }}public/assets/17 (1)" alt="">
-
--	This works because the void is set to public and the on click is linked with the instantiator script. The button has therefore access to the _public void SetMode_B()_ which sets the mode to 1.
-
--	The instantiator script looks every frame for touch input (as it is in input) and looks for the mode. Depending on the mode and the touch input a different action is activated.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+→ The Rigidbody component is what makes our animals “fall”, or “move around”.
