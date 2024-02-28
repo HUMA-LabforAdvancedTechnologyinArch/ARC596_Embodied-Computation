@@ -504,7 +504,7 @@ private GameObject SelectedObject(GameObject activeGameObject = null)
 
 ```mode==3```
 
-In delete mode, we use the same script to locate the Raycast hit Object, and then instead of Moving, Rotating or Scaling, we just use the Destroy()  function.
+In delete mode, we use the same script to locate the Raycast hit Object, and then instead of Moving, Rotating or Scaling, we just use the /Destroy()/  function.
 
 ``` 
                 else if (mode == 3) //DELETE MODE

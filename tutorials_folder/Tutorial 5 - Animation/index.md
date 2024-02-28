@@ -524,7 +524,7 @@ In delete mode, we use the same script to locate the Raycast hit Object, and the
 ```
 → Pro Tip: If you want to go directly to a function  you see in the code, you can CTRL+ click on the name. (e.g. here we would CTRL+click on the _DestroySelected(activeGameObject))
 
-###Interactive Sunlight
+### Interactive Sunlight
 
 In the new Directional Light we imported, there is a custom C# script attached named “Sun”.
 
