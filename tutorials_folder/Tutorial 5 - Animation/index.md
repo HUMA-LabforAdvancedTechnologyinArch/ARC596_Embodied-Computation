@@ -44,11 +44,11 @@ Packages: [_https://docs.unity3d.com/Manual/PackagesList.html_](https://docs.uni
 
 
 **Button**
-<img src="https://i.imgur.com/Gr2MC7R.png" alt="" width="100">
+<img src="https://i.imgur.com/Gr2MC7R.png" alt="" width="200">
 A Button has an OnClick UnityEvent to define what it will do when clicked.
 
 **Slider**
-<img src="https://i.imgur.com/6EEBh7v.png" alt="" width="100">
+<img src="https://i.imgur.com/6EEBh7v.png" alt="" width="200">
 A Slider has a decimal number Value that the user can drag between a minimum and maximum value. It can be either horizontal or vertical. It also has a OnValueChanged UnityEvent to define what it will do when the value is changed.
 
 **Raycasters**
@@ -77,7 +77,8 @@ void Update()
 }
 ```
 
-Physics Raycaster 
+**Physics Raycaster**
+
 Used for 3D physics elements. Casts a ray against all colliders in the Scene and returns detailed information on what was hit. This example reports the distance between the current object and the reported Collider:
 
 Example
@@ -119,7 +120,7 @@ public class RaycastExample : MonoBehaviour
 
 **Menu**
 <img src="https://i.imgur.com/UDXp4ze.png" alt="" width="25">
--	When pressed, new buttons pop up. 
+When pressed, new buttons pop up. 
 -	**Visibility Button** Turns on and off the visibility of the 3D printed object
 -	<img src="https://i.imgur.com/DyxKT2v.png" alt="" width="25">
 -	**Reset Button** Resets all scanned planes and deletes all objects in Scene.
@@ -128,7 +129,7 @@ public class RaycastExample : MonoBehaviour
 -	<img src="https://i.imgur.com/FEVArZ6.png" alt="" width="25">
 
 **Interactive Sunlight**
-<img src="https://i.imgur.com/zT6IZNS.png" alt="" width="100">
+<img src="https://i.imgur.com/zT6IZNS.png" alt="" width="250">
  
  
  
