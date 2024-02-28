@@ -121,6 +121,10 @@ When pressed, new buttons pop up.
 
 Interactive Sunlight
  
+<img src="https://i.imgur.com/GJP7lsr.png" alt="" width="250">
+ 
+ 
+ 
 In short, we will import 2 interactive sliders to manipulate the Sunlight, by changing the Altitude and the Azimuth. By changing these values, we are in fact iterating through seasons and hours of the day. 
 
 -	Import UnityPackage
