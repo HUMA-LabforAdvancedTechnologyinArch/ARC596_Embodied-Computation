@@ -43,19 +43,21 @@ Packages: [_https://docs.unity3d.com/Manual/PackagesList.html_](https://docs.uni
 ### Unity Interface Recap
 
 
-Button
+**Button**
+<img src="https://i.imgur.com/Gr2MC7R.png" alt="" width="100">
 A Button has an OnClick UnityEvent to define what it will do when clicked.
 
-Slider
+**Slider**
+<img src="https://i.imgur.com/6EEBh7v.png" alt="" width="100">
 A Slider has a decimal number Value that the user can drag between a minimum and maximum value. It can be either horizontal or vertical. It also has a OnValueChanged UnityEvent to define what it will do when the value is changed.
 
-Raycasters
+**Raycasters**
 Raycasters are used for figuring out what the pointer is over
 
-AR Raycast Manager 
+**AR Raycast Manager** 
 Also known as hit testing, ray casting allows you to determine where a ray (defined by an origin and direction) intersects with a trackable. A "trackable" is a feature in the physical environment that can be detected and tracked by an XR device.
 
-Example
+-	Example:
 
 ```
 [SerializeField]
@@ -106,22 +108,28 @@ public class RaycastExample : MonoBehaviour
 
 ### New Features
 
-Edit Mode
+**Edit Mode**
+<img src="https://i.imgur.com/6EEBh7v.png" alt="" width="100">
+
 -	Tap once on the object to select it ( you will see a white bounding box appear ). 
 -	Tap and hold for 1 second. The bounding box will become yellow. Without lifting your finger, try to move the object around.
 
-Delete Mode
+**Delete Mode**
+<img src="https://i.imgur.com/6EEBh7v.png" alt="" width="100">
 -	Tap once on an object to delete it immediately
 
-Menu
+**Menu**
+<img src="https://i.imgur.com/UDXp4ze.png" alt="" width="100">
 When pressed, new buttons pop up. 
--	Visibility Button: Turns on and off the visibility of the 3D printed object
--	Reset Button : Resets all scanned planes and deletes all objects in Scene.
--	Play Button : Starts animating the characters.
+**Visibility Button** Turns on and off the visibility of the 3D printed object
+<img src="https://i.imgur.com/DyxKT2v.png" alt="" width="100">
+**Reset Button** Resets all scanned planes and deletes all objects in Scene.
+<img src="https://i.imgur.com/ZUDFlUr.png" alt="" width="100">
+**Play Button** Starts animating the characters.
+<img src="https://i.imgur.com/FEVArZ6.png" alt="" width="100">
 
 Interactive Sunlight
- 
-<img src="https://i.imgur.com/GJP7lsr.png" alt="" width="250">
+<img src="https://i.imgur.com/zT6IZNS.png" alt="" width="250">
  
  
  
