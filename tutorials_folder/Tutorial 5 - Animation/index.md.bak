@@ -1,4 +1,4 @@
-# ARC596 - Tutorial 4 - Multiple Houses
+# ARC596 - Tutorial 5 - Animation
 
 - ARC596: Embodied Computation
 - Professor: Daniela Mitterberger - mitterberger@princeton.edu
@@ -77,7 +77,7 @@ Used for 3D physics elements. Casts a ray against all colliders in the Scene and
 
 ### New Features
 
-Edit Mode: 
+Edit Mode
 -	Tap once on the object to select it ( you will see a white bounding box appear ). 
 -	Tap and hold for 1 second. The bounding box will become yellow. Without lifting your finger, try to move the object around.
 
@@ -93,16 +93,15 @@ When pressed, new buttons pop up.
 Interactive Sunlight
  
 In short, we will import 2 interactive sliders to manipulate the Sunlight, by changing the Altitude and the Azimuth. By changing these values, we are in fact iterating through seasons and hours of the day. 
-3 Import UnityPackage for Day 3
+
+Import UnityPackage
+
     • Go to Assets>Import Package>Custom Package
-
-    • Select the .unitypackage file you downloaded for Day 03
-
+    • Select the .unitypackage file you downloaded
     • Select all Assets and click Import
- 
     • You should be able to see a new Day 03 Assets folder in your Assets.
 
-### Instantiate Multiple 
+### Configure new GameObjects 
 
 ### Tutorial
 

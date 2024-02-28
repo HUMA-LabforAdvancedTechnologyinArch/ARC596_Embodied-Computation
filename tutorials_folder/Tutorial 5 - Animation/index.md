@@ -1,4 +1,4 @@
-# ARC596 - Tutorial 4 - Multiple Houses
+# ARC596 - Tutorial 5 - Animation
 
 - ARC596: Embodied Computation
 - Professor: Daniela Mitterberger - mitterberger@princeton.edu
@@ -40,12 +40,7 @@ Prefabs: [_https://docs.unity3d.com/Manual/Prefabs.html_](https://docs.unity3d.c
 
 Packages: [_https://docs.unity3d.com/Manual/PackagesList.html_](https://docs.unity3d.com/Manual/PackagesList.html)
 
-### Unity Interface 
-
-<img src="{{ site.baseurl }}public/assets/1" alt="">
-
-
-### C# in Unity: 
+### Unity Interface Recap
 
 
 Button
