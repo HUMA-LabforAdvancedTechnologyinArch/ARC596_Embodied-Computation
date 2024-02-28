@@ -222,21 +222,26 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
   
 
 -	Light
-Delete Previous Light
-We will import a new Light in the Scene, so let’s delete the existing Directional Light in the Hierarchy.
-<img src="https://i.imgur.com/PbIQpfc.png" alt="" width="400"> 
+
+	Delete Previous Light
+
+	We will import a new Light in the Scene, so let’s delete the existing Directional Light in the Hierarchy.
+
+	<img src="https://i.imgur.com/PbIQpfc.png" alt="" width="400"> 
 
 
 -	Import as GameObject
-We will now drag and drop the Directional Light Prefab from the Day 03 Asset Folder to the Hierarchy.
-  
-<img src="https://i.imgur.com/PEbOUDB.png" alt="" width="250"><img src="https://i.imgur.com/Ijl1H0b.png" alt="" width="250"> 
 
+-	We will now drag and drop the Directional Light Prefab from the Asset Folder to the Hierarchy.
+  
+	<img src="https://i.imgur.com/PEbOUDB.png" alt="" width="250"><img src="https://i.imgur.com/Ijl1H0b.png" alt="" width="250"> 
 
 
 -	Unpack Prefab Completely
-Right Click on the Directional Light > Prefab> Unpack Completely. This will “detach” the link between the GameObject and the Prefab.
-<img src="https://i.imgur.com/VSDn4PR.png" alt="" width="500">
+
+-	Right Click on the Directional Light > Prefab> Unpack Completely. This will “detach” the link between the GameObject and the Prefab.
+	
+	<img src="https://i.imgur.com/VSDn4PR.png" alt="" width="500">
 
 
 -	Sun Sliders
