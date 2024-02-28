@@ -139,13 +139,13 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 
 -	Instantiator
 	-	Since we have a new Instantiator for Day 03, we will delete the previous Instantiator GameObject.
-	-	<img src="https://i.imgur.com/JyRat0B.png" alt="" width="400">
+	-	<img src="https://i.imgur.com/JyRat0B.png" alt="" width="300">
 	
 -	Import as GameObject
 	-	Drag and Drop the Instantiator Prefab from the Day03 Materials to the Hierarchy. 
 	-	Unpack GameObject
 	-	Respectively, we will Unpack the Prefab Completely
-	-	<img src="https://i.imgur.com/Lpm9wSQ.png" alt="" width="400">
+	-	<img src="https://i.imgur.com/Lpm9wSQ.png" alt="" width="450">
 	-	Relink GameObject
 
 -	Since we imported Instantiator again, we have to re-link the previous GameObject, where needed.
@@ -171,7 +171,7 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 -	Format  AR Canvas
 	-	These are the 4 buttons we will import in our existing AR_Canvas.[1] Drag them into the existing AR_Canvas, as children.  The structure should look like this
 	-	Delete the existing Reset button (there is already one included in the new Menu).
-		<img src="https://i.imgur.com/PM9OaEU.png" alt="" width="300"> <img src="https://i.imgur.com/HDrakrn.png" alt="" width="400">
+		<img src="https://i.imgur.com/PM9OaEU.png" alt="" width="300"> <img src="https://i.imgur.com/HDrakrn.png" alt="" width="300">
 
 	-	Delete the AR_Canvas(1)  (Should be now an empty GameObject).
 		<img src="https://i.imgur.com/i3E85pX.png" alt="" width="300">
@@ -187,7 +187,7 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 
 	-	<img src="https://i.imgur.com/3iXWdLO.png" alt="" width="300">
 
-	-	<img src="https://i.imgur.com/USmojW9.png" alt="" width="350"> <img src="https://i.imgur.com/DJqsh48.png" alt="" width="350">
+	-	<img src="https://i.imgur.com/USmojW9.png" alt="" width="300"> <img src="https://i.imgur.com/DJqsh48.png" alt="" width="300">
 
 
 
