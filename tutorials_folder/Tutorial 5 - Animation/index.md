@@ -57,7 +57,6 @@ Raycasters are used for figuring out what the pointer is over
 **AR Raycast Manager** 
 Also known as hit testing, ray casting allows you to determine where a ray (defined by an origin and direction) intersects with a trackable. A "trackable" is a feature in the physical environment that can be detected and tracked by an XR device.
 
--	Example:
 
 ```
 [SerializeField]
@@ -81,7 +80,6 @@ void Update()
 
 Used for 3D physics elements. Casts a ray against all colliders in the Scene and returns detailed information on what was hit. This example reports the distance between the current object and the reported Collider:
 
-Example
 
 ```
 public class RaycastExample : MonoBehaviour
@@ -109,28 +107,29 @@ public class RaycastExample : MonoBehaviour
 
 ### New Features
 
-**Edit Mode**
 <img src="https://i.imgur.com/ML5tTnS.png" alt="" width="25">
+**Edit Mode**
 -	Tap once on the object to select it ( you will see a white bounding box appear ). 
 -	Tap and hold for 1 second. The bounding box will become yellow. Without lifting your finger, try to move the object around.
 
-**Delete Mode**
 <img src="https://i.imgur.com/ok8CfEa.png" alt="" width="25">
+**Delete Mode**
 -	Tap once on an object to delete it immediately
 
-**Menu**
 <img src="https://i.imgur.com/UDXp4ze.png" alt="" width="25">
+**Menu**
 When pressed, new buttons pop up. 
 -	**Visibility Button** Turns on and off the visibility of the 3D printed object
--	<img src="https://i.imgur.com/DyxKT2v.png" alt="" width="25">
+	<img src="https://i.imgur.com/DyxKT2v.png" alt="" width="25">
 -	**Reset Button** Resets all scanned planes and deletes all objects in Scene.
--	<img src="https://i.imgur.com/ZUDFlUr.png" alt="" width="25">
+	<img src="https://i.imgur.com/ZUDFlUr.png" alt="" width="25">
 -	**Play Button** Starts animating the characters.
--	<img src="https://i.imgur.com/FEVArZ6.png" alt="" width="25">
+	<img src="https://i.imgur.com/FEVArZ6.png" alt="" width="25">
 
 **Interactive Sunlight**
 <img src="https://i.imgur.com/zT6IZNS.png" alt="" width="250">
- 
+<img src="https://i.imgur.com/mRD1yhu.png" alt="" width="350">
+
  
  
 In short, we will import 2 interactive sliders to manipulate the Sunlight, by changing the Altitude and the Azimuth. By changing these values, we are in fact iterating through seasons and hours of the day. 
@@ -254,9 +253,8 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 
 -	Sun Sliders
 
-Link Sliders to the Script
-Click on the Directional Light we imported, go to the Inspector on the Sun Script and drag and drop the 2 sliders we imported from the Assets package. 
-
+**Link Sliders to the Script**
+-	Click on the Directional Light we imported, go to the Inspector on the Sun Script and drag and drop the 2 sliders we imported from the Assets package. 
 	<img src="https://i.imgur.com/JOotBn3.png" alt="" width="300">
 	<img src="https://i.imgur.com/PbG2iBA.png" alt="" width="300">
 	<img src="https://i.imgur.com/yYt7KXq.png" alt="" width="300">
@@ -265,7 +263,6 @@ Click on the Directional Light we imported, go to the Inspector on the Sun Scrip
   
 Drag and drop the Azimuth and Altitude slider (children in AR Canvas) to the Sun Script in the Inspector. Drag and drop the parent of the 3d object (houseParent).
 	<img src="https://i.imgur.com/WizNIFS.png" alt="" width="500">
-
 
 
 
