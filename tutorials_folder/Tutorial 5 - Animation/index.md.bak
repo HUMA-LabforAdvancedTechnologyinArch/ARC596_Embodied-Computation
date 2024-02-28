@@ -264,6 +264,10 @@ You should be able to see the newly added UI Menu on the Right.
 
 Go to the new Menu GameObject that was imported. On the Inspector, find the MenuScript (C# Script component), double click and open the code. 
 
+<img src="https://i.imgur.com/NX98hg5.png" alt="" width="300">
+<img src="https://i.imgur.com/JULboVj.png" alt="" width="300">
+
+
 Script Overview
 
 ```
@@ -511,8 +515,11 @@ In delete mode, we use the same script to locate the Raycast hit Object, and the
 ```
 → Pro Tip: If you want to go directly to a function  you see in the code, you can CTRL+ click on the name. (e.g. here we would CTRL+click on the _DestroySelected(activeGameObject))
 
-Interactive Sunlight
+###Interactive Sunlight
+
 In the new Directional Light we imported, there is a custom C# script attached named “Sun”.
+
+<img src="https://i.imgur.com/EqfbJJc.png" alt="" width="400">
 
 Here, we link the position and rotation of our Sunlight according to the slider values we have on our UI Canvas, which we manipulate on the fly. 
 
@@ -522,14 +529,20 @@ Let’s take a look at the scripts.
 
 Azimuth - Altitude
 
-AddListener
+-	AddListener
+
 On line 40, we add listeners for everytime we change the slider for each parameter. 
 
 ```
      azimuth_slider.onValueChanged.AddListener(AdjustLatitude);
       altitude_slider.onValueChanged.AddListener(AdjustLongitude);
-8.1.2 Adjust Values
+```
+
+-	Adjust Values
+
 On line 45, we assign these new values in the AdjustTime() function.
+
+```
    public void AdjustAzimuth(float value)
      {
          New_Azimuth = value;
@@ -543,8 +556,10 @@ On line 45, we assign these new values in the AdjustTime() function.
      }  
 ```
 
-Adjust Sun transform
+-	Adjust Sun transform
+
 On line 69,  we adjust the position of our 3D Sphere object, according to the Azimuth and Altitude values. 
+
 The centerpoint of this sphere, is the House (the 3D printed object)
 
 ```
@@ -562,7 +577,8 @@ The centerpoint of this sphere, is the House (the 3D printed object)
 
 Note: We use the LookAt command, to rotate the sunlight, by making it “look” at our object each time it is moving. 
 
-Visibility Toggle
+-	Visibility Toggle
+
 In the same C# Script (Sun), we use the function VisibilityToggle() to be able to turn ON/OFF the visibility of the 3d model, while still keeping the shadows of it. 
 
 ```
@@ -598,16 +614,22 @@ In the same C# Script (Sun), we use the function VisibilityToggle() to be able t
 ### Animation
 
 “Animanimals” Script
-Go to the Prefabs, on the Animated Characters
+
+Go to the Prefabs, click on the Animated Characters
+
+<img src="https://i.imgur.com/czYah3w.png" alt="" width="400">
+
 
 These downloaded Assets come with different Animations embedded in the prefab. This means that by assigning different functions, they can “switch” their animation to the desired preset. 
 Our goal is to activate the “Walk” animation, so that our characters can walk around in the Augmented Reality environment. 
 
 
 -	Add Animanimals Script
-    1. Select the animated character Prefab.
+	-	Select the animated character Prefab.
+	-	<img src="https://i.imgur.com/WstHcRL.png" alt="" width="200">
+	-	Go to the Inspector, click on “Add Component”, type in “ Animanimals ” and import the Script. 
 
-    2. Go to the Inspector, click on “Add Component”, type in “ Animanimals ” and import the Script. 
+<img src="https://i.imgur.com/4qplW38.png" alt="" width="500">
 
 
 Overview of Animanimals Script
@@ -616,6 +638,10 @@ Open the code by double clicking on the Animanimals Script.
 First, we locate the Button we need (Which is named “Animation_Button, in our AR Canvas)
 And then Add a Listener to it. When it is clicked, the ControllPLayer() void is called. This sets a value of either 1 or 0 (1 is for moving = “Walk”).
 When the “Animation_Button”  button is clicked, the animation “Walk” is activated, and our characters start to move. 
+
+<img src="https://i.imgur.com/AS8BEnN.png" alt="" width="250">
+
+
 
 
 ```
@@ -653,14 +679,21 @@ When the “Animation_Button”  button is clicked, the animation “Walk” is 
         Debug.Log("move");        
      }
 ```
-	 https://i.imgur.com/rbKNKW8.jpeg
+
 
 Colliders
 
+<img src="https://i.imgur.com/FdYKKKj.png" alt="" width="500">
+
+
 In order for our animations and placement of the objects to work, we have to make sure our imported Prefabs have Colliders and are Rigid Bodies.
+
 Collider components define the shape of a GameObject for the purposes of physical collisions. A collider, which is invisible, does not need to be the exact same shape as the GameObject’s mesh. 
 
+<img src="https://i.imgur.com/ckpU03e.png" alt="" width="250">
+
 → Our cat has a Box Collider attached to it.
+
 A rough approximation of the mesh is often more efficient and indistinguishable in gameplay.The simplest (and least processor-intensive) colliders are primitive collider types. In 3D, these are the Box Collider, Sphere Collider and Capsule Collider.
 
 
@@ -672,6 +705,7 @@ The Mesh Collider builds its collision representation from the Mesh attached to 
 Rigid Body (Component)
 Rigidbodies enable your GameObjects to act under the control of physics. The Rigidbody can receive forces to make your objects move in a realistic way. Any GameObject must contain a Rigidbody to be influenced by gravity, act under added forces via scripting, or interact with other objects.
 
+<img src="https://i.imgur.com/OdNHEGI.png" alt="" width="250">
 
 Rigid Body Properties
 
