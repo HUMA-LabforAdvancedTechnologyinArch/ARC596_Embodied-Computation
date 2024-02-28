@@ -121,7 +121,7 @@ When pressed, new buttons pop up.
 
 Interactive Sunlight
  
-<img src="https://i.imgur.com/GJP7lsr.png" alt="" width="500">
+<img src="https://i.imgur.com/GJP7lsr.png" alt="" width="250">
  
  
  
@@ -514,9 +514,6 @@ In delete mode, we use the same script to locate the Raycast hit Object, and the
 Interactive Sunlight
 In the new Directional Light we imported, there is a custom C# script attached named “Sun”.
 
-<img src="https://i.imgur.com/GJP7lsr.png" alt="" width="300">
-
-
 Here, we link the position and rotation of our Sunlight according to the slider values we have on our UI Canvas, which we manipulate on the fly. 
 
 Also, we use this script to turn ON/OFF the visibility of our 3D printed object (that’s why we use the House Parent GameObject).
@@ -677,17 +674,16 @@ Rigidbodies enable your GameObjects to act under the control of physics. The Rig
 
 
 Rigid Body Properties
-Property:
-Function:
-Mass
-The mass of the object (in kilograms by default).
-Drag
-How much air resistance affects the object when moving from forces. 0 means no air resistance, and infinity makes the object stop moving immediately.
-Angular Drag
-How much air resistance affects the object when rotating from torque. 0 means no air resistance. Note that you cannot make the object stop rotating just by setting its Angular Drag to infinity.
-Use Gravity
-If enabled, the object is affected by gravity.
-Is Kinematic
-If enabled, the object will not be driven by the physics engine, and can only be manipulated by its Transform. This is useful for moving platforms or if you want to animate a Rigidbody that has a HingeJoint attached.
+
+**Mass** The mass of the object (in kilograms by default).
+**Drag** How much air resistance affects the object when moving from forces. 0 means no air resistance, and infinity makes the object stop moving immediately.
+**Angular Drag** How much air resistance affects the object when rotating from torque. 0 means no air resistance. Note that you cannot make the object stop rotating just by setting its Angular Drag to infinity.
+**Use Gravity** If enabled, the object is affected by gravity.
+**Is Kinematic** If enabled, the object will not be driven by the physics engine, and can only be manipulated by its Transform. This is useful for moving platforms or if you want to animate a Rigidbody that has a HingeJoint attached.
 
 → The Rigidbody component is what makes our animals “fall”, or “move around”.
+
+### Develop your app further
+
+Now, it is time to continue developing your Augmented Reality environment setup!
+Good luck!
