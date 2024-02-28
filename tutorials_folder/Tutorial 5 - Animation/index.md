@@ -154,7 +154,7 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 
 -	Since we imported Instantiator again, we have to re-link the previous GameObject, where needed.
 
-	-	<img src="https://i.imgur.com/ng2CyiS.png" alt="" width="400"> <img src="https://i.imgur.com/XPfdmeT.png" alt="" width="500">
+	-	<img src="https://i.imgur.com/ng2CyiS.png" alt="" width="400"> <img src="https://i.imgur.com/XPfdmeT.png" alt="" width="400">
 
 
 
@@ -249,13 +249,14 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 Link Sliders to the Script
 Click on the Directional Light we imported, go to the Inspector on the Sun Script and drag and drop the 2 sliders we imported from the Day 3 Assets package. 
 
-<img src="https://i.imgur.com/JOotBn3.png" alt="" width="300">
-<img src="https://i.imgur.com/PbG2iBA.png" alt="" width="300"><img src="https://i.imgur.com/yYt7KXq.png" alt="" width="300">
+	<img src="https://i.imgur.com/JOotBn3.png" alt="" width="300">
+	<img src="https://i.imgur.com/PbG2iBA.png" alt="" width="300">
+	<img src="https://i.imgur.com/yYt7KXq.png" alt="" width="300">
 
 
   
 Drag and drop the Azimuth and Altitude slider (children in AR Canvas) to the Sun Script in the Inspector. Drag and drop the parent of the 3d object (houseParent).
-<img src="https://i.imgur.com/WizNIFS.png" alt="" width="500">
+	<img src="https://i.imgur.com/WizNIFS.png" alt="" width="500">
 
 
 
@@ -498,9 +499,12 @@ private GameObject SelectedObject(GameObject activeGameObject = null)
             }
         }
 ```
-Delete mode
-mode==3
-In delete mode, we use the same script to locate the Raycast hit Object, and then instead of Moving, Rotating or Scaling, we just use the Destroy()  function.
+
+-	Delete mode
+
+```mode==3```
+
+In delete mode, we use the same script to locate the Raycast hit Object, and then instead of Moving, Rotating or Scaling, we just use the /Destroy()/  function.
 
 ``` 
                 else if (mode == 3) //DELETE MODE
