@@ -55,7 +55,7 @@ Raycasters are used for figuring out what the pointer is over
 AR Raycast Manager 
 Also known as hit testing, ray casting allows you to determine where a ray (defined by an origin and direction) intersects with a trackable. A "trackable" is a feature in the physical environment that can be detected and tracked by an XR device.
 
->     Example
+Example
 
 ```
 [SerializeField]
@@ -78,7 +78,7 @@ void Update()
 Physics Raycaster 
 Used for 3D physics elements. Casts a ray against all colliders in the Scene and returns detailed information on what was hit. This example reports the distance between the current object and the reported Collider:
 
->     Example
+Example
 
 ```
 public class RaycastExample : MonoBehaviour

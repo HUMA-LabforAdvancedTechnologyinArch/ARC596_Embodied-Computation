@@ -223,7 +223,7 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 
 -	Light
 
-Delete Previous Light
+	Delete Previous Light
 
 	We will import a new Light in the Scene, so let’s delete the existing Directional Light in the Hierarchy.
 
