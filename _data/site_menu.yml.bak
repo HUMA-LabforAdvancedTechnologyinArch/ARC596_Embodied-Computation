@@ -6,18 +6,21 @@ menu:
   - title: Tutorials
     url: tutorials/
     subfolderitems:
-      - page: Tutorial 1 - Installation
+      - page: Tutorial 1
         url: tutorials_folder/Tutorial 1 - Installation/
-        description: Tutorial 1 - Installation
-      - page: Tutorial 2 - First Unity Scene
+        description: Installation
+      - page: Tutorial 2
         url: tutorials_folder/Tutorial 2 - First Unity Scene/
-        description: Tutorial 2 description
-      - page: Tutorial 3 - Bluehouse
+        description: First Unity Scene
+      - page: Tutorial 3
         url: tutorials_folder/Tutorial 3 - Bluehouse/
-        description: Tutorial 3 - Bluehouse
-      - page: Tutorial 3 - Bluehouse
+        description: Bluehouse
+      - page: Tutorial 4
         url: tutorials_folder/Tutorial 4 - Multiple Houses/
-        description: Tutorial 4 - Multiple Houses
+        description: Multiple Houses
+      - page: Tutorial 5
+        url: tutorials_folder/Tutorial 5 - Animation/
+        description: Multiple Houses
   - title: Getting Started
     url: getting_started/
   - title: Inspiration

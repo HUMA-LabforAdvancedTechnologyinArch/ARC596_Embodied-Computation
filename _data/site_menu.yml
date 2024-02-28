@@ -18,6 +18,9 @@ menu:
       - page: Tutorial 4
         url: tutorials_folder/Tutorial 4 - Multiple Houses/
         description: Multiple Houses
+      - page: Tutorial 5
+        url: tutorials_folder/Tutorial 5 - Animation/
+        description: Animation
   - title: Getting Started
     url: getting_started/
   - title: Inspiration
