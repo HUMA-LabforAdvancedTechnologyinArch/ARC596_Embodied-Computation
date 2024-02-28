@@ -707,12 +707,16 @@ A rough approximation of the mesh is often more efficient and indistinguishable 
 
 
 -	Mesh Collider (Component)
-→ Documentation Here
-The Mesh Collider builds its collision representation from the Mesh attached to the GameObject, and reads the properties of the attached Transform to set its position and scale correctly. The benefit of this is that you can make the shape of the Collider exactly the same as the shape of the visible Mesh for the GameObject, resulting in more precise and authentic collisions. However, this precision comes with a higher processing overhead than collisions involving primitive colliders (such as Sphere, Box, and Capsule) and so it is best to use Mesh Colliders sparingly.
-→ Check if all of your prefabs have some sort of Collider.
 
-Rigid Body (Component)
-Rigidbodies enable your GameObjects to act under the control of physics. The Rigidbody can receive forces to make your objects move in a realistic way. Any GameObject must contain a Rigidbody to be influenced by gravity, act under added forces via scripting, or interact with other objects.
+	-	Documentation [Here](https://docs.unity3d.com/560/Documentation/Manual/class-MeshCollider.html#:~:text=The%20Mesh%20Collider%20takes%20a,collide%20with%20other%20Mesh%20Colliders)
+
+	-	The Mesh Collider builds its collision representation from the Mesh attached to the GameObject, and reads the properties of the attached Transform to set its position and scale correctly. The benefit of this is that you can make the shape of the Collider exactly the same as the shape of the visible Mesh for the GameObject, resulting in more precise and authentic collisions. However, this precision comes with a higher processing overhead than collisions involving primitive colliders (such as Sphere, Box, and Capsule) and so it is best to use Mesh Colliders sparingly.
+
+	-	Check if all of your prefabs have some sort of Collider.
+
+-	Rigid Body (Component)
+
+	-	Rigidbodies enable your GameObjects to act under the control of physics. The Rigidbody can receive forces to make your objects move in a realistic way. Any GameObject must contain a Rigidbody to be influenced by gravity, act under added forces via scripting, or interact with other objects.
 
 <img src="https://i.imgur.com/OdNHEGI.png" alt="" width="500">
 
