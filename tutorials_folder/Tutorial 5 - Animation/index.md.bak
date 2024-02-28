@@ -109,26 +109,26 @@ public class RaycastExample : MonoBehaviour
 ### New Features
 
 **Edit Mode**
-<img src="https://i.imgur.com/ML5tTnS.png" alt="" width="100">
+<img src="https://i.imgur.com/ML5tTnS.png" alt="" width="25">
 -	Tap once on the object to select it ( you will see a white bounding box appear ). 
 -	Tap and hold for 1 second. The bounding box will become yellow. Without lifting your finger, try to move the object around.
 
 **Delete Mode**
-<img src="https://i.imgur.com/ok8CfEa.png" alt="" width="100">
+<img src="https://i.imgur.com/ok8CfEa.png" alt="" width="25">
 -	Tap once on an object to delete it immediately
 
 **Menu**
-<img src="https://i.imgur.com/UDXp4ze.png" alt="" width="100">
-When pressed, new buttons pop up. 
-**Visibility Button** Turns on and off the visibility of the 3D printed object
-<img src="https://i.imgur.com/DyxKT2v.png" alt="" width="100">
-**Reset Button** Resets all scanned planes and deletes all objects in Scene.
-<img src="https://i.imgur.com/ZUDFlUr.png" alt="" width="100">
-**Play Button** Starts animating the characters.
-<img src="https://i.imgur.com/FEVArZ6.png" alt="" width="100">
+<img src="https://i.imgur.com/UDXp4ze.png" alt="" width="25">
+-	When pressed, new buttons pop up. 
+-	**Visibility Button** Turns on and off the visibility of the 3D printed object
+-	<img src="https://i.imgur.com/DyxKT2v.png" alt="" width="25">
+-	**Reset Button** Resets all scanned planes and deletes all objects in Scene.
+-	<img src="https://i.imgur.com/ZUDFlUr.png" alt="" width="25">
+-	**Play Button** Starts animating the characters.
+-	<img src="https://i.imgur.com/FEVArZ6.png" alt="" width="25">
 
-Interactive Sunlight
-<img src="https://i.imgur.com/zT6IZNS.png" alt="" width="250">
+**Interactive Sunlight**
+-	<img src="https://i.imgur.com/zT6IZNS.png" alt="" width="100">
  
  
  

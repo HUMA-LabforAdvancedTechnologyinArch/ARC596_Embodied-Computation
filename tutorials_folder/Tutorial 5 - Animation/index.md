@@ -119,15 +119,15 @@ public class RaycastExample : MonoBehaviour
 
 **Menu**
 <img src="https://i.imgur.com/UDXp4ze.png" alt="" width="25">
-When pressed, new buttons pop up. 
-**Visibility Button** Turns on and off the visibility of the 3D printed object
-<img src="https://i.imgur.com/DyxKT2v.png" alt="" width="25">
-**Reset Button** Resets all scanned planes and deletes all objects in Scene.
-<img src="https://i.imgur.com/ZUDFlUr.png" alt="" width="25">
-**Play Button** Starts animating the characters.
-<img src="https://i.imgur.com/FEVArZ6.png" alt="" width="25">
+-	When pressed, new buttons pop up. 
+-	**Visibility Button** Turns on and off the visibility of the 3D printed object
+-	<img src="https://i.imgur.com/DyxKT2v.png" alt="" width="25">
+-	**Reset Button** Resets all scanned planes and deletes all objects in Scene.
+-	<img src="https://i.imgur.com/ZUDFlUr.png" alt="" width="25">
+-	**Play Button** Starts animating the characters.
+-	<img src="https://i.imgur.com/FEVArZ6.png" alt="" width="25">
 
-Interactive Sunlight
+**Interactive Sunlight**
 <img src="https://i.imgur.com/zT6IZNS.png" alt="" width="100">
  
  
