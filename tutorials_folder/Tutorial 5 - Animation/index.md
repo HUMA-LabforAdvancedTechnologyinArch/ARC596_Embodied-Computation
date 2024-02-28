@@ -55,7 +55,7 @@ Raycasters are used for figuring out what the pointer is over
 AR Raycast Manager 
 Also known as hit testing, ray casting allows you to determine where a ray (defined by an origin and direction) intersects with a trackable. A "trackable" is a feature in the physical environment that can be detected and tracked by an XR device.
 
-|	Example:
+>     Example:
 ```
 [SerializeField]
 ARRaycastManager m_RaycastManager;
@@ -77,7 +77,7 @@ void Update()
 Physics Raycaster 
 Used for 3D physics elements. Casts a ray against all colliders in the Scene and returns detailed information on what was hit. This example reports the distance between the current object and the reported Collider:
 
-|	Example:
+>     Example:
 ```
 public class RaycastExample : MonoBehaviour
 {
@@ -121,12 +121,12 @@ Interactive Sunlight
  
 In short, we will import 2 interactive sliders to manipulate the Sunlight, by changing the Altitude and the Azimuth. By changing these values, we are in fact iterating through seasons and hours of the day. 
 
-Import UnityPackage
+-	Import UnityPackage
 
-    • Go to Assets>Import Package>Custom Package
-    • Select the .unitypackage file you downloaded
-    • Select all Assets and click Import
-    • You should be able to see a new folder in your Assets.
+	-	Go to Assets>Import Package>Custom Package
+	-	Select the .unitypackage file you downloaded
+	-	Select all Assets and click Import
+	-	You should be able to see a new folder in your Assets.
 
 ### Configure new GameObjects 
 
@@ -150,7 +150,7 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 	-	Import as GameObject
 	-	Drag and drop the AR Canvas Prefab of Day 03 Asset Folder to the Hierarchy 
  
-|	Note: Notice that it is renamed to  AR_Canvas(1). This happens because the Prefab has the same name as the Menu. We will take the Children we need and import them in our existing AR_Canvas. 
+>     Note: Notice that it is renamed to  AR_Canvas(1). This happens because the Prefab has the same name as the Menu. We will take the Children we need and import them in our existing AR_Canvas. 
 
 	-	Unpack Prefab
 	-	Respectively, unpack completely the AR_Canvas(1). 
@@ -417,7 +417,7 @@ mode==2
 ```
 
 Find Selected Object by RayCasting
-|	Note: This This function Returns an object (the activeGameObject), when the Raycast hits the Physics collider of that object. 
+>     Note: This This function Returns an object (the activeGameObject), when the Raycast hits the Physics collider of that object. 
 
 ```
 private GameObject SelectedObject(GameObject activeGameObject = null)

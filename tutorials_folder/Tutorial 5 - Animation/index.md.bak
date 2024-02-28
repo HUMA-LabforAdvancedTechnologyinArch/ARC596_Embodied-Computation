@@ -121,12 +121,12 @@ Interactive Sunlight
  
 In short, we will import 2 interactive sliders to manipulate the Sunlight, by changing the Altitude and the Azimuth. By changing these values, we are in fact iterating through seasons and hours of the day. 
 
-Import UnityPackage
+-	Import UnityPackage
 
-    • Go to Assets>Import Package>Custom Package
-    • Select the .unitypackage file you downloaded
-    • Select all Assets and click Import
-    • You should be able to see a new folder in your Assets.
+	-	Go to Assets>Import Package>Custom Package
+	-	Select the .unitypackage file you downloaded
+	-	Select all Assets and click Import
+	-	You should be able to see a new folder in your Assets.
 
 ### Configure new GameObjects 
 
@@ -630,7 +630,9 @@ Collider components define the shape of a GameObject for the purposes of physica
 
 → Our cat has a Box Collider attached to it.
 A rough approximation of the mesh is often more efficient and indistinguishable in gameplay.The simplest (and least processor-intensive) colliders are primitive collider types. In 3D, these are the Box Collider, Sphere Collider and Capsule Collider.
-9.2.1 Mesh Collider (Component)
+
+
+-	Mesh Collider (Component)
 → Documentation Here
 The Mesh Collider builds its collision representation from the Mesh attached to the GameObject, and reads the properties of the attached Transform to set its position and scale correctly. The benefit of this is that you can make the shape of the Collider exactly the same as the shape of the visible Mesh for the GameObject, resulting in more precise and authentic collisions. However, this precision comes with a higher processing overhead than collisions involving primitive colliders (such as Sphere, Box, and Capsule) and so it is best to use Mesh Colliders sparingly.
 → Check if all of your prefabs have some sort of Collider.
