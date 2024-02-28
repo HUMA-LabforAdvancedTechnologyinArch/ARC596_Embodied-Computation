@@ -109,17 +109,16 @@ public class RaycastExample : MonoBehaviour
 ### New Features
 
 **Edit Mode**
-<img src="https://i.imgur.com/6EEBh7v.png" alt="" width="100">
-
+<img src="https://i.imgur.com/ML5tTnS.png" alt="" width="100">
 -	Tap once on the object to select it ( you will see a white bounding box appear ). 
 -	Tap and hold for 1 second. The bounding box will become yellow. Without lifting your finger, try to move the object around.
 
 **Delete Mode**
-<img src="https://i.imgur.com/6EEBh7v.png" alt="" width="100">
+<img src="https://i.imgur.com/ok8CfEa.png" alt="" width="100">
 -	Tap once on an object to delete it immediately
 
 **Menu**
-<img src="https://i.imgur.com/6EEBh7v.png" alt="" width="100">
+<img src="https://i.imgur.com/UDXp4ze.png" alt="" width="100">
 When pressed, new buttons pop up. 
 **Visibility Button** Turns on and off the visibility of the 3D printed object
 <img src="https://i.imgur.com/DyxKT2v.png" alt="" width="100">

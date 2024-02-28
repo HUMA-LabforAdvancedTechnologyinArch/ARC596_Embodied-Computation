@@ -109,13 +109,12 @@ public class RaycastExample : MonoBehaviour
 ### New Features
 
 **Edit Mode**
-<img src="https://i.imgur.com/6EEBh7v.png" alt="" width="100">
-
+<img src="https://i.imgur.com/ML5tTnS.png" alt="" width="100">
 -	Tap once on the object to select it ( you will see a white bounding box appear ). 
 -	Tap and hold for 1 second. The bounding box will become yellow. Without lifting your finger, try to move the object around.
 
 **Delete Mode**
-<img src="https://i.imgur.com/6EEBh7v.png" alt="" width="100">
+<img src="https://i.imgur.com/ok8CfEa.png" alt="" width="100">
 -	Tap once on an object to delete it immediately
 
 **Menu**
@@ -154,7 +153,7 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 	-	<img src="https://i.imgur.com/JyRat0B.png" alt="" width="300">
 	
 -	Import as GameObject
-	-	Drag and Drop the Instantiator Prefab from the Day03 Materials to the Hierarchy. 
+	-	Drag and Drop the Instantiator Prefab from the Materials to the Hierarchy. 
 	-	Unpack GameObject
 	-	Respectively, we will Unpack the Prefab Completely
 	-	<img src="https://i.imgur.com/Lpm9wSQ.png" alt="" width="450">
@@ -192,7 +191,7 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 
 -	Relink Menu Buttons
 -	We will relink the buttons on their OnClick Modes.
-	-	Go to your Menu Buttons from Day 2, go to the Inspector, and Drag & Drop the Instantiator on the On Click () component on the Inspector. 
+	-	Go to your Menu Buttons from the previous tutorial, go to the Inspector, and Drag & Drop the Instantiator on the On Click () component on the Inspector. 
 	-	Re-configure the Function for the button you need (Mode A = Instantiate one (for the 3d object) , Mode B = Instantiate multiple).
 	-	<img src="https://i.imgur.com/hyxq4I6.jpeg" alt="" width="300">
 
@@ -255,7 +254,7 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 -	Sun Sliders
 
 Link Sliders to the Script
-Click on the Directional Light we imported, go to the Inspector on the Sun Script and drag and drop the 2 sliders we imported from the Day 3 Assets package. 
+Click on the Directional Light we imported, go to the Inspector on the Sun Script and drag and drop the 2 sliders we imported from the Assets package. 
 
 	<img src="https://i.imgur.com/JOotBn3.png" alt="" width="300">
 	<img src="https://i.imgur.com/PbG2iBA.png" alt="" width="300">
