@@ -270,7 +270,6 @@ public class Instantiator_MultipleFeatures : MonoBehaviour
 
         if (Input.touchCount == 1 && touch.phase == TouchPhase.Ended)
         {
-            Debug.Log("Single Touch");
             List<ARRaycastHit> hits = new List<ARRaycastHit>();
             rayManager.Raycast(touch.position, hits);
 
