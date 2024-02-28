@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MultipleHouses.unity
     guid: d73197d651f23244b9b5268d9a5a7a5b
+  - enabled: 1
+    path: Assets/Scenes/NewFeatures.unity
+    guid: 2524f1e78aa51d24ebb3cfb0178cb3d6
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: ab1027329ee2d0444b35d6dc30270c4b, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: d63aaf72804daef4492d966ec8e4ef1b, type: 2}

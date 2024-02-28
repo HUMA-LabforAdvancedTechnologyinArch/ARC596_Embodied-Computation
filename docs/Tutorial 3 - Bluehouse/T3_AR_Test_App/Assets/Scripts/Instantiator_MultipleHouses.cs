@@ -15,7 +15,6 @@ public class Instantiator_MultipleHouses: MonoBehaviour
     public int mode = 0; //place one house is mode 0, place multiple houses is mode 1
     private GameObject lastUsedPrefab; // Add this to track the last used prefab
 
-    public float rotationSpeed = 0.1f;
     //raycast related variables here
     private ARRaycastManager rayManager;
     private ARSession arSession;
@@ -37,7 +36,6 @@ public class Instantiator_MultipleHouses: MonoBehaviour
 
     private void HandleTouch(Touch touch)
     {
-
             // Handle finger movements based on TouchPhase
             switch (touch.phase)
             {
@@ -121,6 +119,7 @@ public class Instantiator_MultipleHouses: MonoBehaviour
 
     private void Rotate(GameObject objectToRotate, Touch touch)
     {
+        float rotationSpeed = 0.1f; // Adjust rotation speed as needed
         objectToRotate.transform.Rotate(Vector3.up, touch.deltaPosition.x * rotationSpeed, Space.World);
     }
     

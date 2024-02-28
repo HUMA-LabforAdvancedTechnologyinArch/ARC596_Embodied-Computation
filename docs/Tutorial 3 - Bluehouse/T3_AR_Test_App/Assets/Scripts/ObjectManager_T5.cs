@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ObjectManager_DM : MonoBehaviour
+public class ObjectManager_T5 : MonoBehaviour
 {
     //public variables
     public GameObject prefabA;
     public GameObject prefabB;
     public GameObject prefabC;
     public GameObject Instantiator;
-    public Instantiator_MultipleHouses Object_Spawner;
+    public Instantiator_MultipleFeatures Object_Spawner;
     
 
     //private variables
@@ -23,7 +23,7 @@ public class ObjectManager_DM : MonoBehaviour
     void Start()
     {
         //find the ObjectSpawner script
-        Object_Spawner = Instantiator.GetComponent<Instantiator_MultipleHouses>();
+        Object_Spawner = Instantiator.GetComponent<Instantiator_MultipleFeatures>();
 
         //For each button, define OnClick Action and prefab
         Button btn = GetComponent<Button>();

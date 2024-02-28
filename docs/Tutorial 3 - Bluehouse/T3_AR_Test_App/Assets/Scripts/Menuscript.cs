@@ -21,7 +21,7 @@ public class Menuscript : MonoBehaviour
     }
 
      //Toggle ON and OFF the dropdown submenu options
-    void Menu_Toggle()
+    private void Menu_Toggle()
     {
         //deactivate the buttons if they are on
         if (Shadow_Button.activeSelf == true)

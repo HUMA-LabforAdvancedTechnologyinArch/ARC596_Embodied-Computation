@@ -6,7 +6,7 @@ using UnityEngine.XR.ARSubsystems;
 using UnityEngine.XR.ARCore;
 using UnityEngine.EventSystems;
 
-public class Instantiator : MonoBehaviour
+public class Instantiator_MultipleFeatures : MonoBehaviour
 {
 
     /// <summary>
@@ -27,7 +27,7 @@ public class Instantiator : MonoBehaviour
     public GameObject multipleObjectParent; //all other objects prefab parent
     public Material BoundingBoxMaterial; //material for selected objects 
     public Material BoundingBoxMaterial_02; //material for yellow bounding box
-    private int mode = 0; //placing a default value as 0 
+    public int mode = 0; //placing a default value as 0 
     private GameObject lastUsedPrefab; // Add this to track the last used prefab
     private GameObject ARObject_new;  // this will be the Instantiated Object name
     private GameObject activeGameObject = null; // this will be our selected gameObject in the edit mode
@@ -54,6 +54,7 @@ public class Instantiator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(Input.touchCount);
         if (Input.touchCount > 0 && !IsPointerOverUIObject(Input.GetTouch(0).position))
         {
             HandleTouch(Input.GetTouch(0));
@@ -62,15 +63,18 @@ public class Instantiator : MonoBehaviour
 
     private void HandleTouch(Touch touch)
     {
-
+            // if it is mode 0 or mode 1, we can place objects
             if (mode == 0 || mode == 1) 
             {
-                Debug.Log("***MODE 0***");
+                print("***MODE 0 or 1***");
+                print("TOUCH PHASE IS" + touch.phase);
+
                 // Handle finger movements based on TouchPhase
                 switch (touch.phase)
                 {
                     case TouchPhase.Began:
                         InstantiateOnTouch(touch);
+                        Debug.Log("Touch Phase began.");
                         break; //break: If this case is true, it will not check the other ones. More computational efficiency, 
                     
                     case TouchPhase.Moved:
@@ -115,7 +119,7 @@ public class Instantiator : MonoBehaviour
     
     private void InstantiateOnTouch(Touch touch)
     {
-            Debug.Log("Single Touch");
+        print("Single Touch");
 
         // Check if the raycast hit any trackables.
         if (rayManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon))
@@ -126,10 +130,13 @@ public class Instantiator : MonoBehaviour
             //mode 0: single placement of objects, like the 3D printed house hologram
             //mode 1: multiple placement of objects, like multiple trees or characters
             bool shouldInstantiateNewObject = mode == 1 || (mode == 0 && instantiatedObject == null);
+            print("shouldInstantiateNewObject" + shouldInstantiateNewObject);
             bool prefabChanged = lastUsedPrefab != selectedPrefab && mode == 0;
+            print("prefabChanged" + prefabChanged);
 
             if (shouldInstantiateNewObject || prefabChanged)
             {
+                print("we should instantiate a new object or the prefab changed");
                 if (prefabChanged && instantiatedObject != null)
                 {
                     Destroy(instantiatedObject); // Optionally destroy the old object if a new prefab is selected
@@ -141,6 +148,7 @@ public class Instantiator : MonoBehaviour
             }
             else
             {
+                print("we move an instantiated object" + instantiatedObject);
                 // Move the existing instantiated object
                 instantiatedObject.transform.position = hitPose.position;
                 instantiatedObject.transform.rotation = hitPose.rotation;
