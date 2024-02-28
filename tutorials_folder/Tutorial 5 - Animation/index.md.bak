@@ -164,9 +164,7 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
  	-	<img src="https://i.imgur.com/R7IaVti.png" alt="" width="400"> 
  
 
- 
 >     Note: Notice that it is renamed to  AR_Canvas(1). This happens because the Prefab has the same name as the Menu. We will take the Children we need and import them in our existing AR_Canvas. 
-
 
 	-	Unpack Prefab
 	-	Respectively, unpack completely the AR_Canvas(1). 
@@ -175,13 +173,11 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 -	Format  AR Canvas
 	-	These are the 4 buttons we will import in our existing AR_Canvas.[1] Drag them into the existing AR_Canvas, as children.  The structure should look like this
 	-	Delete the existing Reset button (there is already one included in the new Menu).
-		<img src="https://i.imgur.com/PM9OaEU.png" alt="" width="400">
-		<img src="https://i.imgur.com/HDrakrn.png" alt="" width="400">
-
-		<img src="https://i.imgur.com/i3E85pX.png" alt="" width="400">
-
+		<img src="https://i.imgur.com/PM9OaEU.png" alt="" width="400"> <img src="https://i.imgur.com/HDrakrn.png" alt="" width="400">
 
 	-	Delete the AR_Canvas(1)  (Should be now an empty GameObject).
+		<img src="https://i.imgur.com/i3E85pX.png" alt="" width="400">
+
 
 
 -	Relink Menu Buttons
@@ -189,6 +185,12 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 	-	Go to your Menu Buttons from Day 2, go to the Inspector, and Drag & Drop the Instantiator on the On Click () component on the Inspector. 
 	-	Re-configure the Function for the button you need (Mode A = Instantiate one (for the 3d object) , Mode B = Instantiate multiple).
 	-	<img src="https://i.imgur.com/hyxq4I6.jpeg" alt="" width="400">
+
+
+	-	<img src="https://i.imgur.com/3iXWdLO.png" alt="" width="400">
+
+	-	<img src="https://i.imgur.com/USmojW9.png" alt="" width="400"> <img src="https://i.imgur.com/DJqsh48.png" alt="" width="400">
+
 
 
 
