@@ -114,21 +114,24 @@ public class RaycastExample : MonoBehaviour
 
 <img src="https://i.imgur.com/ok8CfEa.png" alt="" width="25">
 **Delete Mode**
--	Tap once on an object to delete it immediately
+Tap once on an object to delete it immediately
 
 <img src="https://i.imgur.com/UDXp4ze.png" alt="" width="25">
 **Menu**
 When pressed, new buttons pop up. 
--	**Visibility Button** Turns on and off the visibility of the 3D printed object
-	<img src="https://i.imgur.com/DyxKT2v.png" alt="" width="25">
--	**Reset Button** Resets all scanned planes and deletes all objects in Scene.
-	<img src="https://i.imgur.com/ZUDFlUr.png" alt="" width="25">
--	**Play Button** Starts animating the characters.
-	<img src="https://i.imgur.com/FEVArZ6.png" alt="" width="25">
 
+<img src="https://i.imgur.com/DyxKT2v.png" alt="" width="25">
+**Visibility Button** Turns on and off the visibility of the 3D printed object
+
+<img src="https://i.imgur.com/ZUDFlUr.png" alt="" width="25">
+**Reset Button** Resets all scanned planes and deletes all objects in Scene.
+
+<img src="https://i.imgur.com/FEVArZ6.png" alt="" width="25">
+**Play Button** Starts animating the characters.
+
+<img src="https://i.imgur.com/zT6IZNS.png" alt="" width="200">
 **Interactive Sunlight**
-<img src="https://i.imgur.com/zT6IZNS.png" alt="" width="250">
- <img src="https://i.imgur.com/mRD1yhu.png" alt="" width="350">
+<img src="https://i.imgur.com/mRD1yhu.png" alt="" width="300">
 
  
  
@@ -631,7 +634,7 @@ In the same C# Script (Sun), we use the function VisibilityToggle() to be able t
 
 Go to the Prefabs, click on the Animated Characters
 
-<img src="https://i.imgur.com/czYah3w.png" alt="" width="400">
+<img src="https://i.imgur.com/czYah3w.png" alt="" width="500">
 
 
 These downloaded Assets come with different Animations embedded in the prefab. This means that by assigning different functions, they can “switch” their animation to the desired preset. 
@@ -640,7 +643,7 @@ Our goal is to activate the “Walk” animation, so that our characters can wal
 
 -	Add Animanimals Script
 	-	Select the animated character Prefab.
-	-	<img src="https://i.imgur.com/WstHcRL.png" alt="" width="200">
+	-	<img src="https://i.imgur.com/WstHcRL.png" alt="" width="100">
 	-	Go to the Inspector, click on “Add Component”, type in “ Animanimals ” and import the Script. 
 
 <img src="https://i.imgur.com/4qplW38.png" alt="" width="500">
@@ -704,7 +707,7 @@ In order for our animations and placement of the objects to work, we have to mak
 
 Collider components define the shape of a GameObject for the purposes of physical collisions. A collider, which is invisible, does not need to be the exact same shape as the GameObject’s mesh. 
 
-<img src="https://i.imgur.com/ckpU03e.png" alt="" width="250">
+<img src="https://i.imgur.com/ckpU03e.png" alt="" width="100">
 
 → Our cat has a Box Collider attached to it.
 
@@ -723,7 +726,7 @@ A rough approximation of the mesh is often more efficient and indistinguishable 
 
 	-	Rigidbodies enable your GameObjects to act under the control of physics. The Rigidbody can receive forces to make your objects move in a realistic way. Any GameObject must contain a Rigidbody to be influenced by gravity, act under added forces via scripting, or interact with other objects.
 
-<img src="https://i.imgur.com/OdNHEGI.png" alt="" width="500">
+<img src="https://i.imgur.com/OdNHEGI.png" alt="" width="400">
 
 Rigid Body Properties
 
