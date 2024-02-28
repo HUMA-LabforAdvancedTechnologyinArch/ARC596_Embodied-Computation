@@ -171,7 +171,7 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 -	We will relink the buttons on their OnClick Modes.
 	-	Go to your Menu Buttons from Day 2, go to the Inspector, and Drag & Drop the Instantiator on the On Click () component on the Inspector. 
 	-	Re-configure the Function for the button you need (Mode A = Instantiate one (for the 3d object) , Mode B = Instantiate multiple).
-	-	<img src="https://i.imgur.com/hyxq4I6.jpeg" alt="" width="500">
+	-	<img src="https://i.imgur.com/hyxq4I6.jpeg" alt="" width="400">
 
 
 

@@ -56,6 +56,7 @@ AR Raycast Manager
 Also known as hit testing, ray casting allows you to determine where a ray (defined by an origin and direction) intersects with a trackable. A "trackable" is a feature in the physical environment that can be detected and tracked by an XR device.
 
 >     Example:
+
 ```
 [SerializeField]
 ARRaycastManager m_RaycastManager;
@@ -78,6 +79,7 @@ Physics Raycaster
 Used for 3D physics elements. Casts a ray against all colliders in the Scene and returns detailed information on what was hit. This example reports the distance between the current object and the reported Collider:
 
 >     Example:
+
 ```
 public class RaycastExample : MonoBehaviour
 {
@@ -189,7 +191,7 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 
  
 -	Link Visibility Button
-	-	( AR Canvas >Menu> Shadow_Button) ///Directional_Light >  Sun.VisibilityToggle()
+	-	( AR Canvas >Menu> Shadow_Button) /// Directional_Light >  Sun.VisibilityToggle()
 
 
   
