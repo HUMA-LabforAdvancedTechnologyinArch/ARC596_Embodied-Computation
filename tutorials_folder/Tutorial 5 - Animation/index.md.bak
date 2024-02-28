@@ -128,7 +128,7 @@ In short, we will import 2 interactive sliders to manipulate the Sunlight, by ch
 	-	Select the .unitypackage file you downloaded
 	-	<img src="https://i.imgur.com/ovdq7Mn.png" alt="" width="500">
 	-	Select all Assets and click Import
-	-	<img src="https://i.imgur.com/PYc6EHq.png" alt="" width="500"> <img src="https://i.imgur.com/EmNWRhA.png" alt="" width="500"> 
+	-	<img src="https://i.imgur.com/PYc6EHq.png" alt="" width="350"> <img src="https://i.imgur.com/EmNWRhA.png" alt="" width="500"> 
 	-	You should be able to see a new folder in your Assets.
 
 ### Configure new GameObjects 
@@ -171,7 +171,7 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 -	We will relink the buttons on their OnClick Modes.
 	-	Go to your Menu Buttons from Day 2, go to the Inspector, and Drag & Drop the Instantiator on the On Click () component on the Inspector. 
 	-	Re-configure the Function for the button you need (Mode A = Instantiate one (for the 3d object) , Mode B = Instantiate multiple).
-
+	-	<img src="https://i.imgur.com/hyxq4I6.jpeg" alt="" width="500">
 
 
 
@@ -626,7 +626,7 @@ When the “Animation_Button”  button is clicked, the animation “Walk” is 
         Debug.Log("move");        
      }
 ```
-	 
+	 https://i.imgur.com/rbKNKW8.jpeg
 
 Colliders
 
