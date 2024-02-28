@@ -55,10 +55,43 @@ Raycasters are used for figuring out what the pointer is over
 AR Raycast Manager 
 Also known as hit testing, ray casting allows you to determine where a ray (defined by an origin and direction) intersects with a trackable. A "trackable" is a feature in the physical environment that can be detected and tracked by an XR device.
 
+|	Example:
+```
+[SerializeField]
+ARRaycastManager m_RaycastManager;
+
+List<ARRaycastHit> m_Hits = new List<ARRaycastHit>();
+
+void Update()
+{
+    if (Input.touchCount == 0)
+        return;
+
+    if (m_RaycastManager.Raycast(Input.GetTouch(0).position, m_Hits))
+    {
+        // Only returns true if there is at least one hit
+    }
+}
+```
+
 Physics Raycaster 
 Used for 3D physics elements. Casts a ray against all colliders in the Scene and returns detailed information on what was hit. This example reports the distance between the current object and the reported Collider:
- 
-### Functions 
+
+|	Example:
+```
+public class RaycastExample : MonoBehaviour
+{
+    void FixedUpdate()
+    {
+        RaycastHit hit;
+
+       if (Physics.Raycast(transform.position, -Vector3.up, out hit))
+            print("Found an object - distance: " + hit.distance);
+    }
+}
+```
+
+### Functions Review
 
 **Variables** hold values and references to objects. Variables start with a lowercase letter. When Unity compiles the script, it makes public variables visible in the editor.
 
@@ -98,91 +131,90 @@ Import UnityPackage
 ### Configure new GameObjects 
 
 Since we imported new Prefabs and we want to incorporate them in our scene, we have to do some necessary steps to Relink some dependencies for Scripts and Buttons. 
-4.1 Instantiator
-    • Since we have a new Instantiator for Day 03, we will delete the previous Instantiator GameObject.
 
+-	Instantiator
+	-	Since we have a new Instantiator for Day 03, we will delete the previous Instantiator GameObject.
 
-    • Import as GameObject
-Drag and Drop the Instantiator Prefab from the Day03 Materials to the Hierarchy. 
+-	Import as GameObject
+	-	Drag and Drop the Instantiator Prefab from the Day03 Materials to the Hierarchy. 
+	-	Unpack GameObject
+	-	Respectively, we will Unpack the Prefab Completely
+	-	Relink GameObject
 
-    • Unpack GameObject
-Respectively, we will Unpack the Prefab Completely
+-	Since we imported Instantiator again, we have to re-link the previous GameObject, where needed.
  
 
-    • Relink GameObject
-Since we imported Instantiator again, we have to re-link the previous GameObject, where needed.
+
+-	AR Canvas - New Buttons
+
+	-	Import as GameObject
+	-	Drag and drop the AR Canvas Prefab of Day 03 Asset Folder to the Hierarchy 
  
+|	Note: Notice that it is renamed to  AR_Canvas(1). This happens because the Prefab has the same name as the Menu. We will take the Children we need and import them in our existing AR_Canvas. 
+
+	-	Unpack Prefab
+	-	Respectively, unpack completely the AR_Canvas(1). 
 
 
-4.2 AR Canvas - New Buttons
-    • Import as GameObject
-Drag and drop the AR Canvas Prefab of Day 03 Asset Folder to the Hierarchy 
- 
-Note: Notice that it is renamed to  AR_Canvas(1). This happens because the Prefab has the same name as the Menu. We will take the Children we need and import them in our existing AR_Canvas. 
-
-    • Unpack Prefab
-Respectively, unpack completely the AR_Canvas(1). 
+-	Format  AR Canvas
+	-	These are the 4 buttons we will import in our existing AR_Canvas.[1] Drag them into the existing AR_Canvas, as children.  The structure should look like this
+	-	Delete the existing Reset button (there is already one included in the new Menu).
 
 
-    • Format  AR Canvas
-These are the 4 buttons we will import in our existing AR_Canvas.[1] Drag them into the existing AR_Canvas, as children.  The structure should look like this [2]
-[1][2]
-Delete the existing Reset button (there is already one included in the new Menu).
+	-	Delete the AR_Canvas(1)  (Should be now an empty GameObject).
 
 
-    • Delete the AR_Canvas(1)  (Should be now an empty GameObject).
-
-
-4.3 Relink Menu Buttons
-We will relink the buttons on their OnClick Modes.
-    • Go to your Menu Buttons from Day 2, go to the Inspector, and Drag & Drop the Instantiator on the On Click () component on the Inspector. 
-    • Re-configure the Function for the button you need (Mode A = Instantiate one (for the 3d object) , Mode B = Instantiate multiple).
+-	Relink Menu Buttons
+-	We will relink the buttons on their OnClick Modes.
+	-	Go to your Menu Buttons from Day 2, go to the Inspector, and Drag & Drop the Instantiator on the On Click () component on the Inspector. 
+	-	Re-configure the Function for the button you need (Mode A = Instantiate one (for the 3d object) , Mode B = Instantiate multiple).
 
 
 
 
  
 
-4.4 Link new modes to the new Instantiator Script
-4.4.1 Link Edit Button (mode==2) 
-In this new mode, we will be able to select existing objects we created, scale, rotate and move them. ( AR Canvas > Edit_Button)
-Drag and drop the Instantiator GameObject and choose:  Instantiator> Instantiator.SetMode_C()
+-	Link new modes to the new Instantiator Script
+	-	Link Edit Button (mode==2) 
+	-	In this new mode, we will be able to select existing objects we created, scale, rotate and move them. ( AR Canvas > Edit_Button)
+	-	Drag and drop the Instantiator GameObject and choose:  Instantiator> Instantiator.SetMode_C()
  
-4.4.2 Link Delete Button (mode ==3) 
-In this mode, we will be able to delete existing objects by tapping on them.
-Drag and drop the Instantiator GameObject and choose:  Instantiator> Instantiator.SetMode_D()
-. ( AR Canvas >Delete_Button)
+-	Link Delete Button (mode ==3) 
+	-	In this mode, we will be able to delete existing objects by tapping on them.
+	-	Drag and drop the Instantiator GameObject and choose:  Instantiator> Instantiator.SetMode_D()
+	-	( AR Canvas >Delete_Button)
 
  
-4.4.3 Link Visibility Button
-. ( AR Canvas >Menu> Shadow_Button) ///Directional_Light >  Sun.VisibilityToggle()
+-	Link Visibility Button
+	-	( AR Canvas >Menu> Shadow_Button) ///Directional_Light >  Sun.VisibilityToggle()
 
 
   
-4.4.4 Link Reset Button
-. ( AR Canvas >Menu> Reset_Button) /// Instantiator > Instatiator.ResetApp()
+-	Link Reset Button
+	-	( AR Canvas >Menu> Reset_Button) /// Instantiator > Instatiator.ResetApp()
 
 
 
   
 
-4.5 Light
-    • Delete Previous Light
+-	Light
+Delete Previous Light
 We will import a new Light in the Scene, so let’s delete the existing Directional Light in the Hierarchy.
 
 
-    • Import as GameObject
+-	Import as GameObject
 We will now drag and drop the Directional Light Prefab from the Day 03 Asset Folder to the Hierarchy.
   
 
 
 
-    • Unpack Prefab Completely
+-	Unpack Prefab Completely
 Right Click on the Directional Light > Prefab> Unpack Completely. This will “detach” the link between the GameObject and the Prefab.
  
 
-4.6 Sun Sliders
-4.6.1 Link Sliders to the Script
+-	Sun Sliders
+
+Link Sliders to the Script
 Click on the Directional Light we imported, go to the Inspector on the Sun Script and drag and drop the 2 sliders we imported from the Day 3 Assets package. 
 
 
@@ -192,15 +224,16 @@ Drag and drop the Azimuth and Altitude slider (children in AR Canvas) to the Sun
 
 You should be able to see the newly added UI Menu on the Right.
 
+### Build the App! 
 
-
-### Tutorial
+### Menu Script 
 
 
 Go to the new Menu GameObject that was imported. On the Inspector, find the MenuScript (C# Script component), double click and open the code. 
 
-6.1 Script Overview
+Script Overview
 
+```
 public class Menuscript : MonoBehaviour
 {
     //variables
@@ -235,6 +268,7 @@ public class Menuscript : MonoBehaviour
         }
     }
 }
+```
 
 → Here the “AddListener” redirects to the Menu_Toggle() function. This is a computationally efficient way of checking if a button is clicked to execute a function. 
 → This Menu Script turns on and off different buttons. This allows us to create a “pop up” Menu that includes multiple buttons, and make the UI Experience more compact. 
