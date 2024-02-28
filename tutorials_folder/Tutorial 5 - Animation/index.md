@@ -714,7 +714,7 @@ The Mesh Collider builds its collision representation from the Mesh attached to 
 Rigid Body (Component)
 Rigidbodies enable your GameObjects to act under the control of physics. The Rigidbody can receive forces to make your objects move in a realistic way. Any GameObject must contain a Rigidbody to be influenced by gravity, act under added forces via scripting, or interact with other objects.
 
-<img src="https://i.imgur.com/OdNHEGI.png" alt="" width="350">
+<img src="https://i.imgur.com/OdNHEGI.png" alt="" width="500">
 
 Rigid Body Properties
 
