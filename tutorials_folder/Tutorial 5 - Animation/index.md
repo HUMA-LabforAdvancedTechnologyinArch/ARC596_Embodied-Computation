@@ -138,7 +138,7 @@ In short, we will import 2 interactive sliders to manipulate the Sunlight, by ch
 Since we imported new Prefabs and we want to incorporate them in our scene, we have to do some necessary steps to Relink some dependencies for Scripts and Buttons. 
 
 -	Instantiator
-	-	Since we have a new Instantiator for Day 03, we will delete the previous Instantiator GameObject.
+	-	Since we have a new Instantiator, we will delete the previous Instantiator GameObject.
 	-	<img src="https://i.imgur.com/JyRat0B.png" alt="" width="300">
 	
 -	Import as GameObject
@@ -220,26 +220,35 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 -	Light
 Delete Previous Light
 We will import a new Light in the Scene, so let’s delete the existing Directional Light in the Hierarchy.
+<img src="https://i.imgur.com/PbIQpfc.png" alt="" width="400"> 
 
 
 -	Import as GameObject
 We will now drag and drop the Directional Light Prefab from the Day 03 Asset Folder to the Hierarchy.
   
+<img src="https://i.imgur.com/PEbOUDB.png" alt="" width="250"><img src="https://i.imgur.com/Ijl1H0b.png" alt="" width="250"> 
 
 
 
 -	Unpack Prefab Completely
 Right Click on the Directional Light > Prefab> Unpack Completely. This will “detach” the link between the GameObject and the Prefab.
- 
+<img src="https://i.imgur.com/VSDn4PR.png" alt="" width="500">
+
 
 -	Sun Sliders
 
 Link Sliders to the Script
 Click on the Directional Light we imported, go to the Inspector on the Sun Script and drag and drop the 2 sliders we imported from the Day 3 Assets package. 
 
+<img src="https://i.imgur.com/JOotBn3.png" alt="" width="300">
+<img src="https://i.imgur.com/PbG2iBA.png" alt="" width="300"><img src="https://i.imgur.com/yYt7KXq.png" alt="" width="300">
+
 
   
 Drag and drop the Azimuth and Altitude slider (children in AR Canvas) to the Sun Script in the Inspector. Drag and drop the parent of the 3d object (houseParent).
+<img src="https://i.imgur.com/WizNIFS.png" alt="" width="500">
+
+
 
 
 You should be able to see the newly added UI Menu on the Right.
