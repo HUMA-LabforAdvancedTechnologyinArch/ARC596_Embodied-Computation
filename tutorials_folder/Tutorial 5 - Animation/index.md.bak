@@ -55,7 +55,7 @@ Raycasters are used for figuring out what the pointer is over
 AR Raycast Manager 
 Also known as hit testing, ray casting allows you to determine where a ray (defined by an origin and direction) intersects with a trackable. A "trackable" is a feature in the physical environment that can be detected and tracked by an XR device.
 
-|	Example:
+>     Example:
 ```
 [SerializeField]
 ARRaycastManager m_RaycastManager;
@@ -77,7 +77,7 @@ void Update()
 Physics Raycaster 
 Used for 3D physics elements. Casts a ray against all colliders in the Scene and returns detailed information on what was hit. This example reports the distance between the current object and the reported Collider:
 
-|	Example:
+>     Example:
 ```
 public class RaycastExample : MonoBehaviour
 {
@@ -124,8 +124,11 @@ In short, we will import 2 interactive sliders to manipulate the Sunlight, by ch
 -	Import UnityPackage
 
 	-	Go to Assets>Import Package>Custom Package
+	-	<img src="https://i.imgur.com/CXzGzF2.png" alt="" width="500">
 	-	Select the .unitypackage file you downloaded
+	-	<img src="https://i.imgur.com/ovdq7Mn.png" alt="" width="500">
 	-	Select all Assets and click Import
+	-	<img src="https://i.imgur.com/PYc6EHq.png" alt="" width="500"> <img src="https://i.imgur.com/EmNWRhA.png" alt="" width="500"> 
 	-	You should be able to see a new folder in your Assets.
 
 ### Configure new GameObjects 
@@ -150,7 +153,7 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 	-	Import as GameObject
 	-	Drag and drop the AR Canvas Prefab of Day 03 Asset Folder to the Hierarchy 
  
-|	Note: Notice that it is renamed to  AR_Canvas(1). This happens because the Prefab has the same name as the Menu. We will take the Children we need and import them in our existing AR_Canvas. 
+>     Note: Notice that it is renamed to  AR_Canvas(1). This happens because the Prefab has the same name as the Menu. We will take the Children we need and import them in our existing AR_Canvas. 
 
 	-	Unpack Prefab
 	-	Respectively, unpack completely the AR_Canvas(1). 
@@ -417,7 +420,7 @@ mode==2
 ```
 
 Find Selected Object by RayCasting
-|	Note: This This function Returns an object (the activeGameObject), when the Raycast hits the Physics collider of that object. 
+>     Note: This This function Returns an object (the activeGameObject), when the Raycast hits the Physics collider of that object. 
 
 ```
 private GameObject SelectedObject(GameObject activeGameObject = null)
@@ -480,6 +483,8 @@ In delete mode, we use the same script to locate the Raycast hit Object, and the
 
 Interactive Sunlight
 In the new Directional Light we imported, there is a custom C# script attached named “Sun”.
+
+<img src="https://i.imgur.com/GJP7lsr.png" alt="" width="300">
 
 
 Here, we link the position and rotation of our Sunlight according to the slider values we have on our UI Canvas, which we manipulate on the fly. 

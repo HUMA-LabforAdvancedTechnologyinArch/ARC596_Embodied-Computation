@@ -124,8 +124,11 @@ In short, we will import 2 interactive sliders to manipulate the Sunlight, by ch
 -	Import UnityPackage
 
 	-	Go to Assets>Import Package>Custom Package
+	-	<img src="https://i.imgur.com/CXzGzF2.png" alt="" width="500">
 	-	Select the .unitypackage file you downloaded
+	-	<img src="https://i.imgur.com/ovdq7Mn.png" alt="" width="500">
 	-	Select all Assets and click Import
+	-	<img src="https://i.imgur.com/PYc6EHq.png" alt="" width="350"> <img src="https://i.imgur.com/EmNWRhA.png" alt="" width="500"> 
 	-	You should be able to see a new folder in your Assets.
 
 ### Configure new GameObjects 
@@ -480,6 +483,8 @@ In delete mode, we use the same script to locate the Raycast hit Object, and the
 
 Interactive Sunlight
 In the new Directional Light we imported, there is a custom C# script attached named “Sun”.
+
+<img src="https://i.imgur.com/GJP7lsr.png" alt="" width="300">
 
 
 Here, we link the position and rotation of our Sunlight according to the slider values we have on our UI Canvas, which we manipulate on the fly. 
