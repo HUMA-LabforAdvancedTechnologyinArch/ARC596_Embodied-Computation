@@ -55,7 +55,7 @@ Raycasters are used for figuring out what the pointer is over
 AR Raycast Manager 
 Also known as hit testing, ray casting allows you to determine where a ray (defined by an origin and direction) intersects with a trackable. A "trackable" is a feature in the physical environment that can be detected and tracked by an XR device.
 
->     Example:
+>     Example
 
 ```
 [SerializeField]
@@ -78,7 +78,7 @@ void Update()
 Physics Raycaster 
 Used for 3D physics elements. Casts a ray against all colliders in the Scene and returns detailed information on what was hit. This example reports the distance between the current object and the reported Collider:
 
->     Example:
+>     Example
 
 ```
 public class RaycastExample : MonoBehaviour
@@ -139,23 +139,34 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 
 -	Instantiator
 	-	Since we have a new Instantiator for Day 03, we will delete the previous Instantiator GameObject.
-
+	-	<img src="https://i.imgur.com/JyRat0B.png" alt="" width="400">
+	
 -	Import as GameObject
 	-	Drag and Drop the Instantiator Prefab from the Day03 Materials to the Hierarchy. 
 	-	Unpack GameObject
 	-	Respectively, we will Unpack the Prefab Completely
+	-	<img src="https://i.imgur.com/Lpm9wSQ.png" alt="" width="400">
 	-	Relink GameObject
 
 -	Since we imported Instantiator again, we have to re-link the previous GameObject, where needed.
- 
+
+	-	<img src="https://i.imgur.com/ng2CyiS.png" alt="" width="400"> <img src="https://i.imgur.com/XPfdmeT.png" alt="" width="500">
+
 
 
 -	AR Canvas - New Buttons
 
 	-	Import as GameObject
-	-	Drag and drop the AR Canvas Prefab of Day 03 Asset Folder to the Hierarchy 
+	-	Drag and drop the AR Canvas Prefab of the previous tutorial to the Hierarchy 
+	-	<img src="https://i.imgur.com/KlcPiX5.png" alt="" width="400"> 
+ 	-	<img src="https://i.imgur.com/edSP9oV.png" alt="" width="400"> 
+ 
+ 	-	<img src="https://i.imgur.com/R7IaVti.png" alt="" width="400"> 
+ 
+
  
 >     Note: Notice that it is renamed to  AR_Canvas(1). This happens because the Prefab has the same name as the Menu. We will take the Children we need and import them in our existing AR_Canvas. 
+
 
 	-	Unpack Prefab
 	-	Respectively, unpack completely the AR_Canvas(1). 
@@ -164,6 +175,9 @@ Since we imported new Prefabs and we want to incorporate them in our scene, we h
 -	Format  AR Canvas
 	-	These are the 4 buttons we will import in our existing AR_Canvas.[1] Drag them into the existing AR_Canvas, as children.  The structure should look like this
 	-	Delete the existing Reset button (there is already one included in the new Menu).
+		<img src="https://i.imgur.com/PM9OaEU.png" alt="" width="400"> <img src="https://i.imgur.com/HDrakrn.png" alt="" width="400">
+
+		<img src="https://i.imgur.com/i3E85pX.png" alt="" width="400">
 
 
 	-	Delete the AR_Canvas(1)  (Should be now an empty GameObject).
