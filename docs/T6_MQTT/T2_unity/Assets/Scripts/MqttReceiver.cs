@@ -206,15 +206,8 @@ public class MqttReceiver : M2MqttUnityClient
     
     protected override void DecodeMessage(string topic, byte[] message)
     {
-        // var jsonResult = JsonConvert.DeserializeObject<JsonResult>(System.Text.Encoding.UTF8.GetString(message));
-        // //var jsonResult = JsonConvert.DeserializeObject<JsonResult>(System.Text.Encoding.UTF8.GetString(message));
-        // // Access the "result" value directly
-        // msg = jsonResult.result;
-        // Debug.Log("Received: " + msg + " from topic: " + topic);
         msg = System.Text.Encoding.UTF8.GetString(message);
-        // var jsonResult = JsonConvert.DeserializeObject<JsonResult>(System.Text.Encoding.UTF8.GetString(message));
-        // string newmsg = jsonResult.result;
-        //UpdateInputFields(newmsg);
+        Debug.Log($"Attempting to parse JSON: {msg}");
     }
 
     protected override void Update()

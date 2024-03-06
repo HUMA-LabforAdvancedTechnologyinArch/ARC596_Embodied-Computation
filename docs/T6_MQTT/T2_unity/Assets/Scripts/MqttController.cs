@@ -42,10 +42,7 @@ public class MqttController : MonoBehaviour
     Dictionary<string, string> resultDataDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(msg);
     Debug.Log("Event Fired. The message, from Object " + nameController +" is = " + msg);
     yourMessageSubscribed.text = resultDataDict["result"];    
-    
   }
-
-  
 }
 
   
