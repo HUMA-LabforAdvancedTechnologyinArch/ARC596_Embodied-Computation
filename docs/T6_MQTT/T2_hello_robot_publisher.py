@@ -6,11 +6,11 @@ from compas_eve import Subscriber
 from compas_eve import Topic
 from compas_eve.mqtt import MqttTransport
 
-topic = Topic("/test12/", Message)
+topic = Topic("/hellodaniela", Message)
 server = MqttTransport("broker.hivemq.com")
 
 for i in range(20):
-    msg = Message(result=f"Hello robot #{i}")
+    msg = Message(result=f"Hello daniela #{i}")
     print(f"Publishing message: {msg.result}")
     Publisher(topic, transport=server).publish(msg)
     time.sleep(3)

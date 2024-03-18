@@ -7,7 +7,7 @@ from compas_eve import Topic
 from compas_eve.mqtt import MqttTransport
 
 
-topic = Topic("/test13/", Message)
+topic = Topic("/wanttotalk", Message)
 server = MqttTransport("broker.hivemq.com")
 
 subcriber = Subscriber(topic, callback=lambda msg: print(f"Received message: {msg.result}"), transport=server)
