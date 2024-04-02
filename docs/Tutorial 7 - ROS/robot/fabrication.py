@@ -4,7 +4,7 @@ from rtde_receive import RTDEReceiveInterface as RTDEReceive
 import time
 import threading
 from compas.geometry import Frame, Transformation, Translation, Vector, Point
-from compas.robots import Configuration
+from compas_fab.robots.robot import Configuration
 from compas import json_load
 from compas_fab.robots import to_degrees
 import math
