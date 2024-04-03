@@ -260,7 +260,10 @@ def pick_and_place_sticks_trajectories(move_to_pick_trajectory, pick_trajectory,
         send_trajectory_path(move_to_pick_trajectory, speed, accel, radius,ur_c)
         
         #Send to pick configs list
-        send_trajectory_path(pick_trajectory, speed, accel, radius,ur_c)
+        send_trajectory_path(pick_trajectory[:-1], speed, accel, radius, ur_c)
+
+        #Send to last pick config
+        send_trajectory_path(pick_trajectory[-1], speed, accel, 0.0, ur_c)
         
         #Turn off io to grasp new stick
         set_digital_io(vaccum_io, False,ip=ip)
