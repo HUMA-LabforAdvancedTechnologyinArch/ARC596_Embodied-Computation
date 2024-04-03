@@ -9,6 +9,7 @@ from compas import json_load
 from compas_fab.robots import to_degrees
 import math
 from compas_fab.robots import JointTrajectory
+
 def get_config(ip="127.0.0.1"):
     ur_r = RTDEReceive(ip)
     robot_joints = ur_r.getActualQ()
@@ -219,12 +220,13 @@ def send_trajectory_path(configurations, speed, accel, radius, ur_c):
 
 
 
-def pick_and_place_sticks_trajectories(exit_trajectory, move_to_pick_trajectory, pick_trajectory, move_trajectory, place_trajectory, speed, accel, radius, ip, vaccum_io):
+def pick_and_place_sticks_trajectories(move_to_pick_trajectory, pick_trajectory, move_trajectory, place_trajectory, speed, accel, radius, ip, vaccum_io):
     
     ur_c = RTDEControl(ip)
     #reverse pick configs list for safety movement
     pick_trajectory_reversed = list(reversed(pick_trajectory)) 
-    
+    place_trajectory_reversed = list(reversed(place_trajectory)) 
+
     try:
 
         #Turn on io to release stick that is being held
@@ -233,7 +235,7 @@ def pick_and_place_sticks_trajectories(exit_trajectory, move_to_pick_trajectory,
         time.sleep(1.0)
 
         #Send Exit Trajectory
-        send_trajectory_path(exit_trajectory, speed, accel, radius,ur_c)
+        #send_trajectory_path(exit_trajectory, speed, accel, radius,ur_c)
 
         #Send Move to pick_trajectory
         send_trajectory_path(move_to_pick_trajectory, speed, accel, radius,ur_c)
@@ -254,6 +256,11 @@ def pick_and_place_sticks_trajectories(exit_trajectory, move_to_pick_trajectory,
 
         # Send Place Trajectory
         send_trajectory_path(place_trajectory, speed, accel, radius,ur_c)
+
+        #Turn on io to release stick that is being held
+        set_digital_io(vaccum_io,True,ip=ip)
+
+        send_trajectory_path(place_trajectory_reversed, speed, accel, radius,ur_c)
     
     except Exception as e:
         print(e)
