@@ -67,11 +67,11 @@ This will allow you to communicate with the robot.
   
 - Install Docker plugin for Visual Studio:
 
-<img width="700" alt="" src="https://i.imgur.com/LD10LEi.jpeg">
+  <img width="700" alt="" src="https://i.imgur.com/LD10LEi.jpeg">
   
 - Navigate to the  ```.yml``` file, right click and click ```compose up```:
 
-<img width="700" alt="" src="https://i.imgur.com/FB6Fkqf.jpeg">
+  <img width="700" alt="" src="https://i.imgur.com/FB6Fkqf.jpeg">
 
 This should get the correct docker image running, which would allow the communication between grasshopper/rhino with the UR3 robot. 
 
