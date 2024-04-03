@@ -28,7 +28,9 @@
 
 > Important! Make sure that you enable virtualization support in your BIOS. If you have a Mac (even if it is running Windows), scroll down to the end of this page to enable CPU virtualization. Go to the end of this guide for information on how to enable it. 
 
-When Docker asks you whether to use WSL 2, use it. 
+When Docker asks you whether to use WSL 2, use it:
+
+  <img width="600" alt="" src="https://i.imgur.com/5r8F3Gx.jpeg">
 
 Allow Docker through the firewall when it asks: 
 
