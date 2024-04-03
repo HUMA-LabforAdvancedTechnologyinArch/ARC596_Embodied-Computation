@@ -63,15 +63,15 @@ This will allow you to communicate with the robot.
 
 - Open visual studio. Go to File - Open Folder. Load the github folder:
 
-  <img width="600" alt="" src="https://i.imgur.com/BgPO0wv.jpeg">
+  <img width="800" alt="" src="https://i.imgur.com/BgPO0wv.jpeg">
   
 - Install Docker plugin for Visual Studio:
 
-  <img width="600" alt="" src="https://i.imgur.com/LD10LEi.jpeg">
+<img width="700" alt="" src="https://i.imgur.com/LD10LEi.jpeg">
   
 - Navigate to the  ```.yml``` file, right click and click ```compose up```:
 
-  <img width="600" alt="" src="https://i.imgur.com/FB6Fkqf.jpeg>
+<img width="700" alt="" src="https://i.imgur.com/FB6Fkqf.jpeg">
 
 This should get the correct docker image running, which would allow the communication between grasshopper/rhino with the UR3 robot. 
 
@@ -85,7 +85,7 @@ This should get the correct docker image running, which would allow the communic
 
 - If you get more errors, particularly if you are a mac or windows running on a mac, it likely means that Rhino is not seeing your Python dependencies. Open Rhino, type in the ```EditPythonScript``` command, and add the github folder. 
 
-  <img width="600" alt="" src="https://i.imgur.com/7RfuyUe.jpeg>
+  <img width="600" alt="" src="https://i.imgur.com/7RfuyUe.jpeg">
 
 
 ### Virtualization 
