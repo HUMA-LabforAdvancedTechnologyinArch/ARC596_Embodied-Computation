@@ -10,6 +10,7 @@ from compas_fab.robots import to_degrees
 import math
 from compas_fab.robots import JointTrajectory
 
+
 def get_config(ip="127.0.0.1"):
     ur_r = RTDEReceive(ip)
     robot_joints = ur_r.getActualQ()
@@ -27,6 +28,16 @@ def set_tcp_offset(pose, ip = "127.0.0.1"):
 
 def move_to_joints(config, speed, accel, nowait, ip="127.0.0.1"):
     # speed rad/s, accel rad/s^2, nowait bool
+
+    for i,v in enumerate(config.joint_values):
+    #print v
+        if v>math.pi:
+            v-=2*math.pi
+        if v<-math.pi:
+            v+=2*math.pi
+        #print v
+        config.joint_values[i]=v
+
     ur_c = RTDEControl(ip)
     ur_c.moveJ(config.joint_values, speed, accel, nowait)
 
@@ -41,7 +52,7 @@ def movel_to_joints(config, speed, accel, nowait, ip="127.0.0.1"):
 
 def move_to_target(frame, speed, accel, nowait, ip="127.0.0.1"):
     # speed rad/s, accel rad/s^2, nowait bool
-    pose = frame.point.x/1000, frame.point.y/1000, frame.point.z/1000, *frame.axis_angle_vector
+    pose = frame.point.x, frame.point.y, frame.point.z, *frame.axis_angle_vector
     ur_c = RTDEControl(ip)
     ur_c.moveL(pose ,speed, accel, nowait)
     return pose
@@ -201,6 +212,14 @@ def send_trajectory_path(configurations, speed, accel, radius, ur_c):
     
     path = []
 
+    for c in configurations:
+        for i,v in enumerate(c.joint_values):
+            if v>math.pi:
+                v-=2*math.pi
+            if v<-math.pi:
+                v+=2*math.pi
+            c.joint_values[i]=v
+    
     for config in configurations:
         path.append(config.joint_values + [speed, accel, radius])
 
