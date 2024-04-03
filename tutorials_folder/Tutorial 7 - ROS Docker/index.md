@@ -79,7 +79,11 @@ This should get the correct docker image running, which would allow the communic
 ## Troubleshooting
 
 
-- Be sure to update compas. In order to do that, open the anaconda prompt, and write ```conda update compas```
+- Be sure to update compas. In order to do that, open the anaconda prompt, and write:
+```
+conda update compas
+python -m compas_rhino.install -v 7.0
+```
 
  
 
