@@ -21,6 +21,9 @@ menu:
       - page: Tutorial 5
         url: tutorials_folder/Tutorial 5 - Animation/
         description: Animation
+      - page: Tutorial 7
+        url: tutorials_folder/Tutorial 7 - ROS Docker/
+        description: ROS Docker UR Robot Communication
   - title: Getting Started
     url: getting_started/
   - title: Inspiration
