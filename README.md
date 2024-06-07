@@ -1,2 +1,2 @@
-More info on the course: https://intuitiverobotics-augmentedtechnologies.github.io/ARC596_Embodied-Computation/
+More info on the course: https://HUMA-LabforAdvancedTechnologyinArch.github.io/ARC596_Embodied-Computation/
 
